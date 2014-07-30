@@ -15,7 +15,7 @@
 
 // ** MySQL 设置 - 具体信息来自您正在使用的主机 ** //
 /** WordPress数据库的名称 */
-define('DB_NAME', 'wp');
+define('DB_NAME', 'sns');
 
 /** MySQL数据库用户名 */
 define('DB_USER', 'root');
