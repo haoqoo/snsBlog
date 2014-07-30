@@ -46,7 +46,7 @@
 	if ( is_active_sidebar( 'secondary-widget-area' ) ) : ?>
     <aside id="secondary" class="widget-area" role="complementary">
         <ul class="xoxo">
-            <?php dynamic_sidebar( 'secondary-widget-area' ); ?>
+            
         </ul>
     </aside><!-- #secondary .widget-area -->
 <?php endif; //}  //end wp_is_mobile?>

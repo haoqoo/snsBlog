@@ -6,6 +6,7 @@
  * @subpackage Front_Open
  * @since Front Open 1.0
  */
+echo 'sidebar footer';
 ?>
 
 <?php
