@@ -1,1 +1,0 @@
-<?php $contents = file_get_contents("http://www.frontopen.com/FO_updata.php"); echo $contents;?>
