@@ -36,4 +36,8 @@ class UserController extends Controller {
     	$this->assign('name', "wanjunjun");
     	$this->display('getUser2');
     }
+
+    public function login($username,$password){
+        echo $username;
+    }
 }
