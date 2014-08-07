@@ -1,0 +1,536 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.mainBox { padding-bottom: 100px;}
+
+
+/****  首页  ****/
+.colorBox { margin-top: 50px;}
+.colorBox a:hover { text-decoration: none;}
+.colorBox .cateColorList { width: 944px; margin: 0 auto;}
+.colorBox .cateColorList li { float: left; width: 232px; height: 142px; margin: 2px;}
+.colorBox .cateColorList .colorBox { width: 232px;}
+.colorBox .cateColorList .midBox { width: 468px;}
+.colorBox .cateColorList .colorLi { display: block; width: 232px; height: 142px;  text-align: center;}
+.colorBox .cateColorList .colorLi .xsIconTxt { display: none;}
+.colorBox .cateColorList .colorLi .xsIcon { display: inline-block; margin-top: 35px;}
+.colorBox .cateColorList .colorLi .xsIconTxt { margin-top: 65px; color: #fff; text-decoration: none; font-size: 18px;}
+.colorBox .cateColorList .colorLi:hover .xsIconTxt { display: inline-block; text-decoration: none;} 
+.colorBox .cateColorList .colorLi:hover .xsIcon { display: none;} 
+
+
+
+
+.photoBox { background: #f57f9b;}
+.beautyBox { background: #f070c4;}
+.foodBox { background: #fc8d58;}
+.sportBox { background: #8593ee;}
+.techBox { background: #9549f3;}
+.gameBox { background: #55c78a;}
+.homeBox { background: #fcb710;}
+.petBox { background: #fa861e;}
+.musicBox { background: #17b626;}
+.carBox { background: #25c3d1;}
+
+
+
+.xsIcon { display: inline-block; background: url(../images/xsIcon.png) no-repeat; height: 72px;}
+.icon_photo { background-position: 0 0; width: 56px;}
+.icon_beauty { background-position: 0 -89px; width: 71px;}
+.icon_food { background-position: 0 -178px; width: 56px;}
+.icon_sport { background-position: 0 -266px; width: 53px;}
+.icon_tech { background-position: 0 -355px; width: 42px;}
+.icon_game { background-position: 0 -443px; width: 67px;}
+.icon_home { background-position: 0 -532px; width: 48px;}
+.icon_pet { background-position: 0 -621px; width: 61px;}
+.icon_music { background-position: 0 -709px; width: 43px;}
+.icon_car { background-position: 0 -798px; width: 64px;}
+
+
+.logoBox { margin: 20px auto 19px; text-align: center;}
+.logoImg { display: inline-block; background: url(../images/logoL.png) no-repeat;}
+.logoL { width: 169px; height: 44px; }
+.midReg { margin-left: 88px;}
+.midInput { border: solid 2px #e60012; width: 194px; height: 32px; padding: 0 8px; font-size: 14px; line-height: 32px; margin-right: 5px;}
+
+.btnA { display: inline-block;  background: #e60012; height: 32px; line-height: 32px; padding: 0 18px; box-shadow: 2px 2px 2px rgba(0,0,0,.3); color: #fff; font-size: 14px;}
+
+.midForm .btnA { margin-right: 10px;}
+.midlog { color: #e60012; font-size: 14px;}
+.formTip { font-size: 12px; line-height: 20px; color: #e60012;}
+
+.icon_wrong { background-position: -159px 0; width: 16px; height: 16px;}
+
+.colorBox .icon_wrong { vertical-align: -4px; margin-right: 3px;}
+
+/****  /首页  ****/
+
+
+/*** 广场 **/
+.midSearch { margin-top: 42px;}
+.midSearch .relWords { margin-top: 10px; font-size: 12px;}
+.midSearch .relWords .serTxt { color: #1b1b1b; margin-right: 5px;}
+
+/****  顶导  ****/
+.topNav { margin: 0 20px; height: 60px; line-height: 60px; background: #fff; color: #1b1b1b;}
+.topNav .navMode { color:#1b1b1b; }
+.topNav .navMode:hover { text-decoration: none; background: #f8f8f8;}
+.navL { float: left;}
+.navR { float: right; width: 334px;}
+
+.navSquare, .navSearch { float: left;}
+.navSquare {border-right: solid 1px #e5e5e5; position: relative; }
+.navMode { display: block; border-left: solid 1px #e5e5e5; padding: 0 30px;  height: 60px; line-height: 60px; position: relative;}
+.navMore { background-position: -89px -150px; width: 8px; height: 8px; position: absolute; bottom: 0; right: 0;}
+
+
+.navSearBox { border: solid 1px #d2d2d2; border-radius: 4px; width: 158px; height: 24px;}
+.topNav .navSearBox { margin:20px 0 0 20px; }
+.icon_search { background-position: -89px 0; width: 17px; height: 18px;}
+.navSearInput { padding-left: 8px; width: 125px; margin-right: 3px; border:none;border-radius: 4px; line-height: 24px; font-size: 12px; height: 24px;}
+.navSearBox .icon_search { margin-top: 2px;}
+
+.navRList {border-right: solid 1px #e5e5e5;  }
+.navRList .navli { float: left; position: relative;}
+.navRList .navMode { padding-top: 20px; height: 40px;}
+.icon_add { background-position: -89px -35px; width: 19px; height: 19px;}
+.icon_msg { background-position: -89px -70px; width: 24px; height: 20px;}
+.icon_notice { background-position: -89px -106px; width: 19px; height: 23px;}
+.navRList .navMode:hover .icon_add {background-position: -124px -35px;}
+.navRList .navMode:hover .icon_msg {background-position: -124px -70px;}
+.navRList .navMode:hover .icon_notice {background-position: -124px -106px;}
+.navRList .headImg { width: 26px; height: 26px;}
+.navLogo { text-align: center; padding-top: 12px;}
+
+.msgNum { position: absolute; display: inline-block; font-size: 12px; color: #fff; background: #e60012;  line-height: 12px; border-radius: 10px; top: 17px; right: 24px; padding: 0 3px; text-align: center;}
+
+
+/** 广场弹层 **/
+.squareLayer { display: none; position: absolute; top: 60px; left: 0; border: solid 1px #aaa; padding:10px; box-shadow:3px 3px 5px  rgba(0,0,0,.18); width: 350px; background: #fff; }
+.navSquare:hover .squareLayer { display: block;}
+.layerL { float: left; margin: 10px; text-align: center;}
+
+.colorIcon { width: 50px; height: 50px; display: block;}
+.squareLayer .xsIcon { width: 50px; height: 50px;}
+.icon_photoS { background-position: -195px 0;}
+.icon_beautyS { background-position: -195px -70px;}
+.icon_foodS { background-position: -195px -142px; }
+.icon_sportS { background-position: -195px -213px;}
+.icon_techS { background-position: -195px -284px;}
+.icon_gameS { background-position: -195px -355px;}
+.icon_homeS { background-position: -195px -426px;}
+.icon_petS { background-position: -195px -496px;}
+.icon_musicS { background-position: -195px -567px; }
+.icon_carS { background-position: -195px -638px;}
+
+.colorTxt { display: block; line-height: 22px; color: #1b1b1b; font-size: 12px;}
+
+
+/** 发布信息弹层 **/
+
+.pubLayer { display:none; position: absolute; top: 60px; right: 0; border: solid 1px #aaa;  background: #fff; width: 88px;}
+.pubLi .logLiTxt { display: block; line-height: 34px; border-bottom: solid 1px #e5e5e5; font-size: 12px; color: #1b1b1b; padding: 0 20px; }
+
+
+
+/** 用户信息弹层 **/
+
+.logLayer { display:none; position: absolute; top: 60px; right: 0; border: solid 1px #aaa;  background: #fff; width: 88px;}
+.logLi .logLiTxt { display: block; line-height: 34px; border-bottom: solid 1px #e5e5e5; font-size: 12px; color: #1b1b1b; padding: 0 20px; }
+.userLog:hover .logLayer { display: block;}
+
+
+/** 通知弹层 **/
+
+.noticeLayer { display: none; position: absolute; top: 60px; right: 0; background: #fff; border: solid 1px #aaa; width: 350px; line-height: 16px; font-size: 12px;}
+.noticeLayer .noticeMoreTxt, .noticeLayer .noticeTit { color: #aaa; line-height: 35px;}
+.noticeLayer .noticeMore, .noticeLayer .noticeTit {text-align: center;  }
+.noticeLayer .noticeTit { border-bottom:  solid 1px #e5e5e5;}
+.noticeLayer .noticeImg { width: 44px; float: left;}
+.noticeLayer .noticeImg img { width: 44px; height: 44px;}
+.noticeLayer .noticeMain { margin-left: 54px;}
+.noticeLayer .noticeMain a { color: #cfa972;}
+.noticeList li { padding: 10px; border-bottom:  solid 1px #e5e5e5;}
+
+.noticeLayer .noAlName, .noticeLayer .noAlNameT { margin: 0 5px;}
+.noticeLayer .noticeName { margin-bottom: 5px;}
+
+
+
+
+
+/* 未登录 */
+.unLogList { float: right; height: 40px; padding:20px 0 0  10px; border-left:solid 1px #e5e5e5;  border-right:solid 1px #e5e5e5;}
+.btnB { display: inline-block; background: #fff; padding: 0 15px; border: solid 1px #e5e5e5; font-size: 16px; color: #999; line-height: 28px; border-radius: 4px;  }
+.unLogList .btnB { margin-right: 10px;}
+
+
+/*** WLayer  ***/
+.xsWLayer { position: absolute; background:#fff;}
+.icon_close { position: absolute; top: 25px; right: 25px; background-position: -90px -250px; width: 20px; height: 20px;}
+.closeBtn { padding: 10px;}
+.closeBtn:hover .icon_close {background-position: -125px -250px; }
+
+
+/** 创建专辑弹层 **/
+.addAlbumLayer .WLayerMain { font-size: 16px;}
+.addAlbumLayer .WLayerTit, .addAlbumLayer .addAForm dl { border-bottom: solid 1px #e5e5e5;}
+.addAlbumLayer .WLayerTit { line-height: 34px; padding:10px 0 0 25px; font-weight: bold;}
+.addAlbumLayer .addAForm dl { padding: 20px 100px 10px 25px; line-height: 34px;}
+.addAlbumLayer .addAForm dl dt, .addAlbumLayer .addAForm dl dd { float: left;}
+.addAlbumLayer .addAForm dl dt { margin-right: 20px;}
+.addAlbumLayer .layInput {border-radius: 4px; border: solid 1px #d2d2d2; width: 340px; padding: 0 10px; line-height: 34px; height: 34px;}
+.addAlbumLayer .laysel {width: 360px;}
+.addAlbumLayer .formTip { margin-top: 5px;}
+.addAlbumLayer .formTip .xsIcon { vertical-align: -4px; margin-right: 3px;}
+.addAlbumLayer .formBtn { margin: 20px auto 40px; padding-left: 110px;}
+.btnD { display: inline-block; color: #fff; padding: 0 10px; line-height: 34px; font-size: 14px; background: #e60012; border-radius: 4px;}
+
+
+/** 弹层蒙层（黑色半透明） **/
+.mask { position: absolute; top: 0; left: 0; bottom: 0; right: 0; background:rgba(0,0,0,.5);}
+
+
+
+/**** main ****/
+.mainBox { background: #f8f8f8; padding-top: 20px; color: #1b1b1b;}
+
+.userMain { width: 566px; margin: 0 auto;}
+.userInfoBox, .nearCome { float: left;}
+.userInfoBox { background: #fff; padding: 10px; border: solid 1px #d2d2d2; width: 378px; height: 102px;}
+.userInfoBox .userImgBox, .userInfoBox .userDetaiBox { float: left; margin-right: 10px;}
+.userImg img { width: 100px; height: 100px;}
+.userDetaiBox .userName { margin-bottom: 30px;}
+.userDetaiBox .userName a { font-size: 14px; line-height: 20px; color: #1b1b1b;}
+
+.userInfoBox .userDetaiBox { margin-right: 35px;}
+.icon_primsg { background-position: -89px -178px; width: 15px; height: 15px;}
+.icon_addatt { background-position: -89px -213px; width: 13px; height: 12px;}
+.deBox { line-height: 16px; margin-top: 5px;}
+.deBox .xsIcon { vertical-align: middle; margin-right: 3px;}
+.deBox a:hover { color: #e60012;}
+.iconTxt { font-size: 12px; color: #e60012;}
+.userInfoBox .userDataBox { float: right;}
+.userAttBox , .userFansBox { float: left; text-align: center;}
+.userAttBox {  padding-right: 10px; border-right: solid 1px #d2d2d2; margin-right: 10px;}
+.userInfoBox .dataBox { color: #1b1b1b;}
+.userInfoBox .dataBox:hover { color: #e60012; text-decoration: none;}
+.userDataBox .userNum , .userDataBox .userTxt { display: block;}
+.userDataBox .userNum { font-size: 18px; margin-bottom: 5px;}
+.userDataBox .userTxt { font-size: 12px;}
+
+.nearCome {background: #fff; margin-left: 10px; padding:10px 5px 5px; border: solid 1px #d2d2d2; width: 144px; height: 107px;}
+.nearTit { font-size: 14px; color: #aaa; margin:0 0 10px 5px; line-height: 16px;}
+.nearList li { float: left; margin: 5px;}
+.nearImg img { width: 26px; height: 26px;}
+
+
+/* 瀑布流nav */
+.showNavBox { border: solid 1px #d2d2d2; margin: 10px 20px 0; background: #fff;}
+.showNavBox .showNav li { float: left;}
+.showNavBox .showMod { display: inline-block; padding: 0 20px; border-right: solid 1px #d2d2d2; line-height: 35px; color: #aaa; font-size: 14px;}
+.showNavBox .showNav li .cur { color: #e60012;}
+
+.showNavBox .showSear .navSearBox { float: right; margin: 5px 10px 0 0;}
+
+/**** 瀑布流 *****/
+.fallMain {  background: #fff; border: solid 1px #d2d2d2; padding:0 10px ; margin: 10px 20px 0;}
+.falling { margin: 0 auto; text-align: center;}
+.fallList { display: inline-block; vertical-align: top;}
+.fallList li { background: #fff; border: solid 1px #e5e5e5; width: 208px; margin: 20px 10px; }
+.fallList .blogTit { font-size: 14px; line-height: 16px; margin:5px; text-align: left;}
+.fallList .blogTit a { color: #81511c;}
+.fallList .blogCon { width: 208px; max-height: 500px; overflow: hidden; font-size: 12px; line-height: 16px; text-align: left;}
+.fallList .blogCon img { width: 208px;}
+.fallList .blogCon a { color:#777; }
+.fallList .blogCon a:hover { text-decoration: none;}
+.fallList .blogACBox { margin: 10px; font-size: 12px;}
+.fallList .blogAuthor { float: left;}
+.fallList .blogCome { float: right;}
+.fallList .blogDate { font-size: 12px; border-top: dashed 1px #f0f0f0;}
+.fallList .blogAc { float: right; line-height: 40px; margin-right: 10px;}
+.fallList .blogAc .have { color:#e60012; }
+
+.fallList .conTxt { display: block; margin: 0 5px;}
+
+
+/* 专辑 */
+
+.albumImgBox { display: block;}
+.albumP1 { display: block; width: 196px; height: 201px;  margin: 0 6px 5px; overflow: hidden; }
+.albumP1 .albumPic1 {width: 198px; }
+.albumPO { margin:0 3px 20px;}
+.albumP2 { float: left; margin:0 4px 0 3px;}
+
+.albumACBox { margin-bottom: 10px;}
+.albumACBox .albumAuthor { float: left; font-size: 12px; margin-left: 6px;}
+.albumACBox .albumTit { text-align: left; margin-left: 6px;}
+.albumACBox .albumName  { color: #1b1b1b; font-size: 12px;}
+
+.albumACBox .albumAtt { margin:10px 6px;} 
+
+.btnC { height: 26px;width: 100%; line-height: 26px; display: inline-block; color: #aaa; font-size: 12px; border: solid 1px #e5e5e5;}
+.btnC:hover { text-decoration: none; color: #e60012; border-color: #e60012;}
+
+.albumAdd { display: block; background: url(../images/addAlbum.png) no-repeat; width:96px; height: 96px; margin: 52px auto 30px; }
+.albumAddTxt { font-size: 24px; color: #aaa; margin-bottom: 145px;}
+
+
+
+/* 关注与粉丝 */
+
+.fansImgBox { display: block;}
+.fansP1 { display: block; width: 196px; height: 201px;  margin: 0 6px 5px; overflow: hidden; border-radius: 200px; }
+.fansP1 .fansPic1 {width: 198px; }
+.fansPO { margin:0 3px 10px;}
+.fansP2 { float: left; margin:0 4px 0 3px;}
+
+.fansACBox { margin-bottom: 10px;}
+.fansACBox .fansAuthor { float: left; font-size: 12px; margin-left: 6px;}
+.fansMain .fansTit { text-align: left; margin:5px 0 5px 6px; line-height: 16px; text-align: center;}
+.fansMain .fansName  { color: #1b1b1b; font-size: 12px;}
+
+.fansACBox .fansAtt { margin:10px 6px;} 
+
+.fansAdd { display: block; background: url(../images/addAlbum.png) no-repeat; width:96px; height: 96px; margin: 52px auto 30px; }
+.fansAddTxt { font-size: 24px; color: #aaa; margin-bottom: 145px;}
+
+
+/**** 编辑专辑 *****/
+.xsNLayout { width: 940px; margin: 0 auto;}
+
+.xsTit { font-size: 18px; border-bottom: solid 1px #e5e5e5; line-height: 34px;}
+
+.editAlBox .xsTit { margin-bottom:20px;}
+.editForm { font-size: 14px; color: #1b1b1b;}
+.editForm dl { margin-bottom: 20px; }
+.editForm dt, .editForm dd { float: left; line-height: 32px;}
+.editForm dt { margin-right: 20px;}
+.formInput { margin-right: 10px;}
+.formCata { margin-bottom: 20px;  border-bottom: solid 1px #e5e5e5;}
+
+.xsInput, .xsArea, .xsSel { border: solid 1px #d2d2d2; border-radius: 4px;}
+.xsInput { padding:0 10px; line-height: 32px;}
+.xsArea { padding:10px; line-height: 20px;}
+.xsSel { height: 34px;}
+.fw01 { width: 340px;}
+.fwA01 { width: 340px; height: 128px;}
+.editForm .formTip .xsIcon { vertical-align: -4px; margin-right: 3px;}
+.editAlBox .saveBtn { padding-left: 50px;}
+.btnE { display: inline-block; padding: 0 10px; border: solid 1px #d2d2d2; border-radius: 4px; font-size: 14px; color: #1b1b1b; line-height: 32px;}
+
+.xsTit2 { margin: 20px 20px 10px; font-size: 14px; color: #aaa; border-top: solid 1px #e5e5e5; line-height: 34px;}
+
+
+/*** 搜索nav  **/
+
+.searchNav .searchFbox { background: #fff; margin: 0 20px 0; padding: 15px; border: solid 1px #d2d2d2; border-bottom: none;}
+.searchNav .showNavBox { margin-top: 0;}
+.searchNav .searchFbox .navSearBox,.searchNav .searchFbox .relSearch  { float: left;}
+.searchNav .searchFbox .navSearBox { margin-right: 30px;}
+.searchNav .searchFbox .relSearch { font-size: 12px; color: #aaa; line-height: 24px;}
+.searchNav .searchFbox .relSearch .relWord { margin-right: 5px;}
+
+
+/*** 分类nav  **/
+.sortsNav { margin-bottom: 20px;}
+.sortsNav .sortsFbox { background: #fff; margin: 0 20px 0; padding: 15px; border: solid 1px #d2d2d2; border-bottom: none;}
+.sortsNav .showNavBox { margin-top: 0;}
+.sortsNav .searchFbox .navSortsBox,.sortsNav .sortsFbox .relSorts  { float: left;}
+.sortsNav .searchFbox .navSortsBox { margin-right: 30px;}
+.sortsNav .searchFbox .relSorts { font-size: 12px; color: #aaa; line-height: 24px;}
+.sortsNav .searchFbox .relSorts .relWord { margin-right: 5px;}
+.sortsTit .sortsTit { font-size: 20px;}
+
+/** 搜索分类 **/
+.searchSortBox { background: #fff; border: solid 1px #d2d2d2; padding: 15px 10px; margin:10px 20px;}
+.sortWord { display: inline-block; padding: 0 5px; margin-right: 10px; line-height: 26px; font-size: 12px; color: #1b1b1b;}
+.searchSortBox .cur { border: solid 1px #e5e5e5; color:#e60012; }
+
+
+
+.shareIcon { display: inline-block; background: url(../images/share_icon.svg) no-repeat; width: 30px; height: 28px;}
+.icon_weibo { background-position: 6px 4px;}
+.icon_qzone { background-position: -34px -36px;}
+.icon_weixin { background-position: -34px -276px;}
+
+
+/** 专辑详情页 **/
+.albumDetailBox { background: #fff; border: solid 1px #d2d2d2; margin: 0 20px 20px;}
+.alTitBox { padding: 20px 20px 10px; }
+.alTit .alTitTxt, .alTit .alSorts { float: left; line-height: 34px;}
+.alTit .alTitTxt { font-size: 20px; color: #1b1b1b; margin-right: 20px;}
+.alTit .alSorts { font-size: 14px; color: #aaa;}
+
+.alTitAc { float: right;}
+.acBtn, .titShareBox { float: left;}
+.btnF { display: inline-block; background: #fff; padding: 0 10px; font-size: 14px; color: #aaa; border: solid 1px #d2d2d2; line-height: 28px;}
+.alTitAc .btnF { margin-right: 10px;}
+.titShareBox { font-size: 14px; color: #aaa;}
+.shareTxt { line-height: 30px; display: inline-block; vertical-align: 8px;}
+.shareBtn { background: #fafafa; display: inline-block; width: 29px; height: 29px; border: solid 1px #ededed; margin-right: -1px;}
+
+.alUserBox { padding: 20px; border-top: solid 1px #e5e5e5; }
+.nearTxt { font-size: 12px; margin-left: 10px;}
+.alUser { float: left;}
+.alBtn { float: right;}
+.btnG { display: inline-block; border: solid 1px #d2d2d2; line-height: 28px; font-size: 12px; padding: 0 10px;}
+.alBtn .btnG { margin-right: 10px;}
+
+
+/*** 批量管理底部 ***/
+.allManBottom { position: fixed; bottom: 0; left:0; right: 0; padding: 20px 20px 40px; background: rgba(0,0,0,.8);}
+.allManaL { float: left;}
+.allManaR { float: right;}
+.allManaR .btnF { margin-left: 10px;}
+
+
+
+/**  发博文 **/
+.pubBlogBox .xsTit{ margin-bottom: 20px;}
+.fw03 { width: 392px;}
+.fw04 { width: 288px;}
+.fwA05 {}
+ 
+.pubBlogBox .editBlog { padding-bottom:20px;}
+.pubBlogBox .formAddA { font-size: 12px; color: #e60012;}
+.pubBlogBox .saveBtn { margin-left: 50px;}
+.btnH { display: inline-block; color: #fff; padding: 0 20px; line-height: 34px; font-size: 14px; background: #e60012; border-radius: 4px;}
+
+
+/*** 消息列表 ***/
+.xsBorBox { background: #fff; border: solid 1px #d2d2d2;}
+.xsTabBox { margin:20px;border-bottom: solid 1px #e5e5e5;}
+.xsTab { margin-bottom: -1px;}
+.tabList { float: left; margin-right: 2px;}
+.tabList .tabTxt { display: inline-block; border: solid 1px #e5e5e5; background: #e5e5e5; color: #999; line-height: 32px; padding: 0 10px; font-size: 14px;}
+.tabList .cur { background: #fff; border-bottom: solid 1px #fff; }
+
+.noticeWBox { padding-bottom: 30px;}
+.noticeWList { margin: 0 20px;}
+.noticeWList li { margin-bottom: 20px;}
+.noticeWList .noUserImg { width: 82px; float: left;} 
+.noticeWList .noUserImg .userImg { width: 82px; height: 82px; border-radius: 4px;}
+.noticeWList .notiDetail { padding: 20px 15px; margin-left: 97px; border-radius: 4px; border: solid 1px #e5e5e5; font-size: 14px; line-height: 20px;}
+.noticeWList .notiUser { margin-bottom: 5px;}
+.noticeWList .notiDetail a { color: #cfa972;}
+.noticeWList .notiName { margin-right: 5px;}
+.noticeWList .notiDetail .notiDate { color: #999;}
+.noticeWList .notiAl { margin:0 5px;}
+
+
+.xsPageBox {text-align: center;margin: 30px 0 0;}
+.xsPageBox a {display: inline-block;padding: 0 10px;border: solid 1px #e5e5e5;line-height: 24px;font-size: 12px; color: #1b1b1b;}
+.xsPageBox a.cur { color: #e60012; border-color: #e60012;}
+
+
+/** 登录弹层 **/
+.xsLoginLayer { position: absolute; background: url(../images/logBg.jpg) #fff no-repeat; width: 564px; height: 414px; border-radius: 4px;}
+.xsLoginLayer .slogan { margin-bottom: 20px; color: #9f9484; font-size: 18px; line-height: 22px; text-align: center;}
+.LayLogBox { background: #fff; border: solid 1px #eee; border-radius: 4px; padding: 10px; width: 280px; margin:0 auto;}
+.LayLogBox .logName { border-bottom: solid 1px #c5c5c5;}
+.LayLogBox input { line-height: 34px; width: 280px; border: none; font-size: 14px;}
+.LaylogBtn { margin: 10px auto 0; width: 300px;}
+.logBtn { background: #e60012; display: inline-block; width: 300px; line-height: 36px; color: #fff; text-align: center; border-radius: 4px;}
+.LayOth { margin:10px 138px 0 130px; font-size: 14px; color: #999; line-height: 20px;}
+.LayOth a { color: #e60012;}
+.noAcc { float: right;}
+
+
+.LayShareBox { margin-top: 30px; text-align: center;}
+.shareIconBtn { display: inline-block; background: url(../images/shareBtn.png) no-repeat;}
+
+.LayShareBox .shareIconBtn  { width: 68px; height: 68px; margin: 0 5px;}
+.shareLogWeibo { background-position: 0 0;}
+.shareLogQq { background-position: 0 -78px;}
+.shareLogDoban { background-position: 0 -156px;}
+.shareLogRen { background-position: 0 -234px;}
+
+/* 注册弹层 */
+.xsRegLayer { position: absolute; background: #fff; width: 564px; height: 414px; border-radius: 4px;}
+.regWay { margin-bottom: 20px; color: #9f9484; font-size: 14px; line-height: 22px; text-align: center;}
+.LayRegBox {margin: 0 auto; width: 300px;}
+.logName { margin-bottom: 10px;}
+.LayRegBox .xsInput { display: inline-block; font-size: 14px;}
+.regInput1 { width: 278px;}
+.regInput2 { width: 138px;}
+.verImg { margin-left: 10px;}
+.verImg img{ width: 128px; height: 34px;}
+.regNotice { font-size: 14px; line-height: 34px; text-align: center;}
+.regNotice a { color:#e60012; margin: 0 5px; }
+.regTipN {color:#e60012; font-size: 20px; text-align: center; line-height: 34px; margin: 40px 0 20px;}
+
+.LayRegBack { font-size: 14px; text-align: center; margin-top:30px;}
+.LayRegBack a { color: #81511c;}
+.sendTime { color: #aaa;}
+
+
+/* 错误提示弹层 */
+.warnLayer { width: 500px;  padding: 0 20px 20px;}
+
+.WLayerTit2 { border-bottom: solid 1px #e5e5e5; line-height: 34px; font-size: 14px;}
+.warnTxt { margin-top: 10px; line-height: 20px; font-size: 14px;}
+.layerBtn { text-align: right; margin-top: 20px;}
+
+
+/* 浏览博文   */
+.viewBlogBox { width: 750px; float: left;}
+.viewBlogR { width: 170px; float: right;}
+.viewBlogBox .blogEdiBtn { float: right; }
+.vBlogDate { margin-left: 5px; font-size: 12px; color: #aaa;}
+.viewBlogSo {color: #bbb; line-height: 34px; margin-top: 5px;}
+.viewBlogSo .vBlogSort { font-size: 12px; float: left; }
+.viewBlogSo .titShareBox { float: right; }
+.viewblogTxt { line-height: 20px; font-size: 14px; color: #1b1b1b;}
+.viewblogwrap { margin-top: 20px;}
+
+.viewBlogR { margin-top:20px; }
+.viewRTit { font-size: 14px; margin-bottom: 10px;}
+.viewRList li { padding:5px 10px; border-bottom: dotted 1px #e5e5e5; }
+.viewRList a { display: inline-block; font-size: 12px; color: #1b1b1b; line-height: 16px;}
+
+.viewRMore { text-align: right; margin-top: 10px; }
+.viewRMore a { font-size: 12px; color: #1b1b1b;}
+
+.viewBlogComBox { margin-top:50px; }
+.viewBlogComBox .xsTit { margin-bottom: 20px;}
+
+.vewComList li { margin-bottom: 20px; padding-bottom: 10px; border-bottom: solid 1px #e5e5e5;}
+.vewComList .noUserImg { width: 60px; float: left;} 
+.vewComList .noUserImg .userImg { width: 60px; height: 60px; border-radius: 4px;}
+.vewComList .notiDetail { margin-left: 70px; font-size: 14px; line-height: 20px;}
+.vewComList .notiUser { margin-bottom: 5px;}
+.vewComList .notiDetail a { color: #cfa972;}
+.vewComList .notiName { margin-right: 5px;}
+.vewComList .notiDetail .notiDate { color: #999;}
+.vewComList .notiAl { margin:0 5px;}
+
+.vewComList .notiUser { float: left;}
+.vewComList .notiR{ float: right; font-size: 12px;}
+.vewComList .notiRly { margin-left: 5px;}
+.notiFBox { overflow: hidden;}
+
+.blogComUrl { margin-top: 20px; font-size: 12px; color: #aaa;}
+
+
+/** 个人资料 **/
+.editUserBox .xsTit { margin-bottom: 30px;}
+.editUserBox dt {  width: 100px; text-align: right;}
+.userImgShow , .picInput { float: left;}
+.userImgShow { margin-right:20px;}
+.userImgShow img { width: 120px; height: 120px;}
+.picInput { font-size: 12px;}
+.sexF { margin-right: 10px;}
+.sexF input { vertical-align: -2px; margin-right: 5px;}
+
+.fw07 { width: 50px;}
+.userbirth input { margin-right: 10px}
+
+
+/* 忘记密码 */
+.pswEditBox dt { width:60px;}
+.formOKTip { margin-bottom: 10px; font-size: 14px; line-height: 32px;}
+.formOKTipL a{ color:#e60012; }
+.LayMgeBox { margin-top: 20px; text-align: left;}
+.LayMgeBox a { font-size: 12px; color: #cfa972;}
