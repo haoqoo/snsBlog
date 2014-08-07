@@ -3,7 +3,7 @@
 # Server version:               5.1.55-community
 # Server OS:                    Win32
 # HeidiSQL version:             6.0.0.3603
-# Date/time:                    2014-08-06 17:23:12
+# Date/time:                    2014-08-07 10:40:36
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -17,9 +17,9 @@ CREATE DATABASE IF NOT EXISTS `sns` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `sns`;
 
 
-# Dumping structure for table sns.albums
-DROP TABLE IF EXISTS `albums`;
-CREATE TABLE IF NOT EXISTS `albums` (
+# Dumping structure for table sns.wq_albums
+DROP TABLE IF EXISTS `wq_albums`;
+CREATE TABLE IF NOT EXISTS `wq_albums` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
   `discription` varchar(500) DEFAULT NULL,
@@ -30,30 +30,30 @@ CREATE TABLE IF NOT EXISTS `albums` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='专辑';
 
-# Dumping data for table sns.albums: ~0 rows (approximately)
-DELETE FROM `albums`;
-/*!40000 ALTER TABLE `albums` DISABLE KEYS */;
-/*!40000 ALTER TABLE `albums` ENABLE KEYS */;
+# Dumping data for table sns.wq_albums: ~0 rows (approximately)
+DELETE FROM `wq_albums`;
+/*!40000 ALTER TABLE `wq_albums` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wq_albums` ENABLE KEYS */;
 
 
-# Dumping structure for table sns.categories
-DROP TABLE IF EXISTS `categories`;
-CREATE TABLE IF NOT EXISTS `categories` (
+# Dumping structure for table sns.wq_categories
+DROP TABLE IF EXISTS `wq_categories`;
+CREATE TABLE IF NOT EXISTS `wq_categories` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `state` int(2) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='分类';
 
-# Dumping data for table sns.categories: ~0 rows (approximately)
-DELETE FROM `categories`;
-/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+# Dumping data for table sns.wq_categories: ~0 rows (approximately)
+DELETE FROM `wq_categories`;
+/*!40000 ALTER TABLE `wq_categories` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wq_categories` ENABLE KEYS */;
 
 
-# Dumping structure for table sns.comments
-DROP TABLE IF EXISTS `comments`;
-CREATE TABLE IF NOT EXISTS `comments` (
+# Dumping structure for table sns.wq_comments
+DROP TABLE IF EXISTS `wq_comments`;
+CREATE TABLE IF NOT EXISTS `wq_comments` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `content` tinytext NOT NULL COMMENT '内容',
   `user_id` bigint(20) NOT NULL COMMENT '评论人id',
@@ -63,15 +63,15 @@ CREATE TABLE IF NOT EXISTS `comments` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='评论';
 
-# Dumping data for table sns.comments: ~0 rows (approximately)
-DELETE FROM `comments`;
-/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+# Dumping data for table sns.wq_comments: ~0 rows (approximately)
+DELETE FROM `wq_comments`;
+/*!40000 ALTER TABLE `wq_comments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wq_comments` ENABLE KEYS */;
 
 
-# Dumping structure for table sns.operation_logs
-DROP TABLE IF EXISTS `operation_logs`;
-CREATE TABLE IF NOT EXISTS `operation_logs` (
+# Dumping structure for table sns.wq_operation_logs
+DROP TABLE IF EXISTS `wq_operation_logs`;
+CREATE TABLE IF NOT EXISTS `wq_operation_logs` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `opered_id` varchar(20) NOT NULL COMMENT '被操作的id，可能是blog，user等id',
   `oper_type` varchar(20) NOT NULL COMMENT '操作类型： user_fan等',
@@ -83,15 +83,15 @@ CREATE TABLE IF NOT EXISTS `operation_logs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='博文，用户关注，系统信息，用户私信 等操作日志信息';
 
-# Dumping data for table sns.operation_logs: ~0 rows (approximately)
-DELETE FROM `operation_logs`;
-/*!40000 ALTER TABLE `operation_logs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `operation_logs` ENABLE KEYS */;
+# Dumping data for table sns.wq_operation_logs: ~0 rows (approximately)
+DELETE FROM `wq_operation_logs`;
+/*!40000 ALTER TABLE `wq_operation_logs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wq_operation_logs` ENABLE KEYS */;
 
 
-# Dumping structure for table sns.posts
-DROP TABLE IF EXISTS `posts`;
-CREATE TABLE IF NOT EXISTS `posts` (
+# Dumping structure for table sns.wq_posts
+DROP TABLE IF EXISTS `wq_posts`;
+CREATE TABLE IF NOT EXISTS `wq_posts` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL COMMENT '作者id',
   `category_id` bigint(20) DEFAULT NULL COMMENT '分类id',
@@ -108,15 +108,15 @@ CREATE TABLE IF NOT EXISTS `posts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='博客';
 
-# Dumping data for table sns.posts: ~0 rows (approximately)
-DELETE FROM `posts`;
-/*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-/*!40000 ALTER TABLE `posts` ENABLE KEYS */;
+# Dumping data for table sns.wq_posts: ~0 rows (approximately)
+DELETE FROM `wq_posts`;
+/*!40000 ALTER TABLE `wq_posts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wq_posts` ENABLE KEYS */;
 
 
-# Dumping structure for table sns.post_favorites
-DROP TABLE IF EXISTS `post_favorites`;
-CREATE TABLE IF NOT EXISTS `post_favorites` (
+# Dumping structure for table sns.wq_post_favorites
+DROP TABLE IF EXISTS `wq_post_favorites`;
+CREATE TABLE IF NOT EXISTS `wq_post_favorites` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `post_id` bigint(20) NOT NULL COMMENT '博客id',
   `user_id` bigint(20) NOT NULL COMMENT '收藏用户id',
@@ -125,15 +125,15 @@ CREATE TABLE IF NOT EXISTS `post_favorites` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='博客收藏（采集）和点赞';
 
-# Dumping data for table sns.post_favorites: ~0 rows (approximately)
-DELETE FROM `post_favorites`;
-/*!40000 ALTER TABLE `post_favorites` DISABLE KEYS */;
-/*!40000 ALTER TABLE `post_favorites` ENABLE KEYS */;
+# Dumping data for table sns.wq_post_favorites: ~0 rows (approximately)
+DELETE FROM `wq_post_favorites`;
+/*!40000 ALTER TABLE `wq_post_favorites` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wq_post_favorites` ENABLE KEYS */;
 
 
-# Dumping structure for table sns.sys_messages
-DROP TABLE IF EXISTS `sys_messages`;
-CREATE TABLE IF NOT EXISTS `sys_messages` (
+# Dumping structure for table sns.wq_sys_messages
+DROP TABLE IF EXISTS `wq_sys_messages`;
+CREATE TABLE IF NOT EXISTS `wq_sys_messages` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `content` tinytext NOT NULL COMMENT '内容',
   `create_date` datetime NOT NULL COMMENT '创建时间',
@@ -141,15 +141,15 @@ CREATE TABLE IF NOT EXISTS `sys_messages` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统消息';
 
-# Dumping data for table sns.sys_messages: ~0 rows (approximately)
-DELETE FROM `sys_messages`;
-/*!40000 ALTER TABLE `sys_messages` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sys_messages` ENABLE KEYS */;
+# Dumping data for table sns.wq_sys_messages: ~0 rows (approximately)
+DELETE FROM `wq_sys_messages`;
+/*!40000 ALTER TABLE `wq_sys_messages` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wq_sys_messages` ENABLE KEYS */;
 
 
-# Dumping structure for table sns.users
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
+# Dumping structure for table sns.wq_users
+DROP TABLE IF EXISTS `wq_users`;
+CREATE TABLE IF NOT EXISTS `wq_users` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(20) NOT NULL,
@@ -168,15 +168,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 
-# Dumping data for table sns.users: ~0 rows (approximately)
-DELETE FROM `users`;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+# Dumping data for table sns.wq_users: ~0 rows (approximately)
+DELETE FROM `wq_users`;
+/*!40000 ALTER TABLE `wq_users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wq_users` ENABLE KEYS */;
 
 
-# Dumping structure for table sns.users_fans
-DROP TABLE IF EXISTS `users_fans`;
-CREATE TABLE IF NOT EXISTS `users_fans` (
+# Dumping structure for table sns.wq_users_fans
+DROP TABLE IF EXISTS `wq_users_fans`;
+CREATE TABLE IF NOT EXISTS `wq_users_fans` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_star` bigint(20) NOT NULL COMMENT '被关注用户id',
   `user_fan` bigint(20) NOT NULL COMMENT '关注别人的用户id',
@@ -185,15 +185,15 @@ CREATE TABLE IF NOT EXISTS `users_fans` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户关注';
 
-# Dumping data for table sns.users_fans: ~0 rows (approximately)
-DELETE FROM `users_fans`;
-/*!40000 ALTER TABLE `users_fans` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users_fans` ENABLE KEYS */;
+# Dumping data for table sns.wq_users_fans: ~0 rows (approximately)
+DELETE FROM `wq_users_fans`;
+/*!40000 ALTER TABLE `wq_users_fans` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wq_users_fans` ENABLE KEYS */;
 
 
-# Dumping structure for table sns.user_messages
-DROP TABLE IF EXISTS `user_messages`;
-CREATE TABLE IF NOT EXISTS `user_messages` (
+# Dumping structure for table sns.wq_user_messages
+DROP TABLE IF EXISTS `wq_user_messages`;
+CREATE TABLE IF NOT EXISTS `wq_user_messages` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `from_id` bigint(20) NOT NULL COMMENT '发送人id',
   `to_id` bigint(20) NOT NULL COMMENT '收件人id',
@@ -203,10 +203,10 @@ CREATE TABLE IF NOT EXISTS `user_messages` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户私信';
 
-# Dumping data for table sns.user_messages: ~0 rows (approximately)
-DELETE FROM `user_messages`;
-/*!40000 ALTER TABLE `user_messages` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_messages` ENABLE KEYS */;
+# Dumping data for table sns.wq_user_messages: ~0 rows (approximately)
+DELETE FROM `wq_user_messages`;
+/*!40000 ALTER TABLE `wq_user_messages` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wq_user_messages` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
