@@ -1,0 +1,24 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+ 	<title></title>
+ 	
+ 	<load href="__ROOT__/public/js/jquery-1.7.2.min.js" />
+ </head>
+ <body>
+ 	用户列表
+ 	<table>
+ 		<tr><td>id</td><td>name</td></tr>
+ <foreach name="list" item="vo" >
+ 	<tr>
+ 		<td>{$vo.id}</td>
+ 		<td>{$vo.username}</td>
+ 	</tr>
+ </foreach>
+</table>
+<a href="__ROOT__/admin/user/add.shtml">创建用户</a>
+ </body>
+ </html>
+ <script type="text/javascript">
+
+ </script>
