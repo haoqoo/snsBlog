@@ -3,7 +3,7 @@
  <head>
  	<title></title>
  	
- 	<script type="text/javascript" src="/wp/snsBlog/public/js/jquery-1.7.2.min.js"></script>
+ 	<script type="text/javascript" src="/snsBlog/public/js/jquery-1.7.2.min.js"></script>
  </head>
  <body>
  	用户列表
@@ -14,7 +14,7 @@
  		<td><?php echo ($vo["username"]); ?></td>
  	</tr><?php endforeach; endif; ?>
 </table>
-<a href="/wp/snsBlog/admin/user/add.shtml">创建用户</a>
+<a href="/snsBlog/admin/user/add.shtml">创建用户</a>
  </body>
  </html>
  <script type="text/javascript">
