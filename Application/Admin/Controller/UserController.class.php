@@ -37,7 +37,7 @@ class UserController extends Controller {
     	$this->display('getUser2');
     }
 
-    public function login($username,$password){
-        echo $username;
+    public function login(){
+        echo '';
     }
 }
