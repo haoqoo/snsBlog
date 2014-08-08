@@ -3,7 +3,7 @@
 # Server version:               5.1.55-community
 # Server OS:                    Win32
 # HeidiSQL version:             6.0.0.3603
-# Date/time:                    2014-08-07 10:40:36
+# Date/time:                    2014-08-08 16:59:21
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -43,11 +43,22 @@ CREATE TABLE IF NOT EXISTS `wq_categories` (
   `name` varchar(50) NOT NULL,
   `state` int(2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='分类';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='分类';
 
-# Dumping data for table sns.wq_categories: ~0 rows (approximately)
+# Dumping data for table sns.wq_categories: ~10 rows (approximately)
 DELETE FROM `wq_categories`;
 /*!40000 ALTER TABLE `wq_categories` DISABLE KEYS */;
+INSERT INTO `wq_categories` (`id`, `name`, `state`) VALUES
+	(1, '摄影', 1),
+	(2, '美妆服饰', 1),
+	(3, '美食', 1),
+	(4, '运动', 1),
+	(5, '科技生活', 1),
+	(6, '游戏', 1),
+	(7, '家居设计', 1),
+	(8, '宠物', 1),
+	(9, '音乐', 1),
+	(10, '汽车', 1);
 /*!40000 ALTER TABLE `wq_categories` ENABLE KEYS */;
 
 
@@ -166,11 +177,14 @@ CREATE TABLE IF NOT EXISTS `wq_users` (
   `update_date` datetime DEFAULT NULL COMMENT '修改日期',
   `state` int(11) DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
-# Dumping data for table sns.wq_users: ~0 rows (approximately)
+# Dumping data for table sns.wq_users: ~2 rows (approximately)
 DELETE FROM `wq_users`;
 /*!40000 ALTER TABLE `wq_users` DISABLE KEYS */;
+INSERT INTO `wq_users` (`id`, `username`, `password`, `aliasname`, `email`, `grade`, `born_year`, `born_month`, `born_day`, `professional`, `my_site`, `introduce`, `create_date`, `update_date`, `state`) VALUES
+	(1, '123', '', NULL, '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(2, 'jack', '123456', NULL, 'qweqwe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `wq_users` ENABLE KEYS */;
 
 
