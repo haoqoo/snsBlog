@@ -48,7 +48,11 @@ class UserController extends Controller {
                 $ajax['success'] = true;
                 session('__user__',$user);             
             }
-            $this->ajaxReturn($ajax);
-       
+            $this->ajaxReturn($ajax);       
+    }
+
+    public function logout(){
+        session(null);
+        $this->redirect('/');
     }
 }

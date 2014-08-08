@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<include file='./public/common/meta.html' />
+</head>
+
+<body>
+
+
+	<div class="xsWrap">
+		<!-- 顶导 -->
+		<div class="topNav clearfix">
+			<div class="navBox">
+				<div class="navSquare"><a class="navMode" href="#"><span class="navLTxt">广场</span><em class="xsIcon navMore"></em></a>
+					<div class="squareLayer">
+						<ul class="layerColor">
+							<li class="layerL"><a href="#" class="colorIcon photoBox"><span class="xsIcon icon_photoS"></span></a><a class="colorTxt" href="#" >摄影</a></li>
+							<li class="layerL"><a href="#" class="colorIcon beautyBox"><span class="xsIcon icon_beautyS"></span></a><a class="colorTxt" href="#" >美妆服饰</a></li>
+							<li class="layerL"><a href="#" class="colorIcon beautyBox"><span class="xsIcon icon_foodS"></span></a><a class="colorTxt" href="#" >美食</a></li>
+							<li class="layerL"><a href="#" class="colorIcon sportBox"><span class="xsIcon icon_sportS"></span></a><a class="colorTxt" href="#" >运动</a></li>
+							<li class="layerL"><a href="#" class="colorIcon techBox"><span class="xsIcon icon_techS"></span></a><a class="colorTxt" href="#" >科技生活</a></li>
+							<li class="layerL"><a href="#" class="colorIcon gameBox"><span class="xsIcon icon_gameS"></span></a><a class="colorTxt" href="#" >游戏</a></li>
+							<li class="layerL"><a href="#" class="colorIcon homeBox"><span class="xsIcon icon_homeS"></span></a><a class="colorTxt" href="#" >家居设计</a></li>
+							<li class="layerL"><a href="#" class="colorIcon petBox"><span class="xsIcon icon_petS"></span></a><a class="colorTxt" href="#" >宠物</a></li>
+							<li class="layerL"><a href="#" class="colorIcon musicBox"><span class="xsIcon icon_musicS"></span></a><a class="colorTxt" href="#" >音乐</a></li>
+							<li class="layerL"><a href="#" class="colorIcon carBox"><span class="xsIcon icon_carS"></span></a><a class="colorTxt" href="#" >汽车</a></li>
+
+						</ul>					
+
+					</div>
+
+				</div>
+				<div class="navSearch">
+					<div class="navSearBox"><input type="text" placeholder="请输入关键字" class="navSearInput"><span class="xsIcon icon_search"></span></div>
+				</div>
+			</div>
+
+			<div class="navR">
+				
+				<if condition="session('__user__') neq null">
+				<!-- 已登录 -->
+					<ul class="navRList clearfix">
+					<li class="navli userAdd"><a class="navMode" href=""><span class="xsIcon icon_add"></span></a>
+						<!-- 发布弹层 点击【+】出现 -->
+						<div class="pubLayer">
+							<p class="pubLi"><a href="#" class="logLiTxt">发布文章</a></p>
+							<!-- 点击【发布专辑】出现 创建专辑弹层 -->	
+							<p class="pubLi"><a href="#" class="logLiTxt">创建专辑</a></p>	
+						</div>
+						<!-- /发布弹层 -->
+					</li>
+					<li class="navli usermsg"><a class="navMode" href=""><span class="xsIcon icon_msg"></span><em class="msgNum">99+</em></a></li>
+					<li class="navli userNotice"><a class="navMode" href=""><span class="xsIcon icon_notice"></span></a>
+						<div class="noticeLayer">
+							<p class="noticeTit">我的消息</p>
+							<!-- 通知弹层 点击【我的消息】出现 -->
+							<div class="noticeListBox">
+								<ul class="noticeList">
+									<li class="clearfix">
+										<a class="noticeImg"><img src="__PUBLIC__/images/userS.jpg" alt></a>
+										<div class="noticeMain">
+											<p class="noticeName"><a class="nameTxt">用户昵称八个字啊</a></p>
+											<p class="noticeCon">转采了你的专辑<a class="noAlName">小小花蛤</a>到<a class="noAlNameT">小小花蛤</a></p>
+										</div>
+									</li>
+									<li class="clearfix">
+										<a class="noticeImg"><img src="__PUBLIC__/images/userS.jpg" alt></a>
+										<div class="noticeMain">
+											<p class="noticeName"><a class="nameTxt">用户昵称八个字啊</a></p>
+											<p class="noticeCon">转采了你的专辑<a class="noAlName">小小花蛤</a>到<a class="noAlNameT">小小花蛤</a></p>
+										</div>
+									</li>
+									<li class="clearfix">
+										<a class="noticeImg"><img src="__PUBLIC__/images/userS.jpg" alt></a>
+										<div class="noticeMain">
+											<p class="noticeName"><a class="nameTxt">用户昵称八个字啊</a></p>
+											<p class="noticeCon">转采了你的专辑<a class="noAlName">小小花蛤</a>到<a class="noAlNameT">小小花蛤</a></p>
+										</div>
+									</li>
+									<li class="clearfix">
+										<a class="noticeImg"><img src="__PUBLIC__/images/userS.jpg" alt></a>
+										<div class="noticeMain">
+											<p class="noticeName"><a class="nameTxt">用户昵称八个字啊</a></p>
+											<p class="noticeCon">转采了你的专辑<a class="noAlName">小小花蛤</a>到<a class="noAlNameT">小小花蛤</a></p>
+										</div>
+									</li>									
+								</ul>
+								<p class="noticeMore"><a class="noticeMoreTxt">查看所有消息>></a></p>
+							</div>
+							<!-- /通知弹层 -->
+						</div>
+
+					</li>
+					<li class="navli userLog"><a class="navMode" href=""><img src="__PUBLIC__/images/userS.jpg" alt="" class="headImg"><em class="xsIcon navMore"></em></a>
+						<!-- 用户弹层 -->
+						<div class="logLayer">
+							<p class="logLi"><a href="#" class="logLiTxt">消息箱</a></p>	
+							<p class="logLi"><a href="#" class="logLiTxt">用户设置</a></p>	
+							<p class="logLi"><a href="__ROOT__/admin/user/logout" class="logLiTxt">退出登录</a></p>	
+						</div>
+						<!-- /用户弹层 -->
+					</li>
+				</ul>
+				<!-- /已登录 -->
+				 <else/>
+				 <!-- 未登录 -->
+				 <div class="unLogList"><a class="btnB" href="#">登录</a><a class="btnB" href="#">注册</a></div>
+				</if>
+				
+
+				
+
+			</div>
+
+			<div class="navLogo"><a class="logoBox"><img src="__PUBLIC__/images/logoM.png" alt=""></a></div>
+		</div>
+		<!-- /顶导 -->
+		<!-- main -->
+		<div class="mainBox clearfix">		
+			<div class="colorBox">
+				<ul class="cateColorList">
+					<li class="colorBox photoBox"><a class="colorLi" href="#"><span class="xsIcon icon_photo"></span><span class="xsIconTxt">摄影</span></a></li>
+					<li class="colorBox beautyBox"><a class="colorLi" href="#"><span class="xsIcon icon_beauty"></span><span class="xsIconTxt">美妆服饰</span></a></li>
+					<li class="colorBox foodBox"><a class="colorLi" href="#"><span class="xsIcon icon_food"></span><span class="xsIconTxt">美食</span></a></li>
+					<li class="colorBox sportBox"><a class="colorLi" href="#"><span class="xsIcon icon_sport"></span><span class="xsIconTxt">运动</span></a></li>
+					<li class="colorBox techBox"><a class="colorLi" href="#"><span class="xsIcon icon_tech"></span><span class="xsIconTxt">科技生活</span></a></li>
+					<li class="midBox">
+						<div class="midReg midSearch">
+							<div class="midForm"><input type="text" class="midInput" placeholder="请输入关键字"><a class="btnA" href="#">搜索</a></div>
+							<p class="relWords">热门搜索：<a class="serTxt">app</a><a class="serTxt">宠物</a></p>
+						</div>
+					</li>				
+					<li class="colorBox gameBox"><a class="colorLi" href="#"><span class="xsIcon icon_game"></span><span class="xsIconTxt">游戏</span></a></li>
+					<li class="colorBox homeBox"><a class="colorLi" href="#"><span class="xsIcon icon_home"></span><span class="xsIconTxt">家居设计</span></a></li>
+					<li class="colorBox petBox"><a class="colorLi" href="#"><span class="xsIcon icon_pet"></span><span class="xsIconTxt">宠物</span></a></li>
+					<li class="colorBox musicBox"><a class="colorLi" href="#"><span class="xsIcon icon_music"></span><span class="xsIconTxt">音乐</span></a></li>
+					<li class="colorBox carBox"><a class="colorLi" href="#"><span class="xsIcon icon_car"></span><span class="xsIconTxt">汽车</span></a></li>
+
+
+
+				</ul>
+
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+</body>
+</html>
