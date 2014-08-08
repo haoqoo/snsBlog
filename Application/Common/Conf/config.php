@@ -10,5 +10,15 @@ return array(
  	'DB_PWD' => '123456', // 密码
  	'DB_PORT' => 3306, // 端口
  	'DB_PREFIX' => 'wq_', // 数据库表前缀
-	'DB_CHARSET'=> 'utf8' //
+	'DB_CHARSET'=> 'utf8', //
+
+	//'配置项'=>'配置值'
+	// 开启路由
+	// 'URL_ROUTER_ON'=>true, 
+	// 'URL_ROUTE_RULES'=>array(
+ //    	'cate'=> 'Home/categories/index'    
+	// )
+
+	//view 路径文件夹
+	'CATE_VIEW' => 'Category@/category/' //d对应Category模块
 );

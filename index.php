@@ -20,7 +20,7 @@ define('APP_DEBUG',true);
 // 定义应用目录
 define('APP_PATH','./Application/');
 
-// define('BIND_MODULE','Admin');
+ //define('BIND_MODULE','Category');
 // define('BUILD_CONTROLLER_LIST','Index,User');
 // define('BUILD_MODEL_LIST','User');
 
