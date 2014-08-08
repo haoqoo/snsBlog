@@ -1,13 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset-min.css">
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
-<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
-<title></title>
+<include file="./Public/common/meta.html" />
 </head>
-
 <body>
 
 
@@ -42,30 +37,8 @@
 
 	</div>
 
-
-	<!-- 弹层蒙层（黑色半透明） -->
-	<div class="mask" style="display:none;"></div>
-	<!-- 弹层蒙层（黑色半透明） -->
-
-	<!-- 登录弹层 -->
-	<div class="xsLoginLayer" style="display:none; top:100px; left:400px;">
-		<p class="logoBox"><span class="logoImg logoL"></span></p>
-		<p class="slogan">－ slogan －</p>
-		<div class="LaylogWrap">
-			<div class="LayLogBox">
-				<p class="logInput logName">
-					<input type="text" name="username" placeholder="用户名"></p>
-				<p class="logInput logPsw">
-					<input type="password" name="password" placeholder="密码"></p>
-			</div>
-			<p class="LaylogBtn"><a class="logBtn" href="javascript:login();">登录</a></p>
-			<p class="LayOth clearfix"><a class="forgetPsw" href="#">忘记密码></a><span class="noAcc">还没有账号？  <a class="cliReg" href="#">点击注册></a></span></p>
-		</div>
-		<div class="LayShareBox">
-			<a class="shareIconBtn shareLogWeibo" href="#"></a><a class="shareIconBtn shareLogQq" href="#"></a><a class="shareIconBtn shareLogDoban" href="#"></a><a class="shareIconBtn shareLogRen" href="#"></a>
-		</div>
-	</div>
-	<!-- /登录弹层 -->
+	<include file="./Public/common/openWindows.html"/>
+	
 	<script type="text/javascript">
 		function open_login(){
 			$(".mask").show();
