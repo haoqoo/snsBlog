@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset-min.css">
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
 <title></title>
 </head>
 
@@ -22,8 +23,8 @@
 				<li class="midBox">
 					<p class="logoBox"><a href="#" class="logoImg logoL"></a></p>
 					<div class="midReg">
-						<div class="midForm"><input type="text" class="midInput" placeholder="请输入注册邮箱"><a class="btnA" href="#">注册</a><a class="midlog" href="#">登录</a></div>
-						<p class="formTip"><span class="xsIcon icon_wrong"></span>邮箱格式错误</p>
+						<div class="midForm"><input type="text" class="midInput" placeholder="请输入注册邮箱"><a class="btnA" href="#">注册</a><a class="midlog" href="javascript:open_login();">登录</a></div>
+						<!-- <p class="formTip"><span class="xsIcon icon_wrong"></span>邮箱格式错误</p> -->
 					</div>
 				</li>				
 				<li class="colorBox gameBox"><a class="colorLi" href="#"><span class="xsIcon icon_game"></span><span class="xsIconTxt">游戏</span></a></li>
@@ -52,10 +53,12 @@
 		<p class="slogan">－ slogan －</p>
 		<div class="LaylogWrap">
 			<div class="LayLogBox">
-				<p class="logInput logName"><input type="text" placeholder="用户名"></p>
-				<p class="logInput logPsw"><input type="text" placeholder="密码"></p>
+				<p class="logInput logName">
+					<input type="text" name="username" placeholder="用户名"></p>
+				<p class="logInput logPsw">
+					<input type="password" name="password" placeholder="密码"></p>
 			</div>
-			<p class="LaylogBtn"><a class="logBtn" href="#">登录</a></p>
+			<p class="LaylogBtn"><a class="logBtn" href="javascript:login();">登录</a></p>
 			<p class="LayOth clearfix"><a class="forgetPsw" href="#">忘记密码></a><span class="noAcc">还没有账号？  <a class="cliReg" href="#">点击注册></a></span></p>
 		</div>
 		<div class="LayShareBox">
@@ -63,6 +66,27 @@
 		</div>
 	</div>
 	<!-- /登录弹层 -->
+	<script type="text/javascript">
+		function open_login(){
+			$(".mask").show();
+			$(".xsLoginLayer").show();
+		}
+		function login(){
+			var username = $("input[name=username]").val();
+			var password = $("input[name=password]").val();
+			if(username==null || username==""){
+				alert("用户名不能为空！");
+				return;
+			}
+			if(password==null || password==""){
+				alert("密码不能为空！");
+				return;
+			}
+			$.post("__ROOT__/admin/user/login",{'username':username,'password':password},function(data){
+
+			})
+		}
+	</script>
 
 </body>
 </html>
