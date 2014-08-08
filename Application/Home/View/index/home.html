@@ -83,7 +83,11 @@
 				return;
 			}
 			$.post("__ROOT__/admin/user/login",{'username':username,'password':password},function(data){
+				
+				 if (data.success){
 
+				 };//undo 
+				 location.href='__ROOT__/home/categories';
 			})
 		}
 	</script>

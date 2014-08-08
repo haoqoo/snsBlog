@@ -37,7 +37,18 @@ class UserController extends Controller {
     	$this->display('getUser2');
     }
 
-    public function login(){
-        echo '';
+    public function login($username,$password){
+            $ajax['success'] = false;
+        
+            $User = M("Users");
+            $map['username']=$username;
+            $map['password']=$password;
+            $user = $User->where($map)->find();            
+            if($user){
+                $ajax['success'] = true;
+                session('__user__',$user);             
+            }
+            $this->ajaxReturn($ajax);
+       
     }
 }
