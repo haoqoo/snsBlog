@@ -53,8 +53,10 @@ class App {
     static public function exec() {
     
         if(!preg_match('/^[A-Za-z](\/|\w)*$/',CONTROLLER_NAME)){ // 安全检测
+            //echo '安全检测';
             $module  =  false;
         }elseif(C('ACTION_BIND_CLASS')){
+            //echo '操作绑定到类：模块\Controller\控制器\操作';
             // 操作绑定到类：模块\Controller\控制器\操作
             $layer  =   C('DEFAULT_C_LAYER');
             if(is_dir(MODULE_PATH.$layer.'/'.CONTROLLER_NAME)){
@@ -77,6 +79,7 @@ class App {
             $action  =  'run';
         }else{
             //创建控制器实例
+            //echo ' 创建控制器实例CONTROLLER_NAME:'.CONTROLLER_NAME.'  ,CONTROLLER_PATH:'.CONTROLLER_PATH.'<br>';
             $module  =  controller(CONTROLLER_NAME,CONTROLLER_PATH);                
         }
 

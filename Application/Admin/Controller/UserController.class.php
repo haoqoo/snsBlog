@@ -38,12 +38,15 @@ class UserController extends Controller {
     }
 
     public function login($username,$password){
+            
             $ajax['success'] = false;
         
             $User = M("Users");
             $map['username']=$username;
             $map['password']=$password;
-            $user = $User->where($map)->find();            
+            $user = $User->where($map)->find(); //查询出来的是数组,一条数据库数据的数组。
+            //print_r($user) ;
+            //echo 'user login:'.$user['username'].'<br>';           
             if($user){
                 $ajax['success'] = true;
                 session('__user__',$user);             

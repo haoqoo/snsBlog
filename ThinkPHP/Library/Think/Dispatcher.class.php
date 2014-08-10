@@ -28,9 +28,11 @@ class Dispatcher {
         $varAction      =   C('VAR_ACTION');
         $urlCase        =   C('URL_CASE_INSENSITIVE');
         if(isset($_GET[$varPath])) { // 判断URL里面是否有兼容模式参数
+           // echo '判断URL里面是否有兼容模式参数<br>';
             $_SERVER['PATH_INFO'] = $_GET[$varPath];
             unset($_GET[$varPath]);
         }elseif(IS_CLI){ // CLI模式下 index.php module/controller/action/params/...
+            //echo 'CLI模式下<br>';
             $_SERVER['PATH_INFO'] = isset($_SERVER['argv'][1]) ? $_SERVER['argv'][1] : '';
         }
 
@@ -95,12 +97,16 @@ class Dispatcher {
         }
         // 分析PATHINFO信息
         if(!isset($_SERVER['PATH_INFO'])) {
+            //echo '分析PATHINFO信息 start <br>';
             $types   =  explode(',',C('URL_PATHINFO_FETCH'));
             foreach ($types as $type){
+                //echo $type;
                 if(0===strpos($type,':')) {// 支持函数判断
+                    echo 'strpos判断。。<br>';
                     $_SERVER['PATH_INFO'] =   call_user_func(substr($type,1));
                     break;
                 }elseif(!empty($_SERVER[$type])) {
+                    echo 'empty 判断<br>';
                     $_SERVER['PATH_INFO'] = (0 === strpos($_SERVER[$type],$_SERVER['SCRIPT_NAME']))?
                         substr($_SERVER[$type], strlen($_SERVER['SCRIPT_NAME']))   :  $_SERVER[$type];
                     break;
@@ -112,6 +118,7 @@ class Dispatcher {
         define('MODULE_PATHINFO_DEPR',  $depr);
 
         if(empty($_SERVER['PATH_INFO'])) {
+            //echo 'PATH_INFO is empty<br>';
             $_SERVER['PATH_INFO'] = '';
             define('__INFO__','');
             define('__EXT__','');
@@ -121,6 +128,7 @@ class Dispatcher {
             define('__EXT__', strtolower(pathinfo($_SERVER['PATH_INFO'],PATHINFO_EXTENSION)));
             $_SERVER['PATH_INFO'] = __INFO__;     
             if (__INFO__ && !defined('BIND_MODULE') && C('MULTI_MODULE')){ // 获取模块名
+                //echo '获取模块名..<br>';
                 $paths      =   explode($depr,__INFO__,2);
                 $allowList  =   C('MODULE_ALLOW_LIST'); // 允许的模块列表
                 $module     =   preg_replace('/\.' . __EXT__ . '$/i', '',$paths[0]);
@@ -139,6 +147,7 @@ class Dispatcher {
         
         // 检测模块是否存在
         if( MODULE_NAME && (defined('BIND_MODULE') || !in_array_case(MODULE_NAME,C('MODULE_DENY_LIST')) ) && is_dir(APP_PATH.MODULE_NAME)){
+            //echo '检测模块是否存在<br>';
             // 定义当前模块路径
             define('MODULE_PATH', APP_PATH.MODULE_NAME.'/');
             // 定义当前模块的模版缓存路径
@@ -240,6 +249,7 @@ class Dispatcher {
         // 当前操作的URL地址
         define('__ACTION__',__CONTROLLER__.$depr.(defined('ACTION_ALIAS')?ACTION_ALIAS:ACTION_NAME));
 
+       
         //保证$_REQUEST正常取值
         $_REQUEST = array_merge($_POST,$_GET);
     }
