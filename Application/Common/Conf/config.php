@@ -16,7 +16,9 @@ return array(
 	// 开启路由
 	 'URL_ROUTER_ON'=>true, 
 	 'URL_ROUTE_RULES'=>array(
-     	'cate'=> 'Home/Category/index'    
+	 	'cate/:id\d'=>'Home/Category/show',  
+     	'cate'=> 'Home/Category/index'
+     	 
 	 ),
 
 	//view 路径文件夹
