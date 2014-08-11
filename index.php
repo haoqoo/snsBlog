@@ -20,14 +20,14 @@ define('APP_DEBUG',true);
 // 定义应用目录
 define('APP_PATH','./Application/');
 
- //define('BIND_MODULE','Category');
-// define('BUILD_CONTROLLER_LIST','Index,User');
-// define('BUILD_MODEL_LIST','User');
+ // define('BIND_MODULE','Home');
+ // define('BUILD_CONTROLLER_LIST','Index,Category,Ablum,Post,Comment');
+ // define('BUILD_MODEL_LIST','Categories,Ablums,Posts,Comments');
 
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';
 
-
-//\Think\Build::buildModel('Category','Categories');
+\Think\Build::buildController('Home','Ablum');
+//\Think\Build::buildModel('Home','PostFavorites');
 
 // 亲^_^ 后面不需要任何代码了 就是如此简单

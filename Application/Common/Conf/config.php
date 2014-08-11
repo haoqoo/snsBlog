@@ -2,7 +2,7 @@
 return array(
 	//'配置项'=>'配置值'
 	'URL_HTML_SUFFIX' => 'shtml',
-	'URL_CASE_INSENSITIVE'  => true, //url不区分大小写，针对linux系统
+	'URL_CASE_INSENSITIVE'  => false, //url不区分大小写，针对linux系统
 	'DB_TYPE' => 'mysql', // 数据库类型
  	'DB_HOST' => '192.168.1.62', // 服务器地址
  	'DB_NAME' => 'sns', // 数据库名
@@ -14,11 +14,11 @@ return array(
 
 	//'配置项'=>'配置值'
 	// 开启路由
-	// 'URL_ROUTER_ON'=>true, 
-	// 'URL_ROUTE_RULES'=>array(
- //    	'cate'=> 'Home/categories/index'    
-	// )
+	 'URL_ROUTER_ON'=>true, 
+	 'URL_ROUTE_RULES'=>array(
+     	'cate'=> 'Home/Category/index'    
+	 ),
 
 	//view 路径文件夹
-	'CATE_VIEW' => 'Category@/category/' //d对应Category模块
+	'CATE_VIEW' => 'Home@/category/' //d对应Category模块
 );

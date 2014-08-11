@@ -55,12 +55,12 @@
 				alert("密码不能为空！");
 				return;
 			}
-			$.post("__ROOT__/?m=admin&c=user&a=login",{'username':username,'password':password},function(data){
+			$.post("__ROOT__/admin/user/login",{'username':username,'password':password},function(data){
 				 //alert(data.success);
 				 if (data.success){
 
 				 };//undo 
-				 location.href='__ROOT__?m=category';
+				 location.href='__ROOT__/cate';
 			})
 		}
 	</script>
