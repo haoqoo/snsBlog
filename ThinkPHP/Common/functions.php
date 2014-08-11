@@ -597,8 +597,7 @@ function parse_res_name($name,$layer,$level=1){
  * @return Controller|false
  */
 function controller($name,$path=''){
-    //echo 'module_name:'.MODULE_NAME.'<br>';
-    $layer  =   C('DEFAULT_C_LAYER');// 'DEFAULT_C_LAYER'  =>  'Controller', 
+    $layer  =   C('DEFAULT_C_LAYER');
     if(!C('APP_USE_NAMESPACE')){
         $class  =   parse_name($name, 1).$layer;
         import(MODULE_NAME.'/'.$layer.'/'.$class);

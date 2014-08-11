@@ -6,5 +6,8 @@ class IndexController extends Controller {
         $this->display('home');		
     }
 	
-	
+	public function ver() {  
+        $Verify = new \Think\Verify();  
+        $Verify->entry();  
+    }  
 }
