@@ -68,6 +68,27 @@
 			$(".mask").show();
 			$("#xsReg1").show();
 		}
+
+		function reg(){
+			$("#err_msg").hide();
+			var username = $("input[name=regname]").val();
+			var code = $("input[name=code]").val();
+			$.post("__ROOT__/admin/user/reg",{'username':username,'code':code},function(data){
+				 //alert(data.success);
+				 if (data.success){
+				 	$(".mask").hide();	
+				 	$("#xsReg1").hide();	
+				 	$("#xsReg2").show();
+				 }else{
+				 	$("#err_msg").show();	
+				 	flash_img();
+				 };//undo 
+			})
+		}
+
+		function flash_img(){
+			$("#mcode").attr("src", $("#mcode").attr("src")+"?");
+		}
 	</script>
 
 </body>

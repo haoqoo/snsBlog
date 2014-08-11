@@ -58,4 +58,24 @@ class UserController extends Controller {
         session(null);
         $this->redirect('/');
     }
+
+    public function reg($code='', $username=''){
+        $ajax['success'] = false;
+        
+        $map['username']=$username;
+        $verify = new \Think\Verify();
+        if($verify->check($code)){
+            $ajax['success'] = true; 
+            $User = M("Users");
+            $data['username'] = $username;
+            $data['password'] = '123';
+            $User->add($data);
+
+        }else{
+            $ajax['msg']  = "err_code";
+            $ajax['success'] = false;
+        }
+        $this->ajaxReturn($ajax);   
+    }
+
 }

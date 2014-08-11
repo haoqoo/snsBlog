@@ -7,7 +7,15 @@ class IndexController extends Controller {
     }
 	
 	public function ver() {  
-        $Verify = new \Think\Verify();  
+		$config = array(  
+		    'imageH' => 30, // 验证码图片高度  
+		    'imageW' => 100, // 验证码图片宽度  
+		    'fontSize' => 15,
+		    'length' => 4
+		);
+        $Verify = new \Think\Verify($config);  
+        //$Verify = D("Verify"); 
+         
         $Verify->entry();  
     }  
 }

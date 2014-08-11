@@ -30,11 +30,15 @@
 		<p class="regWay">使用邮箱注册</p>
 		<div class="LayRegWrap">
 			<div class="LayRegBox">
-				<p class="logInput logName"><input type="text" placeholder="用户名" class="xsInput regInput1"></p>
-				<p class="logInput logVer"><input type="text" placeholder="验证码" class="xsInput regInput2"><span class="verImg"><img src="../images/verity.png" alt=""></span></p>
+				<p class="logInput logName"><input type="text" name="regname" placeholder="用户名" class="xsInput regInput1"></p>
+				<p class="logInput logVer"><input type="text" name="code" placeholder="验证码" class="xsInput regInput2">
+				<img id="mcode" style="cursor:pointer;" src="__ROOT__/home/index/ver.shtml" alt="" onclick="flash_img()">
+				<span class="verImg">
+				</span></p>
 			</div>
-			<p class="LaylogBtn"><a class="logBtn" href="#">注册</a></p>
+			<p class="LaylogBtn"><a class="logBtn" href="javascript:reg();">注册</a></p>
 		</div>
+		<span id="err_msg" style="color:red;width:300px;font-size:12px;display:none;position:absolute; left:130px;top:250px;">验证码错误</span>
 		<div class="LayShareBox">
 			<p class="regWay">使用第三方账号注册</p>
 			<a class="shareIconBtn shareLogWeibo" href="#"></a><a class="shareIconBtn shareLogQq" href="#"></a><a class="shareIconBtn shareLogDoban" href="#"></a><a class="shareIconBtn shareLogRen" href="#"></a>
