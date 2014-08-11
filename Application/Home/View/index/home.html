@@ -18,7 +18,7 @@
 				<li class="midBox">
 					<p class="logoBox"><a href="#" class="logoImg logoL"></a></p>
 					<div class="midReg">
-						<div class="midForm"><input type="text" class="midInput" placeholder="请输入注册邮箱"><a class="btnA" href="#">注册</a><a class="midlog" href="javascript:open_login();">登录</a></div>
+						<div class="midForm"><input type="text" class="midInput" placeholder="请输入注册邮箱"><a class="btnA" href="javascript:open_reg();">注册</a><a class="midlog" href="javascript:open_login();">登录</a></div>
 						 <p class="formTip" style="display:none;"><span class="xsIcon icon_wrong"></span>邮箱格式错误</p> 
 					</div>
 				</li>				
@@ -62,6 +62,11 @@
 				 };//undo 
 				 location.href='__ROOT__/cate';
 			})
+		}
+
+		function open_reg(){
+			$(".mask").show();
+			$("#xsReg1").show();
 		}
 	</script>
 
