@@ -3,7 +3,7 @@
 # Server version:               5.1.55-community
 # Server OS:                    Win32
 # HeidiSQL version:             6.0.0.3603
-# Date/time:                    2014-08-08 16:59:21
+# Date/time:                    2014-08-11 17:03:59
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -23,42 +23,47 @@ CREATE TABLE IF NOT EXISTS `wq_albums` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
   `discription` varchar(500) DEFAULT NULL,
-  `categories_id` bigint(20) DEFAULT NULL COMMENT '分类id',
+  `category_id` bigint(20) DEFAULT NULL COMMENT '分类id',
+  `user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime DEFAULT NULL COMMENT '修改时间',
   `state` int(11) DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='专辑';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='专辑';
 
-# Dumping data for table sns.wq_albums: ~0 rows (approximately)
+# Dumping data for table sns.wq_albums: ~1 rows (approximately)
 DELETE FROM `wq_albums`;
 /*!40000 ALTER TABLE `wq_albums` DISABLE KEYS */;
+INSERT INTO `wq_albums` (`id`, `name`, `discription`, `category_id`, `user_id`, `create_date`, `update_date`, `state`) VALUES
+	(1, '测试专辑1', NULL, 1, NULL, '2014-08-11 13:40:59', NULL, 1);
 /*!40000 ALTER TABLE `wq_albums` ENABLE KEYS */;
 
 
 # Dumping structure for table sns.wq_categories
 DROP TABLE IF EXISTS `wq_categories`;
 CREATE TABLE IF NOT EXISTS `wq_categories` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` bigint(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `state` int(2) DEFAULT NULL,
+  `state` int(2) unsigned zerofill DEFAULT NULL,
+  `ablum_count` bigint(10) unsigned zerofill DEFAULT NULL,
+  `post_count` bigint(10) unsigned zerofill DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='分类';
 
 # Dumping data for table sns.wq_categories: ~10 rows (approximately)
 DELETE FROM `wq_categories`;
 /*!40000 ALTER TABLE `wq_categories` DISABLE KEYS */;
-INSERT INTO `wq_categories` (`id`, `name`, `state`) VALUES
-	(1, '摄影', 1),
-	(2, '美妆服饰', 1),
-	(3, '美食', 1),
-	(4, '运动', 1),
-	(5, '科技生活', 1),
-	(6, '游戏', 1),
-	(7, '家居设计', 1),
-	(8, '宠物', 1),
-	(9, '音乐', 1),
-	(10, '汽车', 1);
+INSERT INTO `wq_categories` (`id`, `name`, `state`, `ablum_count`, `post_count`) VALUES
+	(1, '摄影', 01, NULL, NULL),
+	(2, '美妆服饰', 01, NULL, NULL),
+	(3, '美食', 01, NULL, NULL),
+	(4, '运动', 01, NULL, NULL),
+	(5, '科技生活', 01, NULL, NULL),
+	(6, '游戏', 01, NULL, NULL),
+	(7, '家居设计', 01, NULL, NULL),
+	(8, '宠物', 01, NULL, NULL),
+	(9, '音乐', 01, NULL, NULL),
+	(10, '汽车', 01, NULL, NULL);
 /*!40000 ALTER TABLE `wq_categories` ENABLE KEYS */;
 
 
@@ -117,11 +122,13 @@ CREATE TABLE IF NOT EXISTS `wq_posts` (
   `favorites_count` int(11) DEFAULT NULL COMMENT '冗余字段：收藏数',
   `comment_count` int(11) DEFAULT NULL COMMENT '冗余字段：评论数',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='博客';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='博客';
 
-# Dumping data for table sns.wq_posts: ~0 rows (approximately)
+# Dumping data for table sns.wq_posts: ~1 rows (approximately)
 DELETE FROM `wq_posts`;
 /*!40000 ALTER TABLE `wq_posts` DISABLE KEYS */;
+INSERT INTO `wq_posts` (`id`, `user_id`, `category_id`, `album_id`, `title`, `content`, `post_type`, `post_link`, `create_date`, `update_date`, `state`, `favorites_count`, `comment_count`) VALUES
+	(1, 1, 1, 1, '测试Blog1', '测试blog', NULL, NULL, '2014-08-11 14:01:22', NULL, 1, NULL, NULL);
 /*!40000 ALTER TABLE `wq_posts` ENABLE KEYS */;
 
 
@@ -177,14 +184,17 @@ CREATE TABLE IF NOT EXISTS `wq_users` (
   `update_date` datetime DEFAULT NULL COMMENT '修改日期',
   `state` int(11) DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
-# Dumping data for table sns.wq_users: ~2 rows (approximately)
+# Dumping data for table sns.wq_users: ~3 rows (approximately)
 DELETE FROM `wq_users`;
 /*!40000 ALTER TABLE `wq_users` DISABLE KEYS */;
 INSERT INTO `wq_users` (`id`, `username`, `password`, `aliasname`, `email`, `grade`, `born_year`, `born_month`, `born_day`, `professional`, `my_site`, `introduce`, `create_date`, `update_date`, `state`) VALUES
 	(1, '123', '', NULL, '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(2, 'jack', '123456', NULL, 'qweqwe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	(2, 'jack', '123456', NULL, 'qweqwe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(4, 'wanjujun', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(5, 'tp', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(6, 'admin', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `wq_users` ENABLE KEYS */;
 
 
