@@ -27,4 +27,7 @@ define('APP_PATH','./Application/');
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';
 
+
+//\Think\Build::buildModel('Category','Categories');
+
 // 亲^_^ 后面不需要任何代码了 就是如此简单
