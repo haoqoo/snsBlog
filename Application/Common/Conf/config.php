@@ -40,5 +40,9 @@ return array(
 
 	//view 路径文件夹
 	'CATE_VIEW' => 'Home@/category/', //对应Category模块
-	'ALBUM_VIEW' => 'Home@/album/' //对应Album模块
+	'ALBUM_VIEW' => 'Home@/album/', //对应Album模块
+
+	// 预先加载的标签库
+	'TAGLIB_PRE_LOAD' => 'Home\\TagLib\\MyTag',
+
 );
