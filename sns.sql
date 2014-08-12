@@ -1,25 +1,47 @@
-# --------------------------------------------------------
-# Host:                         127.0.0.1
-# Server version:               5.1.55-community
-# Server OS:                    Win32
-# HeidiSQL version:             6.0.0.3603
-# Date/time:                    2014-08-12 17:01:00
-# --------------------------------------------------------
+/*
+ Navicat Premium Data Transfer
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+ Source Server         : localhost
+ Source Server Type    : MySQL
+ Source Server Version : 50173
+ Source Host           : localhost
+ Source Database       : sns
 
-# Dumping database structure for sns
-DROP DATABASE IF EXISTS `sns`;
-CREATE DATABASE IF NOT EXISTS `sns` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `sns`;
+ Target Server Type    : MySQL
+ Target Server Version : 50173
+ File Encoding         : utf-8
 
+ Date: 08/12/2014 22:19:24 PM
+*/
 
-# Dumping structure for table sns.wq_albums
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+--  Table structure for `wq_album_favorites`
+-- ----------------------------
+DROP TABLE IF EXISTS `wq_album_favorites`;
+CREATE TABLE `wq_album_favorites` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `album_id` bigint(20) NOT NULL COMMENT '专辑id',
+  `user_id` bigint(20) NOT NULL COMMENT '关注人ID',
+  `create_date` datetime DEFAULT NULL,
+  `state` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='专辑关注';
+
+-- ----------------------------
+--  Records of `wq_album_favorites`
+-- ----------------------------
+BEGIN;
+INSERT INTO `wq_album_favorites` VALUES ('1', '1', '1', '2014-08-12 15:09:21', '1');
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `wq_albums`
+-- ----------------------------
 DROP TABLE IF EXISTS `wq_albums`;
-CREATE TABLE IF NOT EXISTS `wq_albums` (
+CREATE TABLE `wq_albums` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
   `discription` varchar(500) DEFAULT NULL,
@@ -31,36 +53,18 @@ CREATE TABLE IF NOT EXISTS `wq_albums` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='专辑';
 
-# Dumping data for table sns.wq_albums: ~1 rows (approximately)
-DELETE FROM `wq_albums`;
-/*!40000 ALTER TABLE `wq_albums` DISABLE KEYS */;
-INSERT INTO `wq_albums` (`id`, `name`, `discription`, `category_id`, `user_id`, `create_date`, `update_date`, `state`) VALUES
-	(1, '测试专辑1', NULL, 1, 2, '2014-08-11 13:40:59', NULL, 1);
-/*!40000 ALTER TABLE `wq_albums` ENABLE KEYS */;
+-- ----------------------------
+--  Records of `wq_albums`
+-- ----------------------------
+BEGIN;
+INSERT INTO `wq_albums` VALUES ('1', '测试专辑1', null, '1', '2', '2014-08-11 13:40:59', null, '1');
+COMMIT;
 
-
-# Dumping structure for table sns.wq_album_favorites
-DROP TABLE IF EXISTS `wq_album_favorites`;
-CREATE TABLE IF NOT EXISTS `wq_album_favorites` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `album_id` bigint(20) NOT NULL COMMENT '专辑id',
-  `user_id` bigint(20) NOT NULL COMMENT '关注人ID',
-  `create_date` datetime DEFAULT NULL,
-  `state` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='专辑关注';
-
-# Dumping data for table sns.wq_album_favorites: ~1 rows (approximately)
-DELETE FROM `wq_album_favorites`;
-/*!40000 ALTER TABLE `wq_album_favorites` DISABLE KEYS */;
-INSERT INTO `wq_album_favorites` (`id`, `album_id`, `user_id`, `create_date`, `state`) VALUES
-	(1, 1, 1, '2014-08-12 15:09:21', 1);
-/*!40000 ALTER TABLE `wq_album_favorites` ENABLE KEYS */;
-
-
-# Dumping structure for table sns.wq_categories
+-- ----------------------------
+--  Table structure for `wq_categories`
+-- ----------------------------
 DROP TABLE IF EXISTS `wq_categories`;
-CREATE TABLE IF NOT EXISTS `wq_categories` (
+CREATE TABLE `wq_categories` (
   `id` bigint(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `state` int(2) unsigned zerofill DEFAULT NULL,
@@ -69,44 +73,40 @@ CREATE TABLE IF NOT EXISTS `wq_categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='分类';
 
-# Dumping data for table sns.wq_categories: ~10 rows (approximately)
-DELETE FROM `wq_categories`;
-/*!40000 ALTER TABLE `wq_categories` DISABLE KEYS */;
-INSERT INTO `wq_categories` (`id`, `name`, `state`, `ablum_count`, `post_count`) VALUES
-	(1, '摄影', 01, NULL, NULL),
-	(2, '美妆服饰', 01, NULL, NULL),
-	(3, '美食', 01, NULL, NULL),
-	(4, '运动', 01, NULL, NULL),
-	(5, '科技生活', 01, NULL, NULL),
-	(6, '游戏', 01, NULL, NULL),
-	(7, '家居设计', 01, NULL, NULL),
-	(8, '宠物', 01, NULL, NULL),
-	(9, '音乐', 01, NULL, NULL),
-	(10, '汽车', 01, NULL, NULL);
-/*!40000 ALTER TABLE `wq_categories` ENABLE KEYS */;
+-- ----------------------------
+--  Records of `wq_categories`
+-- ----------------------------
+BEGIN;
+INSERT INTO `wq_categories` VALUES ('1', '摄影', '1', null, null), ('2', '美妆服饰', '1', null, null), ('3', '美食', '1', null, null), ('4', '运动', '1', null, null), ('5', '科技生活', '1', null, null), ('6', '游戏', '1', null, null), ('7', '家居设计', '1', null, null), ('8', '宠物', '1', null, null), ('9', '音乐', '1', null, null), ('10', '汽车', '1', null, null);
+COMMIT;
 
-
-# Dumping structure for table sns.wq_comments
+-- ----------------------------
+--  Table structure for `wq_comments`
+-- ----------------------------
 DROP TABLE IF EXISTS `wq_comments`;
-CREATE TABLE IF NOT EXISTS `wq_comments` (
+CREATE TABLE `wq_comments` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `content` tinytext NOT NULL COMMENT '内容',
   `user_id` bigint(20) NOT NULL COMMENT '评论人id',
   `post_id` bigint(20) DEFAULT NULL COMMENT '博客id',
   `create_date` datetime DEFAULT NULL COMMENT '评论时间',
   `state` int(11) DEFAULT NULL COMMENT '状态',
+  `parent_id` bigint(20) DEFAULT NULL COMMENT '被回复的评论id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='评论';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='评论';
 
-# Dumping data for table sns.wq_comments: ~0 rows (approximately)
-DELETE FROM `wq_comments`;
-/*!40000 ALTER TABLE `wq_comments` DISABLE KEYS */;
-/*!40000 ALTER TABLE `wq_comments` ENABLE KEYS */;
+-- ----------------------------
+--  Records of `wq_comments`
+-- ----------------------------
+BEGIN;
+INSERT INTO `wq_comments` VALUES ('1', '评论test1', '1', '1', '2014-08-12 21:38:57', '1', null);
+COMMIT;
 
-
-# Dumping structure for table sns.wq_operation_logs
+-- ----------------------------
+--  Table structure for `wq_operation_logs`
+-- ----------------------------
 DROP TABLE IF EXISTS `wq_operation_logs`;
-CREATE TABLE IF NOT EXISTS `wq_operation_logs` (
+CREATE TABLE `wq_operation_logs` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `opered_id` varchar(20) NOT NULL COMMENT '被操作的id，可能是blog，user等id',
   `oper_type` varchar(20) NOT NULL COMMENT '操作类型： user_fan等',
@@ -118,15 +118,32 @@ CREATE TABLE IF NOT EXISTS `wq_operation_logs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='博文，用户关注，系统信息，用户私信 等操作日志信息';
 
-# Dumping data for table sns.wq_operation_logs: ~0 rows (approximately)
-DELETE FROM `wq_operation_logs`;
-/*!40000 ALTER TABLE `wq_operation_logs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `wq_operation_logs` ENABLE KEYS */;
+-- ----------------------------
+--  Table structure for `wq_post_favorites`
+-- ----------------------------
+DROP TABLE IF EXISTS `wq_post_favorites`;
+CREATE TABLE `wq_post_favorites` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `post_id` bigint(20) NOT NULL COMMENT '博客id',
+  `user_id` bigint(20) NOT NULL COMMENT '收藏用户id',
+  `type` int(2) NOT NULL COMMENT '1为采集，2为点赞',
+  `create_date` datetime DEFAULT NULL COMMENT '收藏时间',
+  PRIMARY KEY (`id`),
+  KEY `post_favorite_index` (`type`,`post_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='博客收藏（采集）和点赞';
 
+-- ----------------------------
+--  Records of `wq_post_favorites`
+-- ----------------------------
+BEGIN;
+INSERT INTO `wq_post_favorites` VALUES ('1', '1', '2', '1', '2014-08-12 21:09:44'), ('2', '1', '3', '1', '2014-08-12 21:10:04'), ('3', '2', '4', '2', '2014-08-12 21:11:36'), ('4', '2', '5', '1', '2014-08-12 21:11:31'), ('5', '2', '4', '1', '2014-08-12 21:13:32');
+COMMIT;
 
-# Dumping structure for table sns.wq_posts
+-- ----------------------------
+--  Table structure for `wq_posts`
+-- ----------------------------
 DROP TABLE IF EXISTS `wq_posts`;
-CREATE TABLE IF NOT EXISTS `wq_posts` (
+CREATE TABLE `wq_posts` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL COMMENT '作者id',
   `category_id` bigint(20) DEFAULT NULL COMMENT '分类id',
@@ -143,34 +160,18 @@ CREATE TABLE IF NOT EXISTS `wq_posts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='博客';
 
-# Dumping data for table sns.wq_posts: ~1 rows (approximately)
-DELETE FROM `wq_posts`;
-/*!40000 ALTER TABLE `wq_posts` DISABLE KEYS */;
-INSERT INTO `wq_posts` (`id`, `user_id`, `category_id`, `album_id`, `title`, `content`, `post_type`, `post_link`, `create_date`, `update_date`, `state`, `favorites_count`, `comment_count`) VALUES
-	(1, 1, 1, 1, '测试Blog1', '测试blog', NULL, NULL, '2014-08-11 14:01:22', NULL, 1, NULL, NULL);
-/*!40000 ALTER TABLE `wq_posts` ENABLE KEYS */;
+-- ----------------------------
+--  Records of `wq_posts`
+-- ----------------------------
+BEGIN;
+INSERT INTO `wq_posts` VALUES ('1', '1', '1', '1', '测试Blog1', '测试blog', null, null, '2014-08-11 14:01:22', null, '1', null, null);
+COMMIT;
 
-
-# Dumping structure for table sns.wq_post_favorites
-DROP TABLE IF EXISTS `wq_post_favorites`;
-CREATE TABLE IF NOT EXISTS `wq_post_favorites` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `post_id` bigint(20) NOT NULL COMMENT '博客id',
-  `user_id` bigint(20) NOT NULL COMMENT '收藏用户id',
-  `type` int(2) NOT NULL COMMENT '1为采集，2为点赞',
-  `create_date` datetime DEFAULT NULL COMMENT '收藏时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='博客收藏（采集）和点赞';
-
-# Dumping data for table sns.wq_post_favorites: ~0 rows (approximately)
-DELETE FROM `wq_post_favorites`;
-/*!40000 ALTER TABLE `wq_post_favorites` DISABLE KEYS */;
-/*!40000 ALTER TABLE `wq_post_favorites` ENABLE KEYS */;
-
-
-# Dumping structure for table sns.wq_sys_messages
+-- ----------------------------
+--  Table structure for `wq_sys_messages`
+-- ----------------------------
 DROP TABLE IF EXISTS `wq_sys_messages`;
-CREATE TABLE IF NOT EXISTS `wq_sys_messages` (
+CREATE TABLE `wq_sys_messages` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `content` tinytext NOT NULL COMMENT '内容',
   `create_date` datetime NOT NULL COMMENT '创建时间',
@@ -178,15 +179,25 @@ CREATE TABLE IF NOT EXISTS `wq_sys_messages` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统消息';
 
-# Dumping data for table sns.wq_sys_messages: ~0 rows (approximately)
-DELETE FROM `wq_sys_messages`;
-/*!40000 ALTER TABLE `wq_sys_messages` DISABLE KEYS */;
-/*!40000 ALTER TABLE `wq_sys_messages` ENABLE KEYS */;
+-- ----------------------------
+--  Table structure for `wq_user_messages`
+-- ----------------------------
+DROP TABLE IF EXISTS `wq_user_messages`;
+CREATE TABLE `wq_user_messages` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `from_id` bigint(20) NOT NULL COMMENT '发送人id',
+  `to_id` bigint(20) NOT NULL COMMENT '收件人id',
+  `content` tinytext NOT NULL COMMENT '内容',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+  `state` int(2) DEFAULT NULL COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户私信';
 
-
-# Dumping structure for table sns.wq_users
+-- ----------------------------
+--  Table structure for `wq_users`
+-- ----------------------------
 DROP TABLE IF EXISTS `wq_users`;
-CREATE TABLE IF NOT EXISTS `wq_users` (
+CREATE TABLE `wq_users` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(20) NOT NULL,
@@ -206,21 +217,18 @@ CREATE TABLE IF NOT EXISTS `wq_users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
-# Dumping data for table sns.wq_users: ~5 rows (approximately)
-DELETE FROM `wq_users`;
-/*!40000 ALTER TABLE `wq_users` DISABLE KEYS */;
-INSERT INTO `wq_users` (`id`, `username`, `password`, `aliasname`, `header_img`, `email`, `grade`, `born_year`, `born_month`, `born_day`, `professional`, `my_site`, `introduce`, `create_date`, `update_date`, `state`) VALUES
-	(1, '123', '123456', NULL, NULL, '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(2, 'jack', '123456', NULL, NULL, 'qweqwe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(4, 'wanjujun', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(5, 'tp', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(6, 'admin', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-/*!40000 ALTER TABLE `wq_users` ENABLE KEYS */;
+-- ----------------------------
+--  Records of `wq_users`
+-- ----------------------------
+BEGIN;
+INSERT INTO `wq_users` VALUES ('1', '123', '123456', null, null, '123', null, null, null, null, null, null, null, null, null, null), ('2', 'jack', '123456', null, null, 'qweqwe', null, null, null, null, null, null, null, null, null, null), ('4', 'wanjujun', '123', null, null, null, null, null, null, null, null, null, null, null, null, null), ('5', 'tp', '123', null, null, null, null, null, null, null, null, null, null, null, null, null), ('6', 'admin', '123', null, null, null, null, null, null, null, null, null, null, null, null, null);
+COMMIT;
 
-
-# Dumping structure for table sns.wq_users_fans
+-- ----------------------------
+--  Table structure for `wq_users_fans`
+-- ----------------------------
 DROP TABLE IF EXISTS `wq_users_fans`;
-CREATE TABLE IF NOT EXISTS `wq_users_fans` (
+CREATE TABLE `wq_users_fans` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_star` bigint(20) NOT NULL COMMENT '被关注用户id',
   `user_fan` bigint(20) NOT NULL COMMENT '关注别人的用户id',
@@ -229,28 +237,16 @@ CREATE TABLE IF NOT EXISTS `wq_users_fans` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户关注';
 
-# Dumping data for table sns.wq_users_fans: ~0 rows (approximately)
-DELETE FROM `wq_users_fans`;
-/*!40000 ALTER TABLE `wq_users_fans` DISABLE KEYS */;
-/*!40000 ALTER TABLE `wq_users_fans` ENABLE KEYS */;
+-- ----------------------------
+--  View structure for `post_comments_count`
+-- ----------------------------
+DROP VIEW IF EXISTS `post_comments_count`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `post_comments_count` AS select count(0) AS `num`,`wq_comments`.`post_id` AS `post_id` from `wq_comments` group by `wq_comments`.`post_id`;
 
+-- ----------------------------
+--  View structure for `post_favorites_count`
+-- ----------------------------
+DROP VIEW IF EXISTS `post_favorites_count`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `post_favorites_count` AS select `f`.`post_id` AS `post_id`,`f`.`type` AS `type`,count(1) AS `num` from `wq_post_favorites` `f` group by `f`.`type`,`f`.`post_id`;
 
-# Dumping structure for table sns.wq_user_messages
-DROP TABLE IF EXISTS `wq_user_messages`;
-CREATE TABLE IF NOT EXISTS `wq_user_messages` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `from_id` bigint(20) NOT NULL COMMENT '发送人id',
-  `to_id` bigint(20) NOT NULL COMMENT '收件人id',
-  `content` tinytext NOT NULL COMMENT '内容',
-  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `state` int(2) DEFAULT NULL COMMENT '状态',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户私信';
-
-# Dumping data for table sns.wq_user_messages: ~0 rows (approximately)
-DELETE FROM `wq_user_messages`;
-/*!40000 ALTER TABLE `wq_user_messages` DISABLE KEYS */;
-/*!40000 ALTER TABLE `wq_user_messages` ENABLE KEYS */;
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+SET FOREIGN_KEY_CHECKS = 1;
