@@ -39,57 +39,7 @@
 
 	<include file="./Public/common/openWindows.html"/>
 	
-	<script type="text/javascript">
-		function open_login(){
-			$(".mask").show();
-			$(".xsLoginLayer").show();
-		}
-		function login(){
-			var username = $("input[name=username]").val();
-			var password = $("input[name=password]").val();
-			if(username==null || username==""){
-				alert("用户名不能为空！");
-				return;
-			}
-			if(password==null || password==""){
-				alert("密码不能为空！");
-				return;
-			}
-			$.post("__ROOT__/admin/user/login",{'username':username,'password':password},function(data){
-				 //alert(data.success);
-				 if (data.success){
-
-				 };//undo 
-				 location.href='__ROOT__/cate';
-			})
-		}
-
-		function open_reg(){
-			$(".mask").show();
-			$("#xsReg1").show();
-		}
-
-		function reg(){
-			$("#err_msg").hide();
-			var username = $("input[name=regname]").val();
-			var code = $("input[name=code]").val();
-			$.post("__ROOT__/admin/user/reg",{'username':username,'code':code},function(data){
-				 //alert(data.success);
-				 if (data.success){
-				 	$(".mask").hide();	
-				 	$("#xsReg1").hide();	
-				 	$("#xsReg2").show();
-				 }else{
-				 	$("#err_msg").show();	
-				 	flash_img();
-				 };//undo 
-			})
-		}
-
-		function flash_img(){
-			$("#mcode").attr("src", $("#mcode").attr("src")+"?");
-		}
-	</script>
+	
 
 </body>
 </html>

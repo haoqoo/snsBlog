@@ -1,111 +1,218 @@
 <!--弹出层-->
 <!-- 弹层蒙层（黑色半透明） -->
-	<div class="mask" style="display:none;"></div>
-	<!-- 弹层蒙层（黑色半透明） -->
+<div class="mask" style="display:none;"></div>
+<!-- 弹层蒙层（黑色半透明） -->
 
-	<!-- 登录弹层 -->
-	<div class="xsLoginLayer" style="display:none; top:100px; left:400px;">
-		<p class="logoBox"><span class="logoImg logoL"></span></p>
-		<p class="slogan">－ slogan －</p>
-		<div class="LaylogWrap">
-			<div class="LayLogBox">
-				<p class="logInput logName">
-					<input type="text" name="username" placeholder="用户名"></p>
-				<p class="logInput logPsw">
-					<input type="password" name="password" placeholder="密码"></p>
-			</div>
-			<p class="LaylogBtn"><a class="logBtn" href="javascript:login();">登录</a></p>
-			<p class="LayOth clearfix"><a class="forgetPsw" href="#">忘记密码></a><span class="noAcc">还没有账号？  <a class="cliReg" href="#">点击注册></a></span></p>
-		</div>
-		<div class="LayShareBox">
-			<a class="shareIconBtn shareLogWeibo" href="#"></a><a class="shareIconBtn shareLogQq" href="#"></a><a class="shareIconBtn shareLogDoban" href="#"></a><a class="shareIconBtn shareLogRen" href="#"></a>
-		</div>
-	</div>
-	<!-- /登录弹层 -->
+<!-- 登录弹层 -->
+<div class="xsLoginLayer" style="display:none; top:100px; left:400px;">
+    <p class="logoBox">
+        <span class="logoImg logoL"></span>
+    </p>
+    <p class="slogan">－ slogan －</p>
+    <div class="LaylogWrap">
+        <div class="LayLogBox">
+            <p class="logInput logName">
+                <input type="text" name="username" placeholder="用户名">
+            </p>
+            <p class="logInput logPsw">
+                <input type="password" name="password" placeholder="密码">
+            </p>
+        </div>
+        <p class="LaylogBtn"><a class="logBtn" href="javascript:login();">登录</a>
+        </p>
+        <p class="LayOth clearfix"><a class="forgetPsw" href="#">忘记密码></a>
+            <span class="noAcc">还没有账号？ <a class="cliReg" href="#">点击注册></a>
+            </span>
+        </p>
+    </div>
+    <div class="LayShareBox">
+        <a class="shareIconBtn shareLogWeibo" href="#"></a>
+        <a class="shareIconBtn shareLogQq" href="#"></a>
+        <a class="shareIconBtn shareLogDoban" href="#"></a>
+        <a class="shareIconBtn shareLogRen" href="#"></a>
+    </div>
+</div>
+<!-- /登录弹层 -->
 
-	<!-- 注册弹层 -->
-	<div id="xsReg1" class="xsRegLayer" style="display:none; top:100px; left:400px;">
-		<a class="closeBtn"><span class="xsIcon icon_close"></span></a>
-		<p class="logoBox"><span class="logoImg logoL"></span></p>
-		<p class="regWay">使用邮箱注册</p>
-		<div class="LayRegWrap">
-			<div class="LayRegBox">
-				<p class="logInput logName"><input type="text" name="regname" placeholder="用户名" class="xsInput regInput1"></p>
-				<p class="logInput logVer"><input type="text" name="code" placeholder="验证码" class="xsInput regInput2">
-				<img id="mcode" style="cursor:pointer;" src="__ROOT__/home/index/ver.shtml" alt="" onclick="flash_img()">
-				<span class="verImg">
-				</span></p>
-			</div>
-			<p class="LaylogBtn"><a class="logBtn" href="javascript:reg();">注册</a></p>
-		</div>
-		<span id="err_msg" style="color:red;width:300px;font-size:12px;display:none;position:absolute; left:130px;top:250px;">验证码错误</span>
-		<div class="LayShareBox">
-			<p class="regWay">使用第三方账号注册</p>
-			<a class="shareIconBtn shareLogWeibo" href="#"></a><a class="shareIconBtn shareLogQq" href="#"></a><a class="shareIconBtn shareLogDoban" href="#"></a><a class="shareIconBtn shareLogRen" href="#"></a>
-		</div>
-	</div>
-	<!-- /注册弹层 -->
+<!-- 注册弹层 -->
+<div id="xsReg1" class="xsRegLayer" style="display:none; top:100px; left:400px;">
+    <a class="closeBtn">
+        <span class="xsIcon icon_close"></span>
+    </a>
+    <p class="logoBox">
+        <span class="logoImg logoL"></span>
+    </p>
+    <p class="regWay">使用邮箱注册</p>
+    <div class="LayRegWrap">
+        <div class="LayRegBox">
+            <p class="logInput logName">
+                <input type="text" name="regname" placeholder="用户名" class="xsInput regInput1">
+            </p>
+            <p class="logInput logVer">
+                <input type="text" name="code" placeholder="验证码" class="xsInput regInput2">
+                <img id="mcode" style="cursor:pointer;" src="__ROOT__/home/index/ver.shtml" alt="" onclick="flash_img()">
+                <span class="verImg">
+                </span>
+            </p>
+        </div>
+        <p class="LaylogBtn"><a class="logBtn" href="javascript:reg();">注册</a>
+        </p>
+    </div>
+    <span id="err_msg" style="color:red;width:300px;font-size:12px;display:none;position:absolute; left:130px;top:250px;">验证码错误</span>
+    <div class="LayShareBox">
+        <p class="regWay">使用第三方账号注册</p>
+        <a class="shareIconBtn shareLogWeibo" href="#"></a>
+        <a class="shareIconBtn shareLogQq" href="#"></a>
+        <a class="shareIconBtn shareLogDoban" href="#"></a>
+        <a class="shareIconBtn shareLogRen" href="#"></a>
+    </div>
+</div>
+<!-- /注册弹层 -->
 
-	<!-- 注册弹层 -->
-	<div id="xsReg2" class="xsRegLayer" style="display:none; top:100px; left:400px;">
-		<a class="closeBtn"><span class="xsIcon icon_close"></span></a>
-		<p class="logoBox"><span class="logoImg logoL"></span></p>
-		<p class="regTipN">注册成功！</p>
-		<div class="LayRegWrap">
-			<div class="LayRegBox">
-				<p class="regNotice">验证邮件已发送至 <span class="userEmail">xxxx@xxx.com</span><br>请<a class="cheMail">点击查收邮件</a>激活帐号。</p>
-				<p class="regNotice">没有收到邮件？请耐心等待。或者<a class="sendMail">重新发送</a><!--<span class="sendTime">重新发送 30</span>--></p>
-			</div>
-			<p class="LayRegBack"><a class="" href="#">返回登录首页>></a></p>
-		</div>
+<!-- 注册弹层 -->
+<div id="xsReg2" class="xsRegLayer" style="display:none; top:100px; left:400px;">
+    <a class="closeBtn">
+        <span class="xsIcon icon_close"></span>
+    </a>
+    <p class="logoBox">
+        <span class="logoImg logoL"></span>
+    </p>
+    <p class="regTipN">注册成功！</p>
+    <div class="LayRegWrap">
+        <div class="LayRegBox">
+            <p class="regNotice">验证邮件已发送至
+                <span class="userEmail">xxxx@xxx.com</span>
+                <br>请<a class="cheMail">点击查收邮件</a>激活帐号。</p>
+            <p class="regNotice">没有收到邮件？请耐心等待。或者<a class="sendMail">重新发送</a>
+                <!--<span class="sendTime">重新发送 30</span>-->
+            </p>
+        </div>
+        <p class="LayRegBack"><a class="" href="#">返回登录首页>></a>
+        </p>
+    </div>
 
-	</div>
-	<!-- /注册弹层 -->
+</div>
+<!-- /注册弹层 -->
 
 
-	<!-- 提示弹层 -->
-	<div class="xsWLayer warnLayer" style=" display:none; top:300px; left:300px;">
-		<a class="closeBtn"><span class="xsIcon icon_close"></span></a>
+<!-- 提示弹层 -->
+<div class="xsWLayer warnLayer" style=" display:none; top:300px; left:300px;">
+    <a class="closeBtn">
+        <span class="xsIcon icon_close"></span>
+    </a>
 
-		<div class="WLayerMain">
-			<p class="WLayerTit2">提示</p>
-			<div class="layerCon">
-				<p class="warnTxt">邮件发送成功！请查收</p>
-			</div>
-			<p class="layerBtn"><a class="btnA">确定</a></p>
+    <div class="WLayerMain">
+        <p class="WLayerTit2">提示</p>
+        <div class="layerCon">
+            <p class="warnTxt">邮件发送成功！请查收</p>
+        </div>
+        <p class="layerBtn"><a class="btnA">确定</a>
+        </p>
 
-		</div>
-	</div>
+    </div>
+</div>
 
-	<!-- 创建专辑弹层 -->
-	<div class="xsWLayer addAlbumLayer" style="display:none; top:300px; left:300px;">
-		<a class="closeBtn"><span class="xsIcon icon_close"></span></a>
-		<div class="WLayerMain">
-			<p class="WLayerTit">创建专辑</p>
-			<div class="addAForm">
-				<dl class="clearfix">
-					<dt class="formTit">专辑标题</dt>
-					<dd class="formInputBox">
-						<p class="formInput"><input type="text" class="layInput"></p>
-						<p class="formTip" style="visibility:hidden;"><span class="xsIcon icon_wrong"></span>请输入专辑名</p>
-					</dd>
-				</dl>
-				<dl class="clearfix">
-					<dt class="formTit">专辑分类</dt>
-					<dd class="formInputBox">
-						<p class="formInput">
-							<select class="layInput laysel">
-								<option>选择分类</option>
-							</select>
-						</p>
-						<p class="formTip"><span class="xsIcon icon_wrong"></span>请选择分类</p>
-					</dd>
-				</dl>
-				<p class="formBtn"><a class="btnD" href="#">创建画板</a></p>
-			</div>
+<!-- 创建专辑弹层 -->
+<div class="xsWLayer addAlbumLayer" style="display:none; top:300px; left:300px;">
+    <a class="closeBtn">
+        <span class="xsIcon icon_close"></span>
+    </a>
+    <div class="WLayerMain">
+        <p class="WLayerTit">创建专辑</p>
+        <div class="addAForm">
+            <dl class="clearfix">
+                <dt class="formTit">专辑标题</dt>
+                <dd class="formInputBox">
+                    <p class="formInput">
+                        <input type="text" class="layInput">
+                    </p>
+                    <p class="formTip" style="visibility:hidden;">
+                        <span class="xsIcon icon_wrong"></span>请输入专辑名</p>
+                </dd>
+            </dl>
+            <dl class="clearfix">
+                <dt class="formTit">专辑分类</dt>
+                <dd class="formInputBox">
+                    <p class="formInput">
+                        <select class="layInput laysel">
+                            <option>选择分类</option>
+                        </select>
+                    </p>
+                    <p class="formTip">
+                        <span class="xsIcon icon_wrong"></span>请选择分类</p>
+                </dd>
+            </dl>
+            <p class="formBtn"><a class="btnD" href="#">创建画板</a>
+            </p>
+        </div>
 
-		</div>
+    </div>
 
-	</div>
-	<!-- /创建专辑弹层 -->
+</div>
+<!-- /创建专辑弹层 -->
 
+<!-- 转转隐藏uri -->
+<input type="hidden" name="uri_hidden" >
+
+
+<script type="text/javascript">
+        
+		function open_login(uri){
+			//uri = uri;
+            $("input[name=uri_hidden]").val(uri);
+			$(".mask").show();
+			$(".xsLoginLayer").show();
+		}
+		function login(){
+			var username = $("input[name=username]").val();
+			var password = $("input[name=password]").val();
+			if(username==null || username==""){
+				alert("用户名不能为空！");
+				return;
+			}
+			if(password==null || password==""){
+				alert("密码不能为空！");
+				return;
+			}
+			$.post("__ROOT__/admin/user/login",{'username':username,'password':password},function(data){
+				 //alert(data.success);
+                 var uri =  $("input[name=uri_hidden]").val();
+				 if (data.success){
+
+				 };//undo 
+                 if(uri==null || uri==""){
+                    location.href='__ROOT__/cate';
+                }else{
+                      location.href=uri;
+                }
+				 
+			});
+                
+		}
+
+		function open_reg(){
+			$(".mask").show();
+			$("#xsReg1").show();
+		}
+
+		function reg(){
+			$("#err_msg").hide();
+			var username = $("input[name=regname]").val();
+			var code = $("input[name=code]").val();
+			$.post("__ROOT__/admin/user/reg",{'username':username,'code':code},function(data){
+				 //alert(data.success);
+				 if (data.success){
+				 	$(".mask").hide();	
+				 	$("#xsReg1").hide();	
+				 	$("#xsReg2").show();
+				 }else{
+				 	$("#err_msg").show();	
+				 	flash_img();
+				 };//undo 
+			})
+		}
+
+		function flash_img(){
+			$("#mcode").attr("src", $("#mcode").attr("src")+"?");
+		}
+	</script>

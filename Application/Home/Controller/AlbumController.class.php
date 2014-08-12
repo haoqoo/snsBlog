@@ -2,7 +2,43 @@
 namespace Home\Controller;
 use Think\Controller;
 class AlbumController extends Controller {
-    public function index(){
-        $this->show('<style type="text/css">*{ padding: 0; margin: 0; } div{ padding: 4px 48px;} body{ background: #fff; font-family: "微软雅黑"; color: #333;font-size:24px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.8em; font-size: 36px }</style><div style="padding: 24px 48px;"> <h1>:)</h1><p>欢迎使用 <b>ThinkPHP</b>！</p><br/>[ 您现在访问的是Home模块的Ablum控制器 ]</div><script type="text/javascript" src="http://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script>','utf-8');
-    }
+
+	public function show(){
+		$id = $_GET['id'];
+		if(isset($id)){
+			$catArray = C('CATEGORY');
+			$Albums = M('Albums');
+			$album = $Albums->where("id=%d",array($id))->find();
+			$category_id = $album['category_id'];
+
+			$AlbumFavorites = M('AlbumFavorites');
+			$favorites_count = $AlbumFavorites->where('album_id=%d',array($album['id']))->count(); 
+
+			$Posts = M('Posts');
+			$post_count = $Posts->where('album_id=%d',array($album['id']))->count(); 
+			$post_list = $Posts->where('album_id=%d',array($album['id']))->limit(0,30);
+
+			//判断专辑是否是当前登录用户的
+			$is_my_album = false;
+			$user = session('__user__');
+			if($user){
+				$count = $Albums->where('id=%d and user_id=%d',array($id,$user['id']))->count();
+				if($count&&$count>0)$is_my_album=true; 
+			}
+			
+			//
+			
+			$Users = new \Admin\Model\UsersModel();
+			$user = $Users->where('id=%d',array($album[user_id]))->find();
+
+			$this->assign('category',$catArray[$category_id]);
+			$this->assign('album',$album);
+			$this->assign('favorites_count',isset($favorites_count)?$favorites_count:0);
+			$this->assign('post_list',$post_list);
+			$this->assign('post_count',isset($post_count)?$post_count:0);
+			$this->assign('is_my_album',$is_my_album);
+			$this->assign('user',$user);
+		}
+		$this->display(C('ALBUM_VIEW')."show");
+	}
 }

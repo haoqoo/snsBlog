@@ -28,6 +28,6 @@ define('APP_PATH','./Application/');
 require './ThinkPHP/ThinkPHP.php';
 
 //\Think\Build::buildController('Home','Ablum');
-//\Think\Build::buildModel('Home','PostFavorites');
+//\Think\Build::buildModel('Home','AlbumFavorites');
 
 // 亲^_^ 后面不需要任何代码了 就是如此简单

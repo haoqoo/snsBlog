@@ -16,8 +16,11 @@ return array(
 	// 开启路由
 	 'URL_ROUTER_ON'=>true, 
 	 'URL_ROUTE_RULES'=>array(
+	 	'cate/wookmarkAjax'=>'Home/Category/wookmarkAjax', 
 	 	'cate/:id\d'=>'Home/Category/show',  
-     	'cate'=> 'Home/Category/index'
+     	'cate'=> 'Home/Category/index',
+
+     	'album/:id\d'=>'Home/Album/show'
      	 
 	 ),
 
@@ -36,5 +39,6 @@ return array(
 	 	),
 
 	//view 路径文件夹
-	'CATE_VIEW' => 'Home@/category/' //d对应Category模块
+	'CATE_VIEW' => 'Home@/category/', //对应Category模块
+	'ALBUM_VIEW' => 'Home@/album/' //对应Album模块
 );
