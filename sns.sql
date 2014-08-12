@@ -3,7 +3,7 @@
 # Server version:               5.1.55-community
 # Server OS:                    Win32
 # HeidiSQL version:             6.0.0.3603
-# Date/time:                    2014-08-11 17:03:59
+# Date/time:                    2014-08-12 17:01:00
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -35,8 +35,27 @@ CREATE TABLE IF NOT EXISTS `wq_albums` (
 DELETE FROM `wq_albums`;
 /*!40000 ALTER TABLE `wq_albums` DISABLE KEYS */;
 INSERT INTO `wq_albums` (`id`, `name`, `discription`, `category_id`, `user_id`, `create_date`, `update_date`, `state`) VALUES
-	(1, '测试专辑1', NULL, 1, NULL, '2014-08-11 13:40:59', NULL, 1);
+	(1, '测试专辑1', NULL, 1, 2, '2014-08-11 13:40:59', NULL, 1);
 /*!40000 ALTER TABLE `wq_albums` ENABLE KEYS */;
+
+
+# Dumping structure for table sns.wq_album_favorites
+DROP TABLE IF EXISTS `wq_album_favorites`;
+CREATE TABLE IF NOT EXISTS `wq_album_favorites` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `album_id` bigint(20) NOT NULL COMMENT '专辑id',
+  `user_id` bigint(20) NOT NULL COMMENT '关注人ID',
+  `create_date` datetime DEFAULT NULL,
+  `state` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='专辑关注';
+
+# Dumping data for table sns.wq_album_favorites: ~1 rows (approximately)
+DELETE FROM `wq_album_favorites`;
+/*!40000 ALTER TABLE `wq_album_favorites` DISABLE KEYS */;
+INSERT INTO `wq_album_favorites` (`id`, `album_id`, `user_id`, `create_date`, `state`) VALUES
+	(1, 1, 1, '2014-08-12 15:09:21', 1);
+/*!40000 ALTER TABLE `wq_album_favorites` ENABLE KEYS */;
 
 
 # Dumping structure for table sns.wq_categories
@@ -172,6 +191,7 @@ CREATE TABLE IF NOT EXISTS `wq_users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(20) NOT NULL,
   `aliasname` varchar(20) DEFAULT NULL COMMENT '昵称',
+  `header_img` varchar(200) DEFAULT NULL COMMENT '头像url',
   `email` varchar(50) DEFAULT NULL,
   `grade` varchar(4) DEFAULT NULL COMMENT '性别： 男，女，保密',
   `born_year` varchar(4) DEFAULT NULL,
@@ -186,15 +206,15 @@ CREATE TABLE IF NOT EXISTS `wq_users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
-# Dumping data for table sns.wq_users: ~3 rows (approximately)
+# Dumping data for table sns.wq_users: ~5 rows (approximately)
 DELETE FROM `wq_users`;
 /*!40000 ALTER TABLE `wq_users` DISABLE KEYS */;
-INSERT INTO `wq_users` (`id`, `username`, `password`, `aliasname`, `email`, `grade`, `born_year`, `born_month`, `born_day`, `professional`, `my_site`, `introduce`, `create_date`, `update_date`, `state`) VALUES
-	(1, '123', '', NULL, '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(2, 'jack', '123456', NULL, 'qweqwe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(4, 'wanjujun', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(5, 'tp', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(6, 'admin', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `wq_users` (`id`, `username`, `password`, `aliasname`, `header_img`, `email`, `grade`, `born_year`, `born_month`, `born_day`, `professional`, `my_site`, `introduce`, `create_date`, `update_date`, `state`) VALUES
+	(1, '123', '123456', NULL, NULL, '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(2, 'jack', '123456', NULL, NULL, 'qweqwe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(4, 'wanjujun', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(5, 'tp', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(6, 'admin', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `wq_users` ENABLE KEYS */;
 
 
