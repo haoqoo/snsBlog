@@ -16,7 +16,8 @@ class AlbumController extends Controller {
 
 			$Posts = M('Posts');
 			$post_count = $Posts->where('album_id=%d',array($album['id']))->count(); 
-			$post_list = $Posts->where('album_id=%d',array($album['id']))->limit(0,30);
+			$post_list = $Posts->where('album_id=%d',array($album['id']))->limit(0,30)->select();
+			
 
 			//判断专辑是否是当前登录用户的
 			$is_my_album = false;
@@ -26,8 +27,7 @@ class AlbumController extends Controller {
 				if($count&&$count>0)$is_my_album=true; 
 			}
 			
-			//
-			
+			//查找专辑创建人			
 			$Users = new \Admin\Model\UsersModel();
 			$user = $Users->where('id=%d',array($album[user_id]))->find();
 
@@ -38,7 +38,17 @@ class AlbumController extends Controller {
 			$this->assign('post_count',isset($post_count)?$post_count:0);
 			$this->assign('is_my_album',$is_my_album);
 			$this->assign('user',$user);
+
+
 		}
 		$this->display(C('ALBUM_VIEW')."show");
 	}
+
+	public function  wookmarkAjax($page_no,$album_id){
+        $page_num = ($page_no-1)*20;
+        $Posts = M("Posts");  
+        $posts = $Posts->where('album_id=%d',array($album_id))->limit($page_num,30)->select(); 
+        $this->assign('post_list',$posts);
+        $this->display(C('ALBUM_VIEW')."post_wookmark");
+    }
 }

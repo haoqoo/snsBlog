@@ -3,10 +3,31 @@
 
 <head>
     <include file='./public/common/meta.html' />
+
+    <style type="text/css">
+    #tiles {
+        text-align: center;
+        list-style-type: none;
+        position: relative;
+        margin: 0;
+        padding: 0;
+    }
+    #tiles li {
+        width: 208px;
+        background-color: #fff;
+        border: solid 1px #e5e5e5;
+        display: none;
+        cursor: pointer;
+    }
+    .fallList li{
+        margin:10px 0 0 0;
+    }
+    </style>
+    <script type="text/javascript" src="__PUBLIC__/js/plugins/Wookmark/jquery.wookmark.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/plugins/Wookmark/jquery.imagesloaded.js"></script>
 </head>
 
 <body>
-
 
     <div class="xsWrap">
         <!-- 顶导 -->
@@ -63,14 +84,49 @@
 
             <!-- 瀑布流 -->
             <div class="fallMain">
-                <div class="falling clearfix">
-                    <ul class="fallList blogfall">
+                <div class="" id="wmain" style="position: relative;margin-top:10px;">
+                    <ul class="fallList blogfall" id='tiles'>
+
+                        <foreach name="post_list" item="vo">
+                          
+                         <li>
+                            <div class="blogMain">
+
+                                <div class="blogCon">
+                                    <a href="">
+                                        <img src="__PUBLIC__/images/pic2.jpg" alt="" height="" width="">
+                                    </a>
+                                </div>
+                                <p class="blogTit"><a href="#">{$vo.title}</a>
+                                </p>
+                            </div>
+                            <div class="blogACBox clearfix">
+                                <p class="blogAuthor">
+                                    <a class="authorHead">
+                                        <img src="__PUBLIC__/images/userS.jpg" alt="" height="" width="">
+                                    </a>
+                                    <a class="authorName">{:W('My/getUsername',array($vo['user_id'],'aliasname'))}</a>
+                                </p>
+                                
+                            </div>
+                            <div class="blogDate clearfix">
+                                <p class="blogAc">
+                                    <a class="zan">赞({:W('My/postFavoritesCount',array($vo["id"],2))})
+                                    </a>
+                                    <a class="shoucang">收藏({:W('My/postFavoritesCount',array($vo["id"],1))})</a>
+                                    <a class="comment">
+                                    评论({:W('My/postCommentCount',array($vo["id"]))})</a>
+                                </p>
+                            </div>
+                        </li>
+                        </foreach>
+
                         <li>
                             <div class="blogMain">
 
                                 <div class="blogCon">
                                     <a href="">
-                                        <img src="__PUBLIC__/images/pic2.jpg" alt="">
+                                        <img src="__PUBLIC__/images/pic2.jpg" alt="" height="" width="">
                                     </a>
                                 </div>
                                 <p class="blogTit"><a href="#">文章标题文章标题</a>
@@ -83,9 +139,7 @@
                                     </a>
                                     <a class="authorName">一二三四五六七八</a>
                                 </p>
-                                <!--
-								<p class="blogCome">来源：微博</p>
-								-->
+                                
                             </div>
                             <div class="blogDate clearfix">
                                 <p class="blogAc">
@@ -95,6 +149,7 @@
                                 </p>
                             </div>
                         </li>
+
                         <li>
                             <div class="blogMain">
                                 <p class="blogTit"><a href="#">文章标题文章标题</a>
@@ -125,8 +180,6 @@
                                 </p>
                             </div>
                         </li>
-                    </ul>
-                    <ul class="fallList">
                         <li>
                             <div class="blogMain">
 
@@ -146,8 +199,8 @@
                                     <a class="authorName">一二三四五六七八</a>
                                 </p>
                                 <!--
-								<p class="blogCome">来源：微博</p>
-								-->
+                                <p class="blogCome">来源：微博</p>
+                                -->
                             </div>
                             <div class="blogDate clearfix">
                                 <p class="blogAc">
@@ -175,8 +228,8 @@
                                     <a class="authorName">一二三四五六七八</a>
                                 </p>
                                 <!--
-								<p class="blogCome">来源：微博</p>
-								-->
+                                <p class="blogCome">来源：微博</p>
+                                -->
                             </div>
                             <div class="blogDate clearfix">
                                 <p class="blogAc">
@@ -187,8 +240,65 @@
                                 </p>
                             </div>
                         </li>
-                    </ul>
-                    <ul class="fallList">
+                        <li>
+                            <div class="blogMain">
+
+                                <div class="blogCon">
+                                    <a href="">
+                                        <img src="__PUBLIC__/images/pic2.jpg" alt="" height="" width="">
+                                    </a>
+                                </div>
+                                <p class="blogTit"><a href="#">文章标题文章标题</a>
+                                </p>
+                            </div>
+                            <div class="blogACBox clearfix">
+                                <p class="blogAuthor">
+                                    <a class="authorHead">
+                                        <img src="__PUBLIC__/images/userS.jpg" alt="">
+                                    </a>
+                                    <a class="authorName">一二三四五六七八</a>
+                                </p>
+                                
+                            </div>
+                            <div class="blogDate clearfix">
+                                <p class="blogAc">
+                                    <a class="zan">赞(90)</a>
+                                    <a class="shoucang">收藏(90)</a>
+                                    <a class="comment">评论(90)</a>
+                                </p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="blogMain">
+                                <p class="blogTit"><a href="#">文章标题文章标题</a>
+                                </p>
+                                <div class="blogCon">
+                                    <a href="">
+                                        <span class="conTxt">Moto 360项目被媒体曝光已久,但外界对其配置参数所知甚少.现在外媒透露Moto 360的一些配置参数.Moto 360机身采用全塑料材质,表盘厚13.5mm,圆形表盘直径48mm,具备无线充电功能.其全塑材质机身与此前Moto 360的宣传造成的期待给</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="blogACBox clearfix">
+                                <p class="blogAuthor">
+                                    <a class="authorHead">
+                                        <img src="__PUBLIC__/images/userS.jpg" alt="">
+                                    </a>
+                                    <a class="authorName">一二三四五六七八</a>
+                                </p>
+                                <!--
+                                <p class="blogCome">来源：微博</p>
+                                -->
+                            </div>
+                            <div class="blogDate clearfix">
+                                <p class="blogAc">
+                                    <!-- 赞过 增加class：have -->
+                                    <a class="zan have" title="取消赞">赞(90)</a>
+                                    <a class="shoucang">收藏(90)</a>
+                                    <a class="comment">评论(90)</a>
+                                </p>
+                            </div>
+                        </li>
                         <li>
                             <div class="blogMain">
 
@@ -208,8 +318,8 @@
                                     <a class="authorName">一二三四五六七八</a>
                                 </p>
                                 <!--
-								<p class="blogCome">来源：微博</p>
-								-->
+                                <p class="blogCome">来源：微博</p>
+                                -->
                             </div>
                             <div class="blogDate clearfix">
                                 <p class="blogAc">
@@ -219,6 +329,66 @@
                                 </p>
                             </div>
                         </li>
+                        <li>
+                            <div class="blogMain">
+                                <p class="blogTit"><a href="#">文章标题文章标题文章标题文章标题文章标题文章标题</a>
+                                </p>
+                                <div class="blogCon">
+                                    <a href="">
+                                        <span class="conTxt">Moto 360项目被媒体曝光已久,但外界对其配置参数所知甚少.现在外媒透露Moto 360的一些配置参数.Moto 360机身采用全塑料材质,表盘厚13.5mm,圆形表盘直径48mm,具备无线充电功能.其全塑材质机身与此前Moto 360的宣传造成的期待给</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="blogACBox clearfix">
+                                <p class="blogAuthor">
+                                    <a class="authorHead">
+                                        <img src="__PUBLIC__/images/userS.jpg" alt="">
+                                    </a>
+                                    <a class="authorName">一二三四五六七八</a>
+                                </p>
+                                <!--
+                                <p class="blogCome">来源：微博</p>
+                                -->
+                            </div>
+                            <div class="blogDate clearfix">
+                                <p class="blogAc">
+                                    <!-- 赞过 增加class：have -->
+                                    <a class="zan have">赞(90)</a>
+                                    <a class="shoucang">收藏(90)</a>
+                                    <a class="comment">评论(90)</a>
+                                </p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="blogMain">
+
+                                <div class="blogCon">
+                                    <a href="">
+                                        <img src="__PUBLIC__/images/pic2.jpg" alt="" height="" width="">
+                                    </a>
+                                </div>
+                                <p class="blogTit"><a href="#">文章标题文章标题</a>
+                                </p>
+                            </div>
+                            <div class="blogACBox clearfix">
+                                <p class="blogAuthor">
+                                    <a class="authorHead">
+                                        <img src="__PUBLIC__/images/userS.jpg" alt="">
+                                    </a>
+                                    <a class="authorName">一二三四五六七八</a>
+                                </p>
+                                
+                            </div>
+                            <div class="blogDate clearfix">
+                                <p class="blogAc">
+                                    <a class="zan">赞(90)</a>
+                                    <a class="shoucang">收藏(90)</a>
+                                    <a class="comment">评论(90)</a>
+                                </p>
+                            </div>
+                        </li>
+
                         <li>
                             <div class="blogMain">
                                 <p class="blogTit"><a href="#">文章标题文章标题</a>
@@ -237,21 +407,18 @@
                                     <a class="authorName">一二三四五六七八</a>
                                 </p>
                                 <!--
-								<p class="blogCome">来源：微博</p>
-								-->
+                                <p class="blogCome">来源：微博</p>
+                                -->
                             </div>
                             <div class="blogDate clearfix">
                                 <p class="blogAc">
                                     <!-- 赞过 增加class：have -->
-                                    <a class="zan have">赞(90)</a>
+                                    <a class="zan have" title="取消赞">赞(90)</a>
                                     <a class="shoucang">收藏(90)</a>
                                     <a class="comment">评论(90)</a>
                                 </p>
                             </div>
                         </li>
-                    </ul>
-
-                    <ul class="fallList">
                         <li>
                             <div class="blogMain">
 
@@ -271,8 +438,8 @@
                                     <a class="authorName">一二三四五六七八</a>
                                 </p>
                                 <!--
-								<p class="blogCome">来源：微博</p>
-								-->
+                                <p class="blogCome">来源：微博</p>
+                                -->
                             </div>
                             <div class="blogDate clearfix">
                                 <p class="blogAc">
@@ -282,6 +449,65 @@
                                 </p>
                             </div>
                         </li>
+                        <li>
+                            <div class="blogMain">
+                                <p class="blogTit"><a href="#">文章标题文章标题文章标题文章标题文章标题文章标题</a>
+                                </p>
+                                <div class="blogCon">
+                                    <a href="">
+                                        <span class="conTxt">Moto 360项目被媒体曝光已久,但外界对其配置参数所知甚少.现在外媒透露Moto 360的一些配置参数.Moto 360机身采用全塑料材质,表盘厚13.5mm,圆形表盘直径48mm,具备无线充电功能.其全塑材质机身与此前Moto 360的宣传造成的期待给</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="blogACBox clearfix">
+                                <p class="blogAuthor">
+                                    <a class="authorHead">
+                                        <img src="__PUBLIC__/images/userS.jpg" alt="">
+                                    </a>
+                                    <a class="authorName">一二三四五六七八</a>
+                                </p>
+                                <!--
+                                <p class="blogCome">来源：微博</p>
+                                -->
+                            </div>
+                            <div class="blogDate clearfix">
+                                <p class="blogAc">
+                                    <!-- 赞过 增加class：have -->
+                                    <a class="zan have">赞(90)</a>
+                                    <a class="shoucang">收藏(90)</a>
+                                    <a class="comment">评论(90)</a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="blogMain">
+
+                                <div class="blogCon">
+                                    <a href="">
+                                        <img src="__PUBLIC__/images/pic2.jpg" alt="" height="" width="">
+                                    </a>
+                                </div>
+                                <p class="blogTit"><a href="#">文章标题文章标题</a>
+                                </p>
+                            </div>
+                            <div class="blogACBox clearfix">
+                                <p class="blogAuthor">
+                                    <a class="authorHead">
+                                        <img src="__PUBLIC__/images/userS.jpg" alt="">
+                                    </a>
+                                    <a class="authorName">一二三四五六七八</a>
+                                </p>
+                                
+                            </div>
+                            <div class="blogDate clearfix">
+                                <p class="blogAc">
+                                    <a class="zan">赞(90)</a>
+                                    <a class="shoucang">收藏(90)</a>
+                                    <a class="comment">评论(90)</a>
+                                </p>
+                            </div>
+                        </li>
+
                         <li>
                             <div class="blogMain">
                                 <p class="blogTit"><a href="#">文章标题文章标题</a>
@@ -300,83 +526,18 @@
                                     <a class="authorName">一二三四五六七八</a>
                                 </p>
                                 <!--
-								<p class="blogCome">来源：微博</p>
-								-->
+                                <p class="blogCome">来源：微博</p>
+                                -->
                             </div>
                             <div class="blogDate clearfix">
                                 <p class="blogAc">
                                     <!-- 赞过 增加class：have -->
-                                    <a class="zan have">赞(90)</a>
+                                    <a class="zan have" title="取消赞">赞(90)</a>
                                     <a class="shoucang">收藏(90)</a>
                                     <a class="comment">评论(90)</a>
                                 </p>
                             </div>
                         </li>
-                    </ul>
-
-                    <ul class="fallList">
-                        <li>
-                            <div class="blogMain">
-
-                                <div class="blogCon">
-                                    <a href="">
-                                        <img src="__PUBLIC__/images/pic1.jpg" alt="">
-                                    </a>
-                                </div>
-                                <p class="blogTit"><a href="#">文章标题文章标题</a>
-                                </p>
-                            </div>
-                            <div class="blogACBox clearfix">
-                                <p class="blogAuthor">
-                                    <a class="authorHead">
-                                        <img src="__PUBLIC__/images/userS.jpg" alt="">
-                                    </a>
-                                    <a class="authorName">一二三四五六七八</a>
-                                </p>
-                                <!--
-								<p class="blogCome">来源：微博</p>
-								-->
-                            </div>
-                            <div class="blogDate clearfix">
-                                <p class="blogAc">
-                                    <a class="zan">赞(90)</a>
-                                    <a class="shoucang">收藏(90)</a>
-                                    <a class="comment">评论(90)</a>
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="blogMain">
-                                <p class="blogTit"><a href="#">文章标题文章标题</a>
-                                </p>
-                                <div class="blogCon">
-                                    <a href="">
-                                        <span class="conTxt">Moto 360项目被媒体曝光已久,但外界对其配置参数所知甚少.现在外媒透露Moto 360的一些配置参数.Moto 360机身采用全塑料材质,表盘厚13.5mm,圆形表盘直径48mm,具备无线充电功能.其全塑材质机身与此前Moto 360的宣传造成的期待给</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="blogACBox clearfix">
-                                <p class="blogAuthor">
-                                    <a class="authorHead">
-                                        <img src="__PUBLIC__/images/userS.jpg" alt="">
-                                    </a>
-                                    <a class="authorName">一二三四五六七八</a>
-                                </p>
-                                <!--
-								<p class="blogCome">来源：微博</p>
-								-->
-                            </div>
-                            <div class="blogDate clearfix">
-                                <p class="blogAc">
-                                    <!-- 赞过 增加class：have -->
-                                    <a class="zan have">赞(90)</a>
-                                    <a class="shoucang">收藏(90)</a>
-                                    <a class="comment">评论(90)</a>
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
-                    <ul class="fallList">
                         <li>
                             <div class="blogMain">
 
@@ -396,8 +557,8 @@
                                     <a class="authorName">一二三四五六七八</a>
                                 </p>
                                 <!--
-								<p class="blogCome">来源：微博</p>
-								-->
+                                <p class="blogCome">来源：微博</p>
+                                -->
                             </div>
                             <div class="blogDate clearfix">
                                 <p class="blogAc">
@@ -409,7 +570,7 @@
                         </li>
                         <li>
                             <div class="blogMain">
-                                <p class="blogTit"><a href="#">文章标题文章标题</a>
+                                <p class="blogTit"><a href="#">文章标题文章标题文章标题文章标题文章标题文章标题</a>
                                 </p>
                                 <div class="blogCon">
                                     <a href="">
@@ -425,8 +586,8 @@
                                     <a class="authorName">一二三四五六七八</a>
                                 </p>
                                 <!--
-								<p class="blogCome">来源：微博</p>
-								-->
+                                <p class="blogCome">来源：微博</p>
+                                -->
                             </div>
                             <div class="blogDate clearfix">
                                 <p class="blogAc">
@@ -438,6 +599,7 @@
                             </div>
                         </li>
                     </ul>
+                   
 
                 </div>
             </div>
@@ -449,53 +611,87 @@
 
     </div>
 
-    <!-- 弹层蒙层（黑色半透明） -->
-    <div class="mask" style="display:none;"></div>
-    <!-- 弹层蒙层（黑色半透明） -->
-
-    <!-- 创建专辑弹层 -->
-    <div class="xsWLayer addAlbumLayer" style="display:none; top:300px; left:300px;">
-        <a class="closeBtn">
-            <span class="xsIcon icon_close"></span>
-        </a>
-        <div class="WLayerMain">
-            <p class="WLayerTit">创建专辑</p>
-            <div class="addAForm">
-                <dl class="clearfix">
-                    <dt class="formTit">专辑标题</dt>
-                    <dd class="formInputBox">
-                        <p class="formInput">
-                            <input type="text" class="layInput">
-                        </p>
-                        <p class="formTip" style="visibility:hidden;">
-                            <span class="xsIcon icon_wrong"></span>请输入专辑名</p>
-                    </dd>
-                </dl>
-                <dl class="clearfix">
-                    <dt class="formTit">专辑分类</dt>
-                    <dd class="formInputBox">
-                        <p class="formInput">
-                            <select class="layInput laysel">
-                                <option>选择分类</option>
-                            </select>
-                        </p>
-                        <p class="formTip">
-                            <span class="xsIcon icon_wrong"></span>请选择分类</p>
-                    </dd>
-                </dl>
-                <p class="formBtn"><a class="btnD" href="#">创建画板</a>
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- /创建专辑弹层 -->
+   
+   
 
     <!-- 弹层 -->
     <include file="./public/common/openWindows.html" />
     <!-- 弹层） -->
+
+     <script type="text/javascript">
+    <!--wookmark 瀑布流js-->
+    (function($) {
+        var page_no = 2;//分页数 从第2页开始
+        var album_id = {$album.id} ;
+        var $tiles = $('#tiles'),
+            $handler = $('li', $tiles),
+            $main = $('#wmain'),
+            $window = $(window),
+            $document = $(document),
+            options = {
+                autoResize: true, // This will auto-update the layout when the browser window is resized.
+                container: $main, // Optional, used for some extra CSS styling
+                offset: 10, // Optional, the distance between grid items
+                itemWidth: 210 // Optional, the width of a grid item
+            };
+
+        /**
+         * 展示
+         */
+        function applyLayout() {
+            $tiles.imagesLoaded(function() {
+                // Destroy the old handler
+                if ($handler.wookmarkInstance) {
+                    $handler.wookmarkInstance.clear();
+                }
+                // Create a new layout handler.
+                $handler = $('li', $tiles);
+                $handler.wookmark(options);
+            });
+        }
+
+        /**
+         *scroll 事件
+         */
+        function onScroll() {
+            // Check if we're within 100 pixels of the bottom edge of the broser window.
+            var winHeight = window.innerHeight ? window.innerHeight : $window.height(), // iphone fix
+                closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 100);
+
+            if (closeToBottom) { 
+                //AJAX载入的数据
+                $.ajax({
+                    url: "__ROOT__/album/wookmarkAjax",
+                    dataType: "html",
+                    data:{
+                        'page_no':page_no,
+                        'album_id':album_id
+                    },
+                    success: function(html) {                   
+                        if(html!=null&&html!=""){
+                            page_no++;
+                            //把新数据追加到对象中
+                            $tiles.append(html);
+                            //重新展示
+                            applyLayout();
+                        }
+                        
+                    }
+                });
+
+                
+            }
+        };
+
+
+        applyLayout();
+
+
+        $window.bind('scroll.wookmark', onScroll);
+
+
+    })(jQuery);
+    </script>
 
 </body>
 

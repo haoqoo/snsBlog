@@ -10,7 +10,8 @@ use Think\Template\TagLib;
 
  	public function _postCommentCount($tag,$content){
  		$Comments = M('Comments');
- 		$post_id = $tag['post_id'];
+ 		$post_id =$this->$tag['post_id'];
+
  		$count = $Comments->where('post_id=%d',array($post_id))->count();
  		return isset($count)?$count:0;
  	}
@@ -19,7 +20,7 @@ use Think\Template\TagLib;
  	public function _postFavoritesCount($tag,$content){
  		$PostFavorites = M('PostFavorites');
  		$type = $tag['type'];
- 		$post_id = $tag['post_id'];
+ 		$post_id = $tag['post_id'] ; 		
  		$count = $PostFavorites->where('type=%d and post_id=%d',array($type,$post_id))->count();
  		return isset($count)?$count:0;
  	}

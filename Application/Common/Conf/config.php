@@ -20,6 +20,7 @@ return array(
 	 	'cate/:id\d'=>'Home/Category/show',  
      	'cate'=> 'Home/Category/index',
 
+     	'album/wookmarkAjax'=>'Home/Album/wookmarkAjax', 
      	'album/:id\d'=>'Home/Album/show'
      	 
 	 ),
