@@ -21,7 +21,10 @@ return array(
      	'cate'=> 'Home/Category/index',
 
      	'album/wookmarkAjax'=>'Home/Album/wookmarkAjax', 
-     	'album/:id\d'=>'Home/Album/show'
+     	'album/:id\d'=>'Home/Album/show',
+
+     	'post/wookmarkAjax'=>'Home/Post/wookmarkAjax', 
+     	'post/:id\d'=>'Home/Post/show'
      	 
 	 ),
 
@@ -36,12 +39,14 @@ return array(
 	 		'7' => '家居设计',
 	 		'8' => '宠物',
 	 		'9' => '音乐',
-	 		'10' => '汽车'
+	 		'10' => '汽车',
+	 		'11' => '其他'
 	 	),
 
 	//view 路径文件夹
 	'CATE_VIEW' => 'Home@/category/', //对应Category模块
 	'ALBUM_VIEW' => 'Home@/album/', //对应Album模块
+	'POST_VIEW' => 'Home@/post/', //对应POST模块
 
 	// 预先加载的标签库
 	'TAGLIB_PRE_LOAD' => 'Home\\TagLib\\MyTag',

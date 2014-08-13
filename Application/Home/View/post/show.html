@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtmBox">
+<head>
+<include file="./Public/common/meta.html" />
+</head>
+
+<body>
+
+	<div class="xsWrap">
+		<!-- 顶导 -->
+		<include file='./public/common/header.html' />
+		<!-- /顶导 -->
+		<!-- main -->
+		<div class="mainBox clearfix">
+			<div class="xsNLayout">
+				<!-- 博文 -->			
+				<div class="blogLayBox clearfix">
+					<div class="viewBlogBox">
+						<div class="xsTit clearfix">
+							<!-- 博主权限 -->
+							<if condition="$is_my_post">
+							<a class="btnF blogEdiBtn" href="#">编辑</a>	
+							</if>
+							<!-- /博主权限 -->						
+							<h3 class="viewBlogTit">{$post.title}<span class="vBlogDate">({$post.create_date})</span></h3>
+
+						</div>
+						<div class="viewBlogSo clearfix">
+							<p class="vBlogSort">所属专辑：{$album_name}</p>
+							<if condition="$is_my_post">
+							<p class="titShareBox"><span class="shareTxt">分享：</span><a class="shareBtn"><span class="shareIcon icon_weibo"></span></a><a class="shareBtn"><span class="shareIcon icon_qzone"></span></a><a class="shareBtn"><span class="shareIcon icon_weixin"></span></a></p>
+							</if>
+						</div>	
+						
+						<div class="viewblogwrap">
+							<div class="viewblogTxt clearfix">
+							<!-- 博客正文 -->
+							<p style="text-indent:2em;">{$post.content}</p>
+
+							<!-- /博客正文 -->
+							</div>
+							<p class="blogComUrl">来源：{$post.post_link}</p>
+						</div>
+
+						<div class="viewBlogComBox">
+							<div class="xsTit">
+								<p class="viewBlogTit">评论</p>
+							</div>
+							<div class="vewComWrap">
+								<ul class="vewComList">
+									<foreach name="comment_list" item="vo">
+									<li class="clearfix">
+										<div class="noUserImg"><a class="userPic" href="#">
+										<img src="__PUBLIC__/images/userL.jpg" alt="" class="userImg"></a></div>
+										<div class="notiDetail">
+											<div class="notiFBox">
+												<p class="notiUser"><a class="notiName" href="#">
+												{:W('My/getUserVal',array($vo['user_id'],'aliasname'))}</a>
+												<span class="notiDate">{$vo.create_date}</span></p>
+												<p class="notiR"> <a class="notiRly">回复</a><a class="notiRly">举报</a></p>
+											</div>
+											<p class="notiCon clearfix">{$vo.content}</p>
+										</div>
+
+									</li>
+									</foreach>
+									
+
+								</ul>
+
+							</div>
+
+						</div>
+						
+					</div>
+
+					<div class="viewBlogR">
+						<div class="viewRBox">
+							<p class="viewRTit">本专辑其他博文</p>
+						</div>
+						<div class="viewRBlog">
+						<ul class="viewRList">
+						   <foreach name="post_others" item="vo">
+							<li><a class="rListTxt" href="__ROOT__/post/{$vo.id}">{$vo.title}</a></li>
+							</foreach>
+												
+						</ul>
+						<p class="viewRMore"><a href="">更多>></a></p>
+						</div>
+					</div>
+
+				</div>
+				<!-- /博文 -->
+			</div>
+		</div>
+
+		<!-- /main -->
+
+	</div>
+
+	<!-- 弹层 -->
+    <include file="./public/common/openWindows.html" />
+    <!-- 弹层） -->
+	<script type="text/javascript">
+    (function($) {
+    	var page_no=2;
+    	var post_id ={$post.id};
+    	var $window = $(window),
+            $document = $(document);
+
+		/**
+         *scroll 事件
+         */
+        function onScroll() {
+            // Check if we're within 100 pixels of the bottom edge of the broser window.
+            var winHeight = window.innerHeight ? window.innerHeight : $window.height(), // iphone fix
+                closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 100);
+            if (closeToBottom) {
+                //AJAX载入的数据
+                $.ajax({
+                    url: "__ROOT__/post/wookmarkAjax",
+                    dataType: "html",
+                    data:{
+                    	'page_no':page_no,
+                    	'post_id':post_id
+                    },
+                    success: function(html) {                  	
+                    	if(html!=null&&html!=""){
+                    		page_no++;
+                    		//把新数据追加到ul
+
+                       		 $(".vewComList").append(html);                        	
+                    	}
+                        
+                    }
+                });
+                
+            }
+        };
+
+		$window.bind('scroll', onScroll);
+
+    })(jQuery);
+    </script>
+
+</body>
+</html>
