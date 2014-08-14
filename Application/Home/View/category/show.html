@@ -57,7 +57,7 @@
                 <div class=" " id="wmain" style="position: relative;margin-top:10px;">
                     <ul id='tiles'>
                         <li>
-                            <a class="albumAddBox" href="#">
+                            <a class="albumAddBox" href="__ROOT__/album/add?cate={$category_id}">
                                 <span class="albumAdd"></span>
                                 <p class="albumAddTxt">添加专辑</p>
                             </a>
@@ -182,10 +182,26 @@
         		alert("请先登录，如果没有帐号请注册帐号。");
         		return;
         	};
-        	//alert($(this).attr("album_id"));
+            var album_id = $(this).attr("album_id");
+            alert(album_id);
+        	$.ajax({
+                    url: "__ROOT__/album/favorites",                    
+                    dataType: "json",
+                    data:{
+                        'album_id':album_id                        
+                    },
+                    success: function(data) {
+                        alert(data.success);                                           
+                        if(data.success){
+                            alert("关注成功！");
+                        }
+                    }
+                });
         });
 
     })(jQuery);
+
+
     </script>
 </body>
 

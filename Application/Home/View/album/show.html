@@ -9,7 +9,7 @@
         text-align: center;
         list-style-type: none;
         position: relative;
-        margin: 0;
+        margin: 0 0 10px 0;
         padding: 0;
     }
     #tiles li {
@@ -20,7 +20,7 @@
         cursor: pointer;
     }
     .fallList li{
-        margin:10px 0 0 0;
+        margin:5px 0 0 0;
     }
     </style>
     <script type="text/javascript" src="__PUBLIC__/js/plugins/Wookmark/jquery.wookmark.js"></script>
@@ -48,10 +48,8 @@
                         <p class="acBtn">
 
                             <if condition="$is_my_album">
-                                <a class="btnF" href="#">编辑专辑</a>
+                                <a class="btnF" href="__ROOT__/album/edit/{$album.id}">编辑专辑</a>
                                 <!-- <a class="btnF" href="#">批量管理采集</a>-->
-
-
                         </p>
                         <p class="titShareBox">
                             <span class="shareTxt">分享：</span>
@@ -87,7 +85,8 @@
                 <div class="" id="wmain" style="position: relative;margin-top:10px;">
                     <ul class="fallList blogfall" id='tiles'>
 
-                        <foreach name="post_list" item="vo">
+                        <if condition="$post_list neq null ">
+                             <foreach name="post_list" item="vo">
                           
                          <li>
                             <div class="blogMain">
@@ -120,6 +119,11 @@
                             </div>
                         </li>
                         </foreach>
+                        <else/>
+                             <li><h1>该专辑暂无博文！</h1></li>
+                        </if>
+
+                       
 
                         
                     </ul>

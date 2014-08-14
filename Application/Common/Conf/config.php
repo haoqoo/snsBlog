@@ -21,7 +21,13 @@ return array(
      	'cate'=> 'Home/Category/index',
 
      	'album/wookmarkAjax'=>'Home/Album/wookmarkAjax', 
+     	'album/add'=>'Home/Album/add', 
+     	'album/save_update'=>'Home/Album/save_update', 
+     	'album/edit/:id\d'=>'Home/Album/edit',   
+     	'album/favorites'=>'Home/Album/favorites', 
+     	'album/delete/:id\d'=>'Home/Album/delete',	
      	'album/:id\d'=>'Home/Album/show',
+     
 
      	'post/wookmarkAjax'=>'Home/Post/wookmarkAjax', 
      	'post/:id\d'=>'Home/Post/show'
