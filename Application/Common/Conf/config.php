@@ -4,7 +4,7 @@ return array(
 	'URL_HTML_SUFFIX' => 'shtml',
 	'URL_CASE_INSENSITIVE'  => false, //url不区分大小写，针对linux系统
 	'DB_TYPE' => 'mysql', // 数据库类型
- 	'DB_HOST' => '192.168.1.62', // 服务器地址
+ 	'DB_HOST' => '127.0.0.1', // 服务器地址
  	'DB_NAME' => 'sns', // 数据库名
  	'DB_USER' => 'root', // 用户名
  	'DB_PWD' => '123456', // 密码
@@ -50,9 +50,9 @@ return array(
 	 	),
 
 	//view 路径文件夹
-	'CATE_VIEW' => 'Home@/category/', //对应Category模块
-	'ALBUM_VIEW' => 'Home@/album/', //对应Album模块
-	'POST_VIEW' => 'Home@/post/', //对应POST模块
+	'CATE_VIEW' => 'Home@/Category/', //对应Category模块
+	'ALBUM_VIEW' => 'Home@/Album/', //对应Album模块
+	'POST_VIEW' => 'Home@/Post/', //对应POST模块
 
 	// 预先加载的标签库
 	'TAGLIB_PRE_LOAD' => 'Home\\TagLib\\MyTag',
