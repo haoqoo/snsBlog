@@ -58,4 +58,10 @@ return array(
 	// 预先加载的标签库
 	'TAGLIB_PRE_LOAD' => 'Home\\TagLib\\MyTag',
 
+	'MAIL_ADDRESS'=>'wanjunjun@sina.com', // 邮箱地址
+    'MAIL_SMTP'=>'smtp.sina.com', // 邮箱SMTP服务器
+    'MAIL_LOGINNAME'=>'wanjunjun@sina.com', // 邮箱登录帐号
+    'MAIL_PASSWORD'=>'wcr0603', // 邮箱密码
+    'MAIL_SENDER'=>'sns', //发件人名字
+
 );
