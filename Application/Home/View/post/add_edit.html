@@ -2,9 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtmBox">
 <head>
 <include file='./Public/common/meta.html' />
-    <link rel="stylesheet" href="__PUBLIC__/js/plugins/validator-0.7.3/jquery.validator.css">
-    <script type="text/javascript" src="__PUBLIC__/js/plugins/validator-0.7.3/jquery.validator.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/js/plugins/validator-0.7.3/local/zh_CN.js"></script>
+    
       <link href="__PUBLIC__/js/plugins/umEditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
      <script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/plugins/umEditor/umeditor.config.js"></script>
     <script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/plugins/umEditor/umeditor.min.js"></script>
@@ -22,27 +20,31 @@
 		<div class="mainBox clearfix">
 			<div class="xsNLayout">
 				<!-- 发博文 -->			
-				<form action="__ROOT__/post/save_update" method="post" id="post_form"
-				data-validator-option="{stopOnError:false, timely:false}">
-				<input type="hidden" name="user_id" value="<?php $user =session('__user__'); echo $user['id']; ?>" />
-				<input type="hidden" name="id" value="{$post.id}">
+				
 				<div class="pubBlogBox">
 					<div class="xsTit">发博文</div>
 					<div class="editForm">
+					<form action="__ROOT__/post/save_update" method="post" id="post_form">
+				<input type="hidden" name="user_id" value="<?php $user =session('__user__'); echo $user['id']; ?>" />
+				<input type="hidden" name="id" value="{$post.id}">
 						<div class="formCata">
 							<dl class="clearfix">
 								<dt class="formName">标题</dt>
 								<dd class="formInput">
 								<input name="title" class="xsInput fw03" type="text" value="{$post.title}" 
 								data-rule="required;length[4~];title;" placeholder="请至少输入4个字符的标题"></dd>
-								<!-- <dd class="formInput"><input class="xsInput fw04" type="text" value="时间: 2014-07-28 11:43:11"> -->
-								</dd>
+								<dd class="formTip titleTip" style="display:none;">
+								<span class="xsIcon icon_wrong"></span>请至少输入4个字符的标题</dd>
+								<!-- <dd class="formInput"><input class="xsInput fw04" type="text" value="时间: 2014-07-28 11:43:11">
+								</dd>-->
 							</dl>
 							<div class="editBlog clearfix">
 								<!-- 编辑器宽度示意，用编辑器默认的 -->
 								<div class="formInput">
 									<!--style给定宽度可以影响编辑器的最终宽度-->
-									<script type="text/plain" id="myEditor" style="width:100%;height:240px;"></script>
+									<script type="text/plain" id="myEditor" name="content" style="width:100%;height:240px;">
+									{$post.content|htmlspecialchars_decode}
+									</script>
 									<div class="formTip editorTip" style="margin-top:5px;display:none;">
 									<span class="xsIcon icon_wrong"></span>博文内容不能为空
 									</div>
@@ -79,7 +81,10 @@
 								placeholder="http://" data-rule="url;post_link;"></dd>
 							</dl>
 						</div>
+						
+						</form>
 					</div>
+
 					<p class="saveBtn">
 						<if condition="session('__user__') neq null">
                      	<a class="btnH post_submit" href="##">完成</a>
@@ -88,7 +93,7 @@
                     	</if>
 					</p>							
 				</div>
-				</form>
+
 				<!-- /发博文 -->
 			</div>
 		</div>
@@ -111,30 +116,35 @@
 
     	<if condition="$post neq null">
     	$("select[name=category_id]").val({$post.category_id});
-    	um.setContent({$post.content}});
+    	
     	</if>
 
+    	um.ready(function(){
+        	//um.setContent('',true);     //加载数据库Action.class.PHP传过来的值
+    	});
     	
     	$(".post_submit").on("click",function(e){
     		e.preventDefault();
-    		$("#post_form").trigger("validate"); //触发验证
-
-    	});
-
-    	//表单验证成功
-    	$('#post_form').on('valid.form', function(e, form){
+    		var title = $("input[name=title]").val();
+    		if(title==null||title==""||title.length<4){
+    			$("input[name=title]").focus();
+    			$(".titleTip").show();
+    			return ;
+    		}
     		var  txt = um.getContentTxt();
     		if(txt==null || txt==""){
     			$(".editorTip").show();
     			return ;
     		}
+    		
+    		
     		$('#post_form').submit();
-		});
 
-		// um.addListener('selectionchange',function(){
-		// 	alert(this.getContentTxt());
-  //     		//console.log("选区已经变化！");
- 	// 	});
+    	});
+
+    	
+
+	
     })(jQuery);
     
     </script>
