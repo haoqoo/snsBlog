@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtmBox">
+<head>
+	<include file='./Public/common/meta.html' />
+<title></title>
+</head>
+
+<body>
+
+
+	<div class="xsWrap">
+		<!-- 顶导 -->
+		<include file='./Public/common/header.html' />
+		<!-- /顶导 -->
+		<!-- main -->
+		<form id="form1" action="__ROOT__/admin/user/saveUser.shtml" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="id" value="{$user.id}">
+		<div class="mainBox clearfix">
+			<div class="xsNLayout">
+				<!-- 编辑专辑 -->			
+				
+				<div class="editUserBox">
+					<div class="xsTit">个人资料</div>
+					<div class="editForm">
+						<div class="formCata">
+							<dl class="clearfix">
+								<dt class="formName">登录名</dt>
+								<dd class="formInput"><input class="xsInput fw01" type="text" value="{$user.username}" readonly="readonly"></dd>
+								<dd class="formTip" style="display:none;"><span class="xsIcon icon_wrong"></span>请选择分类</dd>
+							</dl>
+							<dl class="clearfix">
+								<dt class="formName">昵称</dt>
+								<dd class="formInput"><input name="aliasname" class="xsInput fw01" type="text" value="{$user.aliasname}"></dd>
+								<dd class="formTip" style="display:none;"><span class="xsIcon icon_wrong"></span>不能为空</dd>
+							</dl>
+
+							<dl class="clearfix">
+								<dt class="formName">头像</dt>
+								<dd class="formInput"><div class="userImgShow"><img src="../images/userL.jpg" alt=""></div><div class="picInput">
+											<p class="picInfo">支持jpg、jpeg、png、gif格式；<br>
+											建议尺寸：120pxX120px 文件不超过100K</p>						
+											<p class="fileinput">
+												<input type="file" id="img" name="img" class="formFile"></p>
+										</div></dd>
+								
+							</dl>
+							<dl class="clearfix">
+								<dt class="formName">性别</dt>
+								<dd class="formInput">
+									<input type="hidden" id="grade" name="grade" value="">
+									<label class="sexF"><input name="sex" type="radio">男</label>
+									<label class="sexF"><input name="sex" type="radio">女</label>
+									<label class="sexF"><input name="sex" type="radio">保密</label>
+								</dd>
+								
+							</dl>		
+							<dl class="clearfix userbirth">
+								<dt class="formName">生日</dt>
+								<dd class="formInput">
+									<input name="born_year" class="xsInput fw07" type="text" placeholder="年" value="{$user.born_year}">
+									<input name="born_month" class="xsInput fw07" type="text"  placeholder="月" value="{$user.born_month}">
+									<input name="born_day" class="xsInput fw07" type="text"  placeholder="日" value="{$user.born_day}">
+								</dd>
+								
+							</dl>
+							<dl class="clearfix">
+								<dt class="formName">职业</dt>
+								<dd class="formInput"><input name="professional" class="xsInput fw01" type="text" value="{$user.professional}"></dd>
+
+							</dl>																				
+						</div>
+						<div class="formCata">
+							<dl class="clearfix">
+								<dt class="formName">个人主页</dt>
+								<dd class="formInput"><input name="my_site" class="xsInput fw01" type="text" value="{$user.my_site}"></dd>
+
+							</dl>							
+							<dl class="clearfix">
+								<dt class="formName">关于自己</dt>
+								<dd class="formInput"><textarea name="introduce" class="xsArea fwA01">{$user.introduce}</textarea></dd>
+								
+							</dl>
+							<!-- <dl class="clearfix">
+								<dt class="formName">个性网址</dt>
+								<dd class="formInput"><span class="userURL">huaban.com/<input type="text" class="xsInput fw07" value="21212"></span></dd>
+								
+							</dl> -->							
+						</div>
+
+					</div>
+					<p class="saveBtn"><a class="btnD" href="javascript:saveUser();">保存设置</a></p>
+
+				</div>
+				<!-- /编辑专辑 -->
+			</div>
+		</div>
+		</form>
+		<!-- /main -->
+
+	</div>
+
+
+
+
+</body>
+</html>
+<script type="text/javascript">
+	function saveUser(){
+		$("#form1").submit();	
+	}
+
+</script>
