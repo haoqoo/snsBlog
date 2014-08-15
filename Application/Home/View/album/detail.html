@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtmBox">
+
+<head>
+    <include file='./Public/common/meta.html' />
+    <link rel="stylesheet" href="__PUBLIC__/js/plugins/validator-0.7.3/jquery.validator.css">
+    <script type="text/javascript" src="__PUBLIC__/js/plugins/validator-0.7.3/jquery.validator.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/plugins/validator-0.7.3/local/zh_CN.js"></script>
+</head>
+
+<body>
+
+
+    <div class="xsWrap">
+        <!-- 顶导 -->
+        <include file='./Public/common/header.html' />
+        <!-- /顶导 -->
+        <!-- main -->
+        <div class="mainBox clearfix">
+            <div class="xsNLayout">
+                <!-- 编辑专辑 -->
+
+                <div class="editAlBox">
+                    <div class="xsTit">
+                        专辑名称：{$album.name}
+                        
+                    </div>
+                    <div class="editForm">
+                    	
+                    	
+                        <div class="formCata">
+                            <dl class="clearfix">
+                                <dt class="formName">标题</dt>
+                                <dd class="formInput">
+                                    {$album.name}
+                                </dd>
+                                
+                            </dl>
+                            <dl class="clearfix">
+                                <dt class="formName">描述</dt>
+                                <dd class="formInput">
+                                    {$album.discription}
+                                </dd>
+                                <!-- <dd class="formTip">
+                                    <span class="xsIcon icon_wrong"></span>请选择分类</dd>
+                                                            </dl> -->
+                        </div>
+                        <div class="formCata">
+                            <dl class="clearfix">
+                                <dt class="formName">分类</dt>
+                                <dd class="formInput">
+                                    <select class="xsSel fw01" name="category_id" disabled="disable">
+                                    	<option value="1">摄影</option>
+                                    	<option value="2">美妆服饰</option>
+                                    	<option value="3">美食</option>
+                                    	<option value="4">运动</option>
+                                    	<option value="5">科技生活</option>
+                                    	<option value="6">游戏</option>
+                                    	<option value="7">家居设计</option>
+                                    	<option value="8">宠物</option>
+                                    	<option value="9">音乐</option>
+                                    	<option value="10">汽车</option>
+                                        <option value="11">其它</option>
+                                    </select>
+                                </dd>
+                                <!-- <dd class="formTip">
+                                    <span class="xsIcon icon_wrong"></span>请选择分类</dd> -->
+                            </dl>
+                        </div>
+                       
+						</form>
+                    </div>
+                    
+                </div>
+                <!-- /编辑专辑 -->
+            </div>
+        </div>
+
+        <!-- /main -->
+
+    </div>
+    <!-- 弹层 -->
+    <include file="./Public/common/openWindows.html" />
+    <!-- 弹层） -->
+
+    <script type="text/javascript">
+    (function($) {
+    	$("select[name=category_id]").val({$cate_id});
+    })(jQuery);
+
+   
+    </script>
+
+
+
+</body>
+
+</html>

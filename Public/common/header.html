@@ -53,12 +53,12 @@
 				<!-- 已登录 -->
 				<if condition="session('__user__') neq null">
 				<ul class="navRList clearfix">
-					<li class="navli userAdd"><a class="navMode" href=""><span class="xsIcon icon_add"></span></a>
+					<li class="navli userAdd"><a class="navMode" href="##" onclick="diplayAddBlog('click')" ><span class="xsIcon icon_add"></span></a>
 						<!-- 发布弹层 点击【+】出现 -->
 						<div class="pubLayer">
-							<p class="pubLi"><a href="#" class="logLiTxt">发布文章</a></p>
+							<p class="pubLi"><a href="__ROOT/post/add" class="logLiTxt">发布文章</a></p>
 							<!-- 点击【发布专辑】出现 创建专辑弹层 -->	
-							<p class="pubLi"><a href="#" class="logLiTxt">创建专辑</a></p>	
+							<p class="pubLi"><a href="__ROOT__/album/add" class="logLiTxt">创建专辑</a></p>	
 						</div>
 						<!-- /发布弹层 -->
 					</li>
@@ -127,3 +127,14 @@
 
 			<div class="navLogo"><a class="logoBox"><img src="__PUBLIC__/images/logoM.png" alt=""></a></div>
 		</div>
+		<script type="text/javascript">
+		function diplayAddBlog(type){
+			if ("click"==type) {
+				$(".pubLayer").toggle();
+			} else{
+				$(".pubLayer").hide();
+			};
+					
+		}
+		
+		</script>
