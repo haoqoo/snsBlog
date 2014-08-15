@@ -3,31 +3,13 @@
 
 <head>
     <include file='./Public/common/meta.html' />
-
-    <style type="text/css">
-    #tiles {
-        text-align: center;
-        list-style-type: none;
-        position: relative;
-        margin: 0 0 10px 0;
-        padding: 0;
-    }
-    #tiles li {
-        width: 208px;
-        background-color: #fff;
-        border: solid 1px #e5e5e5;
-        display: none;
-        cursor: pointer;
-    }
-    .fallList li{
-        margin:5px 0 0 0;
-    }
-    </style>
-    <script type="text/javascript" src="__PUBLIC__/js/plugins/Wookmark/jquery.wookmark.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/js/plugins/Wookmark/jquery.imagesloaded.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/js/plugins/validator-0.7.3/jquery.validator.css">
+    <script type="text/javascript" src="__PUBLIC__/js/plugins/validator-0.7.3/jquery.validator.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/plugins/validator-0.7.3/local/zh_CN.js"></script>
 </head>
 
 <body>
+
 
     <div class="xsWrap">
         <!-- 顶导 -->
@@ -35,191 +17,81 @@
         <!-- /顶导 -->
         <!-- main -->
         <div class="mainBox clearfix">
+            <div class="xsNLayout">
+                <!-- 编辑专辑 -->
 
-            <!-- 专辑标题 -->
-            <div class="albumDetailBox clearfix">
-                <div class="alTitBox clearfix">
-                    <div class="alTit">
-                        <h3 class="alTitTxt">专辑名称：{$album.name}</h3>
-                        <span class="alSorts">所属分类：{$category}</span>
-                    </div>
-                    <div class="alTitAc">
-
-                        <p class="acBtn">
-
-                            <if condition="$is_my_album">
-                                <a class="btnF" href="__ROOT__/album/edit/{$album.id}">编辑专辑</a>
-                                <!-- <a class="btnF" href="#">批量管理采集</a>-->
-                        </p>
-                        <p class="titShareBox">
-                            <span class="shareTxt">分享：</span>
-                            <a class="shareBtn">
-                                <span class="shareIcon icon_weibo"></span>
-                            </a>
-                            <a class="shareBtn">
-                                <span class="shareIcon icon_qzone"></span>
-                            </a>
-                            <a class="shareBtn">
-                                <span class="shareIcon icon_weixin"></span>
-                            </a>
-                        </p>
-                        </if>
-                    </div>
-                </div>
-                <div class="alUserBox clearfix">
-                    <div class="alUser">
-                        <a class="nearImg" href="#">
-                            <img src="__PUBLIC__/images/userL.jpg" alt="">
-                        </a><a class="nearTxt">{$user.username}</a>
-                    </div>
-
-                    <div class="alBtn">
-                        <a class="btnG">{$post_count} 文章</a><a class="btnG">{$favorites_count} 关注</a>
-                    </div>
-                </div>
-            </div>
-            <!-- /专辑标题 -->
-
-            <!-- 瀑布流 -->
-            <div class="fallMain">
-                <div class="" id="wmain" style="position: relative;margin-top:10px;">
-                    <ul class="fallList blogfall" id='tiles'>
-
-                        <if condition="$post_list neq null ">
-                             <foreach name="post_list" item="vo">
-                          
-                         <li>
-                            <div class="blogMain">
-
-                                <div class="blogCon">
-                                    <a href="__ROOT__/post/{$vo.id}">
-                                        <img src="__PUBLIC__/images/pic2.jpg" alt="" height="" width="">
-                                    </a>
-                                </div>
-                                <p class="blogTit"><a href="__ROOT__/post/{$vo.id}">{$vo.title}</a>
-                                </p>
-                            </div>
-                            <div class="blogACBox clearfix">
-                                <p class="blogAuthor">
-                                    <a class="authorHead">
-                                        <img src="__PUBLIC__/images/userS.jpg" alt="" height="" width="">
-                                    </a>
-                                    <a class="authorName">{:W('My/getUserVal',array($vo['user_id'],'aliasname'))}</a>
-                                </p>
-                                
-                            </div>
-                            <div class="blogDate clearfix">
-                                <p class="blogAc">
-                                    <a class="zan">赞({:W('My/postFavoritesCount',array($vo["id"],2))})
-                                    </a>
-                                    <a class="shoucang">收藏({:W('My/postFavoritesCount',array($vo["id"],1))})</a>
-                                    <a class="comment">
-                                    评论({:W('My/postCommentCount',array($vo["id"]))})</a>
-                                </p>
-                            </div>
-                        </li>
-                        </foreach>
-                        <else/>
-                             <li><h1>该专辑暂无博文！</h1></li>
-                        </if>
-
-                       
-
+                <div class="editAlBox">
+                    <div class="xsTit">
+                        专辑名称：{$album.name}
                         
-                    </ul>
-                   
-
+                    </div>
+                    <div class="editForm">
+                    	
+                    	
+                        <div class="formCata">
+                            <dl class="clearfix">
+                                <dt class="formName">标题</dt>
+                                <dd class="formInput">
+                                    {$album.name}
+                                </dd>
+                                
+                            </dl>
+                            <dl class="clearfix">
+                                <dt class="formName">描述</dt>
+                                <dd class="formInput">
+                                    {$album.discription}
+                                </dd>
+                                <!-- <dd class="formTip">
+                                    <span class="xsIcon icon_wrong"></span>请选择分类</dd>
+                                                            </dl> -->
+                        </div>
+                        <div class="formCata">
+                            <dl class="clearfix">
+                                <dt class="formName">分类</dt>
+                                <dd class="formInput">
+                                    <select class="xsSel fw01" name="category_id" disabled="disable">
+                                    	<option value="1">摄影</option>
+                                    	<option value="2">美妆服饰</option>
+                                    	<option value="3">美食</option>
+                                    	<option value="4">运动</option>
+                                    	<option value="5">科技生活</option>
+                                    	<option value="6">游戏</option>
+                                    	<option value="7">家居设计</option>
+                                    	<option value="8">宠物</option>
+                                    	<option value="9">音乐</option>
+                                    	<option value="10">汽车</option>
+                                        <option value="11">其它</option>
+                                    </select>
+                                </dd>
+                                <!-- <dd class="formTip">
+                                    <span class="xsIcon icon_wrong"></span>请选择分类</dd> -->
+                            </dl>
+                        </div>
+                       
+						</form>
+                    </div>
+                    
                 </div>
+                <!-- /编辑专辑 -->
             </div>
-            <!-- /瀑布流 -->
-
         </div>
 
         <!-- /main -->
 
     </div>
-
-   
-   
-
     <!-- 弹层 -->
     <include file="./Public/common/openWindows.html" />
     <!-- 弹层） -->
 
-     <script type="text/javascript">
-    <!--wookmark 瀑布流js-->
+    <script type="text/javascript">
     (function($) {
-        var page_no = 2;//分页数 从第2页开始
-        var album_id = {$album.id} ;
-        var $tiles = $('#tiles'),
-            $handler = $('li', $tiles),
-            $main = $('#wmain'),
-            $window = $(window),
-            $document = $(document),
-            options = {
-                autoResize: true, // This will auto-update the layout when the browser window is resized.
-                container: $main, // Optional, used for some extra CSS styling
-                offset: 10, // Optional, the distance between grid items
-                itemWidth: 210 // Optional, the width of a grid item
-            };
-
-        /**
-         * 展示
-         */
-        function applyLayout() {
-            $tiles.imagesLoaded(function() {
-                // Destroy the old handler
-                if ($handler.wookmarkInstance) {
-                    $handler.wookmarkInstance.clear();
-                }
-                // Create a new layout handler.
-                $handler = $('li', $tiles);
-                $handler.wookmark(options);
-            });
-        }
-
-        /**
-         *scroll 事件
-         */
-        function onScroll() {
-            // Check if we're within 100 pixels of the bottom edge of the broser window.
-            var winHeight = window.innerHeight ? window.innerHeight : $window.height(), // iphone fix
-                closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 100);
-
-            if (closeToBottom) { 
-                //AJAX载入的数据
-                $.ajax({
-                    url: "__ROOT__/album/wookmarkAjax",
-                    dataType: "html",
-                    data:{
-                        'page_no':page_no,
-                        'album_id':album_id
-                    },
-                    success: function(html) {                   
-                        if(html!=null&&html!=""){
-                            page_no++;
-                            //把新数据追加到对象中
-                            $tiles.append(html);
-                            //重新展示
-                            applyLayout();
-                        }
-                        
-                    }
-                });
-
-                
-            }
-        };
-
-
-        applyLayout();
-
-
-        $window.bind('scroll.wookmark', onScroll);
-
-
+    	$("select[name=category_id]").val({$cate_id});
     })(jQuery);
+
+   
     </script>
+
+
 
 </body>
 

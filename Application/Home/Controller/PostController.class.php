@@ -4,7 +4,7 @@ use Think\Controller;
 
 class PostController extends Controller {
 
-	public function show() {
+	public function detail() {
 		$id = $_GET['id'];
 		if (isset($id)) {
 			$catArray    = C('CATEGORY');
@@ -36,7 +36,7 @@ class PostController extends Controller {
 			$this->assign('post_others', $post_others);
 			$this->assign('comment_list', $comment_list);
 		}
-		$this->display(C('POST_VIEW')."show");
+		$this->display(C('POST_VIEW')."detail");
 	}
 
 	public function wookmarkAjax($page_no, $post_id) {

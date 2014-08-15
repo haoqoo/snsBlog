@@ -26,13 +26,13 @@ return array(
 		'album/edit/:id\d'   => 'Home/Album/edit',
 		'album/favorites'    => 'Home/Album/favorites',
 		'album/delete/:id\d' => 'Home/Album/delete',
-		'album/:id\d'        => 'Home/Album/show',
+		'album/:id\d'        => 'Home/Album/detail',
 
 		'post/wookmarkAjax' => 'Home/Post/wookmarkAjax',
 		'post/add'          => 'Home/Post/add',
 		'post/save_update'  => 'Home/Post/save_update',
 		'post/edit/:id\d'   => 'Home/Post/edit',
-		'post/:id\d'        => 'Home/Post/show',
+		'post/:id\d'        => 'Home/Post/detail',
 
 	),
 

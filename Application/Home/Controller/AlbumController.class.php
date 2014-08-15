@@ -4,7 +4,7 @@ use Think\Controller;
 
 class AlbumController extends Controller {
 
-	public function show() {
+	public function detail() {
 		$id = $_GET['id'];
 		if (isset($id)) {
 			$catArray    = C('CATEGORY');
@@ -41,7 +41,7 @@ class AlbumController extends Controller {
 			$this->assign('user', $user);
 
 		}
-		$this->display(C('ALBUM_VIEW')."show");
+		$this->display(C('ALBUM_VIEW')."detail");
 	}
 
 	//ajax
@@ -73,7 +73,7 @@ class AlbumController extends Controller {
 		if ($user['id'] == $album['user_id']) {//判断是否是自己专辑
 			$this->display(C('ALBUM_VIEW')."add_edit");
 		} else {
-			$this->display(C('ALBUM_VIEW')."detail");
+			$this->display(C('ALBUM_VIEW')."show");
 		}
 
 	}
@@ -113,7 +113,7 @@ class AlbumController extends Controller {
 		} else {
 
 			$this->assign('album', $album);
-			$this->display(C('ALBUM_VIEW')."detail");
+			$this->display(C('ALBUM_VIEW')."show");
 		}
 	}
 
