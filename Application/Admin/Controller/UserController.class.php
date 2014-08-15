@@ -69,6 +69,8 @@ class UserController extends Controller {
             $User = M("Users");
             $data['username'] = $username;
             $data['password'] = '123';
+            $data['state'] = '2';
+            $data['reg_type'] = '1';
             $User->add($data);
 
         }else{

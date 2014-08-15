@@ -1,0 +1,1 @@
+ALTER TABLE `wq_users`  ADD COLUMN `reg_type` INT(11) NULL DEFAULT NULL COMMENT '注册方式(1普通注册，2邮箱注册，3第三方账号)' AFTER `state`;
