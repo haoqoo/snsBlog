@@ -30,6 +30,7 @@ return array(
      
 
      	'post/wookmarkAjax'=>'Home/Post/wookmarkAjax', 
+     	'post/add' => 'Home/Post/add',
      	'post/:id\d'=>'Home/Post/show'
      	 
 	 ),

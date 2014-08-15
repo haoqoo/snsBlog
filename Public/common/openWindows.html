@@ -4,7 +4,10 @@
 <!-- 弹层蒙层（黑色半透明） -->
 
 <!-- 登录弹层 -->
-<div class="xsLoginLayer" style="display:none; top:100px; left:400px;">
+<div class="xsLoginLayer" style="display:none; top:100px; left:400px;background: #fff;">
+    <a class="closeBtn">
+        <span class="xsIcon icon_close"></span>
+    </a>
     <p class="logoBox">
         <span class="logoImg logoL"></span>
     </p>
@@ -215,4 +218,12 @@
 		function flash_img(){
 			$("#mcode").attr("src", $("#mcode").attr("src")+"?");
 		}
+
+        jQuery(document).ready(function(){
+            $(".closeBtn").on("click",function(e){
+                e.preventDefault();
+                $(".mask").hide();
+                $(this).closest( "div" ).hide();
+            });
+        });
 	</script>
