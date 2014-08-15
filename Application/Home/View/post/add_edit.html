@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtmBox">
+<head>
+<include file='./Public/common/meta.html' />
+    <link rel="stylesheet" href="__PUBLIC__/js/plugins/validator-0.7.3/jquery.validator.css">
+    <script type="text/javascript" src="__PUBLIC__/js/plugins/validator-0.7.3/jquery.validator.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/plugins/validator-0.7.3/local/zh_CN.js"></script>
+      <link href="__PUBLIC__/js/plugins/umEditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+     <script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/plugins/umEditor/umeditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/plugins/umEditor/umeditor.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/plugins/umEditor/lang/zh-cn/zh-cn.js"></script>
+</head>
+
+<body>
+
+
+	<div class="xsWrap">
+		<!-- 顶导 -->
+		 <include file='./Public/common/header.html' />
+		<!-- /顶导 -->
+		<!-- main -->
+		<div class="mainBox clearfix">
+			<div class="xsNLayout">
+				<!-- 发博文 -->			
+				<form action="__ROOT__/post/save_update" method="post" id="post_form"
+				data-validator-option="{stopOnError:false, timely:false}">
+				<input type="hidden" name="user_id" value="<?php $user =session('__user__'); echo $user['id']; ?>" />
+				<input type="hidden" name="id" value="{$post.id}">
+				<div class="pubBlogBox">
+					<div class="xsTit">发博文</div>
+					<div class="editForm">
+						<div class="formCata">
+							<dl class="clearfix">
+								<dt class="formName">标题</dt>
+								<dd class="formInput">
+								<input name="title" class="xsInput fw03" type="text" value="{$post.title}" 
+								data-rule="required;length[4~];title;" placeholder="请至少输入4个字符的标题"></dd>
+								<!-- <dd class="formInput"><input class="xsInput fw04" type="text" value="时间: 2014-07-28 11:43:11"> -->
+								</dd>
+							</dl>
+							<div class="editBlog clearfix">
+								<!-- 编辑器宽度示意，用编辑器默认的 -->
+								<div class="formInput">
+									<!--style给定宽度可以影响编辑器的最终宽度-->
+									<script type="text/plain" id="myEditor" style="width:100%;height:240px;"></script>
+									<div class="formTip editorTip" style="margin-top:5px;display:none;">
+									<span class="xsIcon icon_wrong"></span>博文内容不能为空
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<div class="formCata">
+							<dl class="clearfix">
+								<dt class="formName">分类</dt>
+								<dd class="formInput">
+									<select class="xsSel fw01" name="category_id">
+                                    	<option value="1">摄影</option>
+                                    	<option value="2">美妆服饰</option>
+                                    	<option value="3">美食</option>
+                                    	<option value="4">运动</option>
+                                    	<option value="5">科技生活</option>
+                                    	<option value="6">游戏</option>
+                                    	<option value="7">家居设计</option>
+                                    	<option value="8">宠物</option>
+                                    	<option value="9">音乐</option>
+                                    	<option value="10">汽车</option>
+                                        <option value="11">其它</option>
+                                    </select>
+								</dd>
+								<dd class="formLink"><a href="" class="formAddA">创建专辑</a></dd>
+							</dl>
+						</div>
+						<div class="formCata">
+							<dl class="clearfix">
+								<dt class="formName">来源</dt>
+								<dd class="formInput">
+								<input name="post_link" class="xsInput fw03" type="text" value="{$post.post_link}" 
+								placeholder="http://" data-rule="url;post_link;"></dd>
+							</dl>
+						</div>
+					</div>
+					<p class="saveBtn">
+						<if condition="session('__user__') neq null">
+                     	<a class="btnH post_submit" href="##">完成</a>
+                    	<else/>
+                     	<a class="btnH" href="##" disabled="disabled">请先登录或注册</a>
+                    	</if>
+					</p>							
+				</div>
+				</form>
+				<!-- /发博文 -->
+			</div>
+		</div>
+
+		<!-- /main -->
+
+	</div>
+
+	<!-- 弹层 -->
+    <include file="./Public/common/openWindows.html" />
+    <!-- 弹层） -->
+
+	<script type="text/javascript">
+    (function($) {
+    	//实例化编辑器
+    	 var um = UM.getEditor('myEditor', {
+            /* 传入配置参数,可配参数列表看umeditor.config.js */
+            toolbar: ['source undo redo | bold italic underline strikethrough superscript subscript forecolor backcolor | removeformat | insertorderedlist insertunorderedlist ','| justifyleft justifycenter justifyright justifyjustify | fontfamily fontsize |','link unlink image','| horizontal formula  ',  'preview fullscreen']
+        });
+
+    	<if condition="$post neq null">
+    	$("select[name=category_id]").val({$post.category_id});
+    	um.setContent({$post.content}});
+    	</if>
+
+    	
+    	$(".post_submit").on("click",function(e){
+    		e.preventDefault();
+    		$("#post_form").trigger("validate"); //触发验证
+
+    	});
+
+    	//表单验证成功
+    	$('#post_form').on('valid.form', function(e, form){
+    		var  txt = um.getContentTxt();
+    		if(txt==null || txt==""){
+    			$(".editorTip").show();
+    			return ;
+    		}
+    		$('#post_form').submit();
+		});
+
+		// um.addListener('selectionchange',function(){
+		// 	alert(this.getContentTxt());
+  //     		//console.log("选区已经变化！");
+ 	// 	});
+    })(jQuery);
+    
+    </script>
+</body>
+</html>
