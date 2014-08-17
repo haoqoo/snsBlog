@@ -17,7 +17,8 @@ return array(
 	'URL_ROUTER_ON'   => true,
 	'URL_ROUTE_RULES' => array(
 		'cate/wookmarkAjax' => 'Home/Category/wookmarkAjax',
-		'cate/:id\d'        => 'Home/Category/show',
+		'cate/:id\d/post'   => 'Home/Category/show_post',
+		'cate/:id\d'        => 'Home/Category/show_album',
 		'cate'              => 'Home/Category/index',
 
 		'album/wookmarkAjax' => 'Home/Album/wookmarkAjax',

@@ -1,15 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtmBox">
-
 <head>
+   
     <include file='./Public/common/meta.html' />
-
     <style type="text/css">
     #tiles {
         text-align: center;
         list-style-type: none;
         position: relative;
-        margin: 0 0 10px 0;
+        margin: 0;
         padding: 0;
     }
     #tiles li {
@@ -19,15 +18,13 @@
         display: none;
         cursor: pointer;
     }
-    .fallList li{
-        margin:5px 0 0 0;
-    }
     </style>
     <script type="text/javascript" src="__PUBLIC__/js/plugins/Wookmark/jquery.wookmark.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/plugins/Wookmark/jquery.imagesloaded.js"></script>
 </head>
 
 <body>
+
 
     <div class="xsWrap">
         <!-- 顶导 -->
@@ -36,64 +33,37 @@
         <!-- main -->
         <div class="mainBox clearfix">
 
-            <!-- 专辑标题 -->
-            <div class="albumDetailBox clearfix">
-                <div class="alTitBox clearfix">
-                    <div class="alTit">
-                        <h3 class="alTitTxt">专辑名称：{$album.name}</h3>
-                        <span class="alSorts">所属分类：{$category}</span>
-                    </div>
-                    <div class="alTitAc">
-
-                        <p class="acBtn">
-
-                            <if condition="$is_my_album">
-                                <a class="btnF" href="__ROOT__/album/edit/{$album.id}">编辑专辑</a>
-                                <!-- <a class="btnF" href="#">批量管理采集</a>-->
-                        </p>
-                        <p class="titShareBox">
-                            <span class="shareTxt">分享：</span>
-                            <a class="shareBtn">
-                                <span class="shareIcon icon_weibo"></span>
-                            </a>
-                            <a class="shareBtn">
-                                <span class="shareIcon icon_qzone"></span>
-                            </a>
-                            <a class="shareBtn">
-                                <span class="shareIcon icon_weixin"></span>
-                            </a>
-                        </p>
-                        </if>
-                    </div>
+            <!-- 分类nav -->
+            <div class="sortsNav">
+                <div class="sortsFbox clearfix">
+                    <h3 class="sortsTit">{$category}</h3>
                 </div>
-                <div class="alUserBox clearfix">
-                    <div class="alUser">
-                        <a class="nearImg" href="#">
-                            <img src="__PUBLIC__/images/userL.jpg" alt="">
-                        </a><a class="nearTxt">{$user.username}</a>
+                <div class="showMain clearfix">
+                    <div class="showNavBox clearfix">
+                        <ul class="showNav">
+                            <li><a class="showMod cur" href="#">{$post_count} 文章</a>
+                            </li>
+                            <li><a class="showMod " href="__ROOT__/cate/{$category_id}">{$album_count} 专辑</a>
+                            </li>
+                        </ul>
                     </div>
 
-                    <div class="alBtn">
-                        <a class="btnG">{$post_count} 文章</a><a class="btnG">{$favorites_count} 关注</a>
-                    </div>
                 </div>
             </div>
-            <!-- /专辑标题 -->
+            <!-- /分类nav -->
 
             <!-- 瀑布流 -->
             <div class="fallMain">
-                <div class="" id="wmain" style="position: relative;margin-top:10px;">
+                <div class=" " id="wmain" style="position: relative;margin-top:10px;">
                     <ul class="fallList blogfall" id='tiles'>
                         <li>
-                            <a class="albumAddBox" href="__ROOT__/post/add">
+                            <a class="albumAddBox" href="__ROOT__/post/add?cate={$category_id}">
                                 <span class="albumAdd"></span>
                                 <p class="albumAddTxt">添加文章</p>
                             </a>
                         </li>
-                        
-                             <foreach name="post_list" item="vo">
-                          
-                         <li>
+						<foreach name="post_list" item="vo">
+                        <li>
                             <div class="blogMain">
 
                                 <div class="blogCon">
@@ -124,13 +94,11 @@
                             </div>
                         </li>
                         </foreach>
-                        
 
-                       
 
-                        
+
                     </ul>
-                   
+
 
                 </div>
             </div>
@@ -142,18 +110,15 @@
 
     </div>
 
-   
-   
-
     <!-- 弹层 -->
     <include file="./Public/common/openWindows.html" />
     <!-- 弹层） -->
 
-     <script type="text/javascript">
+    <script type="text/javascript">
     <!--wookmark 瀑布流js-->
     (function($) {
-        var page_no = 2;//分页数 从第2页开始
-        var album_id = {$album.id} ;
+    	var page_no = 2;//分页数 从第2页开始
+        var category_id = {$category_id};
         var $tiles = $('#tiles'),
             $handler = $('li', $tiles),
             $main = $('#wmain'),
@@ -162,7 +127,7 @@
             options = {
                 autoResize: true, // This will auto-update the layout when the browser window is resized.
                 container: $main, // Optional, used for some extra CSS styling
-                offset: 10, // Optional, the distance between grid items
+                offset: 20, // Optional, the distance between grid items
                 itemWidth: 210 // Optional, the width of a grid item
             };
 
@@ -189,23 +154,23 @@
             var winHeight = window.innerHeight ? window.innerHeight : $window.height(), // iphone fix
                 closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 100);
 
-            if (closeToBottom) { 
+            if (closeToBottom) {
                 //AJAX载入的数据
                 $.ajax({
-                    url: "__ROOT__/album/wookmarkAjax",
+                    url: "__ROOT__/cate/wookmarkAjax",
                     dataType: "html",
                     data:{
-                        'page_no':page_no,
-                        'album_id':album_id
+                    	'page_no':page_no,
+                    	'category_id':category_id
                     },
-                    success: function(html) {                   
-                        if(html!=null&&html!=""){
-                            page_no++;
-                            //把新数据追加到对象中
-                            $tiles.append(html);
-                            //重新展示
-                            applyLayout();
-                        }
+                    success: function(html) {                  	
+                    	if(html!=null&&html!=""){
+                    		page_no++;
+                    		//把新数据追加到对象中
+                       		$tiles.append(html);
+                        	//重新展示
+                        	applyLayout();
+                    	}
                         
                     }
                 });
@@ -220,10 +185,33 @@
 
         $window.bind('scroll.wookmark', onScroll);
 
+        $("a[class=btnC]").on("click",function(){
+        	var isLogin = ($(".unLogList").length <=0);
+        	if (!isLogin) {
+        		alert("请先登录，如果没有帐号请注册帐号。");
+        		return;
+        	};
+            var album_id = $(this).attr("album_id");
+            alert(album_id);
+        	$.ajax({
+                    url: "__ROOT__/album/favorites",                    
+                    dataType: "json",
+                    data:{
+                        'album_id':album_id                        
+                    },
+                    success: function(data) {
+                        alert(data.success);                                           
+                        if(data.success){
+                            alert("关注成功！");
+                        }
+                    }
+                });
+        });
 
     })(jQuery);
-    </script>
 
+
+    </script>
 </body>
 
 </html>
