@@ -78,6 +78,20 @@ class AlbumController extends Controller {
 
 	}
 
+	public function saveAjax() {
+		$user  = session('__user__');
+		$Album = M('Albums');
+		$Album->create($_POST);
+		$Album->user_id     = $user['id'];
+		$Album->state       = 1;
+		$Album->create_date = date("Y-m-d H:i:s");
+		$id                 = $Album->add();
+		$ajax['id']         = $id;
+		$ajax['name']       = $_POST['name'];
+		$this->ajaxReturn($ajax);
+
+	}
+
 	public function save_update() {
 		$id    = $_POST['id'];
 		$Album = M('Albums');
@@ -87,8 +101,7 @@ class AlbumController extends Controller {
 		} else {
 			$Album->state       = 1;
 			$Album->create_date = date("Y-m-d H:i:s");
-			$result             = $Album->add();
-			$id                 = $result;
+			$id                 = $Album->add();
 		}
 
 		$this->redirect('album/'.$id);

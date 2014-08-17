@@ -52,7 +52,7 @@
 								
 							</div>
 						</div>
-						<div class="formCata">
+						<!-- <div class="formCata">
 							<dl class="clearfix">
 								<dt class="formName">分类</dt>
 								<dd class="formInput">
@@ -70,8 +70,29 @@
                                         <option value="11">其它</option>
                                     </select>
 								</dd>
-								<dd class="formLink"><a href="" class="formAddA">创建专辑</a></dd>
+								
 							</dl>
+						</div> -->
+						<div class="formCata">
+							<dl class="clearfix">
+								<dt class="formName">专辑</dt>
+								<dd class="formInput">
+									<select class="xsSel fw01 " name="album_id">
+									 	<foreach name="albums" item="vo">
+                                    	<option value="{$vo.id}">{$vo.name}</option>
+                                    	</foreach>
+                                    </select>
+								</dd>
+								<if condition="session('__user__') neq null">
+			                     <dd class="formLink"><a href="javascript:open_album();" class="formAddA">创建专辑</a></dd>
+		                    	<else/>
+		                     	<dd class="formLink">请先登录或注册</dd>
+		                    	</if>
+								
+							</dl>
+							<div class="formTip albumTip" style="margin-top:5px;display:none;">
+									<span class="xsIcon icon_wrong"></span>博文内容不能为空
+									</div>
 						</div>
 						<div class="formCata">
 							<dl class="clearfix">
@@ -81,6 +102,18 @@
 								placeholder="http://" data-rule="url;post_link;"></dd>
 							</dl>
 						</div>
+
+						<if condition="$post neq null">
+                        <div class="formCata">
+                            <dl class="clearfix">
+                                <dt class="formName">删除</dt>
+                                <dd class="formInput">
+                                    <a class="btnE" href="javascript:delete_post({$post.id})">删除博文</a>
+                                </dd>
+
+                            </dl>
+                        </div>
+                        </if>
 						
 						</form>
 					</div>
@@ -116,12 +149,9 @@
 
     	<if condition="$post neq null">
     	$("select[name=category_id]").val({$post.category_id});
-    	
+    	$("select[name=album_id]").val({$post.album_id});
     	</if>
 
-    	um.ready(function(){
-        	//um.setContent('',true);     //加载数据库Action.class.PHP传过来的值
-    	});
     	
     	$(".post_submit").on("click",function(e){
     		e.preventDefault();
@@ -136,17 +166,22 @@
     			$(".editorTip").show();
     			return ;
     		}
-    		
-    		
+    		var album_id = $("select[name=album_id]").val();
+    		if(album_id==null || album_id==""){
+    			$(".albumTip").show();
+    			return;
+    		}
     		$('#post_form').submit();
 
     	});
 
-    	
+       })(jQuery);
+       function delete_post(id){
+       	if(confirm("确定删除该专辑？")){
 
-	
-    })(jQuery);
-    
+   			location.href="__ROOT__/post/delete/"+id;
+   		}
+       }
     </script>
 </body>
 </html>

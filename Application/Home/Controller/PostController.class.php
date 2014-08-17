@@ -48,6 +48,10 @@ class PostController extends Controller {
 	}
 
 	public function add() {
+		$user   = session('__user__');
+		$Albums = M('Albums');
+		$albums = $Albums->where('user_id=%d', array($user['id']))->select();
+		$this->assign('albums', $albums);
 		$this->display(C('POST_VIEW')."add_edit");
 	}
 
@@ -61,6 +65,9 @@ class PostController extends Controller {
 			$category_id = $post['category_id'];
 			// $this->assign('cate_id', $category_id);
 			// $this->assign('category', $catArray[$category_id]);
+			$Albums = M('Albums');
+			$albums = $Albums->where('user_id=%d', array($user['id']))->select();
+			$this->assign('albums', $albums);
 			$this->assign('post', $post);
 		}
 		if ($user['id'] == $post['user_id']) {//判断是否是自己专辑
@@ -82,6 +89,22 @@ class PostController extends Controller {
 			$Post->create_date = date("Y-m-d H:i:s");
 			$id                = $Post->add();
 		}
+		$this->redirect('album/'.$_POST['album_id']);
 
 	}
+
+	public function delete() {
+		$user  = session('__user__');
+		$id    = $_GET['id'];
+		$Posts = M('Posts');
+		$post  = $Posts->where('id=%d', array($id))->find();
+
+		if ($user['id'] == $post['user_id']) {
+			$this->redirect('album/'.$post['album_id']);
+
+		} else {
+			$this->redirect('post/'.$post['id']);
+		}
+	}
+
 }

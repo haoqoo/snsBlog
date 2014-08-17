@@ -22,6 +22,7 @@ return array(
 
 		'album/wookmarkAjax' => 'Home/Album/wookmarkAjax',
 		'album/add'          => 'Home/Album/add',
+		'album/saveAjax'     => 'Home/Album/saveAjax',
 		'album/save_update'  => 'Home/Album/save_update',
 		'album/edit/:id\d'   => 'Home/Album/edit',
 		'album/favorites'    => 'Home/Album/favorites',
@@ -32,6 +33,7 @@ return array(
 		'post/add'          => 'Home/Post/add',
 		'post/save_update'  => 'Home/Post/save_update',
 		'post/edit/:id\d'   => 'Home/Post/edit',
+		'post/delete/:id\d' => 'Home/Post/delete',
 		'post/:id\d'        => 'Home/Post/detail',
 
 	),
