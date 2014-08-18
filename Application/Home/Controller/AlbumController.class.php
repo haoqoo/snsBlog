@@ -24,7 +24,8 @@ class AlbumController extends Controller {
 			$user        = session('__user__');
 			if ($user) {
 				$count                                  = $Albums->where('id=%d and user_id=%d', array($id, $user['id']))->count();
-				if ($count && $count > 0) {$is_my_album = true;
+				if ($count && $count > 0) {
+					$is_my_album = true;
 				}
 			}
 

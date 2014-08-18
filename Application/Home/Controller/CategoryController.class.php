@@ -34,6 +34,15 @@ class CategoryController extends Controller {
 		}
 		$this->display(C('CATE_VIEW')."show_album");
 	}
+
+	public function wookmarkAjax($page_no, $category_id) {
+		$page_num = ($page_no-1)*20;
+		$Albums   = M("Albums");
+		$ablums   = $Albums->where('category_id=%d', array($category_id))->limit($page_num, 30)->select();
+		$this->assign('album_list', $ablums);
+		$this->display(C('CATE_VIEW')."album_wookmark");
+	}
+
 	public function show_post() {
 		$id = $_GET['id'];
 		if (isset($id)) {
@@ -57,12 +66,12 @@ class CategoryController extends Controller {
 		$this->display(C('CATE_VIEW')."show_post");
 	}
 
-	public function wookmarkAjax($page_no, $category_id) {
+	public function wookmarkPostAjax($page_no, $category_id) {
 		$page_num = ($page_no-1)*20;
-		$Albums   = M("Albums");
-		$ablums   = $Albums->where('category_id=%d', array($category_id))->limit($page_num, 30)->select();
-		$this->assign('album_list', $ablums);
-		$this->display(C('CATE_VIEW')."album_wookmark");
+		$Posts   = M("Posts");
+		$posts = $Posts->join('wq_albums on wq_posts.album_id = wq_albums.id and wq_albums.category_id='.$category_id)->limit($page_num, 30)->select();
+		$this->assign('post_list', $posts);
+		$this->display(C('CATE_VIEW')."post_wookmark");
 	}
 
 }
