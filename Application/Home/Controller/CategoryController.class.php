@@ -68,8 +68,8 @@ class CategoryController extends Controller {
 
 	public function wookmarkPostAjax($page_no, $category_id) {
 		$page_num = ($page_no-1)*20;
-		$Posts   = M("Posts");
-		$posts = $Posts->join('wq_albums on wq_posts.album_id = wq_albums.id and wq_albums.category_id='.$category_id)->limit($page_num, 30)->select();
+		$Posts    = M("Posts");
+		$posts    = $Posts->join('wq_albums on wq_posts.album_id = wq_albums.id and wq_albums.category_id='.$category_id)->limit($page_num, 30)->select();
 		$this->assign('post_list', $posts);
 		$this->display(C('CATE_VIEW')."post_wookmark");
 	}

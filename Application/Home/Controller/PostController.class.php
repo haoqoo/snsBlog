@@ -79,8 +79,9 @@ class PostController extends Controller {
 	}
 
 	public function save_update() {
-		$id   = $_POST['id'];
-		$Post = M('Posts');
+		$id      = $_POST['id'];
+		$content = $_POST['content'];
+		$Post    = M('Posts');
 		$Post->create($_POST);
 		if (!empty($id)) {
 			$Post->save();
@@ -89,7 +90,28 @@ class PostController extends Controller {
 			$Post->create_date = date("Y-m-d H:i:s");
 			$id                = $Post->add();
 		}
-		$this->redirect('album/'.$_POST['album_id']);
+
+		//对文章内容进行正则img，抓取img
+		$PostImgs = M('PostImgs');
+		$PostImgs->where('post_id=%d', array($id))->delete();
+		preg_match_all('/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i', $content, $match);
+		//print_r($match);
+		if (isset($match) && sizeof($match) > 0) {
+
+			foreach ($match as $key => $imgs) {
+				if ($key == 0) {
+					foreach ($imgs as $k => $img_val) {
+						//echo $img_val;
+						$PostImgs->create();
+						$PostImgs->post_id = $id;
+						$PostImgs->img_val = $img_val;
+						$PostImgs->add();
+					}
+				}
+			}
+		}
+
+		//$this->redirect('album/'.$_POST['album_id']);
 
 	}
 
@@ -108,22 +130,22 @@ class PostController extends Controller {
 	}
 
 	//文章评论
-	public function comment(){
-		$user = session('__user__');
+	public function comment() {
+		$user     = session('__user__');
 		$Comments = M('Comments');
 		$Comments->create($_POST);
-		$Comments->user_id = $user['id'];
+		$Comments->user_id     = $user['id'];
 		$Comments->state       = 1;
 		$Comments->create_date = date("Y-m-d H:i:s");
 
-		$vo['user_id'] = $user['id'];
-		$vo['content']= $Comments->content;
-		$vo['create_date']= $Comments->create_date;		
-		$id = $Comments->add();		
-		$vo['id']= $id;
-		
-		$Post = M('Posts');
-		$user_id = $Post->where('id=%d',array($_POST['post_id']))->getField('user_id');
+		$vo['user_id']     = $user['id'];
+		$vo['content']     = $Comments->content;
+		$vo['create_date'] = $Comments->create_date;
+		$id                = $Comments->add();
+		$vo['id']          = $id;
+
+		$Post    = M('Posts');
+		$user_id = $Post->where('id=%d', array($_POST['post_id']))->getField('user_id');
 		if ($user[id] != $user_id) {
 			$OperationLogs = D('OperationLogs', 'Logic');
 			$logInfoes     = $OperationLogs->buildLogInfo($id, 'comments', '评论', $user['id'], $user_id);
