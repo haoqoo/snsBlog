@@ -100,11 +100,31 @@ class PostController extends Controller {
 		$post  = $Posts->where('id=%d', array($id))->find();
 
 		if ($user['id'] == $post['user_id']) {
+			$Posts->where('id=%d', array($id))->delete();
 			$this->redirect('album/'.$post['album_id']);
-
 		} else {
 			$this->redirect('post/'.$post['id']);
 		}
+	}
+
+	//文章评论
+	public function comment(){
+		$user = session('__user__');
+		$Comments = M('Comments');
+		$Comments->create($_POST);
+		$Comments->user_id = $user['id'];
+		$Comments->state       = 1;
+		$Comments->create_date = date("Y-m-d H:i:s");
+
+		$vo['user_id'] = $user['id'];
+		$vo['content']= $Comments->content;
+		$vo['create_date']= $Comments->create_date;
+		
+
+		$id = $Comments->add();
+		$vo['id']= $id;
+		$this->assign('vo', $vo);
+		$this->display(C('POST_VIEW')."comment_single");
 	}
 
 }

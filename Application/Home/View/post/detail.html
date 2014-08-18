@@ -47,11 +47,14 @@
                             <dl class="clearfix">
                                 <dt class="formName blogComUrl">评论：</dt>
                                 <dd class="formInput">
-                                    <textarea class="xsArea fwA01" name="comment" style="width:100%;"></textarea>
+                                    <textarea class="xsArea fwA01" name="comment" style="width:100%;" placeholder="至少4个字符的评论"></textarea>
                                 </dd>
                                 <!-- <dd class="formTip">
                                     <span class="xsIcon icon_wrong"></span>请选择分类</dd>-->
                               </dl> 
+                              <dl class="formTip commentTip" style="margin-top:5px;display:none;">
+									<span class="xsIcon icon_wrong"></span>至少4个字符的评论
+								</dl>
 
                               <dl class="clearfix" style="margin-top:2px;">                              
                                 <dd class="formInput">
@@ -154,7 +157,6 @@
                     	if(html!=null&&html!=""){
                     		page_no++;
                     		//把新数据追加到ul
-
                        		 $(".vewComList").append(html);                        	
                     	}
                         
@@ -167,6 +169,22 @@
 		$window.bind('scroll', onScroll);
 
     })(jQuery);
+    function comment_post(post_id){
+    	var comment = $("textarea[name=comment]").val();
+    	if(comment==null||comment==""||comment.length<4){
+    		$(".commentTip").show();
+    		return;
+    	}
+    	$.post("__ROOT__/post/comment",{
+    		post_id:post_id,
+    		content:comment
+    	},function(html){
+    		alert("发表评论成功！");
+    		$("textarea[name=comment]").val("");
+    		$(".vewComList").append(html);  
+    	});
+    }
+
     </script>
 
 </body>
