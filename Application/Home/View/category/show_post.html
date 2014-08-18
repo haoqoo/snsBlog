@@ -18,6 +18,9 @@
         display: none;
         cursor: pointer;
     }
+    .fallList li {
+        margin:0;
+    }
     </style>
     <script type="text/javascript" src="__PUBLIC__/js/plugins/Wookmark/jquery.wookmark.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/plugins/Wookmark/jquery.imagesloaded.js"></script>
@@ -157,7 +160,7 @@
             if (closeToBottom) {
                 //AJAX载入的数据
                 $.ajax({
-                    url: "__ROOT__/cate/wookmarkAjax",
+                    url: "__ROOT__/cate/wookmarkPostAjax",
                     dataType: "html",
                     data:{
                     	'page_no':page_no,
