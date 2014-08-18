@@ -3,7 +3,7 @@
 # Server version:               5.1.55-community
 # Server OS:                    Win32
 # HeidiSQL version:             6.0.0.3603
-# Date/time:                    2014-08-15 16:47:42
+# Date/time:                    2014-08-18 17:16:58
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -129,7 +129,21 @@ DELETE FROM `wq_comments`;
 /*!40000 ALTER TABLE `wq_comments` DISABLE KEYS */;
 INSERT INTO `wq_comments` (`id`, `content`, `user_id`, `post_id`, `create_date`, `state`, `parent_id`) VALUES
 	(1, '评论test1', 1, 1, '2014-08-12 21:38:57', 1, NULL),
-	(2, '评论test2', 2, 1, '2014-08-13 09:21:42', 1, NULL);
+	(2, '评论test2', 2, 1, '2014-08-13 09:21:42', 1, NULL),
+	(3, '1234567', 2, 1, '2014-08-18 13:45:47', 1, NULL),
+	(4, '评论test3', 2, 1, '2014-08-18 13:50:07', 1, NULL),
+	(5, '评论test4', 2, 1, '2014-08-18 13:50:33', 1, NULL),
+	(6, '评论test5', 2, 1, '2014-08-18 13:51:42', 1, NULL),
+	(7, '评论test6', 2, 1, '2014-08-18 13:52:28', 1, NULL),
+	(8, '评论测试7', 2, 1, '2014-08-18 13:55:35', 1, NULL),
+	(9, '评论测试8', 2, 1, '2014-08-18 13:57:29', 1, NULL),
+	(10, '评论测试9', 2, 1, '2014-08-18 13:59:00', 1, NULL),
+	(11, '评论test10', 2, 1, '2014-08-18 14:00:39', 1, NULL),
+	(12, '评论test11', 2, 1, '2014-08-18 14:02:22', 1, NULL),
+	(13, '评论test12\n', 2, 1, '2014-08-18 14:05:00', 1, NULL),
+	(14, '评论test13', 2, 1, '2014-08-18 14:14:43', 1, NULL),
+	(15, '测试评论1', 2, 2, '2014-08-18 14:24:23', 1, NULL),
+	(16, '测试评论，及他人回复时，写入日志。', 2, 2, '2014-08-18 15:01:52', 1, NULL);
 /*!40000 ALTER TABLE `wq_comments` ENABLE KEYS */;
 
 
@@ -142,7 +156,8 @@ CREATE TABLE IF NOT EXISTS `wq_media` (
   `sys_name` varchar(100) DEFAULT NULL COMMENT '文件在系统中的名称',
   `upload_folder` varchar(200) DEFAULT NULL COMMENT '文件目录',
   `create_date` datetime DEFAULT NULL COMMENT '传教时间',
-  `state` int(11) DEFAULT NULL COMMENT '状态',
+  `type` int(1) DEFAULT NULL COMMENT '1为博客，2为用户图像',
+  `state` int(1) DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='媒体库';
 
@@ -171,7 +186,12 @@ CREATE TABLE IF NOT EXISTS `wq_operation_logs` (
 DELETE FROM `wq_operation_logs`;
 /*!40000 ALTER TABLE `wq_operation_logs` DISABLE KEYS */;
 INSERT INTO `wq_operation_logs` (`id`, `opered_id`, `oper_table`, `oper_action`, `oper_date`, `oper_user_id`, `oper_notice_id`, `state`, `complete_date`) VALUES
-	(2, '1', 'album', '关注', '2014-08-14 14:49:28', 1, 2, 1, NULL);
+	(2, '1', 'album', '关注', '2014-08-14 14:49:28', 1, 2, 1, NULL),
+	(3, '16', 'comments', '评论', '2014-08-18 15:01:52', 2, 1, 1, NULL),
+	(6, '3', 'user_messages', '私信', '2014-08-18 15:39:42', 6, 6, 1, NULL),
+	(7, '4', 'user_messages', '私信', '2014-08-18 16:57:16', 4, 4, 1, NULL),
+	(8, '5', 'user_messages', '私信', '2014-08-18 16:57:32', 4, 4, 1, NULL),
+	(9, '6', 'user_messages', '私信', '2014-08-18 17:09:46', 4, 4, 1, NULL);
 /*!40000 ALTER TABLE `wq_operation_logs` ENABLE KEYS */;
 
 
@@ -198,8 +218,9 @@ CREATE TABLE IF NOT EXISTS `wq_posts` (
 DELETE FROM `wq_posts`;
 /*!40000 ALTER TABLE `wq_posts` DISABLE KEYS */;
 INSERT INTO `wq_posts` (`id`, `user_id`, `category_id`, `album_id`, `title`, `content`, `post_link`, `create_date`, `update_date`, `state`, `favorites_count`, `comment_count`, `has_picture`) VALUES
-	(1, 2, 2, NULL, '测试Blog1', '测试blog', NULL, '2014-08-11 14:01:22', NULL, 1, NULL, NULL, NULL),
-	(2, 1, 2, NULL, '测试Blog2', '测测试Blog2试测试Blog2Blog2', NULL, '2014-08-13 15:48:14', NULL, 1, NULL, NULL, NULL);
+	(1, 2, NULL, 2, '测试Blog1', '测试blog', NULL, '2014-08-11 14:01:22', NULL, 1, NULL, NULL, NULL),
+	(2, 1, NULL, 2, '测试Blog2', '测测试Blog2试测试Blog2Blog2', NULL, '2014-08-13 15:48:14', NULL, 1, NULL, NULL, NULL),
+	(3, 2, NULL, 2, '带图片的博文', '<p style="margin-top: 0px; margin-bottom: 0px; line-height: 25px; letter-spacing: 0.5px; font-size: 16px; font-style: normal; font-variant: normal; white-space: normal; word-wrap: break-word; color: rgb(102, 102, 102); font-family: Helvetica, Tahoma, Aria', '', '2014-08-18 17:06:05', NULL, 1, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `wq_posts` ENABLE KEYS */;
 
 
@@ -272,9 +293,9 @@ DELETE FROM `wq_users`;
 INSERT INTO `wq_users` (`id`, `username`, `password`, `aliasname`, `header_img`, `email`, `grade`, `born_year`, `born_month`, `born_day`, `professional`, `my_site`, `introduce`, `create_date`, `update_date`, `state`, `reg_type`) VALUES
 	(1, '123', '123456', '测试别名啊', NULL, '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(2, 'jack', '123456', NULL, NULL, 'qweqwe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(4, 'wanjunjun', '123', 'abc', './Uploads/2014-08-15/53edc80db4c73.jpg', NULL, '', '20xx', 'xx', 'x', 'it', '', 'nb nb', NULL, NULL, 2, 1),
+	(4, 'wanjunjun', '123', 'abc', './Uploads/wanjunjun/53f161762f824.jpg', NULL, '', '20xx', 'xx', 'x', 'it', '3', 'nb le', NULL, NULL, 2, 1),
 	(5, 'tp', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(6, 'admin', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(6, 'admin', '123', '', './Uploads/admin/53f1953eb118c.jpg', NULL, '', '', '', '', '', 'a', '', NULL, NULL, NULL, NULL),
 	(7, 'thinkphp', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(8, 'aa', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(9, 'bbb', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1),
@@ -311,11 +332,16 @@ CREATE TABLE IF NOT EXISTS `wq_user_messages` (
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `state` int(2) DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户私信';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户私信';
 
 # Dumping data for table sns.wq_user_messages: ~0 rows (approximately)
 DELETE FROM `wq_user_messages`;
 /*!40000 ALTER TABLE `wq_user_messages` DISABLE KEYS */;
+INSERT INTO `wq_user_messages` (`id`, `from_id`, `to_id`, `content`, `create_date`, `state`) VALUES
+	(3, 6, 6, 'aaaa', '2014-08-18 15:39:42', 1),
+	(4, 4, 4, 'hi 1', '2014-08-18 16:57:16', 1),
+	(5, 4, 4, 'hi 2', '2014-08-18 16:57:32', 2),
+	(6, 4, 4, 'cc', '2014-08-18 17:09:46', 1);
 /*!40000 ALTER TABLE `wq_user_messages` ENABLE KEYS */;
 
 

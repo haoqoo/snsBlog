@@ -34,6 +34,7 @@ return array(
 		'post/wookmarkAjax' => 'Home/Post/wookmarkAjax',
 		'post/add'          => 'Home/Post/add',
 		'post/save_update'  => 'Home/Post/save_update',
+		'post/comment' => 'Home/Post/comment',
 		'post/edit/:id\d'   => 'Home/Post/edit',
 		'post/delete/:id\d' => 'Home/Post/delete',
 		'post/:id\d'        => 'Home/Post/detail',
