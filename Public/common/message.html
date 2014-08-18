@@ -11,7 +11,7 @@
     <p class="logoBox">
         <span class="logoImg logoL"></span>
     </p>
-    <p class="regWay">发私信</p>
+    <p class="regWay">给<span id="person"></span>发私信</p>
     <div class="LayRegWrap">
         <div class="LayRegBox">
             <p class="logInput logName">
@@ -59,7 +59,8 @@
         });
 		
 
-		function open_msg(){
+		function open_msg(person){
+            $("#person").text(person);
 			$(".mask").show();
 			$("#sendMsg").show();
 		}
@@ -73,7 +74,7 @@
 				 if (data.success){
 				 	$(".mask").hide();	
 				 	$("#sendMsg").hide();	
-				 	$("#sendMsg2").show();
+				 	//$("#sendMsg2").show();
 				 }//undo 
 			})
 		}

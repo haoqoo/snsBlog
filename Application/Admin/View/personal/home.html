@@ -18,10 +18,10 @@
 			<input id="uid" type="hidden" value="{$uid}">
 			<div class="userMain clearfix">
 				<div class="userInfoBox clearfix">
-					<div class="userImgBox"><a class="userImg"><img src="__PUBLIC__/{$user.header_img}" alt=""></a></div>
+					<div class="userImgBox"><a class="userImg"><img src="__PUBLIC__/{$person.header_img}" alt=""></a></div>
 					<div class="userDetaiBox">
 						<p class="userName"><a href="">一二三四五六七八</a></p>
-						<p class="deBox"><a class="sendMsg" href="javascript:open_msg();"><span class="xsIcon icon_primsg"></span><span class="iconTxt">发私信</span></a></p>
+						<p class="deBox"><a class="sendMsg" href="javascript:open_msg('{$person.username}');"><span class="xsIcon icon_primsg"></span><span class="iconTxt">发私信</span></a></p>
 						<p class="deBox"><a class="addAtt" href="#"><span class="xsIcon icon_addatt"></span><span class="iconTxt">加关注</span></a></p>
 					</div>
 					<div class="userDataBox">

@@ -124,7 +124,6 @@ class UserController extends Controller {
             // 按照原图的比例生成一个最大为100*100的缩略图,相对于上面的处理，该图片是压缩处理，可以保证图片完整性
             $image->thumb(100, 100)->save($upload->rootPath.$upload->savePath.$info["img"]["savename"]);
         }        
-        
 
         $User = M("Users");
         $User->create($_POST);          
