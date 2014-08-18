@@ -118,13 +118,21 @@ class PostController extends Controller {
 
 		$vo['user_id'] = $user['id'];
 		$vo['content']= $Comments->content;
-		$vo['create_date']= $Comments->create_date;
-		
-
-		$id = $Comments->add();
+		$vo['create_date']= $Comments->create_date;		
+		$id = $Comments->add();		
 		$vo['id']= $id;
-		$this->assign('vo', $vo);
-		$this->display(C('POST_VIEW')."comment_single");
+		
+		$Post = M('Posts');
+		$user_id = $Post->where('id=%d',array($_POST['post_id']))->getField('user_id');
+		if ($user[id] != $user_id) {
+			$OperationLogs = D('OperationLogs', 'Logic');
+			$logInfoes     = $OperationLogs->buildLogInfo($id, 'comments', '评论', $user['id'], $user_id);
+			$OperationLogs->opLog($logInfoes);
+		}
+
+		$comment_list[] = $vo;
+		$this->assign('comment_list', $comment_list);
+		$this->display(C('POST_VIEW')."comment_wookmark");
 	}
 
 }
