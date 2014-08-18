@@ -1,10 +1,10 @@
 <!--弹出层-->
 <!-- 弹层蒙层（黑色半透明） -->
-<div class="mask" style="display:none;"></div>
+<div class="mask" style="display:none;z-index:9998"></div>
 <!-- 弹层蒙层（黑色半透明） -->
 
 <!-- 登录弹层 -->
-<div class="xsLoginLayer" style="display:none; top:100px; left:400px;background: #fff;">
+<div class="xsLoginLayer" style="display:none; top:100px; left:400px;background: #fff;z-index:9999;">
     <a class="closeBtn">
         <span class="xsIcon icon_close"></span>
     </a>
@@ -38,7 +38,7 @@
 <!-- /登录弹层 -->
 
 <!-- 注册弹层 -->
-<div id="xsReg1" class="xsRegLayer" style="display:none; top:100px; left:400px;">
+<div id="xsReg1" class="xsRegLayer" style="display:none; top:100px; left:400px;z-index:9999">
     <a class="closeBtn">
         <span class="xsIcon icon_close"></span>
     </a>
@@ -73,7 +73,7 @@
 <!-- /注册弹层 -->
 
 <!-- 注册弹层 -->
-<div id="xsReg2" class="xsRegLayer" style="display:none; top:100px; left:400px;">
+<div id="xsReg2" class="xsRegLayer" style="display:none; top:100px; left:400px;z-index:9999">
     <a class="closeBtn">
         <span class="xsIcon icon_close"></span>
     </a>
@@ -98,7 +98,7 @@
 <!-- /注册弹层 -->
 
 
-<div id="mailReg1" class="xsRegLayer" style="display:none; top:100px; left:400px;">
+<div id="mailReg1" class="xsRegLayer" style="display:none; top:100px; left:400px;z-index:9999">
     <a class="closeBtn">
         <span class="xsIcon icon_close"></span>
     </a>
@@ -120,7 +120,7 @@
 </div>
 
 <!-- 提示弹层 -->
-<div id="mailReg2" class="xsWLayer warnLayer" style=" display:none; top:300px; left:300px;">
+<div id="mailReg2" class="xsWLayer warnLayer" style=" display:none; top:300px; left:300px;z-index:9999">
     <a class="closeBtn">
         <span class="xsIcon icon_close"></span>
     </a>
@@ -137,7 +137,8 @@
 </div>
 
 <!-- 创建专辑弹层 -->
-<div class="xsWLayer addAlbumLayer" style="display:none; top:300px; left:300px;">
+<div class="xsWLayer addAlbumLayer" 
+style="display:none; top:300px; left:300px;z-index:9999">
     <a class="closeBtn">
         <span class="xsIcon icon_close"></span>
     </a>
@@ -148,25 +149,35 @@
                 <dt class="formTit">专辑标题</dt>
                 <dd class="formInputBox">
                     <p class="formInput">
-                        <input type="text" class="layInput">
+                        <input name="album_name" type="text" placeholder="请输入至少4个字符的专辑名" class="layInput">
                     </p>
-                    <p class="formTip" style="visibility:hidden;">
-                        <span class="xsIcon icon_wrong"></span>请输入专辑名</p>
+                    <p class="formTip album_name_tip" style="display:none;">
+                        <span class="xsIcon icon_wrong "></span>请输入至少4个字符的专辑名</p>
                 </dd>
             </dl>
             <dl class="clearfix">
                 <dt class="formTit">专辑分类</dt>
                 <dd class="formInputBox">
                     <p class="formInput">
-                        <select class="layInput laysel">
-                            <option>选择分类</option>
-                        </select>
+                        <select class="layInput laysel" name="album_category_id">
+                                        <option value="1">摄影</option>
+                                        <option value="2">美妆服饰</option>
+                                        <option value="3">美食</option>
+                                        <option value="4">运动</option>
+                                        <option value="5">科技生活</option>
+                                        <option value="6">游戏</option>
+                                        <option value="7">家居设计</option>
+                                        <option value="8">宠物</option>
+                                        <option value="9">音乐</option>
+                                        <option value="10">汽车</option>
+                                        <option value="11">其它</option>
+                                    </select>
                     </p>
-                    <p class="formTip">
-                        <span class="xsIcon icon_wrong"></span>请选择分类</p>
+                    <!-- <p class="formTip">
+                        <span class="xsIcon icon_wrong"></span>请选择分类</p> -->
                 </dd>
             </dl>
-            <p class="formBtn"><a class="btnD" href="#">创建专辑</a>
+            <p class="formBtn"><a class="btnD" href="javascript:save_album();">创建专辑</a>
             </p>
         </div>
 
@@ -267,6 +278,27 @@
 		function flash_img(){
 			$("#mcode").attr("src", $("#mcode").attr("src")+"?");
 		}
+
+        function open_album(){
+            $(".mask").show();
+            $(".addAlbumLayer").show();
+        }
+        function save_album(){
+            var name = $("input[name=album_name]").val();
+            if(name==null||name==""||name.length<4){
+                $(".album_name_tip").show();
+                return;
+            }
+            var category_id = $("select[name=album_category_id]").val();
+            $.post("__ROOT__/album/saveAjax",
+                {name:name,category_id:category_id},function(data){
+                  var option = "<option value='"+data.id+"' >"+data.name+"</option>"  
+                  $("select[name=album_id]").append(option);
+                  $(".mask").hide();
+                  $(".addAlbumLayer").hide();
+
+            });
+        }
 
         jQuery(document).ready(function(){
             $(".closeBtn").on("click",function(e){

@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtmBox">
+<head>
+	<include file='./Public/common/meta.html' />
+<title></title>
+</head>
+
+<body>
+
+
+	<div class="xsWrap">
+		<!-- 顶导 -->
+		<include file='./Public/common/header.html' />
+		<!-- /顶导 -->
+		<!-- main -->
+		<div class="mainBox clearfix">
+			<!-- 个人信息 -->
+			<input id="uid" value="{$uid}">
+			<div class="userMain clearfix">
+				<div class="userInfoBox clearfix">
+					<div class="userImgBox"><a class="userImg"><img src="__PUBLIC__/{$user.header_img}" alt=""></a></div>
+					<div class="userDetaiBox">
+						<p class="userName"><a href="">一二三四五六七八</a></p>
+						<p class="deBox"><a class="sendMsg" href="javascript:open_msg();"><span class="xsIcon icon_primsg"></span><span class="iconTxt">发私信</span></a></p>
+						<p class="deBox"><a class="addAtt" href="#"><span class="xsIcon icon_addatt"></span><span class="iconTxt">加关注</span></a></p>
+					</div>
+					<div class="userDataBox">
+						<!-- 数字超过10000，用数字+“万”字表示，保留一位小数 -->
+						<p class="userAttBox">
+							<a class="dataBox" href="#">
+								<span class="userNum">1.1万</span>
+								<span class="userTxt">关注</span>
+							</a>
+						</p>
+						<p class="userFansBox">
+							<a class="dataBox" href="#">
+								<span class="userNum">1000</span>
+								<span class="userTxt">粉丝</span>
+							</a>
+						</p>						
+					</div>
+				</div>
+				<div class="nearCome clearfix">
+					<p class="nearTit">最近来访者</p>
+					<ul class="nearList">
+						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
+						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
+						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
+						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
+						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
+						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
+						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
+						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>						
+					</ul>
+
+				</div>				
+			</div>
+			<!-- /个人信息 -->
+
+			<div class="showMain clearfix">
+				<div class="showNavBox clearfix">
+					<ul class="showNav">
+						<li><a class="showMod cur" href="#">200 收藏</a></li>
+						<li><a class="showMod" href="#">200 专辑</a></li>
+						<li><a class="showMod" href="#">200 赞</a></li>
+					</ul>
+					<div class="showSear">
+						<div class="navSearBox"><input type="text" placeholder="请输入关键字" class="navSearInput"><span class="xsIcon icon_search"></span></div>
+					</div>
+				</div>
+
+			</div>
+
+
+
+			<!-- 瀑布流 -->
+			<div class="fallMain">
+				<div class="falling clearfix">
+					<ul class="fallList blogfall">
+						<li>
+							<div class="blogMain">
+
+								<div class="blogCon">
+									<a href=""><img src="../images/pic2.jpg" alt=""></a>
+								</div>
+								<p class="blogTit"><a href="#">文章标题文章标题</a></p>								
+							</div>
+							<div class="blogACBox clearfix">
+								<p class="blogAuthor">
+									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
+									<a class="authorName">一二三四五六七八</a>
+								</p>
+								<!--
+								<p class="blogCome">来源：微博</p>
+								-->
+							</div>
+							<div class="blogDate clearfix">
+								<p class="blogAc">
+									<a class="zan">赞(90)</a>
+									<a class="shoucang">收藏(90)</a>
+									<a class="comment">评论(90)</a>
+								</p>
+							</div>
+						</li>
+						<li>
+							<div class="blogMain">
+								<p class="blogTit"><a href="#">文章标题文章标题</a></p>
+								<div class="blogCon">
+									<a href=""><span class="conTxt">Moto 360项目被媒体曝光已久,但外界对其配置参数所知甚少.现在外媒透露Moto 360的一些配置参数.Moto 360机身采用全塑料材质,表盘厚13.5mm,圆形表盘直径48mm,具备无线充电功能.其全塑材质机身与此前Moto 360的宣传造成的期待给</span></a>
+								</div>
+							</div>
+							<div class="blogACBox clearfix">
+								<p class="blogAuthor">
+									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
+									<a class="authorName">一二三四五六七八</a>
+								</p>
+								<!--
+								<p class="blogCome">来源：微博</p>
+								-->
+							</div>
+							<div class="blogDate clearfix">
+								<p class="blogAc"><!-- 赞过 增加class：have -->
+									<a class="zan have" title="取消赞">赞(90)</a>
+									<a class="shoucang">收藏(90)</a>
+									<a class="comment">评论(90)</a>
+								</p>
+							</div>
+						</li>
+					</ul>
+					<ul class="fallList">
+						<li>
+							<div class="blogMain">
+
+								<div class="blogCon">
+									<a href=""><img src="../images/pic1.jpg" alt=""></a>
+								</div>
+								<p class="blogTit"><a href="#">文章标题文章标题</a></p>								
+							</div>
+							<div class="blogACBox clearfix">
+								<p class="blogAuthor">
+									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
+									<a class="authorName">一二三四五六七八</a>
+								</p>
+								<!--
+								<p class="blogCome">来源：微博</p>
+								-->
+							</div>
+							<div class="blogDate clearfix">
+								<p class="blogAc">
+									<a class="zan">赞(90)</a>
+									<a class="shoucang">收藏(90)</a>
+									<a class="comment">评论(90)</a>
+								</p>
+							</div>
+						</li>
+						<li>
+							<div class="blogMain">
+								<p class="blogTit"><a href="#">文章标题文章标题文章标题文章标题文章标题文章标题</a></p>
+								<div class="blogCon">
+									<a href=""><span class="conTxt">Moto 360项目被媒体曝光已久,但外界对其配置参数所知甚少.现在外媒透露Moto 360的一些配置参数.Moto 360机身采用全塑料材质,表盘厚13.5mm,圆形表盘直径48mm,具备无线充电功能.其全塑材质机身与此前Moto 360的宣传造成的期待给</span></a>
+								</div>
+							</div>
+							<div class="blogACBox clearfix">
+								<p class="blogAuthor">
+									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
+									<a class="authorName">一二三四五六七八</a>
+								</p>
+								<!--
+								<p class="blogCome">来源：微博</p>
+								-->
+							</div>
+							<div class="blogDate clearfix">
+								<p class="blogAc"><!-- 赞过 增加class：have -->
+									<a class="zan have">赞(90)</a>
+									<a class="shoucang">收藏(90)</a>
+									<a class="comment">评论(90)</a>
+								</p>
+							</div>
+						</li>
+					</ul>					
+					<ul class="fallList">
+						<li>
+							<div class="blogMain">
+
+								<div class="blogCon">
+									<a href=""><img src="../images/pic1.jpg" alt=""></a>
+								</div>
+								<p class="blogTit"><a href="#">文章标题文章标题</a></p>								
+							</div>
+							<div class="blogACBox clearfix">
+								<p class="blogAuthor">
+									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
+									<a class="authorName">一二三四五六七八</a>
+								</p>
+								<!--
+								<p class="blogCome">来源：微博</p>
+								-->
+							</div>
+							<div class="blogDate clearfix">
+								<p class="blogAc">
+									<a class="zan">赞(90)</a>
+									<a class="shoucang">收藏(90)</a>
+									<a class="comment">评论(90)</a>
+								</p>
+							</div>
+						</li>
+						<li>
+							<div class="blogMain">
+								<p class="blogTit"><a href="#">文章标题文章标题</a></p>
+								<div class="blogCon">
+									<a href=""><span class="conTxt">Moto 360项目被媒体曝光已久,但外界对其配置参数所知甚少.现在外媒透露Moto 360的一些配置参数.Moto 360机身采用全塑料材质,表盘厚13.5mm,圆形表盘直径48mm,具备无线充电功能.其全塑材质机身与此前Moto 360的宣传造成的期待给</span></a>
+								</div>
+							</div>
+							<div class="blogACBox clearfix">
+								<p class="blogAuthor">
+									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
+									<a class="authorName">一二三四五六七八</a>
+								</p>
+								<!--
+								<p class="blogCome">来源：微博</p>
+								-->
+							</div>
+							<div class="blogDate clearfix">
+								<p class="blogAc"><!-- 赞过 增加class：have -->
+									<a class="zan have">赞(90)</a>
+									<a class="shoucang">收藏(90)</a>
+									<a class="comment">评论(90)</a>
+								</p>
+							</div>
+						</li>
+					</ul>
+
+					<ul class="fallList">
+						<li>
+							<div class="blogMain">
+
+								<div class="blogCon">
+									<a href=""><img src="../images/pic1.jpg" alt=""></a>
+								</div>
+								<p class="blogTit"><a href="#">文章标题文章标题</a></p>								
+							</div>
+							<div class="blogACBox clearfix">
+								<p class="blogAuthor">
+									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
+									<a class="authorName">一二三四五六七八</a>
+								</p>
+								<!--
+								<p class="blogCome">来源：微博</p>
+								-->
+							</div>
+							<div class="blogDate clearfix">
+								<p class="blogAc">
+									<a class="zan">赞(90)</a>
+									<a class="shoucang">收藏(90)</a>
+									<a class="comment">评论(90)</a>
+								</p>
+							</div>
+						</li>
+						<li>
+							<div class="blogMain">
+								<p class="blogTit"><a href="#">文章标题文章标题</a></p>
+								<div class="blogCon">
+									<a href=""><span class="conTxt">Moto 360项目被媒体曝光已久,但外界对其配置参数所知甚少.现在外媒透露Moto 360的一些配置参数.Moto 360机身采用全塑料材质,表盘厚13.5mm,圆形表盘直径48mm,具备无线充电功能.其全塑材质机身与此前Moto 360的宣传造成的期待给</span></a>
+								</div>
+							</div>
+							<div class="blogACBox clearfix">
+								<p class="blogAuthor">
+									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
+									<a class="authorName">一二三四五六七八</a>
+								</p>
+								<!--
+								<p class="blogCome">来源：微博</p>
+								-->
+							</div>
+							<div class="blogDate clearfix">
+								<p class="blogAc"><!-- 赞过 增加class：have -->
+									<a class="zan have">赞(90)</a>
+									<a class="shoucang">收藏(90)</a>
+									<a class="comment">评论(90)</a>
+								</p>
+							</div>
+						</li>
+					</ul>
+
+					<ul class="fallList">
+						<li>
+							<div class="blogMain">
+
+								<div class="blogCon">
+									<a href=""><img src="../images/pic1.jpg" alt=""></a>
+								</div>
+								<p class="blogTit"><a href="#">文章标题文章标题</a></p>								
+							</div>
+							<div class="blogACBox clearfix">
+								<p class="blogAuthor">
+									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
+									<a class="authorName">一二三四五六七八</a>
+								</p>
+								<!--
+								<p class="blogCome">来源：微博</p>
+								-->
+							</div>
+							<div class="blogDate clearfix">
+								<p class="blogAc">
+									<a class="zan">赞(90)</a>
+									<a class="shoucang">收藏(90)</a>
+									<a class="comment">评论(90)</a>
+								</p>
+							</div>
+						</li>
+						<li>
+							<div class="blogMain">
+								<p class="blogTit"><a href="#">文章标题文章标题</a></p>
+								<div class="blogCon">
+									<a href=""><span class="conTxt">Moto 360项目被媒体曝光已久,但外界对其配置参数所知甚少.现在外媒透露Moto 360的一些配置参数.Moto 360机身采用全塑料材质,表盘厚13.5mm,圆形表盘直径48mm,具备无线充电功能.其全塑材质机身与此前Moto 360的宣传造成的期待给</span></a>
+								</div>
+							</div>
+							<div class="blogACBox clearfix">
+								<p class="blogAuthor">
+									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
+									<a class="authorName">一二三四五六七八</a>
+								</p>
+								<!--
+								<p class="blogCome">来源：微博</p>
+								-->
+							</div>
+							<div class="blogDate clearfix">
+								<p class="blogAc"><!-- 赞过 增加class：have -->
+									<a class="zan have">赞(90)</a>
+									<a class="shoucang">收藏(90)</a>
+									<a class="comment">评论(90)</a>
+								</p>
+							</div>
+						</li>
+					</ul>	
+					<ul class="fallList">
+						<li>
+							<div class="blogMain">
+
+								<div class="blogCon">
+									<a href=""><img src="../images/pic1.jpg" alt=""></a>
+								</div>
+								<p class="blogTit"><a href="#">文章标题文章标题</a></p>								
+							</div>
+							<div class="blogACBox clearfix">
+								<p class="blogAuthor">
+									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
+									<a class="authorName">一二三四五六七八</a>
+								</p>
+								<!--
+								<p class="blogCome">来源：微博</p>
+								-->
+							</div>
+							<div class="blogDate clearfix">
+								<p class="blogAc">
+									<a class="zan">赞(90)</a>
+									<a class="shoucang">收藏(90)</a>
+									<a class="comment">评论(90)</a>
+								</p>
+							</div>
+						</li>
+						<li>
+							<div class="blogMain">
+								<p class="blogTit"><a href="#">文章标题文章标题</a></p>
+								<div class="blogCon">
+									<a href=""><span class="conTxt">Moto 360项目被媒体曝光已久,但外界对其配置参数所知甚少.现在外媒透露Moto 360的一些配置参数.Moto 360机身采用全塑料材质,表盘厚13.5mm,圆形表盘直径48mm,具备无线充电功能.其全塑材质机身与此前Moto 360的宣传造成的期待给</span></a>
+								</div>
+							</div>
+							<div class="blogACBox clearfix">
+								<p class="blogAuthor">
+									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
+									<a class="authorName">一二三四五六七八</a>
+								</p>
+								<!--
+								<p class="blogCome">来源：微博</p>
+								-->
+							</div>
+							<div class="blogDate clearfix">
+								<p class="blogAc"><!-- 赞过 增加class：have -->
+									<a class="zan have">赞(90)</a>
+									<a class="shoucang">收藏(90)</a>
+									<a class="comment">评论(90)</a>
+								</p>
+							</div>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+			<!-- /瀑布流 -->
+
+		</div>
+
+		<!-- /main -->
+
+	</div>
+
+	<include file='./Public/common/message.html' />
+</body>
+</html>
