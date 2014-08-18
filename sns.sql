@@ -3,7 +3,7 @@
 # Server version:               5.1.55-community
 # Server OS:                    Win32
 # HeidiSQL version:             6.0.0.3603
-# Date/time:                    2014-08-14 16:22:50
+# Date/time:                    2014-08-15 16:47:42
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -48,9 +48,9 @@ CREATE TABLE IF NOT EXISTS `wq_albums` (
   `update_date` datetime DEFAULT NULL COMMENT '修改时间',
   `state` int(11) DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='专辑';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='专辑';
 
-# Dumping data for table sns.wq_albums: ~2 rows (approximately)
+# Dumping data for table sns.wq_albums: ~3 rows (approximately)
 DELETE FROM `wq_albums`;
 /*!40000 ALTER TABLE `wq_albums` DISABLE KEYS */;
 INSERT INTO `wq_albums` (`id`, `name`, `discription`, `category_id`, `user_id`, `create_date`, `update_date`, `state`) VALUES
@@ -133,6 +133,25 @@ INSERT INTO `wq_comments` (`id`, `content`, `user_id`, `post_id`, `create_date`,
 /*!40000 ALTER TABLE `wq_comments` ENABLE KEYS */;
 
 
+# Dumping structure for table sns.wq_media
+DROP TABLE IF EXISTS `wq_media`;
+CREATE TABLE IF NOT EXISTS `wq_media` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) DEFAULT NULL COMMENT '所属者',
+  `origin_name` varchar(100) DEFAULT NULL COMMENT '文件原先的名称',
+  `sys_name` varchar(100) DEFAULT NULL COMMENT '文件在系统中的名称',
+  `upload_folder` varchar(200) DEFAULT NULL COMMENT '文件目录',
+  `create_date` datetime DEFAULT NULL COMMENT '传教时间',
+  `state` int(11) DEFAULT NULL COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='媒体库';
+
+# Dumping data for table sns.wq_media: ~0 rows (approximately)
+DELETE FROM `wq_media`;
+/*!40000 ALTER TABLE `wq_media` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wq_media` ENABLE KEYS */;
+
+
 # Dumping structure for table sns.wq_operation_logs
 DROP TABLE IF EXISTS `wq_operation_logs`;
 CREATE TABLE IF NOT EXISTS `wq_operation_logs` (
@@ -146,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `wq_operation_logs` (
   `state` int(2) DEFAULT NULL COMMENT '状态 1未读，2已读',
   `complete_date` datetime DEFAULT NULL COMMENT '已读时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='博文，用户关注，系统信息，用户私信 等操作日志信息';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='博文，用户关注，系统信息，用户私信 等操作日志信息';
 
 # Dumping data for table sns.wq_operation_logs: ~1 rows (approximately)
 DELETE FROM `wq_operation_logs`;
@@ -165,22 +184,22 @@ CREATE TABLE IF NOT EXISTS `wq_posts` (
   `album_id` bigint(20) DEFAULT NULL COMMENT '专辑id',
   `title` varchar(500) DEFAULT NULL COMMENT '标题',
   `content` tinytext NOT NULL COMMENT '内容',
-  `post_type` varchar(10) DEFAULT NULL COMMENT '类型',
   `post_link` varchar(200) DEFAULT NULL COMMENT '来源',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime DEFAULT NULL COMMENT '修改时间',
   `state` int(11) DEFAULT NULL COMMENT '状态',
   `favorites_count` int(11) DEFAULT NULL COMMENT '冗余字段：收藏数',
   `comment_count` int(11) DEFAULT NULL COMMENT '冗余字段：评论数',
+  `has_picture` int(1) DEFAULT NULL COMMENT '1为无图片，2为有图片',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='博客';
 
 # Dumping data for table sns.wq_posts: ~2 rows (approximately)
 DELETE FROM `wq_posts`;
 /*!40000 ALTER TABLE `wq_posts` DISABLE KEYS */;
-INSERT INTO `wq_posts` (`id`, `user_id`, `category_id`, `album_id`, `title`, `content`, `post_type`, `post_link`, `create_date`, `update_date`, `state`, `favorites_count`, `comment_count`) VALUES
-	(1, 2, 2, NULL, '测试Blog1', '测试blog', NULL, NULL, '2014-08-11 14:01:22', NULL, 1, NULL, NULL),
-	(2, 1, 2, NULL, '测试Blog2', '测测试Blog2试测试Blog2Blog2', NULL, NULL, '2014-08-13 15:48:14', NULL, 1, NULL, NULL);
+INSERT INTO `wq_posts` (`id`, `user_id`, `category_id`, `album_id`, `title`, `content`, `post_link`, `create_date`, `update_date`, `state`, `favorites_count`, `comment_count`, `has_picture`) VALUES
+	(1, 2, 2, NULL, '测试Blog1', '测试blog', NULL, '2014-08-11 14:01:22', NULL, 1, NULL, NULL, NULL),
+	(2, 1, 2, NULL, '测试Blog2', '测测试Blog2试测试Blog2Blog2', NULL, '2014-08-13 15:48:14', NULL, 1, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `wq_posts` ENABLE KEYS */;
 
 
@@ -245,22 +264,23 @@ CREATE TABLE IF NOT EXISTS `wq_users` (
   `state` int(11) DEFAULT NULL COMMENT '状态(1未激活，2激活)',
   `reg_type` int(11) DEFAULT NULL COMMENT '注册方式(1普通注册，2邮箱注册，3第三方账号)',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
-# Dumping data for table sns.wq_users: ~10 rows (approximately)
+# Dumping data for table sns.wq_users: ~11 rows (approximately)
 DELETE FROM `wq_users`;
 /*!40000 ALTER TABLE `wq_users` DISABLE KEYS */;
 INSERT INTO `wq_users` (`id`, `username`, `password`, `aliasname`, `header_img`, `email`, `grade`, `born_year`, `born_month`, `born_day`, `professional`, `my_site`, `introduce`, `create_date`, `update_date`, `state`, `reg_type`) VALUES
 	(1, '123', '123456', '测试别名啊', NULL, '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(2, 'jack', '123456', NULL, NULL, 'qweqwe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(4, 'wanjujun', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(4, 'wanjunjun', '123', 'abc', './Uploads/2014-08-15/53edc80db4c73.jpg', NULL, '', '20xx', 'xx', 'x', 'it', '', 'nb nb', NULL, NULL, 2, 1),
 	(5, 'tp', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(6, 'admin', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(7, 'thinkphp', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(8, 'aa', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(9, 'bbb', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1),
 	(10, '258259590@qq.com', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 2),
-	(11, '258259590@qq.com', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 2);
+	(11, '258259590@qq.com', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 2),
+	(12, '258259590@qq.com', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 2);
 /*!40000 ALTER TABLE `wq_users` ENABLE KEYS */;
 
 
