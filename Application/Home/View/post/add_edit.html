@@ -22,7 +22,12 @@
 				<!-- 发博文 -->			
 				
 				<div class="pubBlogBox">
-					<div class="xsTit">发博文</div>
+					<div class="xsTit">
+						 <if condition="$post eq null">
+                            发文章
+                            <else/>编辑文章/{$post.title}
+                        </if>
+					</div>
 					<div class="editForm">
 					<form action="__ROOT__/post/save_update" method="post" id="post_form">
 				<input type="hidden" name="user_id" value="<?php $user =session('__user__'); echo $user['id']; ?>" />
@@ -108,7 +113,7 @@
                             <dl class="clearfix">
                                 <dt class="formName">删除</dt>
                                 <dd class="formInput">
-                                    <a class="btnE" href="javascript:delete_post({$post.id})">删除博文</a>
+                                    <a class="btnE" href="javascript:delete_post({$post.id});">删除博文</a>
                                 </dd>
 
                             </dl>

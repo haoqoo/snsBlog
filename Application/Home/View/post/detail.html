@@ -30,7 +30,7 @@
 							<if condition="$is_my_post">
 							<p class="titShareBox"><span class="shareTxt">分享：</span><a class="shareBtn"><span class="shareIcon icon_weibo"></span></a><a class="shareBtn"><span class="shareIcon icon_qzone"></span></a><a class="shareBtn"><span class="shareIcon icon_weixin"></span></a></p>
 							</if>
-						</div>	
+						</div>							
 						
 						<div class="viewblogwrap">
 							<div class="viewblogTxt clearfix">
@@ -39,8 +39,32 @@
 
 							<!-- /博客正文 -->
 							</div>
-							<p class="blogComUrl">来源：{$post.post_link}</p>
+							<p class="blogComUrl">来源：{$post.post_link}</p>							
 						</div>
+						<br><br>
+						<div class="formCata" style="border-bottom:0;">
+                            
+                            <dl class="clearfix">
+                                <dt class="formName blogComUrl">评论：</dt>
+                                <dd class="formInput">
+                                    <textarea class="xsArea fwA01" name="comment" style="width:100%;"></textarea>
+                                </dd>
+                                <!-- <dd class="formTip">
+                                    <span class="xsIcon icon_wrong"></span>请选择分类</dd>-->
+                              </dl> 
+
+                              <dl class="clearfix" style="margin-top:2px;">                              
+                                <dd class="formInput">
+                                	<if condition="session('__user__') neq null">
+                                    <a class="btnE" href="javascript:comment_post({$post.id});">发表评论</a>
+                                    <else/>
+                                    <a class="btnE" href="##">请先登录或注册</a>
+                                    </if>
+                                </dd>
+                            </dl>
+
+                        </div>
+                       
 
 						<div class="viewBlogComBox">
 							<div class="xsTit">
@@ -57,7 +81,9 @@
 												<p class="notiUser"><a class="notiName" href="#">
 												{:W('My/getUserVal',array($vo['user_id'],'aliasname'))}</a>
 												<span class="notiDate">{$vo.create_date}</span></p>
+												<if condition="session('__user__') neq null">
 												<p class="notiR"> <a class="notiRly">回复</a><a class="notiRly">举报</a></p>
+												</if>
 											</div>
 											<p class="notiCon clearfix">{$vo.content}</p>
 										</div>
