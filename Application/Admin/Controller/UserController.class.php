@@ -107,9 +107,15 @@ class UserController extends Controller {
         if(!$info) {// 上传错误提示错误信息
             $this->error($upload->getError());
         }else{// 上传成功
-            $this->success('上传成功！');
-            dump($info);
+            //$this->success('上传成功！');
+            //dump($info);
         }
+
+        //图片处理，生成缩略图
+        $image = new \Think\Image(); 
+        $image->open($upload->rootPath.$upload->savePath.$info["img"]["savename"]);
+        // 按照原图的比例生成一个最大为150*150的缩略图并保存为thumb.jpg
+        $image->thumb(50, 50)->save($upload->rootPath.$upload->savePath."thumb_".$info["img"]["savename"]);
 
         $User = M("Users");
         $User->create($_POST);          
