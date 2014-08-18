@@ -40,7 +40,7 @@ class PersonalController extends Controller {
         $this->ajaxReturn($ajax);
     }
 
-    public function getMsg(){
+    public function getMsgCount(){
         $user = session('__user__');
         $UserMessages = M("UserMessages");
         $map['to_id'] = $user["id"];
@@ -49,5 +49,29 @@ class PersonalController extends Controller {
         $ajax["count"] = $data;
         $ajax["success"] = true;
         $this->ajaxReturn($ajax);
+    }
+
+    public function getMsgList(){
+        $user = session('__user__');
+        $UserMessages = M("UserMessages");
+        $map['to_id'] = $user["id"];
+        $data = $UserMessages->where($map)->order('state asc, create_date desc')->select();    
+        $this->assign("messages", $data);   
+        //$this->display('userMsgList'); 
+
+        //$result = $Model->Table('wq_user_messages um,wq_users u')->where('um.from_id=u.id')->select();
+
+        $Model = new \Think\Model();
+        $sql = "select u.id, u.header_img, um.content, um.create_date from wq_user_messages um,wq_users u where um.from_id = u.id ";
+        $sql = $sql." and um.to_id = ".$user["id"];
+        $result = $Model->query($sql);
+        
+        // ->field('u.id , u.header_img, um.content, um.create_date')
+        // ->order('u.id desc' )
+        // ->limit(5)
+        
+
+
+        $this->ajaxReturn($result);
     }
 }
