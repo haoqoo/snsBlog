@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtmBox">
 <head>
 	<include file='./Public/common/meta.html' />
+	<script type="text/javascript" src="__PUBLIC__/js/uploadPreview.min.js"></script>
 <title></title>
 </head>
 
@@ -36,7 +37,7 @@
 
 							<dl class="clearfix">
 								<dt class="formName">头像</dt>
-								<dd class="formInput"><div class="userImgShow"><img src="../images/userL.jpg" alt=""></div><div class="picInput">
+								<dd class="formInput"><div class="userImgShow"><img id="userImg" src="__PUBLIC__/{$user.header_img}" alt=""></div><div class="picInput">
 											<p class="picInfo">支持jpg、jpeg、png、gif格式；<br>
 											建议尺寸：120pxX120px 文件不超过100K</p>						
 											<p class="fileinput">
@@ -105,6 +106,10 @@
 </body>
 </html>
 <script type="text/javascript">
+	$(function () {
+    	$("#img").uploadPreview({ Img: "userImg", Width: 120, Height: 120 });
+    });
+
 	function saveUser(){
 		$("#form1").submit();	
 	}
