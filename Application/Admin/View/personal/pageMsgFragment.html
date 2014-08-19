@@ -1,0 +1,11 @@
+<foreach name="messages" item="msg" >
+	<li>
+		<div class="noUserImg"><a class="userPic" href="#"><img src="__PUBLIC__/{$msg.header_img}" alt="" class="userImg"></a></div>
+
+		<div class="notiDetail">
+			<p class="notiUser"><a class="notiName" href="#">{$msg.aliasname}</a><span class="notiDate">{$msg.create_date}</span></p>
+			<p class="notiCon">{$msg.content}</p>
+		</div>
+
+	</li>
+</foreach>
