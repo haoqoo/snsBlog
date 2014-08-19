@@ -112,11 +112,11 @@ class PostController extends Controller {
 						$PostImgs->img_val = $img_val;
 						$PostImgs->add();
 					}
-					if( sizeof($imgs) > 0){
+					if (sizeof($imgs) > 0) {
 						$has_picture = 2;
 					}
 				}
-			}						
+			}
 		}
 		$Post->has_picture = $has_picture;
 		$Post->save();
@@ -165,5 +165,7 @@ class PostController extends Controller {
 		$this->assign('comment_list', $comment_list);
 		$this->display(C('POST_VIEW')."comment_wookmark");
 	}
+
+	//赞，收藏
 
 }
