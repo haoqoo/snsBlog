@@ -63,8 +63,8 @@
 						<!-- /发布弹层 -->
 					</li>
 					<li class="navli usermsg"><a class="navMode" href="__ROOT__/admin/personal/getMsgList.shtml"><span class="xsIcon icon_msg"></span><em class="msgNum"><span id="msg_count">99</span>+</em></a></li>
-					<li class="navli userNotice"><a class="navMode" href=""><span class="xsIcon icon_notice"></span></a>
-						<div class="noticeLayer">
+					<li class="navli userNotice"><a class="navMode" href="javascript:showLog()"><span class="xsIcon icon_notice"></span></a>
+						<div id="noticeLayer" class="noticeLayer">
 							<p class="noticeTit">我的消息</p>
 							<!-- 通知弹层 点击【我的消息】出现 -->
 							<div class="noticeListBox">
@@ -129,6 +129,7 @@
 		</div>
 		<script type="text/javascript">
 		$(function(){
+			getMsg();
 			setInterval("getMsg()",1000*60);
 		});
 
@@ -151,4 +152,12 @@
 					
 		}
 		
+		function showLog(){
+			if($('#noticeLayer').is(":hidden")){
+				$('#noticeLayer').show();	
+			}else{
+				$('#noticeLayer').hide();
+			}
+			
+		}
 		</script>

@@ -2,6 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtmBox">
 <head>
 	<include file='./Public/common/meta.html' />
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.pagination.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/mustache.js"></script>
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/pagination.css"/>
 <title></title>
 </head>
 
@@ -18,67 +21,39 @@
 				<div class="xsBorBox">
 					<div class="xsTabBox">
 						<ul class="xsTab clearfix">
-							<li class="tabList"><a href="#" class="tabTxt cur">全部消息</a></li>
-							<li class="tabList"><a href="#" class="tabTxt">评论</a></li>
+							<li class="tabList"><a href="#" class="tabTxt cur">私信</a></li>
+							<li class="tabList"><a href="#" class="tabTxt ">评论</a></li>
 							<li class="tabList"><a href="#" class="tabTxt">动态</a></li>						
 						</ul>
 					</div>
 
 					<div class="noticeWBox">
 						<!-- 每页10条 -->
-						<ul class="noticeWList">
-							<!-- 动态例子 -->
+						<ul id="pageList" class="noticeWList">
+						<foreach name="messages" item="msg" >
 							<li>
-								<div class="noUserImg"><a class="userPic" href="#"><img src="../images/userL.jpg" alt="" class="userImg"></a></div>
+								<div class="noUserImg"><a class="userPic" href="#"><img src="__PUBLIC__/{$msg.header_img}" alt="" class="userImg"></a></div>
 
 								<div class="notiDetail">
-									<p class="notiUser"><a class="notiName" href="#">用户昵称</a><span class="notiDate">2014-06-20 13:14:10</span></p>
-									<p class="notiCon">转采了你的专辑<a class="notiAl" href="#">小小花蛤</a>到<a class="notiAl" href="#">另外一个专辑</a></p>
+									<p class="notiUser"><a class="notiName" href="#">{$msg.aliasname}</a><span class="notiDate">{$msg.create_date}</span></p>
+									<p class="notiCon">{$msg.content}</p>
 								</div>
 
 							</li>
-							<!-- /动态例子 -->
-							<!-- 评论例子 -->
-							<li>
-								<div class="noUserImg"><a class="userPic" href="#"><img src="../images/userL.jpg" alt="" class="userImg"></a></div>
-
-								<div class="notiDetail">
-									<p class="notiUser"><a class="notiName" href="#">用户昵称</a>评论了<a class="notiAl" href="#">博客名</a><span class="notiDate">2014-06-20 13:14:10</span></p>
-									<p class="notiCon">哈哈哈哈哈！</p>
-								</div>
-
-							</li>
-							<!-- /评论例子 -->
-							<li>
-								<div class="noUserImg"><a class="userPic" href="#"><img src="../images/userL.jpg" alt="" class="userImg"></a></div>
-
-								<div class="notiDetail">
-									<p class="notiUser"><a class="notiName" href="#">用户昵称</a><span class="notiDate">2014-06-20 13:14:10</span></p>
-									<p class="notiCon">转采了你的专辑<a class="notiAl" href="#">小小花蛤</a>到<a class="notiAl" href="#">另外一个专辑</a></p>
-								</div>
-
-							</li>
-							<li>
-								<div class="noUserImg"><a class="userPic" href="#"><img src="../images/userL.jpg" alt="" class="userImg"></a></div>
-
-								<div class="notiDetail">
-									<p class="notiUser"><a class="notiName" href="#">用户昵称</a><span class="notiDate">2014-06-20 13:14:10</span></p>
-									<p class="notiCon">转采了你的专辑<a class="notiAl" href="#">小小花蛤</a>到<a class="notiAl" href="#">另外一个专辑</a></p>
-								</div>
-
-							</li>
-
-
+						</foreach>
 						</ul>
 
-						<div class="xsPageBox">
-							<div class="xsPage">
+						<div class="xsPageBox2" style="position:relative;">
+							<div id="pagebar" class="xsPage" style="display:none;">
 					        	<a href="">上一页</a>
 					        	<a href="" class="cur">1</a>
 					        	<a href="">2</a>
 					        	<a href="">3</a>
 					        	<a href="">下一页</a>
 					        </div>
+					        
+					        <div id="Pagination" class="pagination" style="margin:5px auto;"></div>
+					    	
 						</div>
 
 					</div>
@@ -97,3 +72,33 @@
 
 </body>
 </html>
+<script type="text/javascript">
+	$(function(){
+		initPage();
+	});
+	var _size = 2;
+	function initPage(){
+		var pageIndex = 0;     //页面索引初始值  
+		var pageSize = _size;     //每页显示条数初始化，修改显示条数，修改这里即可  
+		var optInit = {
+			current_page : 0,
+			items_per_page : pageSize,
+			num_display_entries : 5,
+			num_edge_entries : 1,
+			prev_text : "上一页",
+			next_text : "下一页",
+			callback : PageCallback
+		}
+		$("#Pagination").pagination({$total.c}, optInit);
+	}
+	
+	function PageCallback(index) {
+		var bean = new Object();
+		bean.start = index*_size;
+		bean.limit = _size;
+		
+        Common.ajax("__ROOT__/admin/personal/getMsgFragment.shtml", bean, function(data){			
+			$("#pageList").html(data);
+		},"html"); 
+    }
+</script>
