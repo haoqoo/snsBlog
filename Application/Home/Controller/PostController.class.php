@@ -92,14 +92,19 @@ class PostController extends Controller {
 		}
 
 		//对文章内容进行正则img，抓取img
-		$PostImgs = M('PostImgs');
-		$PostImgs->where('post_id=%d', array($id))->delete();
-		preg_match_all('/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i', $content, $match);
-		//print_r($match);
-		if (isset($match) && sizeof($match) > 0) {
 
+		//需更新Posts表里的has_picture;
+		$Post->create();
+		$Post->id = $id;
+
+		$PostImgs = M('PostImgs');
+		$PostImgs->where('post_id=%d', array($id))->delete();//删除post_imgs表对应的post_id
+		preg_match_all('/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i', $content, $match);
+		//对匹配的img src的值，存入数据库
+		$has_picture = 1;
+		if (isset($match) && sizeof($match) > 0) {
 			foreach ($match as $key => $imgs) {
-				if ($key == 0) {
+				if ($key == 2) {
 					foreach ($imgs as $k => $img_val) {
 						//echo $img_val;
 						$PostImgs->create();
@@ -107,11 +112,15 @@ class PostController extends Controller {
 						$PostImgs->img_val = $img_val;
 						$PostImgs->add();
 					}
+					if( sizeof($imgs) > 0){
+						$has_picture = 2;
+					}
 				}
-			}
+			}						
 		}
-
-		//$this->redirect('album/'.$_POST['album_id']);
+		$Post->has_picture = $has_picture;
+		$Post->save();
+		$this->redirect('album/'.$_POST['album_id']);
 
 	}
 

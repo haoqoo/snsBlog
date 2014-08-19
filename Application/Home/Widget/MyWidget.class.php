@@ -24,4 +24,25 @@
 			$user = $Users->where('id=%d',array($user_id))->find();
 			return $user[$field];
 	 	}
+
+	 	//通过post_id获取img
+	 	public function getImgByPostId($post_id){
+	 		$PostImgs = M('PostImgs');
+	 		$img = $PostImgs->where('post_id=%d',array($post_id))->limit(1)->find();
+	 		return $img['img_val'];
+	 	}
+
+	 	//专辑列表 上图片
+	 	public function getImg4Album($album_id){
+	 		$Model = new \Think\Model();
+	 		$sql ='select * from '.
+					'(select pi.* from wq_post_imgs pi, wq_posts  p where p.album_id = '.$album_id
+						.' and pi.post_id = p.id order by create_date limit 20) as im'.
+					' order by rand() limit 4';
+	 		$results = $Model->query($sql);
+	 		//echo $Model->getLastSql();
+	 		
+	 		$this->assign('img_list',$results);
+        	$this->display('Category:album_img');
+	 	}
 	}

@@ -2,15 +2,7 @@
     <li>
         <div class="albumMain">
             <a class="albumImgBox" href="__ROOT__/album/{$vo.id}">
-                <div class="albumP1">
-                    <img src="__PUBLIC__/images/pic1.jpg" alt="" class="albumPic1" width="200" height="252">
-                </div>
-                <div class="albumPO clearfix">
-                    <!-- 
-				<p class="albumP2"><img src="__PUBLIC__/images/pic3.jpg" alt="" class="albumPic2" width="60" height="60"></p>
-				<p class="albumP2"><img src="__PUBLIC__/images/pic3.jpg" alt="" class="albumPic2" width="60" height="60"></p>
-				<p class="albumP2"><img src="__PUBLIC__/images/pic3.jpg" alt="" class="albumPic2" width="60" height="60"></p> -->
-                </div>
+                {:W('My/getImg4Album',array($vo['id']))}
             </a>
         </div>
         <div class="albumACBox clearfix">

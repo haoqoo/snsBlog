@@ -69,13 +69,20 @@
                         <li>
                             <div class="blogMain">
 
+                                <if condition="$vo.has_picture eq 2">
                                 <div class="blogCon">
                                     <a href="__ROOT__/post/{$vo.id}">
-                                        <img src="__PUBLIC__/images/pic2.jpg" alt="" height="" width="">
+                                        <img src="{:W('My/getImgByPostId',array($vo['id']))}" alt="" height="" width="">
                                     </a>
                                 </div>
                                 <p class="blogTit"><a href="__ROOT__/post/{$vo.id}">{$vo.title}</a>
                                 </p>
+                                <else/>
+                                <p class="blogTit"><a href="#">{$vo.title}</a></p>
+                                <div class="blogCon">
+                                    <a href=""><span class="conTxt">{$vo.content|htmlspecialchars_decode}</span></a>
+                                </div>
+                                </if>
                             </div>
                             <div class="blogACBox clearfix">
                                 <p class="blogAuthor">

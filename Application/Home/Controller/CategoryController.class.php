@@ -53,10 +53,10 @@ class CategoryController extends Controller {
 			$ablum_count = $Albums->where('category_id=%d', array($id))->count();
 
 			$Posts      = M("Posts");
-			$post_count = $Posts->join('wq_albums on wq_posts.album_id = wq_albums.id and wq_albums.category_id='.$id)
+			$post_count = $Posts->join('wq_albums on wq_posts.album_id = wq_albums.id and wq_albums.category_id='.$id)->field('wq_posts.id')
 			                    ->count();
-			$posts = $Posts->join('wq_albums on wq_posts.album_id = wq_albums.id and wq_albums.category_id='.$id)->limit(0, 30)->select();
-
+			$posts = $Posts->join('wq_albums on wq_posts.album_id = wq_albums.id and wq_albums.category_id='.$id)->field('wq_posts.*')->limit(0, 30)->select();
+			//echo $Posts->getLastSql();
 			$this->assign('category_id', $id);
 			$this->assign('category', $catArray[$id]);
 			$this->assign('post_count', isset($post_count)?$post_count:0);
