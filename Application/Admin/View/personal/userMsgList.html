@@ -16,14 +16,14 @@
 		<include file='./Public/common/header.html' />
 		<!-- /顶导 -->
 		<!-- main -->
+		<input type="hidden" id="isRead" value="1">
 		<div class="mainBox clearfix">
 			<div class="xsNLayout">
 				<div class="xsBorBox">
 					<div class="xsTabBox">
 						<ul class="xsTab clearfix">
-							<li class="tabList"><a href="#" class="tabTxt cur">私信</a></li>
-							<li class="tabList"><a href="#" class="tabTxt ">评论</a></li>
-							<li class="tabList"><a href="#" class="tabTxt">动态</a></li>						
+							<li class="tabList"><a href="javascript:void(0)" onclick="javascript:read(1, this);" class="tabTxt cur">私信(未读)</a></li>
+							<li class="tabList"><a href="javascript:void(0)" onclick="javascript:read(2, this);" class="tabTxt ">私信(已读)</a></li>					
 						</ul>
 					</div>
 
@@ -76,8 +76,14 @@
 	$(function(){
 		initPage();
 	});
+	function read(s, a){
+		$("#isRead").val(s);
+		$(".tabTxt").removeClass("cur");
+		$(a).addClass("cur");
+	}
+
 	var _size = 2;
-	function initPage(){
+	function initPage(c){
 		var pageIndex = 0;     //页面索引初始值  
 		var pageSize = _size;     //每页显示条数初始化，修改显示条数，修改这里即可  
 		var optInit = {
@@ -96,6 +102,7 @@
 		var bean = new Object();
 		bean.start = index*_size;
 		bean.limit = _size;
+		bean.isRead = $("#isRead").val();
 		
         Common.ajax("__ROOT__/admin/personal/getMsgFragment.shtml", bean, function(data){			
 			$("#pageList").html(data);

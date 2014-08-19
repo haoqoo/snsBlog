@@ -52,7 +52,7 @@ class PersonalController extends Controller {
         $this->ajaxReturn($ajax);
     }
 
-    public function getMsgList($start=0, $limit=5){
+    public function getMsgList($start=0, $limit=5, $read=1){
         $user = session('__user__');
         /*$UserMessages = M("UserMessages");
         $map['to_id'] = $user["id"];
@@ -64,7 +64,7 @@ class PersonalController extends Controller {
         // $start = ($start-1)*$limit;
         $Model = new \Think\Model();
         $sql = "select u.id, u.aliasname, u.header_img, um.content, um.create_date from wq_user_messages um,wq_users u where um.from_id = u.id ";
-        $sql = $sql." and um.to_id = ".$user["id"];
+        $sql = $sql." and um.to_id = ".$user["id"]." and um.state = ".$read;
         $sql = $sql." order by um.state asc, um.create_date desc limit ".$start.",".$limit;
         $result = $Model->query($sql); 
         $sql_count = "select count(1) c from wq_user_messages um,wq_users u where um.from_id = u.id and um.to_id = ".$user["id"];
@@ -79,11 +79,11 @@ class PersonalController extends Controller {
         $this->display('userMsgList');
     }
 
-    public function getMsgFragment($start=0, $limit=5){
+    public function getMsgFragment($start=0, $limit=5, $read=1){
         $user = session('__user__');
         $Model = new \Think\Model();
         $sql = "select u.id, u.aliasname, u.header_img, um.content, um.create_date from wq_user_messages um,wq_users u where um.from_id = u.id ";
-        $sql = $sql." and um.to_id = ".$user["id"];
+        $sql = $sql." and um.to_id = ".$user["id"]." and um.state = ".$read;
         $sql = $sql." order by um.state asc, um.create_date desc limit ".$start.",".$limit;
         $result = $Model->query($sql); 
         
