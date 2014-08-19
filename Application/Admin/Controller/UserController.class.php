@@ -130,6 +130,11 @@ class UserController extends Controller {
         $User->header_img = $info["img"]["savepath"].$info["img"]["savename"];
         $User->save();
 
+        //flush session
+        $map['id'] = $user["id"];
+        $newUser = $User->where($map)->find();
+        session('__user__',$newUser);
+
         $this->success('操作完成','setUser.shtml',1);
     }
 

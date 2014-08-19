@@ -54,26 +54,16 @@ class PersonalController extends Controller {
 
     public function getMsgList($start=0, $limit=5, $read=1){
         $user = session('__user__');
-        /*$UserMessages = M("UserMessages");
-        $map['to_id'] = $user["id"];
-        $data = $UserMessages->where($map)->order('state asc, create_date desc')->select();    
-        $this->assign("messages", $data); */  
-        //$this->display('userMsgList'); 
-
-        //$result = $Model->Table('wq_user_messages um,wq_users u')->where('um.from_id=u.id')->select();
-        // $start = ($start-1)*$limit;
+       
         $Model = new \Think\Model();
-        $sql = "select u.id, u.aliasname, u.header_img, um.content, um.create_date from wq_user_messages um,wq_users u where um.from_id = u.id ";
-        $sql = $sql." and um.to_id = ".$user["id"]." and um.state = ".$read;
-        $sql = $sql." order by um.state asc, um.create_date desc limit ".$start.",".$limit;
-        $result = $Model->query($sql); 
-        $sql_count = "select count(1) c from wq_user_messages um,wq_users u where um.from_id = u.id and um.to_id = ".$user["id"];
+        $sql_count = "select count(1) c from wq_user_messages um,wq_users u where um.from_id = u.id and um.to_id = ".$user["id"]." and um.state = ".$read;
         $count = $Model->query($sql_count);               
 
         //print sql
         // echo $Model->getLastSql();
 
         // $this->ajaxReturn($count[0]["c"]);
+        $this->assign("read", $read);
         $this->assign("total", $count[0]);
         $this->assign("messages", $result);
         $this->display('userMsgList');
@@ -82,12 +72,28 @@ class PersonalController extends Controller {
     public function getMsgFragment($start=0, $limit=5, $read=1){
         $user = session('__user__');
         $Model = new \Think\Model();
-        $sql = "select u.id, u.aliasname, u.header_img, um.content, um.create_date from wq_user_messages um,wq_users u where um.from_id = u.id ";
+        $sql = "select u.id, u.aliasname, u.header_img,um.id mid, um.content, um.create_date from wq_user_messages um,wq_users u where um.from_id = u.id ";
         $sql = $sql." and um.to_id = ".$user["id"]." and um.state = ".$read;
         $sql = $sql." order by um.state asc, um.create_date desc limit ".$start.",".$limit;
         $result = $Model->query($sql); 
         
         $this->assign("messages", $result);
-        $this->display('pageMsgFragment');
+        if($read == 1){
+            $this->display('pageMsgFragment');
+        }else{
+            $this->display('pageMsgFragment2');
+        }
+        
+    }
+
+    public function updateUserMsgState($ids=''){
+        $idarr = explode(",",$ids);
+        
+        $UserMessages = M("UserMessages");
+        for($i=0; $i < count($idarr); $i++){
+            // echo $idarr[$i]."<br>";
+            $UserMessages-> where('id='.$idarr[$i])->setField('state',2);
+        }
+        $this->success('操作完成','getMsgList.shtml');
     }
 }
