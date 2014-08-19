@@ -44,6 +44,7 @@ class PersonalController extends Controller {
         $user = session('__user__');
         $UserMessages = M("UserMessages");
         $map['to_id'] = $user["id"];
+        $map['state'] = 1;
         $data = $UserMessages->where($map)->order('state')->count();
         // $this->response($data,'json');
         $ajax["count"] = $data;
@@ -85,10 +86,7 @@ class PersonalController extends Controller {
         $sql = $sql." and um.to_id = ".$user["id"];
         $sql = $sql." order by um.state asc, um.create_date desc limit ".$start.",".$limit;
         $result = $Model->query($sql); 
-        // $sql_count = "select count(1) count from wq_user_messages um,wq_users u where um.from_id = u.id and um.to_id = ".$user["id"];
-        // $count = $Model->query($sql_count);               
         
-        // $this->assign("total", $count);
         $this->assign("messages", $result);
         $this->display('pageMsgFragment');
     }
