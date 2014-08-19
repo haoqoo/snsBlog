@@ -54,7 +54,7 @@ class AlbumController extends Controller {
 		$this->display(C('ALBUM_VIEW')."post_wookmark");
 	}
 
-	public function add($cate) {
+	public function add($cate=1) {
 		$this->assign('cate_id', $cate);
 		$this->display(C('ALBUM_VIEW')."add_edit");
 	}

@@ -104,9 +104,10 @@
                                 <p class="blogTit"><a href="__ROOT__/post/{$vo.id}">{$vo.title}</a>
                                 </p>
                                 <else/>
-                                <p class="blogTit"><a href="#">{$vo.title}</a></p>
+                                <p class="blogTit"><a href="__ROOT__/post/{$vo.id}">{$vo.title}</a></p>
                                 <div class="blogCon">
-                                    <a href=""><span class="conTxt">{$vo.content|htmlspecialchars_decode}</span></a>
+                                    <a href="__ROOT__/post/{$vo.id}"><span class="conTxt">
+                                    {$vo.content|htmlspecialchars_decode}</span></a>
                                 </div>
                                 </if>
                             </div>

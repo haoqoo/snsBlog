@@ -24,7 +24,7 @@
         <p class="LaylogBtn"><a class="logBtn" href="javascript:login();">登录</a>
         </p>
         <p class="LayOth clearfix"><a class="forgetPsw" href="#">忘记密码></a>
-            <span class="noAcc">还没有账号？ <a class="cliReg" href="#">点击注册></a>
+            <span class="noAcc">还没有账号？ <a class="cliReg" href="javascript:open_reg('inLogin');">点击注册></a>
             </span>
         </p>
     </div>
@@ -233,7 +233,10 @@ style="display:none; top:300px; left:300px;z-index:9999">
                 
 		}
 
-		function open_reg(){
+		function open_reg(inLogin){
+            if(inLogin=='inLogin'){
+                $(".xsLoginLayer").hide();
+            }
 			$(".mask").show();
 			$("#xsReg1").show();
 		}
