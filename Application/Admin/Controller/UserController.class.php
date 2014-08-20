@@ -117,12 +117,12 @@ class UserController extends Controller {
         $width = $image->width(); // 返回图片的宽度
         $height = $image->height(); // 返回图片的高度
         
-        if($width > 500 || $height > 500){
+        if($width > 500 && $height > 500){
             //图片尺寸大于规定标准，栽剪为100*100大小    
             //$image->crop(100, 100)->save($upload->rootPath.$upload->savePath.$info["img"]["savename"]);
 
             // 按照原图的比例生成一个最大为100*100的缩略图,相对于上面的处理，该图片是压缩处理，可以保证图片完整性
-            $image->thumb(100, 100)->save($upload->rootPath.$upload->savePath.$info["img"]["savename"]);
+            $image->thumb(150, 150)->save($upload->rootPath.$upload->savePath.$info["img"]["savename"]);
         }        
 
         $User = M("Users");
