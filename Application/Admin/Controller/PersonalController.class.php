@@ -94,6 +94,7 @@ class PersonalController extends Controller {
             // echo $idarr[$i]."<br>";
             $UserMessages-> where('id='.$idarr[$i])->setField('state',2);
         }
-        $this->success('操作完成','getMsgList.shtml');
+        // $this->success('操作完成','getMsgList.shtml',0);
+        $this->redirect('/admin/personal/getMsgList');
     }
 }
