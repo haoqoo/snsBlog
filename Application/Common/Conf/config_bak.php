@@ -4,7 +4,7 @@ return array(
 	'URL_HTML_SUFFIX'      => 'shtml',
 	'URL_CASE_INSENSITIVE' => false, //url不区分大小写，针对linux系统
 	'DB_TYPE'              => 'mysql', // 数据库类型
-	'DB_HOST'              => '127.0.0.1', // 服务器地址
+	'DB_HOST'              => '192.168.1.62', // 服务器地址
 	'DB_NAME'              => 'sns', // 数据库名
 	'DB_USER'              => 'root', // 用户名
 	'DB_PWD'               => '123456', // 密码
@@ -40,6 +40,8 @@ return array(
 		'post/delete/:id\d' => 'Home/Post/delete',
 		'post/:id\d'        => 'Home/Post/detail',
 
+		'postimg/upload' => 'Home/PostImgsUpload/upload',
+
 	),
 
 	//分类
@@ -57,6 +59,9 @@ return array(
 		'11' => '其他',
 	),
 
+	//默认头像 是在Public目录下
+	'USER_HEADER' => 'images/user_default.png',
+
 	//view 路径文件夹
 	'CATE_VIEW'  => 'Home@/Category/', //对应Category模块
 	'ALBUM_VIEW' => 'Home@/Album/', //对应Album模块
@@ -64,6 +69,12 @@ return array(
 
 	// 预先加载的标签库
 	'TAGLIB_PRE_LOAD' => 'Home\\TagLib\\MyTag',
+
+	//公共的Lib扩展 路径
+    'AUTOLOAD_NAMESPACE' => array(
+        'Lib'     => APP_PATH.'Lib',
+    ),
+
 
 	'MAIL_ADDRESS'   => 'wanjunjun@sina.com', // 邮箱地址
 	'MAIL_SMTP'      => 'smtp.sina.com', // 邮箱SMTP服务器

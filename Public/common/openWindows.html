@@ -22,7 +22,7 @@
                 <input type="text" name="username" placeholder="用户名">
             </p>
             <p class="logInput logPsw">
-                <input type="password" name="password" placeholder="密码">
+                <input type="password" name="password" id="key_password" placeholder="密码" >
             </p>
         </div>
         <p class="LaylogBtn"><a class="logBtn" href="javascript:login();">登录</a>
@@ -198,6 +198,13 @@ style="display:none; top:300px; left:300px;z-index:9999">
         			$(".mask").hide();
         		}
         	});
+
+            $("#key_password").keydown(function(e){
+            　if(e.keyCode == 13){
+                 login();
+                 return false;
+                }
+            });
         });
 		function open_login(uri){
 			//uri = uri;
