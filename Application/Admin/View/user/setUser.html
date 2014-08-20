@@ -2,7 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtmBox">
 <head>
 	<include file='./Public/common/meta.html' />
+	<link rel="stylesheet" href="__PUBLIC__/js/plugins/validator-0.7.3/jquery.validator.css">
+    <script type="text/javascript" src="__PUBLIC__/js/plugins/validator-0.7.3/jquery.validator.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/plugins/validator-0.7.3/local/zh_CN.js"></script>
 	<script type="text/javascript" src="__PUBLIC__/js/plugins/preview/uploadPreview.min.js"></script>
+
 <title></title>
 </head>
 
@@ -31,7 +35,12 @@
 							</dl>
 							<dl class="clearfix">
 								<dt class="formName">昵称</dt>
-								<dd class="formInput"><input name="aliasname" class="xsInput fw01" type="text" value="{$user.aliasname}"></dd>
+								<dd class="formInput"><input name="aliasname" class="xsInput fw01" type="text" value="{$user.aliasname}" data-rule="required;length[4~];"></dd>
+								<dd class="formTip" style="display:none;"><span class="xsIcon icon_wrong"></span>不能为空</dd>
+							</dl>
+							<dl class="clearfix">
+								<dt class="formName">安全邮箱</dt>
+								<dd class="formInput"><input name="email" class="xsInput fw01" type="text" value="{$user.email}" data-rule="required;email;"></dd>
 								<dd class="formTip" style="display:none;"><span class="xsIcon icon_wrong"></span>不能为空</dd>
 							</dl>
 
@@ -49,18 +58,18 @@
 								<dt class="formName">性别</dt>
 								<dd class="formInput">
 									<input type="hidden" id="grade" name="grade" value="">
-									<label class="sexF"><input name="sex" type="radio">男</label>
-									<label class="sexF"><input name="sex" type="radio">女</label>
-									<label class="sexF"><input name="sex" type="radio">保密</label>
+									<label class="sexF"><input name="sex" type="radio" value="男" <if condition="$user.grade eq '男'">checked</if>>男</label>
+									<label class="sexF"><input name="sex" type="radio" value="女" <if condition="$user.grade eq '女'">checked</if>>女</label>
+									<label class="sexF"><input name="sex" type="radio" value="保密" <if condition="$user.grade eq '保密'">checked</if>>保密</label>
 								</dd>
 								
 							</dl>		
 							<dl class="clearfix userbirth">
 								<dt class="formName">生日</dt>
 								<dd class="formInput">
-									<input name="born_year" class="xsInput fw07" type="text" placeholder="年" value="{$user.born_year}">
-									<input name="born_month" class="xsInput fw07" type="text"  placeholder="月" value="{$user.born_month}">
-									<input name="born_day" class="xsInput fw07" type="text"  placeholder="日" value="{$user.born_day}">
+									<input name="born_year" class="xsInput fw07" type="text" placeholder="年" value="{$user.born_year}" data-rule=" integer; range[1940~2100]">
+									<input name="born_month" class="xsInput fw07" type="text"  placeholder="月" value="{$user.born_month}" data-rule=" integer; range[1~12]">
+									<input name="born_day" class="xsInput fw07" type="text"  placeholder="日" value="{$user.born_day}" data-rule=" integer; range[1~31]">
 								</dd>
 								
 							</dl>
@@ -107,6 +116,11 @@
 </html>
 <script type="text/javascript">
 	$(function () {
+		$("input[name='sex']").bind({
+			click: function(){
+				$("#grade").val($(this).val());
+			}
+		});
     	$("#img").uploadPreview({ Img: "userImg", Width: 120, Height: 120 });
     });
 
