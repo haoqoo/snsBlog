@@ -8,7 +8,7 @@ class IndexController extends Controller {
 	
 	public function ver() {  
 		$config = array(  
-		    'imageH' => 30, // 验证码图片高度  
+		    'imageH' => 40, // 验证码图片高度  
 		    'imageW' => 120, // 验证码图片宽度  
 		    'fontSize' => 15,
 		    'length' => 4
