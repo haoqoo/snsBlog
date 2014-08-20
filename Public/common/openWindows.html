@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="__PUBLIC__/js/plugins/validator-0.7.3/jquery.validator.css">
+<script type="text/javascript" src="__PUBLIC__/js/plugins/validator-0.7.3/jquery.validator.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/plugins/validator-0.7.3/local/zh_CN.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/plugins/preview/uploadPreview.min.js"></script>
 <!--弹出层-->
 <!-- 弹层蒙层（黑色半透明） -->
 <div class="mask" style="display:none;z-index:9998"></div>
@@ -61,7 +65,7 @@
         <p class="LaylogBtn"><a class="logBtn" href="javascript:reg();">注册</a>
         </p>
     </div>
-    <span id="err_msg" style="color:red;width:300px;font-size:12px;display:none;position:absolute; left:130px;top:250px;">验证码错误</span>
+    
     <!-- <div class="LayShareBox">
         <p class="regWay">使用第三方账号注册</p>
         <a class="shareIconBtn shareLogWeibo" href="#"></a>
@@ -83,12 +87,7 @@
     <p class="regTipN">注册成功！</p>
     <div class="LayRegWrap">
         <div class="LayRegBox">
-            <p class="regNotice">验证邮件已发送至
-                <span class="userEmail">xxxx@xxx.com</span>
-                <br>请<a class="cheMail">点击查收邮件</a>激活帐号。</p>
-            <p class="regNotice">没有收到邮件？请耐心等待。或者<a class="sendMail">重新发送</a>
-                <!--<span class="sendTime">重新发送 30</span>-->
-            </p>
+            
         </div>
         <p class="LayRegBack"><a class="" href="__ROOT__">返回登录首页>></a>
         </p>
@@ -97,8 +96,8 @@
 </div>
 <!-- /注册弹层 -->
 
-
 <div id="mailReg1" class="xsRegLayer" style="display:none; top:100px; left:400px;z-index:9999">
+<form id="form1">
     <a class="closeBtn">
         <span class="xsIcon icon_close"></span>
     </a>
@@ -109,14 +108,14 @@
     <div class="LayRegWrap">
         <div class="LayRegBox">
             <p class="logInput logName">
-                <input type="text" name="mailname" placeholder="邮箱名" class="xsInput regInput1">
+                <input type="text" name="mailname" placeholder="邮箱名" class="xsInput regInput1" data-rule="required;email;">
             </p>
             
         </div>
         <p class="LaylogBtn"><a class="logBtn" href="javascript:mail_reg();">注册</a>
         </p>
     </div>
-   
+</form>
 </div>
 
 <!-- 提示弹层 -->
@@ -265,6 +264,10 @@ style="display:none; top:300px; left:300px;z-index:9999">
 		}
 
 		function mail_reg(){
+            var valid = $('input[name="mailname"]').trigger("validate");               
+            if (!$('input[name="mailname"]').isValid()) {
+                return;
+            }
 			var mailname = $("input[name=mailname]").val();
 			$.post("__ROOT__/admin/active/mailReg",{'mailname':mailname},function(data){
 				 //alert(data.success);
