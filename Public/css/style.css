@@ -484,6 +484,7 @@
 .viewBlogSo .titShareBox { float: right; }
 .viewblogTxt { line-height: 20px; font-size: 14px; color: #1b1b1b;}
 .viewblogwrap { margin-top: 20px;}
+.viewblogTxt img {max-width: 748px;};
 
 .viewBlogR { margin-top:20px; }
 .viewRTit { font-size: 14px; margin-bottom: 10px;}

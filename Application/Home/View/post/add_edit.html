@@ -149,6 +149,9 @@
     	//实例化编辑器
     	 var um = UM.getEditor('myEditor', {
             /* 传入配置参数,可配参数列表看umeditor.config.js */
+            imageUrl:"__ROOT__/postimg/upload",             
+        	imagePath:"__ROOT__/",                   
+        	//imageFieldName:"upfile",
             toolbar: ['source undo redo | bold italic underline strikethrough superscript subscript forecolor backcolor | removeformat | insertorderedlist insertunorderedlist ','| justifyleft justifycenter justifyright justifyjustify | fontfamily fontsize |','link unlink image','| horizontal formula  ',  'preview fullscreen']
         });
 
