@@ -167,5 +167,23 @@ class PostController extends Controller {
 	}
 
 	//赞，收藏
+	public function favorites()
+	{
+		$state = "repeat";
+		$user     = session('__user__');
+		$PostFavorites = M('PostFavorites');
+		$count = $PostFavorites->where('type=%d and post_id = %d and user_id=%d ',array($_POST['type'],$_POST['post_id'],$user['id']))
+								->count();
+		if(empty($count)){
+			$PostFavorites->create($_POST);
+			$PostFavorites->user_id     = $user['id'];
+			
+			$PostFavorites->create_date = date("Y-m-d H:i:s");
+			$PostFavorites->add();
+			$state = "add";
+		}
+		$this->ajaxReturn($state);
+		
+	}
 
 }
