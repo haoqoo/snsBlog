@@ -34,6 +34,7 @@ class ActiveController extends Controller {
         $data['password'] = '123';
         $data['state'] = '1';
         $data['reg_type'] = '2';
+        $data['create_date'] = date("Y-m-d H:i:s");
         $id = $User->add($data);
 
         $key = base64_encode(base64_encode(md5("12"))."+".base64_encode($id.".mailactive"));
@@ -46,8 +47,6 @@ class ActiveController extends Controller {
     }    
 
     public function active($key){
-        header('Content-Type:text/html;charset=utf-8');
-     
         $arr = explode("+", base64_decode($key));
        
         $ids = base64_decode($arr[1]);
@@ -56,13 +55,26 @@ class ActiveController extends Controller {
        
 
         $User = M("Users");
-        // $map['id']="11";
-        // $data = $User->where($map)->find();
-        // $data->state = 2;
-        //$User->save($data);
+        $map['id']=$a2[0];
+        $data = $User->where($map)->find();
+        if($data["state"] == 2){
+            $this->assign('msg', "url无效");
+            return $this->display('active');
+        }
+       
+        $createDate = new \Org\Util\Date($data["create_date"]);
+        $date = new \Org\Util\Date();
+        $dd = $createDate->dateDiff($date, 'h');
+        if($dd > 2){
+            $this->assign('msg', "url已过期，请重新注册");
+            return $this->display('active');
+        }
+               
         $User-> where('id='.$a2[0])->setField("state", 2);
 
-        echo '激活成功，转入<a href="http://localhost'.__ROOT__.'">首页</a>登录';
+       // echo '激活成功，转入<a href="http://localhost'.__ROOT__.'">首页</a>登录';
+        $this->assign('msg', '激活成功，转入<a href="http://localhost'.__ROOT__.'">首页</a>登录');
+        $this->display('active');
     }
 
 }

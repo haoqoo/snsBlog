@@ -44,6 +44,7 @@ class UserController extends Controller {
             $User = M("Users");
             $map['username']=$username;
             $map['password']=$password;
+            $map['state']=2;
             $user = $User->where($map)->find(); //查询出来的是数组,一条数据库数据的数组。
             //print_r($user) ;
             //echo 'user login:'.$user['username'].'<br>';           
@@ -71,6 +72,7 @@ class UserController extends Controller {
             $data['password'] = '123';
             $data['state'] = '2';
             $data['reg_type'] = '1';
+            $data['create_date'] = date("Y-m-d H:i:s");
             $User->add($data);
 
         }else{
@@ -138,6 +140,20 @@ class UserController extends Controller {
 
         //$this->success('操作完成','setUser2.shtml',1);
         $this->redirect('/admin/user/setUser');
+    }
+
+    public function regCheck($username='', $type='user'){
+        $User = M("Users");
+        $map['username'] = $username;
+        $data = $User->where($map)->find();
+        
+        $msg = ($type == "email")?"邮箱已占用":"用户名已占用";
+        if(isset($data["id"])){
+            $ajax['error']  = $msg;
+        }else{
+            $ajax['ok']  = "true";
+        }
+        $this->ajaxReturn($ajax); 
     }
 
 }
