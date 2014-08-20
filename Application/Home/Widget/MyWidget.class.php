@@ -22,7 +22,13 @@
 	 	public function getUserVal($user_id,$field='username'){
 	 		$Users = new \Admin\Model\UsersModel();
 			$user = $Users->where('id=%d',array($user_id))->find();
-			return $user[$field];
+			$val = $user[$field];
+			if($field=='header_img'){
+				if(empty($val)){//默认头像
+					$val = C('USER_HEADER');
+				}
+			}
+			return $val;
 	 	}
 
 	 	//通过post_id获取img

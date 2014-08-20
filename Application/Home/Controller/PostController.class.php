@@ -155,7 +155,7 @@ class PostController extends Controller {
 
 		$Post    = M('Posts');
 		$user_id = $Post->where('id=%d', array($_POST['post_id']))->getField('user_id');
-		if ($user[id] != $user_id) {
+		if ($user['id'] != $user_id) {
 			$OperationLogs = D('OperationLogs', 'Logic');
 			$logInfoes     = $OperationLogs->buildLogInfo($id, 'comments', '评论', $user['id'], $user_id);
 			$OperationLogs->opLog($logInfoes);
@@ -176,11 +176,22 @@ class PostController extends Controller {
 								->count();
 		if(empty($count)){
 			$PostFavorites->create($_POST);
-			$PostFavorites->user_id     = $user['id'];
-			
+			$PostFavorites->user_id     = $user['id'];			
 			$PostFavorites->create_date = date("Y-m-d H:i:s");
-			$PostFavorites->add();
-			$state = "add";
+			$id = $PostFavorites->add();
+			
+			$Post    = M('Posts');
+			$user_id = $Post->where('id=%d', array($_POST['post_id']))->getField('user_id');
+			if ($user['id'] != $user_id) {
+					$type = $_POST['type'];
+				$action = '收藏';
+				if($type==2) {$action='赞';}
+				$OperationLogs = D('OperationLogs', 'Logic');
+				$logInfoes     = $OperationLogs->buildLogInfo($id, 'post_favorites', $action, $user['id'], $user_id);
+				$OperationLogs->opLog($logInfoes);
+			}
+
+			$state ="add";
 		}
 		$this->ajaxReturn($state);
 		

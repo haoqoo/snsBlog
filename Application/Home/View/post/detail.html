@@ -27,9 +27,9 @@
 						</div>
 						<div class="viewBlogSo clearfix">
 							<p class="vBlogSort">所属专辑：{$album_name}</p>
-							<if condition="$is_my_post">
+							<!-- <if condition="$is_my_post">
 							<p class="titShareBox"><span class="shareTxt">分享：</span><a class="shareBtn"><span class="shareIcon icon_weibo"></span></a><a class="shareBtn"><span class="shareIcon icon_qzone"></span></a><a class="shareBtn"><span class="shareIcon icon_weixin"></span></a></p>
-							</if>
+							</if> -->
 						</div>							
 						
 						<div class="viewblogwrap">
@@ -78,7 +78,7 @@
 									<foreach name="comment_list" item="vo">
 									<li class="clearfix">
 										<div class="noUserImg"><a class="userPic" href="#">
-										<img src="__PUBLIC__/images/userL.jpg" alt="" class="userImg"></a></div>
+										<img src="__PUBLIC__/{:W('My/getUserVal',array($vo['user_id'],'header_img'))}" alt="" class="userImg" width="60" height="60"></a></div>
 										<div class="notiDetail">
 											<div class="notiFBox">
 												<p class="notiUser"><a class="notiName" href="#">
