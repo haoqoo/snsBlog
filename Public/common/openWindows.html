@@ -268,6 +268,10 @@ style="display:none; top:300px; left:300px;z-index:9999">
 				 	$(".mask").hide();	
 				 	$("#xsReg1").hide();	
 				 	$("#xsReg2").show();
+
+                    $("input[name=regname]").val("");    
+                    $("#form0").validator( "cleanUp" );
+
 				 }else{
 				 	$("#err_msg").show();	
 				 	flash_img();
@@ -293,14 +297,20 @@ style="display:none; top:300px; left:300px;z-index:9999">
 				 	$(".mask").hide();	
 				 	$("#mailReg1").hide();	
 				 	$("#mailReg2").show();
+
+                    $("#regmail").text(mailname);
+                    var m1 = mailname.substring(mailname.indexOf("@")+1);
+                    var domain = m1.substring(0,m1.indexOf("."));
+                    $("#toMail").attr("href","http://mail."+domain+".com");
+
+                    $("input[name=mailname]").val("");
+                    $("#form1").validator( "cleanUp" );
+
 				 }else{
 				 	$("#err_msg").show();	
 				 };//undo 
 
-                 $("#regmail").text(mailname);
-                 var m1 = mailname.substring(mailname.indexOf("@")+1);
-                 var domain = m1.substring(0,m1.indexOf("."));
-                 $("#toMail").attr("href","http://mail."+domain+".com");
+                 
 			})	
 		}
 
