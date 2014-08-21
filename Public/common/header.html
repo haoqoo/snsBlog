@@ -68,35 +68,8 @@
 							<p class="noticeTit">我的消息</p>
 							<!-- 通知弹层 点击【我的消息】出现 -->
 							<div class="noticeListBox">
-								<ul class="noticeList">
-									<li class="clearfix">
-										<a class="noticeImg"><img src="__PUBLIC__/{:W('My/getUserVal',array($vo['user_id'],'header_img'))}" alt></a>
-										<div class="noticeMain">
-											<p class="noticeName"><a class="nameTxt">用户昵称八个字啊</a></p>
-											<p class="noticeCon">转采了你的专辑<a class="noAlName">小小花蛤</a>到<a class="noAlNameT">小小花蛤</a></p>
-										</div>
-									</li>
-									<li class="clearfix">
-										<a class="noticeImg"><img src="__PUBLIC__/{:W('My/getUserVal',array($vo['user_id'],'header_img'))}" alt></a>
-										<div class="noticeMain">
-											<p class="noticeName"><a class="nameTxt">用户昵称八个字啊</a></p>
-											<p class="noticeCon">转采了你的专辑<a class="noAlName">小小花蛤</a>到<a class="noAlNameT">小小花蛤</a></p>
-										</div>
-									</li>
-									<li class="clearfix">
-										<a class="noticeImg"><img src="__PUBLIC__/{:W('My/getUserVal',array($vo['user_id'],'header_img'))}" alt></a>
-										<div class="noticeMain">
-											<p class="noticeName"><a class="nameTxt">用户昵称八个字啊</a></p>
-											<p class="noticeCon">转采了你的专辑<a class="noAlName">小小花蛤</a>到<a class="noAlNameT">小小花蛤</a></p>
-										</div>
-									</li>
-									<li class="clearfix">
-										<a class="noticeImg"><img src="__PUBLIC__/{:W('My/getUserVal',array($vo['user_id'],'header_img'))}" alt></a>
-										<div class="noticeMain">
-											<p class="noticeName"><a class="nameTxt">用户昵称八个字啊</a></p>
-											<p class="noticeCon">转采了你的专辑<a class="noAlName">小小花蛤</a>到<a class="noAlNameT">小小花蛤</a></p>
-										</div>
-									</li>									
+								<ul class="noticeList">										
+									{:W('Home/My/getPostLog')}																		
 								</ul>
 								<p class="noticeMore"><a class="noticeMoreTxt">查看所有消息>></a></p>
 							</div>

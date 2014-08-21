@@ -51,4 +51,25 @@
 	 		$this->assign('img_list',$results);
         	$this->display('Category:album_img');
 	 	}
+
+	 	//查询用户操作文章日志
+	    public function getPostLog(){
+	        $user = session('__user__');
+	        
+	        $Logs = M("OperationLogs");
+	        $map['oper_notice_id'] = $user["id"];
+	        $data = $Logs->where($map)->select();
+	        // return $data;
+	        $this->assign('logList',$data);
+	        // $this->display('Index:log_list');
+	        $this->display('./Public/common/log_list.html');
+	    }
+
+	    public function getPostTitle($id=0, $table=''){
+	    	$t = "wq_".$table;
+	    	$Model = new \Think\Model();
+	    	$sql = "select p.title from wq_posts p, ".$t." t where p.id = t.post_id where t.id =".$id;
+	    	$title = $Model->query($sql); 
+	    	return $title;
+	    }
 	}

@@ -99,8 +99,6 @@ class PersonalController extends Controller {
         $this->redirect('/admin/personal/getMsgList');
     }
 
-    //查询用户操作日志，不包含私信
-    public function getOperLog(){
-        $user = session('__user__');
-    }
+    
+
 }
