@@ -86,6 +86,7 @@ class PersonalController extends Controller {
         
     }
 
+    //更新私信为已读状态
     public function updateUserMsgState($ids=''){
         $idarr = explode(",",$ids);
         
@@ -96,5 +97,10 @@ class PersonalController extends Controller {
         }
         // $this->success('操作完成','getMsgList.shtml',0);
         $this->redirect('/admin/personal/getMsgList');
+    }
+
+    //查询用户操作日志，不包含私信
+    public function getOperLog(){
+        $user = session('__user__');
     }
 }

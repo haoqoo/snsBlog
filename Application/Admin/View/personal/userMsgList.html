@@ -27,7 +27,9 @@
 						</ul>
 					</div>
 						
-					<div id="dread" style="margin:10px 20px 10px 0;text-align:right;font-size:12px;"><a href="javascript:setRead();">设置为已读</a></div>
+					<div id="dread" style="margin:10px 20px 10px 0;text-align:right;font-size:12px;padding-right:10px;"><a href="javascript:setRead();">设置为已读</a>
+					<input type="checkbox" id="all_box">	
+					</div>
 					<div class="noticeWBox">
 						<!-- 每页10条 -->
 						<ul id="pageList" class="noticeWList">
@@ -70,6 +72,21 @@
 		if({$read} == 2){
 			$("#dread").hide();
 		}
+
+		$("#all_box").bind({
+			click: function(){
+				// alert($(this).attr("checked"));
+				if($(this).attr("checked")=="checked"){
+					$("input[name='state']").each(function(){
+						$(this).attr("checked", "checked");
+					});
+				}else{
+					$("input[name='state']").each(function(){
+						$(this).attr("checked", false);
+					});
+				}
+			}
+		});
 	});
 	function read(s, a){
 		$("#isRead").val(s);
