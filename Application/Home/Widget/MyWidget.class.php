@@ -2,6 +2,20 @@
 	namespace Home\Widget;
 	use Think\Controller;
 	class MyWidget extends Controller {
+		//用户专辑统计
+		public function albumCount($user_id){
+			$Albums = M('Albums');
+			$count = $Albums->where('user_id=%d',array($user_id))->count();
+			return isset($count)?$count:0;
+		}
+
+		//用户收藏,赞 文章统计
+		public function userPostFavoritesCount($user_id=0,$type)
+		{
+			$PostFavorites = M('PostFavorites');	
+	 		$count = $PostFavorites->where('type=%d and user_id=%d',array($type,$user_id))->count();
+	 		return isset($count)?$count:0;
+		}
 
 	    public function postCommentCount($post_id){
 	        $Comments = M('Comments');

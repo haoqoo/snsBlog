@@ -234,13 +234,15 @@ style="display:none; top:300px; left:300px;z-index:9999">
 				 //alert(data.success);
                  var uri =  $("input[name=uri_hidden]").val();
 				 if (data.success){
-
-				 };//undo 
-                 if(uri==null || uri==""){
+                     if(uri==null || uri==""){
                     location.href='__ROOT__/cate';
-                }else{
-                      location.href=uri;
-                }
+                    }else{
+                          location.href=uri;
+                    }
+				 }else{
+                    alert("用户名密码错误或帐号未激活，导致登录失败！");
+                 }
+                
 				 
 			});
                 

@@ -535,3 +535,22 @@
 .formOKTipL a{ color:#e60012; }
 .LayMgeBox { margin-top: 20px; text-align: left;}
 .LayMgeBox a { font-size: 12px; color: #cfa972;}
+
+
+ #tiles {
+        text-align: center;
+        list-style-type: none;
+        position: relative;
+        margin: 0;
+        padding: 0;
+    }
+#tiles li {
+        width: 208px;
+        background-color: #fff;
+        border: solid 1px #e5e5e5;
+        display: none;
+        cursor: pointer;
+}
+.fallList li {
+        margin:0;
+    }

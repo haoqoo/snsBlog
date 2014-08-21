@@ -1,3 +1,12 @@
+<if condition="$post_list eq null">
+    <li>
+        <a class="albumAddBox" href="__ROOT__/post/add?cate={$category_id}">
+            <span class="albumAdd"></span>
+            <p class="albumAddTxt">添加文章</p>
+        </a>
+    </li>
+</if>
+
 <foreach name="post_list" item="vo">
     <li>
         <div class="blogMain">
@@ -15,14 +24,15 @@
                 </p>
                 <div class="blogCon">
                     <a href="__ROOT__/post/{$vo.id}">
-                        <span class="conTxt">{$vo.content|htmlspecialchars_decode}</span>
+                        <span class="conTxt">
+                            {$vo.content|htmlspecialchars_decode}</span>
                     </a>
                 </div>
             </if>
         </div>
         <div class="blogACBox clearfix">
             <p class="blogAuthor">
-                <a class="authorHead" >
+                <a class="authorHead" href="__ROOT__/admin/personal/view.shtml?id={$vo.user_id}">
                     <img src="__PUBLIC__/{:W('My/getUserVal',array($vo['user_id'],'header_img'))}" alt="" height="26" width="26">
                 </a>
                 <a class="authorName">{:W('My/getUserVal',array($vo['user_id'],'aliasname'))}</a>
@@ -31,10 +41,8 @@
         </div>
         <div class="blogDate clearfix">
             <p class="blogAc">
-                <a class="zan" post_id="{$vo.id}">
-                赞({:W('My/postFavoritesCount',array($vo["id"],2))})</a>
-                <a class="shoucang" post_id="{$vo.id}">
-                收藏({:W('My/postFavoritesCount',array($vo["id"],1))})</a>
+                <a class="zan" post_id="{$vo.id}">赞({:W('My/postFavoritesCount',array($vo["id"],2))})</a>
+                <a class="shoucang" post_id="{$vo.id}">收藏({:W('My/postFavoritesCount',array($vo["id"],1))})</a>
                 <a class="comment" post_id="{$vo.id}">评论({:W('My/postCommentCount',array($vo["id"]))})</a>
             </p>
         </div>
