@@ -43,6 +43,16 @@ class CategoryController extends Controller {
 		$this->display(C('CATE_VIEW')."album_wookmark");
 	}
 
+	//用户的专辑
+	public function wookmarkUserIdAjax($page_no, $user_id) {
+		$page_num = ($page_no-1)*20;
+		$Albums   = M("Albums");
+		$ablums   = $Albums->where('user_id=%d', array($user_id))->limit($page_num, 30)->select();
+		$this->assign('userInfo', true);
+		$this->assign('album_list', $ablums);
+		$this->display(C('CATE_VIEW')."album_wookmark");
+	}
+
 	public function show_post() {
 		$id = $_GET['id'];
 		if (isset($id)) {

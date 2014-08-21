@@ -61,9 +61,9 @@
 			<div class="showMain clearfix">
 				<div class="showNavBox clearfix">
 					<ul class="showNav">
-						<li><a class="showMod cur" href="#">{:W('Home/My/userPostFavoritesCount',array($uid,1))} 收藏</a></li>
+						<li><a class="showMod" href="__ROOT__/admin/personal/view.shtml?id={$uid}">{:W('Home/My/userPostFavoritesCount',array($uid,1))} 收藏</a></li>
 						<li><a class="showMod" href="__ROOT__/admin/personal/view.shtml?id={$uid}&type=album">{:W('Home/My/albumCount',array($uid))} 专辑</a></li>
-						<li><a class="showMod" href="__ROOT__/admin/personal/view.shtml?id={$uid}&type=zhan">{:W('Home/My/userPostFavoritesCount',array($uid,2))} 赞</a></li>
+						<li><a class="showMod cur" href="#">{:W('Home/My/userPostFavoritesCount',array($uid,2))} 赞</a></li>
 					</ul>
 					<div class="showSear">
 						<div class="navSearBox"><input type="text" placeholder="请输入关键字" class="navSearInput"><span class="xsIcon icon_search"></span></div>
@@ -133,7 +133,7 @@
                     url: "__ROOT__/post/wookmarkPostFavoritesAjax",
                     dataType: "html",
                     data:{
-                    	'type':1,
+                    	'type':2,
                     	'page_no':page_no,
                     	'user_id':user_id
                     },

@@ -178,6 +178,7 @@
                        		$tiles.append(html);
                         	//重新展示
                         	applyLayout();
+                             bindEvent();
                     	}
                         
                     }
@@ -189,34 +190,13 @@
 
 
         applyLayout();
+        bindEvent();
 
 
         $window.bind('scroll.wookmark', onScroll);
 
-        $("a[class=btnC]").on("click",function(){
-        	var isLogin = ($(".unLogList").length <=0);
-        	if (!isLogin) {
-        		alert("请先登录，如果没有帐号请注册帐号。");
-        		return;
-        	};
-            var album_id = $(this).attr("album_id");
-            alert(album_id);
-        	$.ajax({
-                    url: "__ROOT__/album/favorites",                    
-                    dataType: "json",
-                    data:{
-                        'album_id':album_id                        
-                    },
-                    success: function(data) {
-                        alert(data.success);                                           
-                        if(data.success){
-                            alert("关注成功！");
-                        }
-                    }
-                });
-        });
-
-        $(".zan").on('click',function(e){
+        function bindEvent(){
+             $(".zan").on('click',function(e){
             e.preventDefault();
             <if condition="session('__user__') neq null">
             $.post("__ROOT__/post/favorites",{
@@ -260,6 +240,11 @@
             e.preventDefault();
             location.href="__ROOT__/post/"+$(this).attr("post_id");
         });
+        }
+
+        
+
+       
 
 
     })(jQuery);
