@@ -16,13 +16,15 @@ return array(
 	// 开启路由
 	'URL_ROUTER_ON'   => true,
 	'URL_ROUTE_RULES' => array(
+		'cate/search' => 'Home/Category/search',
 		'cate/wookmarkAjax'     => 'Home/Category/wookmarkAjax',
+		'cate/wookmarkByUserIdAjax' => 'Home/Category/wookmarkUserIdAjax',
 		'cate/wookmarkPostAjax' => 'Home/Category/wookmarkPostAjax',
 		'cate/:id\d/post'       => 'Home/Category/show_post',
 		'cate/:id\d'            => 'Home/Category/show_album',
 		'cate'                  => 'Home/Category/index',
 
-		'album/wookmarkAjax' => 'Home/Album/wookmarkAjax',
+		'album/wookmarkAjax' => 'Home/Album/wookmarkAjax',		
 		'album/add'          => 'Home/Album/add',
 		'album/saveAjax'     => 'Home/Album/saveAjax',
 		'album/save_update'  => 'Home/Album/save_update',
@@ -32,6 +34,7 @@ return array(
 		'album/:id\d'        => 'Home/Album/detail',
 
 		'post/wookmarkAjax' => 'Home/Post/wookmarkAjax',
+		'post/wookmarkPostFavoritesAjax' => 'Home/Post/wookmarkPostFavoritesAjax',
 		'post/add'          => 'Home/Post/add',
 		'post/save_update'  => 'Home/Post/save_update',
 		'post/comment'      => 'Home/Post/comment',
