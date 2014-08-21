@@ -111,4 +111,15 @@
 	    	$title = $Model->query($sql); 
 	    	return $title[0]["title"];
 	    }
+
+	    public function getLogTitle($id=0, $table=''){
+	    	$OperationSql = M("OperationSql");
+	        $map['oper_table'] = $table;
+	        $data = $OperationSql->where($map)->find();
+	        $sql = $data["view_sql"];
+	        $sql = str_replace("?", $id, $sql);
+	        $Model = new \Think\Model();
+	        $title = $Model->query($sql); 
+	    	return $title[0]["title"];
+	    }
 	}
