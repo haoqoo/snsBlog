@@ -84,4 +84,10 @@ class CategoryController extends Controller {
 		$this->display(C('CATE_VIEW')."post_wookmark");
 	}
 
+	public function search(){
+		$key = $_GET['keyword'];
+		$this->assign('keyword', $key);
+		$this->display(C('CATE_VIEW')."album_search");
+	}
+
 }

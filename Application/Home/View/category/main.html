@@ -49,7 +49,7 @@
                     <li class="midBox">
                         <div class="midReg midSearch">
                             <div class="midForm">
-                                <input type="text" class="midInput" placeholder="请输入关键字"><a class="btnA" href="#">搜索</a>
+                                <input name="keyword" type="text" class="midInput" placeholder="请输入最少2个字符的关键字"><a class="btnA" href="javascript:key_search();">搜索</a>
                             </div>
                             <p class="relWords">热门搜索：<a class="serTxt">app</a><a class="serTxt">宠物</a>
                             </p>
@@ -97,6 +97,16 @@
 
 
         <include file="./Public/common/openWindows.html"/>
+        <script type="text/javascript">
+            function key_search(){
+                var keyword = $("input[name=keyword]").val();
+                if(keyword==null||keyword==""||keyword.length<2){
+                    alert("请输入最少2个字符的关键字");
+                    return;
+                }
+                location.href="__ROOT__/cate/search?keyword="+keyword;
+            }
+        </script>
 
 </body>
 

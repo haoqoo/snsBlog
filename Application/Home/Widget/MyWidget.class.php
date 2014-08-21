@@ -2,6 +2,31 @@
 	namespace Home\Widget;
 	use Think\Controller;
 	class MyWidget extends Controller {
+
+		//专辑查询统计
+		public function searchAlbumCount($keyword)
+		{
+			$Albums = M('Albums');
+			$map['name'] = array('like','%'.$keyword.'%');
+			$map['discription'] = array('like','%'.$keyword.'%');
+			$map['_logic'] = 'OR';			
+			$count = $Albums->where($map)->count();
+			//echo $Albums->getLastSql();		
+			return isset($count)?$count:0;
+		}
+
+		//文章查询统计
+		public function searchPostCount($keyword)
+		{
+			$Posts = M('Posts');
+			$map['title'] = array('like','%'.$keyword.'%');
+			$map['content'] = array('like','%'.$keyword.'%');
+			$map['_logic'] = 'OR';			
+			$count = $Posts->where($map)->count();
+			//echo $Albums->getLastSql();		
+			return isset($count)?$count:0;
+		}
+
 		//用户专辑统计
 		public function albumCount($user_id){
 			$Albums = M('Albums');
