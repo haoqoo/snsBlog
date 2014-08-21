@@ -8,7 +8,7 @@ class PersonalController extends Controller {
     }
 
     
-    public function view($id='',$type='shoucang'){
+    public function view($id=''){
         $userId = $id;
         
         $User = M("Users");
@@ -17,17 +17,8 @@ class PersonalController extends Controller {
 
         $this->assign("uid", $id);
         $this->assign("person", $data);
-        if($type=='album'){
-             $this->display('home_album');  
-        }elseif ($type=='zhan') {
-             $this->display('home_zhan');  
-        }else{
-           $this->display('home');    
-        }
-       
+        $this->display('home');  
     }
-
-
 
     public function sendMsg($msg, $uid){
         $user = session('__user__');
@@ -108,6 +99,5 @@ class PersonalController extends Controller {
         $this->redirect('/admin/personal/getMsgList');
     }
 
-    
 
 }
