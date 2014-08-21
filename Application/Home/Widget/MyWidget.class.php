@@ -107,8 +107,8 @@
 	    public function getPostTitle($id=0, $table=''){
 	    	$t = "wq_".$table;
 	    	$Model = new \Think\Model();
-	    	$sql = "select p.title from wq_posts p, ".$t." t where p.id = t.post_id where t.id =".$id;
+	    	$sql = "select p.title from wq_posts p, ".$t." t where p.id = t.post_id and t.id =".$id;
 	    	$title = $Model->query($sql); 
-	    	return $title;
+	    	return $title[0]["title"];
 	    }
 	}
