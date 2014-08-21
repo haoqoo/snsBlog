@@ -51,7 +51,7 @@
                                 <a class="btnF" href="__ROOT__/album/edit/{$album.id}">编辑专辑</a>
                                 <!-- <a class="btnF" href="#">批量管理采集</a>-->
                         </p>
-                        <p class="titShareBox">
+                        <!-- <p class="titShareBox">
                             <span class="shareTxt">分享：</span>
                             <a class="shareBtn">
                                 <span class="shareIcon icon_weibo"></span>
@@ -62,15 +62,14 @@
                             <a class="shareBtn">
                                 <span class="shareIcon icon_weixin"></span>
                             </a>
-                        </p>
+                        </p> -->
                         </if>
                     </div>
                 </div>
                 <div class="alUserBox clearfix">
                     <div class="alUser">
-                        <a class="nearImg" href="#">
-                            <img src="__PUBLIC__/images/userL.jpg" alt="">
-                        </a><a class="nearTxt">{$user.username}</a>
+                        <a class="nearImg" href="__ROOT__/admin/personal/view.shtml?id={$user.id}">
+                           <img src="__PUBLIC__/{:W('My/getUserVal',array($user['id'],'header_img'))}" alt="" height="26" width="26"></a><a class="nearTxt">{$user.username}</a>
                     </div>
 
                     <div class="alBtn">
