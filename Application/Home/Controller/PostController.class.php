@@ -47,6 +47,17 @@ class PostController extends Controller {
 		$this->display(C('POST_VIEW')."comment_wookmark");
 	}
 
+	//用户关注的文章
+	public function wookmarkPostFavoritesAjax($page_no, $user_id,$type) {
+		$page_num = ($page_no-1)*20;
+		$Posts = M("Posts");
+		$joinSql ='wq_post_favorites on wq_posts.id = wq_post_favorites.post_id and wq_post_favorites.user_id='.$user_id.' and wq_post_favorites.type='.$type;
+		$posts = $Posts->join($joinSql)->limit($page_num, 30)->field('wq_posts.*')->select();
+		
+		$this->assign('post_list', $posts);
+		$this->display(C('POST_VIEW')."post_wookmark");
+	}
+
 	public function add() {
 		$user   = session('__user__');
 		$Albums = M('Albums');
@@ -84,11 +95,18 @@ class PostController extends Controller {
 		$Post    = M('Posts');
 		$Post->create($_POST);
 		if (!empty($id)) {
-			$Post->save();
+			$Post->save();			
 		} else {
 			$Post->state       = 1;
 			$Post->create_date = date("Y-m-d H:i:s");
 			$id                = $Post->add();
+			//自己的文章，默认收藏
+			$PostFavorites = M('PostFavorites');
+			$PostFavorites->create();
+			$PostFavorites->post_id = $id; 
+			$PostFavorites->user_id     = $_POST['user_id'];			
+			$PostFavorites->create_date = date("Y-m-d H:i:s");
+			$PostFavorites->add();
 		}
 
 		//对文章内容进行正则img，抓取img

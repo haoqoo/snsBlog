@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtmBox">
 <head>
 	<include file='./Public/common/meta.html' />
-<title></title>
+	 <script type="text/javascript" src="__PUBLIC__/js/plugins/Wookmark/jquery.wookmark.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/plugins/Wookmark/jquery.imagesloaded.js"></script>
 </head>
 
 <body>
@@ -18,9 +19,9 @@
 			<input id="uid" type="hidden" value="{$uid}">
 			<div class="userMain clearfix">
 				<div class="userInfoBox clearfix">
-					<div class="userImgBox"><a class="userImg"><img src="__PUBLIC__/{$person.header_img}" alt=""></a></div>
+					<div class="userImgBox"><a class="userImg"><img src="__PUBLIC__/{$person.header_img}" alt=""  onerror="javascript:this.src='__PUBLIC__/images/user_default.png';" ></a></div>
 					<div class="userDetaiBox">
-						<p class="userName"><a href="">一二三四五六七八</a></p>
+						<p class="userName"><a href="">{$person.aliasname}</a></p>
 						<p class="deBox"><a class="sendMsg" href="javascript:open_msg('{$person.username}');"><span class="xsIcon icon_primsg"></span><span class="iconTxt">发私信</span></a></p>
 						<p class="deBox"><a class="addAtt" href="#"><span class="xsIcon icon_addatt"></span><span class="iconTxt">加关注</span></a></p>
 					</div>
@@ -75,318 +76,14 @@
 
 			<!-- 瀑布流 -->
 			<div class="fallMain">
-				<div class="falling clearfix">
-					<ul class="fallList blogfall">
-						<li>
-							<div class="blogMain">
+                <div class=" " id="wmain" style="position: relative;margin-top:10px;">
+                    <ul class="fallList blogfall" id='tiles'>
+                        				
+                    </ul>
 
-								<div class="blogCon">
-									<a href=""><img src="../images/pic2.jpg" alt=""></a>
-								</div>
-								<p class="blogTit"><a href="#">文章标题文章标题</a></p>								
-							</div>
-							<div class="blogACBox clearfix">
-								<p class="blogAuthor">
-									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
-									<a class="authorName">一二三四五六七八</a>
-								</p>
-								<!--
-								<p class="blogCome">来源：微博</p>
-								-->
-							</div>
-							<div class="blogDate clearfix">
-								<p class="blogAc">
-									<a class="zan">赞(90)</a>
-									<a class="shoucang">收藏(90)</a>
-									<a class="comment">评论(90)</a>
-								</p>
-							</div>
-						</li>
-						<li>
-							<div class="blogMain">
-								<p class="blogTit"><a href="#">文章标题文章标题</a></p>
-								<div class="blogCon">
-									<a href=""><span class="conTxt">Moto 360项目被媒体曝光已久,但外界对其配置参数所知甚少.现在外媒透露Moto 360的一些配置参数.Moto 360机身采用全塑料材质,表盘厚13.5mm,圆形表盘直径48mm,具备无线充电功能.其全塑材质机身与此前Moto 360的宣传造成的期待给</span></a>
-								</div>
-							</div>
-							<div class="blogACBox clearfix">
-								<p class="blogAuthor">
-									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
-									<a class="authorName">一二三四五六七八</a>
-								</p>
-								<!--
-								<p class="blogCome">来源：微博</p>
-								-->
-							</div>
-							<div class="blogDate clearfix">
-								<p class="blogAc"><!-- 赞过 增加class：have -->
-									<a class="zan have" title="取消赞">赞(90)</a>
-									<a class="shoucang">收藏(90)</a>
-									<a class="comment">评论(90)</a>
-								</p>
-							</div>
-						</li>
-					</ul>
-					<ul class="fallList">
-						<li>
-							<div class="blogMain">
 
-								<div class="blogCon">
-									<a href=""><img src="../images/pic1.jpg" alt=""></a>
-								</div>
-								<p class="blogTit"><a href="#">文章标题文章标题</a></p>								
-							</div>
-							<div class="blogACBox clearfix">
-								<p class="blogAuthor">
-									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
-									<a class="authorName">一二三四五六七八</a>
-								</p>
-								<!--
-								<p class="blogCome">来源：微博</p>
-								-->
-							</div>
-							<div class="blogDate clearfix">
-								<p class="blogAc">
-									<a class="zan">赞(90)</a>
-									<a class="shoucang">收藏(90)</a>
-									<a class="comment">评论(90)</a>
-								</p>
-							</div>
-						</li>
-						<li>
-							<div class="blogMain">
-								<p class="blogTit"><a href="#">文章标题文章标题文章标题文章标题文章标题文章标题</a></p>
-								<div class="blogCon">
-									<a href=""><span class="conTxt">Moto 360项目被媒体曝光已久,但外界对其配置参数所知甚少.现在外媒透露Moto 360的一些配置参数.Moto 360机身采用全塑料材质,表盘厚13.5mm,圆形表盘直径48mm,具备无线充电功能.其全塑材质机身与此前Moto 360的宣传造成的期待给</span></a>
-								</div>
-							</div>
-							<div class="blogACBox clearfix">
-								<p class="blogAuthor">
-									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
-									<a class="authorName">一二三四五六七八</a>
-								</p>
-								<!--
-								<p class="blogCome">来源：微博</p>
-								-->
-							</div>
-							<div class="blogDate clearfix">
-								<p class="blogAc"><!-- 赞过 增加class：have -->
-									<a class="zan have">赞(90)</a>
-									<a class="shoucang">收藏(90)</a>
-									<a class="comment">评论(90)</a>
-								</p>
-							</div>
-						</li>
-					</ul>					
-					<ul class="fallList">
-						<li>
-							<div class="blogMain">
-
-								<div class="blogCon">
-									<a href=""><img src="../images/pic1.jpg" alt=""></a>
-								</div>
-								<p class="blogTit"><a href="#">文章标题文章标题</a></p>								
-							</div>
-							<div class="blogACBox clearfix">
-								<p class="blogAuthor">
-									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
-									<a class="authorName">一二三四五六七八</a>
-								</p>
-								<!--
-								<p class="blogCome">来源：微博</p>
-								-->
-							</div>
-							<div class="blogDate clearfix">
-								<p class="blogAc">
-									<a class="zan">赞(90)</a>
-									<a class="shoucang">收藏(90)</a>
-									<a class="comment">评论(90)</a>
-								</p>
-							</div>
-						</li>
-						<li>
-							<div class="blogMain">
-								<p class="blogTit"><a href="#">文章标题文章标题</a></p>
-								<div class="blogCon">
-									<a href=""><span class="conTxt">Moto 360项目被媒体曝光已久,但外界对其配置参数所知甚少.现在外媒透露Moto 360的一些配置参数.Moto 360机身采用全塑料材质,表盘厚13.5mm,圆形表盘直径48mm,具备无线充电功能.其全塑材质机身与此前Moto 360的宣传造成的期待给</span></a>
-								</div>
-							</div>
-							<div class="blogACBox clearfix">
-								<p class="blogAuthor">
-									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
-									<a class="authorName">一二三四五六七八</a>
-								</p>
-								<!--
-								<p class="blogCome">来源：微博</p>
-								-->
-							</div>
-							<div class="blogDate clearfix">
-								<p class="blogAc"><!-- 赞过 增加class：have -->
-									<a class="zan have">赞(90)</a>
-									<a class="shoucang">收藏(90)</a>
-									<a class="comment">评论(90)</a>
-								</p>
-							</div>
-						</li>
-					</ul>
-
-					<ul class="fallList">
-						<li>
-							<div class="blogMain">
-
-								<div class="blogCon">
-									<a href=""><img src="../images/pic1.jpg" alt=""></a>
-								</div>
-								<p class="blogTit"><a href="#">文章标题文章标题</a></p>								
-							</div>
-							<div class="blogACBox clearfix">
-								<p class="blogAuthor">
-									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
-									<a class="authorName">一二三四五六七八</a>
-								</p>
-								<!--
-								<p class="blogCome">来源：微博</p>
-								-->
-							</div>
-							<div class="blogDate clearfix">
-								<p class="blogAc">
-									<a class="zan">赞(90)</a>
-									<a class="shoucang">收藏(90)</a>
-									<a class="comment">评论(90)</a>
-								</p>
-							</div>
-						</li>
-						<li>
-							<div class="blogMain">
-								<p class="blogTit"><a href="#">文章标题文章标题</a></p>
-								<div class="blogCon">
-									<a href=""><span class="conTxt">Moto 360项目被媒体曝光已久,但外界对其配置参数所知甚少.现在外媒透露Moto 360的一些配置参数.Moto 360机身采用全塑料材质,表盘厚13.5mm,圆形表盘直径48mm,具备无线充电功能.其全塑材质机身与此前Moto 360的宣传造成的期待给</span></a>
-								</div>
-							</div>
-							<div class="blogACBox clearfix">
-								<p class="blogAuthor">
-									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
-									<a class="authorName">一二三四五六七八</a>
-								</p>
-								<!--
-								<p class="blogCome">来源：微博</p>
-								-->
-							</div>
-							<div class="blogDate clearfix">
-								<p class="blogAc"><!-- 赞过 增加class：have -->
-									<a class="zan have">赞(90)</a>
-									<a class="shoucang">收藏(90)</a>
-									<a class="comment">评论(90)</a>
-								</p>
-							</div>
-						</li>
-					</ul>
-
-					<ul class="fallList">
-						<li>
-							<div class="blogMain">
-
-								<div class="blogCon">
-									<a href=""><img src="../images/pic1.jpg" alt=""></a>
-								</div>
-								<p class="blogTit"><a href="#">文章标题文章标题</a></p>								
-							</div>
-							<div class="blogACBox clearfix">
-								<p class="blogAuthor">
-									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
-									<a class="authorName">一二三四五六七八</a>
-								</p>
-								<!--
-								<p class="blogCome">来源：微博</p>
-								-->
-							</div>
-							<div class="blogDate clearfix">
-								<p class="blogAc">
-									<a class="zan">赞(90)</a>
-									<a class="shoucang">收藏(90)</a>
-									<a class="comment">评论(90)</a>
-								</p>
-							</div>
-						</li>
-						<li>
-							<div class="blogMain">
-								<p class="blogTit"><a href="#">文章标题文章标题</a></p>
-								<div class="blogCon">
-									<a href=""><span class="conTxt">Moto 360项目被媒体曝光已久,但外界对其配置参数所知甚少.现在外媒透露Moto 360的一些配置参数.Moto 360机身采用全塑料材质,表盘厚13.5mm,圆形表盘直径48mm,具备无线充电功能.其全塑材质机身与此前Moto 360的宣传造成的期待给</span></a>
-								</div>
-							</div>
-							<div class="blogACBox clearfix">
-								<p class="blogAuthor">
-									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
-									<a class="authorName">一二三四五六七八</a>
-								</p>
-								<!--
-								<p class="blogCome">来源：微博</p>
-								-->
-							</div>
-							<div class="blogDate clearfix">
-								<p class="blogAc"><!-- 赞过 增加class：have -->
-									<a class="zan have">赞(90)</a>
-									<a class="shoucang">收藏(90)</a>
-									<a class="comment">评论(90)</a>
-								</p>
-							</div>
-						</li>
-					</ul>	
-					<ul class="fallList">
-						<li>
-							<div class="blogMain">
-
-								<div class="blogCon">
-									<a href=""><img src="../images/pic1.jpg" alt=""></a>
-								</div>
-								<p class="blogTit"><a href="#">文章标题文章标题</a></p>								
-							</div>
-							<div class="blogACBox clearfix">
-								<p class="blogAuthor">
-									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
-									<a class="authorName">一二三四五六七八</a>
-								</p>
-								<!--
-								<p class="blogCome">来源：微博</p>
-								-->
-							</div>
-							<div class="blogDate clearfix">
-								<p class="blogAc">
-									<a class="zan">赞(90)</a>
-									<a class="shoucang">收藏(90)</a>
-									<a class="comment">评论(90)</a>
-								</p>
-							</div>
-						</li>
-						<li>
-							<div class="blogMain">
-								<p class="blogTit"><a href="#">文章标题文章标题</a></p>
-								<div class="blogCon">
-									<a href=""><span class="conTxt">Moto 360项目被媒体曝光已久,但外界对其配置参数所知甚少.现在外媒透露Moto 360的一些配置参数.Moto 360机身采用全塑料材质,表盘厚13.5mm,圆形表盘直径48mm,具备无线充电功能.其全塑材质机身与此前Moto 360的宣传造成的期待给</span></a>
-								</div>
-							</div>
-							<div class="blogACBox clearfix">
-								<p class="blogAuthor">
-									<a class="authorHead"><img src="../images/userS.jpg" alt=""></a>
-									<a class="authorName">一二三四五六七八</a>
-								</p>
-								<!--
-								<p class="blogCome">来源：微博</p>
-								-->
-							</div>
-							<div class="blogDate clearfix">
-								<p class="blogAc"><!-- 赞过 增加class：have -->
-									<a class="zan have">赞(90)</a>
-									<a class="shoucang">收藏(90)</a>
-									<a class="comment">评论(90)</a>
-								</p>
-							</div>
-						</li>
-					</ul>
-
-				</div>
-			</div>
+                </div>
+            </div>
 			<!-- /瀑布流 -->
 
 		</div>
@@ -395,6 +92,152 @@
 
 	</div>
 
-	<include file='./Public/common/message.html' />
+	<include file='./Public/common/openWindows.html' />
+
+
+
+<script type="text/javascript">
+	<!--wookmark 瀑布流js-->
+    (function($) {
+    	var page_no = 1;//分页数 从第1页开始
+        var user_id = {$uid};
+        var $tiles = $('#tiles'),
+            $handler = $('li', $tiles),
+            $main = $('#wmain'),
+            $window = $(window),
+            $document = $(document),
+            options = {
+                autoResize: true, // This will auto-update the layout when the browser window is resized.
+                container: $main, // Optional, used for some extra CSS styling
+                offset: 20, // Optional, the distance between grid items
+                itemWidth: 210 // Optional, the width of a grid item
+            };
+
+        /**
+         * 展示
+         */
+        function applyLayout() {
+            $tiles.imagesLoaded(function() {
+                // Destroy the old handler
+                if ($handler.wookmarkInstance) {
+                    $handler.wookmarkInstance.clear();
+                }
+                // Create a new layout handler.
+                $handler = $('li', $tiles);
+                $handler.wookmark(options);
+            });
+        }
+
+        function display(){
+        	$.ajax({
+                    url: "__ROOT__/post/wookmarkPostFavoritesAjax",
+                    dataType: "html",
+                    data:{
+                    	'type':1,
+                    	'page_no':page_no,
+                    	'user_id':user_id
+                    },
+                    success: function(html) {                  	
+                    	if(html!=null&&html!=""){
+                    		page_no++;
+                    		//把新数据追加到对象中
+                       		$tiles.append(html);
+                        	//重新展示
+                        	applyLayout();
+                    	}
+                        
+                    }
+                });
+        }
+        /**
+         *scroll 事件
+         */
+        function onScroll() {
+            // Check if we're within 100 pixels of the bottom edge of the broser window.
+            var winHeight = window.innerHeight ? window.innerHeight : $window.height(), // iphone fix
+                closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 100);
+            if (closeToBottom) {
+                //AJAX载入的数据
+                display();               
+            }
+        };
+
+
+        display();
+
+
+        $window.bind('scroll.wookmark', onScroll);
+
+        $("a[class=btnC]").on("click",function(){
+        	var isLogin = ($(".unLogList").length <=0);
+        	if (!isLogin) {
+        		alert("请先登录，如果没有帐号请注册帐号。");
+        		return;
+        	};
+            var album_id = $(this).attr("album_id");
+            alert(album_id);
+        	$.ajax({
+                    url: "__ROOT__/album/favorites",                    
+                    dataType: "json",
+                    data:{
+                        'album_id':album_id                        
+                    },
+                    success: function(data) {
+                        alert(data.success);                                           
+                        if(data.success){
+                            alert("关注成功！");
+                        }
+                    }
+                });
+        });
+
+        $(".zan").on('click',function(e){
+            e.preventDefault();
+            <if condition="session('__user__') neq null">
+            $.post("__ROOT__/post/favorites",{
+                type:2,
+                post_id:$(this).attr("post_id")
+            },function(data){
+               if(data=="add"){
+                    alert("点赞成功！");
+                    location.reload();
+                }else{
+                     alert("不能重复点赞！");
+                }
+            });
+            <else/>
+                alert("请先登录或注册!");
+                return;
+            </if>
+            
+        });
+
+        $(".shoucang").on('click',function(e){
+            e.preventDefault();
+            <if condition="session('__user__') neq null">
+            $.post("__ROOT__/post/favorites",{
+                type:1,
+                post_id:$(this).attr("post_id")
+            },function(data){
+                if(data=="add"){
+                    alert("收藏成功！");
+                    location.reload();
+                }else{
+                     alert("不能重复收藏！");
+                }
+            });
+            <else/>
+                alert("请先登录或注册!");
+                return;
+            </if>
+        });
+        $(".comment").on('click',function(e){
+            e.preventDefault();
+            location.href="__ROOT__/post/"+$(this).attr("post_id");
+        });
+
+
+    })(jQuery)
+</script>
 </body>
 </html>

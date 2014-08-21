@@ -17,6 +17,7 @@ class PersonalController extends Controller {
 
         $this->assign("uid", $id);
         $this->assign("person", $data);
+        
         $this->display('home');  
     }
 

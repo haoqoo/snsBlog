@@ -1,3 +1,12 @@
+<if condition="$post_list eq null">
+    <li>
+        <a class="albumAddBox" href="__ROOT__/post/add?cate={$category_id}">
+            <span class="albumAdd"></span>
+            <p class="albumAddTxt">添加文章</p>
+        </a>
+    </li>
+</if>
+
 <foreach name="post_list" item="vo">
     <li>
         <div class="blogMain">
@@ -26,7 +35,7 @@
                 <a class="authorHead" href="__ROOT__/admin/personal/view.shtml?id={$vo.user_id}">
                     <img src="__PUBLIC__/{:W('My/getUserVal',array($vo['user_id'],'header_img'))}" alt="" height="26" width="26">
                 </a>
-                <a class="authorName" href="__ROOT__/admin/personal/view.shtml?id={$vo.user_id}">{:W('My/getUserVal',array($vo['user_id'],'aliasname'))}</a>
+                <a class="authorName">{:W('My/getUserVal',array($vo['user_id'],'aliasname'))}</a>
             </p>
 
         </div>
