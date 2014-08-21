@@ -28,10 +28,20 @@ class ActiveController extends Controller {
 
     }
 
-    public function mailReg($mailname='') {          
+    public function mailReg($mailname='') {        
+        
         $User = M("Users");
+
+        $map['username'] = $mailname;
+        $u = $User->where($map)->find();
+        if(isset($u["id"])){
+            $ajax['success'] = true;
+            return $this->ajaxReturn($ajax);
+        }
+
         $data['username'] = $mailname;
         $data['password'] = '123';
+        $data['email'] = $mailname;
         $data['state'] = '1';
         $data['reg_type'] = '2';
         $data['create_date'] = date("Y-m-d H:i:s");
