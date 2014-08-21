@@ -142,16 +142,30 @@ class UserController extends Controller {
         $this->redirect('/admin/user/setUser');
     }
 
-    public function regCheck($username='', $type='user'){
+    public function regMailCheck($mailname=''){
         $User = M("Users");
-        $map['username'] = $username;
+        $map['username'] = $mailname;
         $data = $User->where($map)->find();
         
-        $msg = ($type == "email")?"邮箱已占用":"用户名已占用";
+        $msg = "邮箱已占用";
         if(isset($data["id"])){
             $ajax['error']  = $msg;
         }else{
-            $ajax['ok']  = "true";
+            $ajax['ok']  = " ";
+        }
+        $this->ajaxReturn($ajax); 
+    }
+
+    public function regCheck($regname=''){
+        $User = M("Users");
+        $map['username'] = $regname;
+        $data = $User->where($map)->find();
+        
+        $msg = "用户名已占用";
+        if(isset($data["id"])){
+            $ajax['error']  = $msg;
+        }else{
+            $ajax['ok']  = " ";
         }
         $this->ajaxReturn($ajax); 
     }

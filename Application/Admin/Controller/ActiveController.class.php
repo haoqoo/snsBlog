@@ -32,6 +32,7 @@ class ActiveController extends Controller {
         $User = M("Users");
         $data['username'] = $mailname;
         $data['password'] = '123';
+        $data['email'] = $mailname;
         $data['state'] = '1';
         $data['reg_type'] = '2';
         $data['create_date'] = date("Y-m-d H:i:s");
