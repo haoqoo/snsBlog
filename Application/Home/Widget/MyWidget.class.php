@@ -116,11 +116,14 @@
 	    	$OperationSql = M("OperationSql");
 	        $map['oper_table'] = $table;
 	        $data = $OperationSql->where($map)->find();
+
 	        $sql = $data["view_sql"];
 	        $sql = str_replace("?", $id, $sql);
 	        $Model = new \Think\Model();
 	        $title = $Model->query($sql); 
-	        return $data["field_name"].'<a class="noAlName">'.$title[0]["title"].'</a>';
+
+	        $url = str_replace("?", $id, $data["url"]);
+	        return $data["field_name"].'<a class="noAlName" href="'.__ROOT__.$url.'">'.$title[0]["title"].'</a>';
 	    }
 	   
 	}
