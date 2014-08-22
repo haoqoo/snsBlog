@@ -199,13 +199,13 @@ class PostController extends Controller {
 			$id = $PostFavorites->add();
 			
 			$Post    = M('Posts');
-			$user_id = $Post->where('id=%d', array($_POST['post_id']))->getField('user_id');
+			$post = $Post->where('id=%d', array($_POST['post_id']))->find();
 			if ($user['id'] != $user_id) {
-					$type = $_POST['type'];
+				$type = $_POST['type'];
 				$action = '收藏';
 				if($type==2) {$action='赞';}
 				$OperationLogs = D('OperationLogs', 'Logic');
-				$logInfoes     = $OperationLogs->buildLogInfo($id, 'post_favorites', $action, $user['id'], $user_id);
+				$logInfoes     = $OperationLogs->buildLogInfo($post['id'], 'posts', $action, $user['id'], $post['user_id']);
 				$OperationLogs->opLog($logInfoes);
 			}
 
