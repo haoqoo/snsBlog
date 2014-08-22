@@ -153,7 +153,7 @@ class AlbumController extends Controller {
 			if (isset($album) && sizeof($album) > 0) {
 				if ($user[id] != $album['user_id']) {
 					$OperationLogs = D('OperationLogs', 'Logic');
-					$logInfoes     = $OperationLogs->buildLogInfo($album_id, 'album', '关注', $user['id'], $album['user_id']);
+					$logInfoes     = $OperationLogs->buildLogInfo($album_id, 'albums', '关注', $user['id'], $album['user_id']);
 					$OperationLogs->opLog($logInfoes);
 				}
 			}
