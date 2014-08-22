@@ -238,7 +238,7 @@ CREATE TABLE `wq_operation_logs` (
 
 LOCK TABLES `wq_operation_logs` WRITE;
 /*!40000 ALTER TABLE `wq_operation_logs` DISABLE KEYS */;
-INSERT INTO `wq_operation_logs` VALUES (2,'1','albums','关注','2014-08-14 14:49:28',1,2,1,NULL),(3,'16','comments','评论','2014-08-18 15:01:52',2,1,1,NULL),(6,'3','user_messages','私信','2014-08-18 15:39:42',6,6,1,NULL),(7,'4','user_messages','私信','2014-08-18 16:57:16',4,4,1,NULL),(8,'5','user_messages','私信','2014-08-18 16:57:32',4,4,1,NULL),(9,'6','user_messages','私信','2014-08-18 17:09:46',4,4,1,NULL),(12,'2','posts','赞','2014-08-22 09:01:51',1,1,1,NULL),(13,'2','posts','收藏','2014-08-22 09:01:54',1,1,1,NULL),(14,'1','posts','赞','2014-08-22 09:01:57',1,2,1,NULL);
+INSERT INTO `wq_operation_logs` VALUES (2,'2','albums','关注','2014-08-14 14:49:28',1,2,1,NULL),(3,'16','comments','评论','2014-08-18 15:01:52',2,1,1,NULL),(6,'3','user_messages','私信','2014-08-18 15:39:42',6,6,1,NULL),(7,'4','user_messages','私信','2014-08-18 16:57:16',4,4,1,NULL),(8,'5','user_messages','私信','2014-08-18 16:57:32',4,4,1,NULL),(9,'6','user_messages','私信','2014-08-18 17:09:46',4,4,1,NULL),(12,'2','posts','赞','2014-08-22 09:01:51',1,1,1,NULL),(13,'2','posts','收藏','2014-08-22 09:01:54',1,1,1,NULL),(14,'1','posts','赞','2014-08-22 09:01:57',1,2,1,NULL);
 /*!40000 ALTER TABLE `wq_operation_logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,8 +253,10 @@ CREATE TABLE `wq_operation_sql` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `oper_table` varchar(50) DEFAULT NULL,
   `view_sql` varchar(150) DEFAULT NULL,
+  `field_name` varchar(50) DEFAULT NULL,
+  `url` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -263,7 +265,7 @@ CREATE TABLE `wq_operation_sql` (
 
 LOCK TABLES `wq_operation_sql` WRITE;
 /*!40000 ALTER TABLE `wq_operation_sql` DISABLE KEYS */;
-INSERT INTO `wq_operation_sql` VALUES (1,'comments','select p.title from wq_posts p, wq_comments t where p.id = t.post_id and t.id =?'),(2,'post_favorites','select p.title from wq_posts p, wq_post_favorites t where p.id = t.post_id and t.id =?');
+INSERT INTO `wq_operation_sql` VALUES (1,'comments','select p.title from wq_posts p, wq_comments t where p.id = t.post_id and t.id =?','博文','/post/?'),(3,'posts','select p.title from wq_posts p  where p.id =?','博文','/post/?'),(4,'albums','select t.name title from wq_albums t where t.id = ?','专辑','/album/?');
 /*!40000 ALTER TABLE `wq_operation_sql` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -282,7 +284,7 @@ CREATE TABLE `wq_post_favorites` (
   `create_date` datetime DEFAULT NULL COMMENT '收藏时间',
   PRIMARY KEY (`id`),
   KEY `post_favorite_index` (`type`,`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='博客收藏（采集）和点赞';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='博客收藏（采集）和点赞';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -291,7 +293,7 @@ CREATE TABLE `wq_post_favorites` (
 
 LOCK TABLES `wq_post_favorites` WRITE;
 /*!40000 ALTER TABLE `wq_post_favorites` DISABLE KEYS */;
-INSERT INTO `wq_post_favorites` VALUES (14,2,2,1,'2014-08-20 16:19:45'),(15,2,1,2,'2014-08-22 09:01:51'),(16,2,1,1,'2014-08-22 09:01:54'),(17,1,1,2,'2014-08-22 09:01:57');
+INSERT INTO `wq_post_favorites` VALUES (14,2,2,1,'2014-08-20 16:19:45'),(15,2,1,2,'2014-08-22 09:01:51'),(16,2,1,1,'2014-08-22 09:01:54'),(17,1,1,2,'2014-08-22 09:01:57'),(18,6,2,0,'2014-08-22 17:02:37');
 /*!40000 ALTER TABLE `wq_post_favorites` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -341,7 +343,7 @@ CREATE TABLE `wq_posts` (
   `comment_count` int(11) DEFAULT NULL COMMENT '冗余字段：评论数',
   `has_picture` int(1) DEFAULT NULL COMMENT '1为无图片，2为有图片',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='博客';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='博客';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -350,7 +352,7 @@ CREATE TABLE `wq_posts` (
 
 LOCK TABLES `wq_posts` WRITE;
 /*!40000 ALTER TABLE `wq_posts` DISABLE KEYS */;
-INSERT INTO `wq_posts` VALUES (1,2,NULL,2,'测试Blog1','&lt;p&gt;									&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp;\r\n									测试blog&lt;/p&gt;&lt;p&gt;sadfasdfsadfasdf&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;','','2014-08-11 14:01:22',NULL,1,NULL,NULL,1),(2,1,NULL,2,'测试Blog2','测测试Blog2试测试Blog2Blog2',NULL,'2014-08-13 15:48:14',NULL,1,NULL,NULL,1),(3,2,NULL,2,'带图片的博文','&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;basic-usage&quot; style=&quot;color: rgb(0, 0, 0); font-family: Times; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;基本用法&lt;/h2&gt;&lt;div class=&quot;center&quot; style=&quot;text-align: center; color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;&lt;img src=&quot;http://marklodato.github.io/visual-git-guide/basic-usage.svg&quot; height=&quot;312&quot; width=&quot;728&quot;/&gt;&lt;/div&gt;&lt;p style=&quot;color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;上面的四条命令在工作目录、暂存目录(也叫做索引)和仓库之间复制文件。&lt;/p&gt;&lt;ul style=&quot;color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;&lt;li&gt;&lt;code&gt;git add&amp;nbsp;&lt;em&gt;files&lt;/em&gt;&lt;/code&gt;&amp;nbsp;把当前文件放入暂存区域。&lt;/li&gt;&lt;li&gt;&lt;code&gt;git commit&lt;/code&gt;&amp;nbsp;给暂存区域生成快照并提交。&lt;/li&gt;&lt;li&gt;&lt;code&gt;git reset --&amp;nbsp;&lt;em&gt;files&lt;/em&gt;&lt;/code&gt;&amp;nbsp;用来撤销最后一次&lt;code&gt;git add&amp;nbsp;&lt;em&gt;files&lt;/em&gt;&lt;/code&gt;，你也可以用&lt;code&gt;git reset&lt;/code&gt;&amp;nbsp;撤销所有暂存区域文件。&lt;/li&gt;&lt;li&gt;&lt;code&gt;git checkout --&amp;nbsp;&lt;em&gt;files&lt;/em&gt;&lt;/code&gt;&amp;nbsp;把文件从暂存区域复制到工作目录，用来丢弃本地修改。&lt;/li&gt;&lt;/ul&gt;&lt;p style=&quot;color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;你可以用&amp;nbsp;&lt;code&gt;git reset -p&lt;/code&gt;,&amp;nbsp;&lt;code&gt;git checkout -p&lt;/code&gt;, or&amp;nbsp;&lt;code&gt;git add -p&lt;/code&gt;进入交互模式。&lt;/p&gt;&lt;p style=&quot;color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;也可以跳过暂存区域直接从仓库取出文件或者直接提交代.&lt;/p&gt;&lt;p style=&quot;color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p style=&quot;color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;&amp;gt;&amp;nbsp;&lt;/span&gt;&lt;img src=&quot;http://marklodato.github.io/visual-git-guide/basic-usage.svg&quot; height=&quot;312&quot; width=&quot;728&quot; style=&quot;color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;/&gt;&lt;/p&gt;&lt;h2 id=&quot;basic-usage&quot; style=&quot;color: rgb(0, 0, 0); font-family: Times; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;&lt;br/&gt;&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;','','2014-08-18 17:06:05',NULL,1,NULL,NULL,2),(4,2,NULL,2,'文章文章文章1234','&lt;p&gt;文章文章文章1234文章文章文章1234文章文章文章1234文章文章文章1234																		&lt;/p&gt;','','2014-08-19 10:54:05',NULL,1,NULL,NULL,1),(5,2,NULL,2,'带图片的博文2','&lt;p&gt;&lt;img src=&quot;http://localhost/snsBlog/Public/umEditorUploads/20140820/14085157515127.jpg&quot; _src=&quot;http://localhost/snsBlog/Public/umEditorUploads/20140820/14085157515127.jpg&quot;/&gt;\r\n																		&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;测试图片&lt;/p&gt;','','2014-08-20 14:23:07',NULL,1,NULL,NULL,2);
+INSERT INTO `wq_posts` VALUES (1,2,NULL,2,'测试Blog1','&lt;p&gt;									&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp;\r\n									测试blog&lt;/p&gt;&lt;p&gt;sadfasdfsadfasdf&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;','','2014-08-11 14:01:22',NULL,1,NULL,NULL,1),(2,1,NULL,2,'测试Blog2','测测试Blog2试测试Blog2Blog2',NULL,'2014-08-13 15:48:14',NULL,1,NULL,NULL,1),(3,2,NULL,2,'带图片的博文','&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;basic-usage&quot; style=&quot;color: rgb(0, 0, 0); font-family: Times; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;基本用法&lt;/h2&gt;&lt;div class=&quot;center&quot; style=&quot;text-align: center; color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;&lt;img src=&quot;http://marklodato.github.io/visual-git-guide/basic-usage.svg&quot; height=&quot;312&quot; width=&quot;728&quot;/&gt;&lt;/div&gt;&lt;p style=&quot;color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;上面的四条命令在工作目录、暂存目录(也叫做索引)和仓库之间复制文件。&lt;/p&gt;&lt;ul style=&quot;color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;&lt;li&gt;&lt;code&gt;git add&amp;nbsp;&lt;em&gt;files&lt;/em&gt;&lt;/code&gt;&amp;nbsp;把当前文件放入暂存区域。&lt;/li&gt;&lt;li&gt;&lt;code&gt;git commit&lt;/code&gt;&amp;nbsp;给暂存区域生成快照并提交。&lt;/li&gt;&lt;li&gt;&lt;code&gt;git reset --&amp;nbsp;&lt;em&gt;files&lt;/em&gt;&lt;/code&gt;&amp;nbsp;用来撤销最后一次&lt;code&gt;git add&amp;nbsp;&lt;em&gt;files&lt;/em&gt;&lt;/code&gt;，你也可以用&lt;code&gt;git reset&lt;/code&gt;&amp;nbsp;撤销所有暂存区域文件。&lt;/li&gt;&lt;li&gt;&lt;code&gt;git checkout --&amp;nbsp;&lt;em&gt;files&lt;/em&gt;&lt;/code&gt;&amp;nbsp;把文件从暂存区域复制到工作目录，用来丢弃本地修改。&lt;/li&gt;&lt;/ul&gt;&lt;p style=&quot;color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;你可以用&amp;nbsp;&lt;code&gt;git reset -p&lt;/code&gt;,&amp;nbsp;&lt;code&gt;git checkout -p&lt;/code&gt;, or&amp;nbsp;&lt;code&gt;git add -p&lt;/code&gt;进入交互模式。&lt;/p&gt;&lt;p style=&quot;color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;也可以跳过暂存区域直接从仓库取出文件或者直接提交代.&lt;/p&gt;&lt;p style=&quot;color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p style=&quot;color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;&amp;gt;&amp;nbsp;&lt;/span&gt;&lt;img src=&quot;http://marklodato.github.io/visual-git-guide/basic-usage.svg&quot; height=&quot;312&quot; width=&quot;728&quot; style=&quot;color: rgb(0, 0, 0); font-family: Times; font-size: medium; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;/&gt;&lt;/p&gt;&lt;h2 id=&quot;basic-usage&quot; style=&quot;color: rgb(0, 0, 0); font-family: Times; font-style: normal; font-variant: normal; line-height: normal; white-space: normal;&quot;&gt;&lt;br/&gt;&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;&lt;p&gt;									&lt;/p&gt;','','2014-08-18 17:06:05',NULL,1,NULL,NULL,2),(4,2,NULL,2,'文章文章文章1234','&lt;p&gt;文章文章文章1234文章文章文章1234文章文章文章1234文章文章文章1234																		&lt;/p&gt;','','2014-08-19 10:54:05',NULL,1,NULL,NULL,1),(5,2,NULL,2,'带图片的博文2','&lt;p&gt;&lt;img src=&quot;http://localhost/snsBlog/Public/umEditorUploads/20140820/14085157515127.jpg&quot; _src=&quot;http://localhost/snsBlog/Public/umEditorUploads/20140820/14085157515127.jpg&quot;/&gt;\r\n																		&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;测试图片&lt;/p&gt;','','2014-08-20 14:23:07',NULL,1,NULL,NULL,2),(6,2,NULL,2,'aaaa','aaa&lt;p&gt;\r\n																		&lt;/p&gt;','','2014-08-22 17:02:37',NULL,1,NULL,NULL,1);
 /*!40000 ALTER TABLE `wq_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -519,4 +521,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-08-22  9:40:31
+-- Dump completed on 2014-08-22 17:13:14
