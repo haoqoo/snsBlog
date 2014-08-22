@@ -3,7 +3,7 @@
 		<a class="noticeImg"><img src="__PUBLIC__/{:W('Home/My/getUserVal',array($vo['oper_user_id'],'header_img'))}" alt></a>
 		<div class="noticeMain">
 			<p class="noticeName"><a class="nameTxt">{:W('My/getUserVal',array($vo['oper_user_id']))}</a></p>
-			<p class="noticeCon">{$vo['oper_action']}了你的专辑<a class="noAlName">{:W('Home/My/getPostTitle',array($vo['opered_id'], $vo['oper_table']))}</a></p>
+			<p class="noticeCon">{$vo['oper_action']}了你的专辑<a class="noAlName">{:W('Home/My/getLogTitle',array($vo['opered_id'], $vo['oper_table']))}</a></p>
 		</div>
 	</li>
 </foreach>
