@@ -19,7 +19,7 @@
 			<!-- 搜索nav -->
 			<div class="searchNav">
 				<div class="searchFbox clearfix">
-					<div class="navSearBox"><input type="text" placeholder="请输入关键字" class="navSearInput"><span class="xsIcon icon_search"></span></div>
+					<div class="navSearBox"><input id="search_keyword" type="text" placeholder="请输入关键字" class="navSearInput "><span class="xsIcon icon_search" onclick="_search()"></span></div>
 					<p class="relSearch"><span class="relTit">相关搜索：</span><a class="relWord">UI图标</a><a class="relWord">ICON</a><a class="relWord">图标游戏<a><a class="relWord">app</a><a class="relWord">banner</a><a class="relWord">logo</a><a class="relWord">游戏</a><a class="relWord">UI按钮</a><a class="relWord">icon设计</a></p>
 				</div>
 				<div class="showMain clearfix">
@@ -169,7 +169,18 @@
         });
        }
 
-    })(jQuery)
+    })(jQuery);
+
+    function _search(){
+       var keyword = $("#search_keyword").val();
+        if(keyword==null||keyword==""||keyword.length<2){
+                    alert("请输入最少2个字符的关键字");
+                    return;
+        }
+        location.href="__ROOT__/cate/search?keyword="+keyword;
+        return false;
+    }
+
 </script>
 	
 </body>

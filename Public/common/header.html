@@ -45,7 +45,7 @@
 
 				</div>
 				<div class="navSearch">
-					<div class="navSearBox"><input id="header_keyword_" type="text" placeholder="请输入关键字" class="navSearInput"><span class="xsIcon icon_search"></span></div>
+					<div class="navSearBox"><input id="header_keyword_" type="text" placeholder="请输入关键字" class="navSearInput"><span class="xsIcon icon_search header_icon_search"></span></div>
 				</div>
 			</div>
 
@@ -113,6 +113,16 @@
                 location.href="__ROOT__/cate/search?keyword="+keyword;
                  return false;
                 }
+            });
+            $(".header_icon_search").on('click',function(){
+            	 var keyword = $("#header_keyword_").val();
+                if(keyword==null||keyword==""||keyword.length<2){
+                    alert("请输入最少2个字符的关键字");
+                    return;
+                }
+                location.href="__ROOT__/cate/search?keyword="+keyword;
+                 return false;
+                
             });
 		});
 
