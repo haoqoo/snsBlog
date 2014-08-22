@@ -159,6 +159,30 @@ INSERT INTO `wq_comments` VALUES (1,'评论test1',1,1,'2014-08-12 21:38:57',1,NU
 UNLOCK TABLES;
 
 --
+-- Table structure for table `wq_hot_keys`
+--
+
+DROP TABLE IF EXISTS `wq_hot_keys`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wq_hot_keys` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `hot_key` varchar(200) DEFAULT NULL COMMENT '关键词',
+  `hot` int(10) DEFAULT NULL COMMENT '频率',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='搜索关键字';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wq_hot_keys`
+--
+
+LOCK TABLES `wq_hot_keys` WRITE;
+/*!40000 ALTER TABLE `wq_hot_keys` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wq_hot_keys` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `wq_media`
 --
 
@@ -205,7 +229,7 @@ CREATE TABLE `wq_operation_logs` (
   `state` int(2) DEFAULT NULL COMMENT '状态 1未读，2已读',
   `complete_date` datetime DEFAULT NULL COMMENT '已读时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='博文，用户关注，系统信息，用户私信 等操作日志信息';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='博文，用户关注，系统信息，用户私信 等操作日志信息';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,8 +238,33 @@ CREATE TABLE `wq_operation_logs` (
 
 LOCK TABLES `wq_operation_logs` WRITE;
 /*!40000 ALTER TABLE `wq_operation_logs` DISABLE KEYS */;
-INSERT INTO `wq_operation_logs` VALUES (2,'1','album','关注','2014-08-14 14:49:28',1,2,1,NULL),(3,'16','comments','评论','2014-08-18 15:01:52',2,1,1,NULL),(6,'3','user_messages','私信','2014-08-18 15:39:42',6,6,1,NULL),(7,'4','user_messages','私信','2014-08-18 16:57:16',4,4,1,NULL),(8,'5','user_messages','私信','2014-08-18 16:57:32',4,4,1,NULL),(9,'6','user_messages','私信','2014-08-18 17:09:46',4,4,1,NULL),(11,'14','post_favorites','收藏','2014-08-20 16:19:45',2,1,1,NULL);
+INSERT INTO `wq_operation_logs` VALUES (2,'1','albums','关注','2014-08-14 14:49:28',1,2,1,NULL),(3,'16','comments','评论','2014-08-18 15:01:52',2,1,1,NULL),(6,'3','user_messages','私信','2014-08-18 15:39:42',6,6,1,NULL),(7,'4','user_messages','私信','2014-08-18 16:57:16',4,4,1,NULL),(8,'5','user_messages','私信','2014-08-18 16:57:32',4,4,1,NULL),(9,'6','user_messages','私信','2014-08-18 17:09:46',4,4,1,NULL),(12,'2','posts','赞','2014-08-22 09:01:51',1,1,1,NULL),(13,'2','posts','收藏','2014-08-22 09:01:54',1,1,1,NULL),(14,'1','posts','赞','2014-08-22 09:01:57',1,2,1,NULL);
 /*!40000 ALTER TABLE `wq_operation_logs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `wq_operation_sql`
+--
+
+DROP TABLE IF EXISTS `wq_operation_sql`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wq_operation_sql` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `oper_table` varchar(50) DEFAULT NULL,
+  `view_sql` varchar(150) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wq_operation_sql`
+--
+
+LOCK TABLES `wq_operation_sql` WRITE;
+/*!40000 ALTER TABLE `wq_operation_sql` DISABLE KEYS */;
+INSERT INTO `wq_operation_sql` VALUES (1,'comments','select p.title from wq_posts p, wq_comments t where p.id = t.post_id and t.id =?'),(2,'post_favorites','select p.title from wq_posts p, wq_post_favorites t where p.id = t.post_id and t.id =?');
+/*!40000 ALTER TABLE `wq_operation_sql` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -233,7 +282,7 @@ CREATE TABLE `wq_post_favorites` (
   `create_date` datetime DEFAULT NULL COMMENT '收藏时间',
   PRIMARY KEY (`id`),
   KEY `post_favorite_index` (`type`,`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='博客收藏（采集）和点赞';
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='博客收藏（采集）和点赞';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -242,7 +291,7 @@ CREATE TABLE `wq_post_favorites` (
 
 LOCK TABLES `wq_post_favorites` WRITE;
 /*!40000 ALTER TABLE `wq_post_favorites` DISABLE KEYS */;
-INSERT INTO `wq_post_favorites` VALUES (14,2,2,1,'2014-08-20 16:19:45');
+INSERT INTO `wq_post_favorites` VALUES (14,2,2,1,'2014-08-20 16:19:45'),(15,2,1,2,'2014-08-22 09:01:51'),(16,2,1,1,'2014-08-22 09:01:54'),(17,1,1,2,'2014-08-22 09:01:57');
 /*!40000 ALTER TABLE `wq_post_favorites` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -384,7 +433,7 @@ CREATE TABLE `wq_users` (
   `state` int(11) DEFAULT NULL COMMENT '状态(1未激活，2激活)',
   `reg_type` int(11) DEFAULT NULL COMMENT '注册方式(1普通注册，2邮箱注册，3第三方账号)',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COMMENT='用户表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -393,7 +442,7 @@ CREATE TABLE `wq_users` (
 
 LOCK TABLES `wq_users` WRITE;
 /*!40000 ALTER TABLE `wq_users` DISABLE KEYS */;
-INSERT INTO `wq_users` VALUES (1,'123','123456','测试别名啊',NULL,'123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'jack','123456','昵称c测试12345','./Uploads/jack/53f310b3255f3.jpg','qweqwe','','','','','','','',NULL,NULL,NULL,NULL),(4,'wanjunjun','123','abc123456','./Uploads/wanjunjun/53f40485a9d09.jpg','w@qq.com','','','','','it','abc','nb le',NULL,NULL,2,1),(5,'tp','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6,'admin','123','','./Uploads/admin/53f1953eb118c.jpg',NULL,'','','','','','a','',NULL,NULL,NULL,NULL),(7,'thinkphp','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(8,'aa','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(16,'bbb','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,1),(18,'258259590@qq.com','123','aaaaaaaaaa','./Uploads/258259590@qq.com/53f44328865d1.jpg','258259590@qq.com','','','','','','','','2014-08-20 12:21:01',NULL,2,2),(19,'fasd','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-08-20 15:01:34',NULL,1,2),(20,'fasd','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-08-20 15:01:56',NULL,1,2),(21,'fasdfas','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-08-20 15:02:04',NULL,1,2),(22,'fasdfas','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-08-20 15:02:52',NULL,1,2),(23,'258259590@qq.com','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-08-20 15:16:17',NULL,1,2);
+INSERT INTO `wq_users` VALUES (1,'123','123456','测试别名啊',NULL,'123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL),(2,'jack','123456','昵称c测试12345','./Uploads/jack/53f310b3255f3.jpg','qweqwe@163.com','男','','','','','','',NULL,NULL,2,NULL),(4,'wanjunjun','123','abc123456','./Uploads/wanjunjun/53f40485a9d09.jpg','w@qq.com','','','','','it','abc','nb le',NULL,NULL,2,1),(5,'tp','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL),(6,'admin','123','','./Uploads/admin/53f1953eb118c.jpg',NULL,'','','','','','a','',NULL,NULL,2,NULL),(7,'thinkphp','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL),(8,'aa','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL),(16,'bbb','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,1),(19,'fasd','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-08-20 15:01:34',NULL,1,2),(25,'wanjunjun2','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-08-21 09:14:03',NULL,2,1),(41,'258259590@qq.com','123',NULL,NULL,'258259590@qq.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-08-21 10:21:24',NULL,1,2);
 /*!40000 ALTER TABLE `wq_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -470,4 +519,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-08-20 16:53:42
+-- Dump completed on 2014-08-22  9:06:50
