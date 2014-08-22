@@ -60,7 +60,7 @@
                 <div class=" " id="wmain" style="position: relative;margin-top:10px;">
                     <ul class="fallList blogfall" id='tiles'>
                         <li>
-                            <a class="albumAddBox" href="__ROOT__/post/add?cate={$category_id}">
+                            <a class="albumAddBox" href="__ROOT__/post/add">
                                 <span class="albumAdd"></span>
                                 <p class="albumAddTxt">添加文章</p>
                             </a>
@@ -126,7 +126,7 @@
     <!--wookmark 瀑布流js-->
     (function($) {
     	var page_no = 2;//分页数 从第2页开始
-        var category_id = {$category_id};
+        var category_id = '{$category_id}';
         var $tiles = $('#tiles'),
             $handler = $('li', $tiles),
             $main = $('#wmain'),

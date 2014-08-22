@@ -40,7 +40,7 @@ class PostController extends Controller {
 	}
 
 	public function wookmarkAjax($page_no, $post_id) {
-		$page_num = ($page_no-1)*20;
+		$page_num = ($page_no-1)*30;
 		$Comments = M("Comments");
 		$comments = $Comments->where('post_id=%d', array($post_id))->limit($page_num, 30)->select();
 		$this->assign('comment_list', $comments);
@@ -49,7 +49,7 @@ class PostController extends Controller {
 
 	//用户关注的文章
 	public function wookmarkPostFavoritesAjax($page_no, $user_id,$type) {
-		$page_num = ($page_no-1)*20;
+		$page_num = ($page_no-1)*30;
 		$Posts = M("Posts");
 		$joinSql ='wq_post_favorites on wq_posts.id = wq_post_favorites.post_id and wq_post_favorites.user_id='.$user_id.' and wq_post_favorites.type='.$type;
 		$posts = $Posts->join($joinSql)->limit($page_num, 30)->field('wq_posts.*')->select();

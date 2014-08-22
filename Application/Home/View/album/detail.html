@@ -157,7 +157,7 @@
     <!--wookmark 瀑布流js-->
     (function($) {
         var page_no = 2;//分页数 从第2页开始
-        var album_id = {$album.id} ;
+        var album_id = '{$album.id}' ;
         var $tiles = $('#tiles'),
             $handler = $('li', $tiles),
             $main = $('#wmain'),
@@ -209,6 +209,7 @@
                             $tiles.append(html);
                             //重新展示
                             applyLayout();
+                             bindEvent();
                         }
                         
                     }
@@ -220,11 +221,12 @@
 
 
         applyLayout();
-
+        bindEvent();
 
         $window.bind('scroll.wookmark', onScroll);
 
-        $(".zan").on('click',function(e){
+        function bindEvent () {
+             $(".zan").on('click',function(e){
             e.preventDefault();
             <if condition="session('__user__') neq null">
             $.post("__ROOT__/post/favorites",{
@@ -243,30 +245,33 @@
                 return;
             </if>
             
-        });
-        $(".shoucang").on('click',function(e){
-            e.preventDefault();
-            <if condition="session('__user__') neq null">
-            $.post("__ROOT__/post/favorites",{
-                type:1,
-                post_id:$(this).attr("post_id")
-            },function(data){
-                if(data=="add"){
-                    alert("收藏成功！");
-                    location.reload();
-                }else{
-                     alert("不能重复收藏！");
-                }
             });
-            <else/>
-                alert("请先登录或注册!");
-                return;
-            </if>
-        });
-        $(".comment").on('click',function(e){
-            e.preventDefault();
-            location.href="__ROOT__/post/"+$(this).attr("post_id");
-        });
+            $(".shoucang").on('click',function(e){
+                e.preventDefault();
+                <if condition="session('__user__') neq null">
+                $.post("__ROOT__/post/favorites",{
+                    type:1,
+                    post_id:$(this).attr("post_id")
+                },function(data){
+                    if(data=="add"){
+                        alert("收藏成功！");
+                        location.reload();
+                    }else{
+                         alert("不能重复收藏！");
+                    }
+                });
+                <else/>
+                    alert("请先登录或注册!");
+                    return;
+                </if>
+            });
+            $(".comment").on('click',function(e){
+                e.preventDefault();
+                location.href="__ROOT__/post/"+$(this).attr("post_id");
+            });
+        }
+
+       
 
 
 

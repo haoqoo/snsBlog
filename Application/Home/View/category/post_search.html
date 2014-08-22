@@ -25,8 +25,8 @@
 				<div class="showMain clearfix">
 					<div class="showNavBox clearfix">
 						<ul class="showNav">
-							<li><a class="showMod" href="__ROOT__/cate/search?keyword={$keyword}&type=posts">{:W('My/searchPostCount',array($keyword))} 文章</a></li>
-							<li><a class="showMod cur" href="#">{:W('My/searchAlbumCount',array($keyword))} 专辑</a></li>
+							<li><a class="showMod cur" href="#">{:W('My/searchPostCount',array($keyword))} 文章</a></li>
+							<li><a class="showMod " href="__ROOT__/cate/search?keyword={$keyword}">{:W('My/searchAlbumCount',array($keyword))} 专辑</a></li>
 						</ul>
 					</div>
 
@@ -41,34 +41,29 @@
 			<!-- /搜索分类 -->
 
 			<!-- 瀑布流 -->
-			<!-- 瀑布流 -->
-            <div class="fallMain">
+			 <div class="fallMain">
                 <div class=" " id="wmain" style="position: relative;margin-top:10px;">
                     <ul class="fallList blogfall" id='tiles'>
-                        <li>
-                            <a class="albumAddBox" href="__ROOT__/album/add">
+						<li>
+                            <a class="albumAddBox" href="__ROOT__/post/add">
                                 <span class="albumAdd"></span>
-                                <p class="albumAddTxt">添加专辑</p>
+                                <p class="albumAddTxt">添加文章</p>
                             </a>
                         </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- /瀑布流 -->
-
+					</ul>	
+				</div>
+			</div>
 			<!-- /瀑布流 -->
-
 		</div>
-
 		<!-- /main -->
 		 <include file="./Public/common/openWindows.html"/>
-
 	</div>
 
-	<script type="text/javascript">
-	<!--wookmark 瀑布流js-->
+
+    <script type="text/javascript">
+    <!--wookmark 瀑布流js-->
     (function($) {
-    	var page_no = 1;//分页数 从第1页开始
+        var page_no = 1;//分页数 从第1页开始
         var keyword = '{$keyword}';
         var $tiles = $('#tiles'),
             $handler = $('li', $tiles),
@@ -98,25 +93,25 @@
         }
 
         function display(){            
-        	$.ajax({
-                    url: "__ROOT__/cate/wookmarkAlbumBykeywordAjax",
+            $.ajax({
+                    url: "__ROOT__/cate/wookmarkPostBykeywordAjax",
                     dataType: "html",
                     data:{
-                    	 
-                    	'page_no':page_no,
-                    	'keyword':keyword
+                         
+                        'page_no':page_no,
+                        'keyword':keyword
                     },
-                    success: function(html) {                  	
-                    	if(html!=null&&html!=""){
-                    		page_no++;
-                    		//把新数据追加到对象中
-                       		$tiles.append(html);
-                        	//重新展示
-                        	applyLayout();
+                    success: function(html) {                   
+                        if(html!=null&&html!=""){
+                            page_no++;
+                            //把新数据追加到对象中
+                            $tiles.append(html);
+                            //重新展示
+                            applyLayout();
 
                             //重新绑定 赞，收藏，评论事件
                             bindEvent();
-                    	}
+                        }
                         
                     }
                 });
@@ -137,40 +132,60 @@
         applyLayout();
         display();
         bindEvent();
-
         $window.bind('scroll.wookmark', onScroll);
 
-        
-
-       function bindEvent(){
-
-            
-            $("a[class=btnC]").on("click",function(){
-            var isLogin = ($(".unLogList").length <=0);
-            if (!isLogin) {
-                alert("请先登录，如果没有帐号请注册帐号。");
+            function bindEvent(){
+             $(".zan").on('click',function(e){
+            e.preventDefault();
+            <if condition="session('__user__') neq null">
+            $.post("__ROOT__/post/favorites",{
+                type:2,
+                post_id:$(this).attr("post_id")
+            },function(data){
+               if(data=="add"){
+                    alert("点赞成功！");
+                    location.reload();
+                }else{
+                     alert("不能重复点赞！");
+                }
+            });
+            <else/>
+                alert("请先登录或注册!");
                 return;
-            };
-            var album_id = $(this).attr("album_id");
-           
-            $.ajax({
-                    url: "__ROOT__/album/favorites",                    
-                    dataType: "json",
-                    data:{
-                        'album_id':album_id                        
-                    },
-                    success: function(data) {
-                        alert(data.success);                                           
-                        if(data.success){
-                            alert("关注成功！");
-                        }
-                    }
-                });
+            </if>
+            
         });
-       }
+
+        $(".shoucang").on('click',function(e){
+            e.preventDefault();
+            <if condition="session('__user__') neq null">
+            $.post("__ROOT__/post/favorites",{
+                type:1,
+                post_id:$(this).attr("post_id")
+            },function(data){
+                if(data=="add"){
+                    alert("收藏成功！");
+                    location.reload();
+                }else{
+                     alert("不能重复收藏！");
+                }
+            });
+            <else/>
+                alert("请先登录或注册!");
+                return;
+            </if>
+        });
+        $(".comment").on('click',function(e){
+            e.preventDefault();
+            location.href="__ROOT__/post/"+$(this).attr("post_id");
+        });
+        }
+
+      
 
     })(jQuery)
 </script>
+
 	
 </body>
 </html>

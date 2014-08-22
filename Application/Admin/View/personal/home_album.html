@@ -167,7 +167,7 @@
 
 
         display();
-
+        bindEvent();
 
         $window.bind('scroll.wookmark', onScroll);
 
@@ -175,51 +175,28 @@
 
        function bindEvent(){
 
-             $(".zan").on('click',function(e){
-                e.preventDefault();
-                <if condition="session('__user__') neq null">
-                $.post("__ROOT__/post/favorites",{
-                    type:2,
-                    post_id:$(this).attr("post_id")
-                },function(data){
-                   if(data=="add"){
-                        alert("点赞成功！");
-                        location.reload();
-                    }else{
-                         alert("不能重复点赞！");
+            $("a[class=btnC]").on("click",function(){
+            var isLogin = ($(".unLogList").length <=0);
+            if (!isLogin) {
+                alert("请先登录，如果没有帐号请注册帐号。");
+                return;
+            };
+            var album_id = $(this).attr("album_id");
+           
+            $.ajax({
+                    url: "__ROOT__/album/favorites",                    
+                    dataType: "json",
+                    data:{
+                        'album_id':album_id                        
+                    },
+                    success: function(data) {
+                        alert(data.success);                                           
+                        if(data.success){
+                            alert("关注成功！");
+                        }
                     }
                 });
-                <else/>
-                    alert("请先登录或注册!");
-                    return;
-                </if>
-                
-            });
-
-            $(".shoucang").on('click',function(e){
-                e.preventDefault();
-                <if condition="session('__user__') neq null">
-                $.post("__ROOT__/post/favorites",{
-                    type:1,
-                    post_id:$(this).attr("post_id")
-                },function(data){
-                    if(data=="add"){
-                        alert("收藏成功！");
-                        location.reload();
-                    }else{
-                         alert("不能重复收藏！");
-                    }
-                });
-                <else/>
-                    alert("请先登录或注册!");
-                    return;
-                </if>
-            });
-            $(".comment").on('click',function(e){
-                e.preventDefault();
-                location.href="__ROOT__/post/"+$(this).attr("post_id");
-            });
-
+        });
        }
 
     })(jQuery)

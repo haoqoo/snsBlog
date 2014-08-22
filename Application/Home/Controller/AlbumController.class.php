@@ -47,7 +47,7 @@ class AlbumController extends Controller {
 
 	//ajax
 	public function wookmarkAjax($page_no, $album_id) {
-		$page_num = ($page_no-1)*20;
+		$page_num = ($page_no-1)*30;
 		$Posts    = M("Posts");
 		$posts    = $Posts->where('album_id=%d', array($album_id))->limit($page_num, 30)->select();
 		$this->assign('post_list', $posts);

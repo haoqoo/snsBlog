@@ -36,7 +36,7 @@ class CategoryController extends Controller {
 	}
 
 	public function wookmarkAjax($page_no, $category_id) {
-		$page_num = ($page_no-1)*20;
+		$page_num = ($page_no-1)*30;
 		$Albums   = M("Albums");
 		$ablums   = $Albums->where('category_id=%d', array($category_id))->limit($page_num, 30)->select();
 		$this->assign('album_list', $ablums);
@@ -45,7 +45,7 @@ class CategoryController extends Controller {
 
 	//用户的专辑
 	public function wookmarkUserIdAjax($page_no, $user_id) {
-		$page_num = ($page_no-1)*20;
+		$page_num = ($page_no-1)*30;
 		$Albums   = M("Albums");
 		$ablums   = $Albums->where('user_id=%d', array($user_id))->limit($page_num, 30)->select();
 		$this->assign('userInfo', true);
@@ -77,17 +77,47 @@ class CategoryController extends Controller {
 	}
 
 	public function wookmarkPostAjax($page_no, $category_id) {
-		$page_num = ($page_no-1)*20;
+		$page_num = ($page_no-1)*30;
 		$Posts    = M("Posts");
 		$posts    = $Posts->join('wq_albums on wq_posts.album_id = wq_albums.id and wq_albums.category_id='.$category_id)->limit($page_num, 30)->select();
 		$this->assign('post_list', $posts);
 		$this->display(C('CATE_VIEW')."post_wookmark");
 	}
+	
+	public function wookmarkAlbumBykeywordAjax($page_no, $keyword) {
+		$page_num = ($page_no-1)*30;
+		$Albums = M('Albums');
+		$map['name'] = array('like','%'.$keyword.'%');
+		$map['discription'] = array('like','%'.$keyword.'%');
+		$map['_logic'] = 'OR';			
+		$albums = $Albums->where($map)->limit($page_num, 30)->select();
+		$this->assign('album_list', $albums);		
+		$this->display(C('CATE_VIEW')."album_wookmark");
+	}
 
-	public function search(){
+	
+	public function wookmarkPostBykeywordAjax($page_no, $keyword) {
+
+		$page_num = ($page_no-1)*30;
+		$Posts = M('Posts');
+		$map['title'] = array('like','%'.$keyword.'%');
+		$map['content'] = array('like','%'.$keyword.'%');
+		$map['_logic'] = 'OR';			
+		$posts = $Posts->where($map)->limit($page_num, 30)->select();		
+		$this->assign('post_list', $posts);	
+		$this->display(C('CATE_VIEW')."post_wookmark");
+	}
+
+
+	public function search($type=''){
 		$key = $_GET['keyword'];
-		$this->assign('keyword', $key);
-		$this->display(C('CATE_VIEW')."album_search");
+		$this->assign('keyword', $key);	
+		if($type=='posts'){
+			$this->display(C('CATE_VIEW')."post_search");
+		}else{
+			$this->display(C('CATE_VIEW')."album_search");
+		}			
+		
 	}
 
 }

@@ -1,14 +1,3 @@
-<if condition="$useInfo">
-    <if condition="$album_list eq null">
-        <li>
-            <a class="albumAddBox" href="__ROOT__/album/add?cate={$category_id}">
-                <span class="albumAdd"></span>
-                <p class="albumAddTxt">添加专辑</p>
-            </a>
-        </li>
-    </if>
-</if>
-
 <foreach name="album_list" item="vo">
     <li>
         <div class="albumMain">

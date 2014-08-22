@@ -1,6 +1,6 @@
 <foreach name="messages" item="msg" >
 	<li>
-		<div class="noUserImg"><a class="userPic" href="#"><img src="__PUBLIC__/{$msg.header_img}" alt="" class="userImg"></a></div>
+		<div class="noUserImg"><a class="userPic" href="#"><img src="__PUBLIC__/{$msg.header_img}" alt="" class="userImg" onerror="javascript:this.src='__PUBLIC__/images/user_default.png';"></a></div>
 
 		<div class="notiDetail" style="position:relative;">
 			<span style="width:90%;display:inline-block">
