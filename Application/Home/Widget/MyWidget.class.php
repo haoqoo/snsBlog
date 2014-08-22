@@ -120,6 +120,7 @@
 	        $sql = str_replace("?", $id, $sql);
 	        $Model = new \Think\Model();
 	        $title = $Model->query($sql); 
-	    	return $title[0]["title"];
+	        return $data["field_name"].'<a class="noAlName">'.$title[0]["title"].'</a>';
 	    }
+	   
 	}
