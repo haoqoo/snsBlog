@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtmBox">
+<head>
+	<include file='./Public/common/meta.html' />
+	<script type="text/javascript" src="__PUBLIC__/js/plugins/pagination/jquery.pagination.js"></script>
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/js/plugins/pagination/css/pagination.css"/>
+<title></title>
+</head>
+
+<body>
+
+<form id="form1" action="__ROOT__/admin/personal/updateLogState.shtml" method="post">
+	<input type="hidden" id="ids" name="ids">
+	<div class="xsWrap">
+		<!-- 顶导 -->
+		<include file='./Public/common/header.html' />
+		<!-- /顶导 -->
+		<!-- main -->
+		<input type="hidden" id="isRead" value="{$read}">
+		<div class="mainBox clearfix">
+			<div class="xsNLayout">
+				<div class="xsBorBox">
+					<div class="xsTabBox">
+						<ul class="xsTab clearfix">
+							<li class="tabList"><a href="__ROOT__/admin/personal/getLogList.shtml?read=1" class="tabTxt <if condition="$read eq 1">cur</if>">全部消息</a></li>
+							<li class="tabList"><a href="__ROOT__/admin/personal/getMsgList.shtml?read=2" class="tabTxt <if condition="$read eq 2">cur</if>">评论</a></li>	
+							<li class="tabList"><a href="__ROOT__/admin/personal/getMsgList.shtml?read=2" class="tabTxt <if condition="$read eq 2">cur</if>">动态</a></li>				
+						</ul>
+					</div>
+						
+					<div id="dread" style="margin:10px 20px 10px 0;text-align:right;font-size:12px;padding-right:10px;"><a href="javascript:setRead();">设置为已读</a>
+					<input type="checkbox" id="all_box">	
+					</div>
+					<div class="noticeWBox">
+						<!-- 每页10条 -->
+						<ul id="pageList" class="noticeWList">
+
+						</ul>
+
+						<div class="xsPageBox2" style="position:relative;">
+							<div id="pagebar" class="xsPage" style="display:none;">
+					        	<a href="">上一页</a>
+					        	<a href="" class="cur">1</a>
+					        	<a href="">2</a>
+					        	<a href="">3</a>
+					        	<a href="">下一页</a>
+					        </div>
+					        
+					        <div id="Pagination" class="pagination" style="margin-left:15px"></div>
+					        <span style="margin:10px 0 0 5px;font-size:13px;color:#999;float:left">共<span style="color:#26b;">{$total.c}</span>条</span>
+					    	
+						</div>
+
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+		<!-- /main -->
+
+	</div>
+
+
+
+</form>
+</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		initPage();
+		if({$read} == 2){
+			$("#dread").hide();
+		}
+
+		$("#all_box").bind({
+			click: function(){
+				// alert($(this).attr("checked"));
+				if($(this).attr("checked")=="checked"){
+					$("input[name='state']").each(function(){
+						$(this).attr("checked", "checked");
+					});
+				}else{
+					$("input[name='state']").each(function(){
+						$(this).attr("checked", false);
+					});
+				}
+			}
+		});
+	});
+	function read(s, a){
+		$("#isRead").val(s);
+		$(".tabTxt").removeClass("cur");
+		$(a).addClass("cur");
+	}
+
+	var _size = 2;
+	function initPage(c){
+		var pageIndex = 0;     //页面索引初始值  
+		var pageSize = _size;     //每页显示条数初始化，修改显示条数，修改这里即可  
+		var optInit = {
+			current_page : 0,
+			items_per_page : pageSize,
+			num_display_entries : 5,
+			num_edge_entries : 1,
+			prev_text : "上一页",
+			next_text : "下一页",
+			callback : PageCallback
+		}
+		$("#Pagination").pagination({$total.c}, optInit);
+	}
+	
+	function PageCallback(index) {
+		var bean = new Object();
+		bean.start = index*_size;
+		bean.limit = _size;
+		bean.read = $("#isRead").val();
+		
+        Common.ajax("__ROOT__/admin/personal/getLogFragment.shtml", bean, function(data){			
+			$("#pageList").html(data);
+		},"html"); 
+    }
+
+    function setRead(){
+    	if($("input[name='state']:checked").length == 0){
+    		alert("请选择一条记录");
+    		return;
+    	}
+    	var ids = "0";
+    	$("input[name='state']:checked").each(function(){
+    		ids += ","+$(this).attr("mid");
+    	});
+    	$("#ids").val(ids);
+    	$("#form1").submit();
+    }
+</script>

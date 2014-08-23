@@ -1,8 +1,8 @@
 <foreach name="logList" item="vo">
 	<li class="clearfix">
-		<a class="noticeImg"><img src="__PUBLIC__/{:W('Home/My/getUserVal',array($vo['oper_user_id'],'header_img'))}" alt></a>
+		<a class="noticeImg"><img src="__PUBLIC__/{:W('Home/My/getUserVal',array($vo['oper_user_id'],'header_img'))}" onerror="javascript:this.src='__PUBLIC__/images/user_default.png';"></a>
 		<div class="noticeMain">
-			<p class="noticeName"><a class="nameTxt">{:W('My/getUserVal',array($vo['oper_user_id']))}</a></p>
+			<p class="noticeName"><a class="nameTxt">{:W('Home/My/getUserVal',array($vo['oper_user_id']))}</a></p>
 			<p class="noticeCon">{$vo['oper_action']}了你的{:W('Home/My/getLogTitle',array($vo['opered_id'], $vo['oper_table']))}</p>
 		</div>
 	</li>

@@ -1,0 +1,15 @@
+<foreach name="logs" item="msg" >
+	<li>
+		<div class="noUserImg"><a class="userPic" href="#"><img src="__PUBLIC__/{$msg.header_img}" alt="" class="userImg" onerror="javascript:this.src='__PUBLIC__/images/user_default.png';"></a></div>
+
+		<div class="notiDetail" style="position:relative;">
+			<span style="width:90%;display:inline-block">
+				<p class="notiUser"><a class="notiName" href="#">{$msg.aliasname}</a><span class="notiDate">{$msg.oper_date}</span></p>
+				<p class="notiCon">{$msg.oper_action}了你的{:W('Home/My/getLogTitle',array($msg['rid'], $msg['oper_table']))}</p>
+			</span>
+			
+			<span style="display:inline-block;position:absolute;right:10px;margin-top:20px;"><input mid="{$msg.mid}" name="state" type="checkbox"></span>
+		</div>
+
+	</li>
+</foreach>

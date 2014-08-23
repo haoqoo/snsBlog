@@ -97,7 +97,8 @@
 	        
 	        $Logs = M("OperationLogs");
 	        $map['oper_notice_id'] = $user["id"];
-	        $data = $Logs->where($map)->select();
+	        $map['state'] = 1;
+	        $data = $Logs->where('oper_notice_id = '.$user["id"].' and state = 1 and oper_table <> "user_messages"')->select();
 	        // return $data;
 	        $this->assign('logList',$data);
 	        // $this->display('Index:log_list');

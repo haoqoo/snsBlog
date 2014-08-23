@@ -61,7 +61,7 @@ class PersonalController extends Controller {
         $this->ajaxReturn($ajax);
     }
 
-    public function getMsgList($start=0, $limit=5, $read=1){
+    public function getMsgList($start=0, $read=1){
         $user = session('__user__');
        
         $Model = new \Think\Model();
@@ -109,4 +109,42 @@ class PersonalController extends Controller {
     }
 
 
+    public function getLogList($read=1){
+        $user = session('__user__');
+       
+        $Model = new \Think\Model();
+        $sql_count = "select count(1) c from wq_operation_logs t,wq_users u where t.oper_table <> 'user_messages' and t.oper_user_id = u.id and t.oper_notice_id = ".$user["id"]." and t.state = ".$read;
+        $count = $Model->query($sql_count);               
+        
+        $this->assign("read", $read);
+        $this->assign("total", $count[0]);
+        $this->assign("logs", $result);
+        $this->display('userLogList');
+    }
+
+    public function getLogFragment($read=1, $start=0, $limit=5){
+        $user = session('__user__');
+        $Model = new \Think\Model();
+        $sql = "select u.id, u.aliasname, u.header_img,t.id mid, t.opered_id rid, t.oper_date, t.oper_table,oper_action from wq_operation_logs t,wq_users u where t.oper_table <> 'user_messages' and t.oper_user_id = u.id ";
+        $sql = $sql." and t.oper_notice_id = ".$user["id"]." and t.state = ".$read;
+        $sql = $sql." order by t.state asc, t.oper_date desc limit ".$start.",".$limit;
+        $result = $Model->query($sql); 
+        
+        $this->assign("logs", $result);
+        $this->display('pageLogFragment');
+        
+    }
+
+    //更新日志为已读状态
+    public function updateLogState($ids=''){
+        $idarr = explode(",",$ids);
+        
+        $OperationLogs = M("OperationLogs");
+        for($i=0; $i < count($idarr); $i++){
+            // echo $idarr[$i]."<br>";
+            $OperationLogs-> where('id='.$idarr[$i])->setField('state',2);
+        }
+        // $this->success('操作完成','getMsgList.shtml',0);
+        $this->redirect('/admin/personal/getLogList');
+    }
 }
