@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtmBox">
+<head>
+	<include file='./Public/common/meta.html' />
+<title></title>
+</head>
+
+<body>
+
+
+	<div class="xsWrap">
+		<!-- 顶导 -->
+		<include file='./Public/common/header.html' />
+		<!-- /顶导 -->
+		<!-- main -->
+		<div class="mainBox clearfix">
+			<div class="xsNLayout">
+				<!-- 设置密码 -->			
+				
+				<div class="editAlBox pswEditBox">
+					<div class="xsTit">设置密码</div>
+					<div class="editForm">
+						<div class="formOk">
+							<p class="formOKTip">重置密码成功！</p>
+							<p class="formOKTipL"><a href="javascript:open_login();">马上登录</a></p>
+						</div>
+						<!--
+						<div class="formOk">
+							<p class="formOKTip">链接已失效</p>
+						</div>
+						-->						
+					</div>
+					
+				</div>
+				<!-- /设置密码 -->
+			</div>
+		</div>
+
+		<!-- /main -->
+
+	</div>
+
+
+<!-- 登录弹层 -->
+<div class="xsLoginLayer" style="display:none; top:100px; left:400px;background: #fff;z-index:9999;border:1px solid #ccc">
+    <a class="closeBtn">
+        <span class="xsIcon icon_close"></span>
+    </a>
+    <p class="logoBox">
+        <span class="logoImg logoL"></span>
+    </p>
+    <p class="slogan">－ slogan －</p>
+    <div class="LaylogWrap">
+        <div class="LayLogBox">
+            <p class="logInput logName">
+                <input type="text" name="username" placeholder="用户名">
+            </p>
+            <p class="logInput logPsw">
+                <input type="password" name="password" id="key_password" placeholder="密码" >
+            </p>
+        </div>
+        <p class="LaylogBtn"><a class="logBtn" href="javascript:login();">登录</a>
+        </p>
+        
+    </div>
+    
+</div>
+<!-- /登录弹层 -->
+
+</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+        	$(".closeBtn").bind({
+        		click: function(){
+        			// $(".xsRegLayer").hide();
+        			// $(".xsWLayer").hide();
+                    $("div[class$='Layer']").hide(); 
+        			$(".mask").hide();
+        		}
+        	});    
+
+        	$("#key_password").keydown(function(e){
+            　if(e.keyCode == 13){
+                 login();
+                 return false;
+                }
+            });                   
+
+        });
+	function open_login(){
+		$(".xsLoginLayer").show();
+	}
+
+	function login(){
+			var username = $("input[name=username]").val();
+			var password = $("input[name=password]").val();
+			if(username==null || username==""){
+				alert("用户名不能为空！");
+				return;
+			}
+			if(password==null || password==""){
+				alert("密码不能为空！");
+				return;
+			}
+			$.post("__ROOT__/admin/user/login",{'username':username,'password':password},function(data){
+				 //alert(data.success);
+                 var uri =  $("input[name=uri_hidden]").val();
+				 if (data.success){
+                     if(uri==null || uri==""){
+                    location.href='__ROOT__/cate';
+                    }
+				 }
+                
+				 
+			});
+                
+		}
+</script>

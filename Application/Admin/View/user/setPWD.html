@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtmBox">
+<head>
+	<include file='./Public/common/meta.html' />
+	<link rel="stylesheet" href="__PUBLIC__/js/plugins/validator-0.7.3/jquery.validator.css">
+    <script type="text/javascript" src="__PUBLIC__/js/plugins/validator-0.7.3/jquery.validator.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/plugins/validator-0.7.3/local/zh_CN.js"></script>
+<title></title>
+</head>
+
+<body>
+
+
+	<div class="xsWrap">
+		<!-- 顶导 -->
+		<include file='./Public/common/header.html' />
+		<!-- /顶导 -->
+		<!-- main -->
+		<form id="form1" action="__ROOT__/admin/user/setPWD.shtml" method="post" >
+		<input type="hidden" name="id" value="{$user.id}">
+		<div class="mainBox clearfix">
+			<div class="xsNLayout">
+				<!-- 设置密码 -->			
+				
+				<div class="editAlBox pswEditBox">
+					<div class="xsTit">设置密码</div>
+					<div class="editForm">
+						<div class="formCata">
+							<dl class="clearfix">
+								<dt class="formName">新密码</dt>
+								<dd class="formInput"><input class="xsInput fw01" name="password" type="password" value="" data-rule="required;length[6~];"></dd>
+								
+							</dl>
+							<dl class="clearfix">
+								<dt class="formName">确认密码</dt>
+								<dd class="formInput"><input class="xsInput fw01" name="password_confirm" type="password" value="" data-rule="required;length[6~];match(password);"></dd>
+								
+							</dl>
+						</div>
+						
+					</div>
+					<p class="saveBtn"><a class="btnD" href="javascript:setPWD();">确认</a></p>
+				</div>
+				<!-- /设置密码 -->
+			</div>
+		</div>
+		</form>
+		<!-- /main -->
+
+	</div>
+
+
+
+
+</body>
+</html>
+<script type="text/javascript">
+	function setPWD(){
+		$("#form1").submit();
+	}
+</script>

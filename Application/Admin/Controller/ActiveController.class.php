@@ -87,4 +87,26 @@ class ActiveController extends Controller {
         $this->display('active');
     }
 
+    public function sendFindMail($mailname='') {        
+        
+        $User = M("Users");
+
+        $map['username'] = $mailname;
+        $u = $User->where($map)->find();
+        if(!isset($u["id"])){
+            $ajax['success'] = false;
+            return $this->ajaxReturn($ajax);
+        }
+        $User-> where('id='.$u['id'])->setField("update_date", date("Y-m-d H:i:s"));
+        
+        $key = base64_encode(base64_encode(md5("12"))."+".base64_encode($u['id'].".mailfind"));
+        $find_url = "http://localhost".__ROOT__."/admin/user/findPWD?key=".$key;
+
+        SendMail($mailname, "sns系统找回密码", "请点击下面的链接".$find_url."。来重置您的密码。如果您的邮箱不支持链接点击，请将以上链接地址拷贝到你的浏览器地址栏中。");
+        
+        $ajax['success'] = true;
+        $this->ajaxReturn($ajax);   
+    }
+
+    
 }

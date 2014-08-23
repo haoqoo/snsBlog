@@ -170,4 +170,37 @@ class UserController extends Controller {
         $this->ajaxReturn($ajax); 
     }
 
+    public function findPWD($key){
+        $arr = explode("+", base64_decode($key));
+       
+        $ids = base64_decode($arr[1]);
+       
+        $a2 = explode(".", base64_decode($arr[1]));
+       
+
+        $User = M("Users");
+        $map['id']=$a2[0];
+        $data = $User->where($map)->find();
+               
+        $updateDate = new \Org\Util\Date($data["update_date"]);
+        $date = new \Org\Util\Date();
+        $dd = $updateDate->dateDiff($date, 'h');
+        if($dd > 2){
+            $this->assign('msg', "url已过期");
+            return $this->display('findPWD_err');
+        }
+               
+        $this->assign('user', $data);
+        $this->display('setPWD');
+    }
+
+    public function setPWD(){
+        $User = M("Users");
+        $User->create($_POST);
+        $User->update_date = date("Y-m-d H:i:s");
+        $User->save();
+
+        $this->display('setPWD_tip');
+    }
+
 }

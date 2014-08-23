@@ -27,7 +27,7 @@
         </div>
         <p class="LaylogBtn"><a class="logBtn" href="javascript:login();">登录</a>
         </p>
-        <p class="LayOth clearfix"><a class="forgetPsw" href="#">忘记密码></a>
+        <p class="LayOth clearfix"><a class="forgetPsw" href="javascript:openDialog('findPassword')">忘记密码></a>
             <span class="noAcc">还没有账号？ <a class="cliReg" href="javascript:open_reg('inLogin');">点击注册></a>
             </span>
         </p>
@@ -58,7 +58,7 @@
             </p>
             <p class="logInput logVer">
                 <input type="text" name="code" placeholder="验证码" class="xsInput regInput2">
-                <img id="mcode" style="cursor:pointer;" src="__ROOT__/home/index/ver.shtml" alt="" onclick="flash_img()">
+                <img id="mcode" style="cursor:pointer;" src="__ROOT__/home/index/ver.shtml" alt="" onclick="flash_img('mcode')"/>
                 <span class="verImg">
                 </span>
             </p>
@@ -131,7 +131,7 @@
         <div class="layerCon">
             <p class="regNotice">验证邮件已发送至 <span id="regmail" class="userEmail"></span><br>请<a id="toMail" class="cheMail" href="#" target="_blank">点击查收邮件</a>激活帐号。</p>
         </div>
-        <p class="layerBtn"><a class="btnA" href="javascript:close();">离开</a>
+        <p class="layerBtn"><a class="btnA" href="javascript:closeDialog();">离开</a>
         </p>
 
     </div>
@@ -187,6 +187,45 @@ style="display:none; top:300px; left:300px;z-index:9999">
 </div>
 <!-- /创建专辑弹层 -->
 
+<!-- 找回密码弹层 -->
+    <div id="findPassword" class="xsRegLayer" style="display:none; top:100px; left:400px;z-index:9999">
+        <form id="findPassword_form">
+        <a class="closeBtn"><span class="xsIcon icon_close"></span></a>
+        <p class="logoBox"><span class="logoImg logoL"></span></p>
+        <p class="regWay">找回密码</p>
+        <div class="LayRegWrap">
+            <div class="LayRegBox">
+                <p class="logInput logName"><input type="text" name="reg_mail" placeholder="注册邮箱" class="xsInput regInput1" data-rule="required;email"></p>
+                <p class="logInput logVer"><input type="text" placeholder="验证码" class="xsInput regInput2">
+                <img id="mcode2" style="cursor:pointer;" src="__ROOT__/home/index/ver.shtml" alt="" onclick="flash_img('mcode2')"/>
+                </p>
+            </div>
+            <p class="LaylogBtn"><a class="logBtn" href="javascript:mail_find();">发送邮件</a></p>
+        </div>
+        <div class="LayMgeBox">
+            <p class="regWay"><a href="javascript:open_login();">又想起来了</a></p>
+            
+        </div>
+        </form>
+    </div>
+    <!-- /找回密码弹层 -->
+
+    <!-- 提示弹层 -->
+    <div id="findPasswordTip" class="xsWLayer warnLayer" style=" display:none; top:300px; left:300px;z-index:9999">
+        <a class="closeBtn"><span class="xsIcon icon_close"></span></a>
+
+        <div class="WLayerMain">
+            <p class="WLayerTit2">提示</p>
+            <div class="layerCon">
+                <p class="warnTxt">重置密码链接已发送到您的邮箱，请<a id="toMail2" class="cheMail" href="#" target="_blank">点击查收邮件</a></p>
+            </div>
+            <p class="layerBtn"><a class="btnA">确定</a></p>
+
+        </div>
+    </div>
+
+    <!-- /提示弹层 -->
+
 <!-- 转转隐藏uri -->
 <input type="hidden" name="uri_hidden" >
 
@@ -195,8 +234,9 @@ style="display:none; top:300px; left:300px;z-index:9999">
         $(function(){
         	$(".closeBtn").bind({
         		click: function(){
-        			$(".xsRegLayer").hide();
-        			$(".xsWLayer").hide();
+        			// $(".xsRegLayer").hide();
+        			// $(".xsWLayer").hide();
+                    $("div[class$='Layer']").hide(); 
         			$(".mask").hide();
         		}
         	});
@@ -211,9 +251,10 @@ style="display:none; top:300px; left:300px;z-index:9999">
             
 
         });
-        function close(){
-            $(".xsRegLayer").hide();
-            $(".xsWLayer").hide();
+        function closeDialog(){
+            // $(".xsRegLayer").hide();
+            // $(".xsWLayer").hide();
+            $("div[class$='Layer']").hide(); 
             $(".mask").hide();
         }
 		function open_login(uri){
@@ -319,8 +360,8 @@ style="display:none; top:300px; left:300px;z-index:9999">
 			})	
 		}
 
-		function flash_img(){
-			$("#mcode").attr("src", $("#mcode").attr("src")+"?");
+		function flash_img(img){
+			$("#"+img).attr("src", $("#"+img).attr("src")+"?");
 		}
 
         function open_album(){
@@ -342,6 +383,39 @@ style="display:none; top:300px; left:300px;z-index:9999">
                   $(".addAlbumLayer").hide();
 
             });
+        }
+
+        function openDialog(id){
+            closeDialog();
+            $(".mask").show();
+            $("#"+id).show();
+        }
+
+        function mail_find(){
+            var valid = $('input[name="reg_mail"]').trigger("validate");               
+            if (!$('input[name="reg_mail"]').isValid()) {
+                return;
+            }
+            var mailname = $("input[name=reg_mail]").val();
+            $.post("__ROOT__/admin/active/sendFindMail",{'mailname':mailname},function(data){
+                 //alert(data.success);
+                 if (data.success){
+                    openDialog('findPasswordTip');
+
+                    $("#regmail").text(mailname);
+                    var m1 = mailname.substring(mailname.indexOf("@")+1);
+                    var domain = m1.substring(0,m1.indexOf("."));
+                    $("#toMail2").attr("href","http://mail."+domain+".com");
+
+                    $("input[name=reg_mail]").val("");
+                    $("#findPassword_form").validator( "cleanUp" );
+
+                 }else{
+                    $("#err_msg").show();   
+                 };//undo 
+
+                 
+            })  
         }
 
         jQuery(document).ready(function(){
