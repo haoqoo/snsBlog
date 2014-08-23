@@ -22,9 +22,9 @@
 				<div class="xsBorBox">
 					<div class="xsTabBox">
 						<ul class="xsTab clearfix">
-							<li class="tabList"><a href="__ROOT__/admin/personal/getLogList.shtml?read=1" class="tabTxt <if condition="$read eq 1">cur</if>">全部消息</a></li>
-							<li class="tabList"><a href="__ROOT__/admin/personal/getMsgList.shtml?read=2" class="tabTxt <if condition="$read eq 2">cur</if>">评论</a></li>	
-							<li class="tabList"><a href="__ROOT__/admin/personal/getMsgList.shtml?read=2" class="tabTxt <if condition="$read eq 2">cur</if>">动态</a></li>				
+							<li class="tabList"><a href="__ROOT__/admin/personal/getLogList.shtml?read=1" class="tabTxt <if condition="$tab eq '' ">cur</if>">全部消息</a></li>
+							<li class="tabList"><a href="__ROOT__/admin/personal/getLogList.shtml?tab=comments" class="tabTxt <if condition="$tab eq 'comments' ">cur</if>">评论</a></li>	
+							<li class="tabList"><a href="#" class="tabTxt <if condition="$tab eq 'other' ">cur</if>">动态</a></li>				
 						</ul>
 					</div>
 						
@@ -116,6 +116,7 @@
 		bean.start = index*_size;
 		bean.limit = _size;
 		bean.read = $("#isRead").val();
+		bean.tab = "{$tab}";
 		
         Common.ajax("__ROOT__/admin/personal/getLogFragment.shtml", bean, function(data){			
 			$("#pageList").html(data);
