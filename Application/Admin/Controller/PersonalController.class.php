@@ -112,14 +112,14 @@ class PersonalController extends Controller {
     public function getLogList($read=1, $tab=''){
         $sql_ext = "";
         if(!empty($tab)){
-            $sql_ext = " and t.oper_table =".$tab;
+            $sql_ext = " and t.oper_table ='".$tab."'";
         }
         $read=1;
         $user = session('__user__');
        
         $Model = new \Think\Model();
         $sql_count = "select count(1) c from wq_operation_logs t,wq_users u where t.oper_table <> 'user_messages' and t.oper_user_id = u.id and t.oper_notice_id = ".$user["id"]." and t.state = ".$read;
-        $sql = $sql.$sql_ext;
+        $sql_count = $sql_count.$sql_ext;
         $count = $Model->query($sql_count);               
         
         $this->assign("read", $read);
@@ -132,7 +132,7 @@ class PersonalController extends Controller {
     public function getLogFragment($read=1, $tab='', $start=0, $limit=5){
         $sql_ext = "";
         if(!empty($tab)){
-            $sql_ext = " and t.oper_table =".$tab;
+            $sql_ext = " and t.oper_table ='".$tab."'";
         }
         $read=1;
         $user = session('__user__');
