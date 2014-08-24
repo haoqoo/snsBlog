@@ -18,6 +18,14 @@ class PersonalController extends Controller {
         $this->assign("uid", $id);
         $this->assign("person", $data);
 
+        //记录最近访客
+        $user = session('__user__');
+        if(isset($user)){
+            $LastVisitor = D('LastVisitor', 'Logic');
+            $LastVisitor->addVisitor($id, $user['id']);    
+        }
+        
+
        // $type =$_GET('type');
         if($type=='zhan'){
              $this->display('home_zhan');   
@@ -160,5 +168,6 @@ class PersonalController extends Controller {
         // $this->success('操作完成','getMsgList.shtml',0);
         $this->redirect('/admin/personal/getLogList');
     }
+    
 
 }

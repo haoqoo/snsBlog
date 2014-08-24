@@ -44,14 +44,7 @@
 				<div class="nearCome clearfix">
 					<p class="nearTit">最近来访者</p>
 					<ul class="nearList">
-						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
-						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
-						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
-						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
-						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
-						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
-						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
-						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>						
+						{:W('Home/My/getLastVisitor',array($person['id']))}				
 					</ul>
 
 				</div>				
@@ -92,7 +85,7 @@
 
 	</div>
 
-	<include file='./Public/common/openWindows.html' />
+	<include file='./Public/common/message.html' />
 
 
 

@@ -14,3 +14,13 @@ DELETE FROM `wq_operation_sql`;
 INSERT INTO `wq_operation_sql` (`id`, `oper_table`, `view_sql`) VALUES
 	(1, 'comments', 'select p.title from wq_posts p, wq_comments t where p.id = t.post_id and t.id =?'),
 	(2, 'post_favorites', 'select p.title from wq_posts p, wq_post_favorites t where p.id = t.post_id and t.id =?');
+
+
+DROP TABLE IF EXISTS `wq_last_visitor`;
+CREATE TABLE IF NOT EXISTS `wq_last_visitor` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) DEFAULT NULL COMMENT '被访问者',
+  `visitor_id` bigint(20) DEFAULT NULL COMMENT '游客',
+  `visitor_time` datetime DEFAULT NULL COMMENT '访问时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

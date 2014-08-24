@@ -1,0 +1,3 @@
+<foreach name="visitors" item="vo">
+	<li><a class="nearImg" href="__ROOT__/admin/personal/view.shtml?id={$vo.visitor_id}"><img src="__PUBLIC__/{:W('Home/My/getUserVal',array($vo['visitor_id'],'header_img'))}" onerror="javascript:this.src='__PUBLIC__/images/user_default.png';"></a></li>
+</foreach>

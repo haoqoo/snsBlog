@@ -104,15 +104,8 @@
 	        // $this->display('Index:log_list');
 	        $this->display('./Public/common/log_list.html');
 	    }
-
-	    public function getPostTitle($id=0, $table=''){
-	    	$t = "wq_".$table;
-	    	$Model = new \Think\Model();
-	    	$sql = "select p.title from wq_posts p, ".$t." t where p.id = t.post_id and t.id =".$id;
-	    	$title = $Model->query($sql); 
-	    	return $title[0]["title"];
-	    }
-
+	    
+	    //查询用户消息标题
 	    public function getLogTitle($id=0, $table=''){
 	    	$OperationSql = M("OperationSql");
 	        $map['oper_table'] = $table;
@@ -125,6 +118,22 @@
 
 	        $url = str_replace("?", $id, $data["url"]);
 	        return $data["field_name"].'<a class="noAlName" href="'.__ROOT__.$url.'">'.$title[0]["title"].'</a>';
+	    }
+
+	    //查询最近访客列表
+	    public function getLastVisitor($userId=0){
+	    	// $sql = "select u.id, u.header_img from wq_last_visitor t, wq_users u where t.visitor_id = u.id and t.user_id =".$userId;
+	    	// $Model = new \Think\Model();
+	     //    $visitors = $Model->query($sql); 
+	     //    $this->assign('visitors',$data);
+	        // $this->display('Index:log_list');
+
+	    	$LastVisitor = M('LastVisitor');
+	    	$map['user_id'] = $userId;
+	    	$data = $LastVisitor->where($map)->order("visitor_time desc")->limit(8)->select();
+
+	    	$this->assign('visitors',$data);
+	        $this->display('./Public/common/visitor_list.html');
 	    }
 	   
 	}
