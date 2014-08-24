@@ -51,20 +51,21 @@
         <span class="logoImg logoL"></span>
     </p>
     <p class="regWay"><a href="javascript:open_mail_reg();">使用邮箱注册</a></p>
-    <div class="LayRegWrap">
+    <div class="LayRegWrap" style="position:relative;">
         <div class="LayRegBox">
             <p class="logInput logName">
                 <input type="text" name="regname" placeholder="用户名" class="xsInput regInput1" data-rule="required;remote[__ROOT__/admin/user/regCheck.shtml]">
             </p>
             <p class="logInput logVer">
                 <input type="text" name="code" placeholder="验证码" class="xsInput regInput2">
-                <img id="mcode" style="cursor:pointer;" src="__ROOT__/home/index/ver.shtml" alt="" onclick="flash_img('mcode')"/>
+                <img id="mcode" style="cursor:pointer;" src="__ROOT__/home/index/ver.shtml?" alt="" onclick="flash_img('mcode')"/>
                 <span class="verImg">
                 </span>
             </p>
         </div>
         <p class="LaylogBtn"><a class="logBtn" href="javascript:reg();">注册</a>
         </p>
+        <div id="regErr" style="display:none;position:absolute;right:5px;bottom:5px;color:red;width:120px;">验证码错误</div>
     </div>
     
     <!-- <div class="LayShareBox">
@@ -193,14 +194,15 @@ style="display:none; top:300px; left:300px;z-index:9999">
         <a class="closeBtn"><span class="xsIcon icon_close"></span></a>
         <p class="logoBox"><span class="logoImg logoL"></span></p>
         <p class="regWay">找回密码</p>
-        <div class="LayRegWrap">
+        <div class="LayRegWrap" style="position:relative;">
             <div class="LayRegBox">
                 <p class="logInput logName"><input type="text" name="reg_mail" placeholder="注册邮箱" class="xsInput regInput1" data-rule="required;email"></p>
-                <p class="logInput logVer"><input type="text" placeholder="验证码" class="xsInput regInput2">
-                <img id="mcode2" style="cursor:pointer;" src="__ROOT__/home/index/ver.shtml" alt="" onclick="flash_img('mcode2')"/>
+                <p class="logInput logVer"><input type="text" name="code2" placeholder="验证码" class="xsInput regInput2" >
+                <img id="mcode2" style="cursor:pointer;" src="__ROOT__/home/index/ver.shtml?id=2" alt="" onclick="flash_img('mcode2')"/>
                 </p>
             </div>
             <p class="LaylogBtn"><a class="logBtn" href="javascript:mail_find();">发送邮件</a></p>
+            <div id="findPasswordErr" style="display:none;position:absolute;right:5px;bottom:5px;color:red;width:120px;"></div>
         </div>
         <div class="LayMgeBox">
             <p class="regWay"><a href="javascript:open_login();">又想起来了</a></p>
@@ -319,8 +321,8 @@ style="display:none; top:300px; left:300px;z-index:9999">
                     $("#form0").validator( "cleanUp" );
 
 				 }else{
-				 	$("#err_msg").show();	
-				 	flash_img();
+				 	$("#regErr").show();	
+				 	flash_img('mcode');
 				 };//undo 
 			})
 		}
@@ -361,7 +363,7 @@ style="display:none; top:300px; left:300px;z-index:9999">
 		}
 
 		function flash_img(img){
-			$("#"+img).attr("src", $("#"+img).attr("src")+"?");
+			$("#"+img).attr("src", $("#"+img).attr("src")+"&?");
 		}
 
         function open_album(){
@@ -397,7 +399,8 @@ style="display:none; top:300px; left:300px;z-index:9999">
                 return;
             }
             var mailname = $("input[name=reg_mail]").val();
-            $.post("__ROOT__/admin/active/sendFindMail",{'mailname':mailname},function(data){
+            var code2 = $("input[name=code2]").val();
+            $.post("__ROOT__/admin/active/sendFindMail",{'mailname':mailname, 'codeId':2, 'code2':code2},function(data){
                  //alert(data.success);
                  if (data.success){
                     openDialog('findPasswordTip');
@@ -411,7 +414,8 @@ style="display:none; top:300px; left:300px;z-index:9999">
                     $("#findPassword_form").validator( "cleanUp" );
 
                  }else{
-                    $("#err_msg").show();   
+                    $("#findPasswordErr").show();   
+                    $("#findPasswordErr").text(data.msg);
                  };//undo 
 
                  

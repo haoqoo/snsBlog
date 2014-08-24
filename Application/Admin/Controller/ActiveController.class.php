@@ -87,7 +87,13 @@ class ActiveController extends Controller {
         $this->display('active');
     }
 
-    public function sendFindMail($mailname='') {        
+    public function sendFindMail($mailname='', $codeId, $code2) {   
+        $verify = new \Think\Verify();
+        if(!$verify->check($code2, $codeId)){
+            $ajax['msg']  = "验证码错误";
+            $ajax['success'] = false;
+            return $this->ajaxReturn($ajax);   
+        }     
         
         $User = M("Users");
 

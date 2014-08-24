@@ -6,7 +6,7 @@ class IndexController extends Controller {
         $this->display('home');		
     }
 	
-	public function ver() {  
+	public function ver($id='') {  
 		$config = array(  
 		    'imageH' => 40, // 验证码图片高度  
 		    'imageW' => 120, // 验证码图片宽度  
@@ -16,7 +16,7 @@ class IndexController extends Controller {
         $Verify = new \Think\Verify($config);  
         //$Verify = D("Verify"); 
          
-        $Verify->entry();  
+        $Verify->entry($id);  
     }  
 
     public function sendm() {  
