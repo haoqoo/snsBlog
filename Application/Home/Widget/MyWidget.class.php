@@ -57,6 +57,19 @@
 	 		return isset($count)?$count:0;
 	 	}
 
+	 	//是否已采集或点赞
+	 	public function postFavoritesHave($post_id,$type){
+	 		$user = session('__user__');
+	 		$PostFavorites = M('PostFavorites');	
+	 		$count = $PostFavorites->where('type=%d and post_id=%d and user_id=%d',array($type,$post_id,$user['id']))->count();
+	 		
+	 		if(isset($count) && $count>0) {
+	 			return 'have';
+	 		}
+	 		return '';
+
+	 	}
+
 	 	//获取用户表里字段的值
 	 	public function getUserVal($user_id,$field='username'){
 	 		$Users = new \Admin\Model\UsersModel();
