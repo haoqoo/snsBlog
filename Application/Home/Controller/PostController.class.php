@@ -241,4 +241,39 @@ class PostController extends Controller {
 		$this->ajaxReturn($state);
 	}
 
+	//评论回复
+	public function replyComment(){
+		$content = $_POST['content'];
+		$post_id = $_POST['post_id'];
+		$comment_id = $_POST['comment_id'];
+		$user  = session('__user__');
+		$Comments = M('Comments');
+
+		$comment = $Comments->where('id=%d',array($comment_id))->find();
+
+		$Comments->create();		
+		$Comments->content = $content;
+		$Comments->post_id = $post_id;
+		$Comments->user_id = $user['id'];
+		$Comments->state   = 1;
+		$Comments->create_date = date("Y-m-d H:i:s");
+		if(empty($comment['parent_id'])){
+			$Comments->parent_id = $comment_id;
+		}else{
+			$Comments->parent_id = $comment['parent_id'].','.$comment_id;
+		}
+		
+		
+		$vo['user_id']     = $user['id'];
+		$vo['content']     = $Comments->content;
+		$vo['parent_id'] =  $Comments->parent_id;
+		$vo['create_date'] = $Comments->create_date;
+		$id                = $Comments->add();
+		$vo['id']          = $id;
+
+		$comment_list[] = $vo;
+		$this->assign('comment_list', $comment_list);
+		$this->display(C('POST_VIEW')."comment_wookmark");
+	}
+
 }
