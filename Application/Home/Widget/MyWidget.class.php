@@ -148,5 +148,25 @@
 	    	$this->assign('visitors',$data);
 	        $this->display('./Public/common/visitor_list.html');
 	    }
+
+	    //个人主页个人信息公共页面片段
+	    public function getPersonalInfo($userId=0){
+	    	$UsersFans = M('UsersFans');
+	    	$map['user_star'] = $userId;
+	    	$fans = $UsersFans->where($map)->count("user_fan");
+	    	$attentions = $UsersFans->where($map)->count("user_star");
+
+	    	//最近访客查询
+	    	$LastVisitor = M('LastVisitor');
+	    	$map2['user_id'] = $userId;
+	    	$visitors = $LastVisitor->where($map2)->order("visitor_time desc")->limit(8)->select();
+
+	    	$this->assign('userId',$userId);
+	    	$this->assign('fans',$fans);
+	    	$this->assign('attentions',$attentions);
+	    	$this->assign('visitors',$visitors);
+
+	        $this->display('./Public/common/personal_info.html');
+	    }
 	   
 	}

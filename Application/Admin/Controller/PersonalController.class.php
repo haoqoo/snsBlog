@@ -170,4 +170,48 @@ class PersonalController extends Controller {
     }
     
 
+    //加关注
+    public function addAttention($id=0){
+        $user = session('__user__');
+        if(isset($user)){
+            $UsersFans = D('UsersFans', 'Logic');
+            $UsersFans->addAttention($id, $user['id']);    
+        }
+        $this->redirect('/admin/personal/view', array('id' => $id));
+    }
+
+    public function getAttentionList($type=1){
+        $UsersFans = D('UsersFans', 'Logic');
+
+        $c = $UsersFans->getPageCount($type);
+        $this->assign("total", $c);
+        $this->assign("type", $type);
+        $this->display('attentionList');
+    }
+
+    public function getAttentionPage($page=1, $limit=10, $type=1){
+        $UsersFans = D('UsersFans', 'Logic');
+
+        $list = $UsersFans->getPageList($page, $limit, $type);
+        $this->assign("list", $list);
+        if($type == 1){
+            $this->display('pageAttentionFragment');
+        }else{
+            $this->display('pageAttentionFragment2');
+        }
+        
+    }
+
+    //取消关注
+    public function updateAttentionState($ids=''){
+        $idarr = explode(",",$ids);
+        
+        $UsersFans = M("UsersFans");
+        for($i=0; $i < count($idarr); $i++){
+            // echo $idarr[$i]."<br>";
+            $UsersFans-> where('id='.$idarr[$i])->setField('state',1);
+        }
+        // $this->success('操作完成','getMsgList.shtml',0);
+        $this->redirect('/admin/personal/getAttentionList');
+    }
 }

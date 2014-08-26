@@ -1,0 +1,47 @@
+<form id="personal_form1" action="__ROOT__/admin/personal/addAttention.shtml" method="post">
+<input name="id" value="{$userId}">
+<div class="userMain clearfix">
+	<div class="userInfoBox clearfix">
+		<div class="userImgBox"><a class="userImg"><img src="__PUBLIC__/{:W('Home/My/getUserVal',array($userId,'header_img'))}" alt=""  onerror="javascript:this.src='__PUBLIC__/images/user_default.png';" ></a></div>
+		<div class="userDetaiBox">
+			<p class="userName"><a href="">{:W('Home/My/getUserVal',array($userId))}</a></p>
+			<p class="deBox"><a class="sendMsg" href="javascript:open_msg('{$person.username}');"><span class="xsIcon icon_primsg"></span><span class="iconTxt">发私信</span></a></p>
+			<p class="deBox"><a class="addAtt" href="javascript:attention();"><span class="xsIcon icon_addatt"></span><span class="iconTxt">加关注</span></a></p>
+		</div>
+		<div class="userDataBox">
+			<!-- 数字超过10000，用数字+“万”字表示，保留一位小数 -->
+			<p class="userAttBox">
+				<a class="dataBox" href="#">
+					<span class="userNum">{$attentions}</span>
+					<span class="userTxt">关注</span>
+				</a>
+			</p>
+			<p class="userFansBox">
+				<a class="dataBox" href="#">
+					<span class="userNum">{$fans}</span>
+					<span class="userTxt">粉丝</span>
+				</a>
+			</p>						
+		</div>
+	</div>
+	<div class="nearCome clearfix">
+		<p class="nearTit">最近来访者</p>
+		<ul class="nearList">
+			<if condition="count($visitors) gt 0">
+			<foreach name="visitors" item="vo">
+				<li><a class="nearImg" href="__ROOT__/admin/personal/view.shtml?id={$vo.visitor_id}"><img src="__PUBLIC__/{:W('Home/My/getUserVal',array($vo['visitor_id'],'header_img'))}" onerror="javascript:this.src='__PUBLIC__/images/user_default.png';"></a></li>
+			</foreach>
+
+			<else/>
+			<p style="font-size:12px;">最近没有来访者</p>
+			</if>				
+		</ul>
+
+	</div>				
+</div>
+</form>
+<script type="text/javascript">
+	function attention(){
+		$("#personal_form1").submit();
+	}
+</script>

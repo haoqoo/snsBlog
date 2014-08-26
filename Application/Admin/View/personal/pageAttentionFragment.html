@@ -1,0 +1,15 @@
+<foreach name="list" item="vo" >
+	<li>
+		<div class="noUserImg"><a class="userPic" href="#"><img src="__PUBLIC__/{:W('Home/My/getUserVal',array($vo['user_star'],'header_img'))}" alt="" class="userImg" onerror="javascript:this.src='__PUBLIC__/images/user_default.png';"></a></div>
+
+		<div class="notiDetail" style="position:relative;">
+			<span style="width:90%;display:inline-block">
+				<p class="notiUser"><a class="notiName" href="#">你</a><span class="notiDate">{$vo.create_date}</span></p>
+				<p class="notiCon">关注了<a class="notiName" href="#">{:W('Home/My/getUserVal',array($vo['user_star']))}</a></p>
+			</span>
+			
+			<span style="display:inline-block;position:absolute;right:10px;margin-top:20px;"><input mid="{$vo.id}" name="state" type="checkbox"></span>
+		</div>
+
+	</li>
+</foreach>

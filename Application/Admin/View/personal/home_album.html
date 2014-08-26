@@ -17,45 +17,7 @@
 		<div class="mainBox clearfix">
 			<!-- 个人信息 -->
 			<input id="uid" type="hidden" value="{$uid}">
-			<div class="userMain clearfix">
-				<div class="userInfoBox clearfix">
-					<div class="userImgBox"><a class="userImg"><img src="__PUBLIC__/{$person.header_img}" alt=""  onerror="javascript:this.src='__PUBLIC__/images/user_default.png';" ></a></div>
-					<div class="userDetaiBox">
-						<p class="userName"><a href="">{$person.aliasname}</a></p>
-						<p class="deBox"><a class="sendMsg" href="javascript:open_msg('{$person.username}');"><span class="xsIcon icon_primsg"></span><span class="iconTxt">发私信</span></a></p>
-						<p class="deBox"><a class="addAtt" href="#"><span class="xsIcon icon_addatt"></span><span class="iconTxt">加关注</span></a></p>
-					</div>
-					<div class="userDataBox">
-						<!-- 数字超过10000，用数字+“万”字表示，保留一位小数 -->
-						<p class="userAttBox">
-							<a class="dataBox" href="#">
-								<span class="userNum">1.1万</span>
-								<span class="userTxt">关注</span>
-							</a>
-						</p>
-						<p class="userFansBox">
-							<a class="dataBox" href="#">
-								<span class="userNum">1000</span>
-								<span class="userTxt">粉丝</span>
-							</a>
-						</p>						
-					</div>
-				</div>
-				<div class="nearCome clearfix">
-					<p class="nearTit">最近来访者</p>
-					<ul class="nearList">
-						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
-						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
-						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
-						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
-						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
-						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
-						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>
-						<li><a class="nearImg" href="#"><img src="../images/userL.jpg" alt=""></a></li>						
-					</ul>
-
-				</div>				
-			</div>
+			{:W('Home/My/getPersonalInfo',array($uid))}
 			<!-- /个人信息 -->
 
 			<div class="showMain clearfix">
