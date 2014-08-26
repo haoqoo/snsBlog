@@ -215,4 +215,30 @@ class PostController extends Controller {
 		
 	}
 
+	//举报
+	public function reportUser(){
+		$state = "success";
+		$user  = session('__user__');
+		$report_id =$user['id'];
+		$user_id = $_POST['user_id'];
+		if(!empty($user_id)){
+			$UserReport = M('UserReport');
+			$report = $UserReport->where('user_id=%d and report_id=%d',array($user_id,$report_id))->find();
+			$UserReport->create();
+			if(!isset($report)||sizeof($report)==0){				
+				$UserReport->user_id=$user_id;
+				$UserReport->report_id=$report_id;
+				$UserReport->create_date=date('Y-m-d H:i:s');
+				$UserReport->report_num = 1;
+				$UserReport->add();
+			}else{
+				 $UserReport->id = $report['id'];
+				 $UserReport->report_num =$report['report_num']+1;
+				 $UserReport->create_date=date('Y-m-d H:i:s');
+				 $UserReport->save();
+			}
+		}
+		$this->ajaxReturn($state);
+	}
+
 }
