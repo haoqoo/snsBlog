@@ -85,7 +85,7 @@
 												{:W('My/getUserVal',array($vo['user_id'],'aliasname'))}</a>
 												<span class="notiDate">{$vo.create_date}</span></p>
 												<if condition="session('__user__') neq null">
-												<p class="notiR"> <a class="notiRly" onclick="_reply({$vo.id})">回复</a><a class="notiRly" onclick="_report({$vo.user_id})">举报</a></p>
+												<p class="notiR"> <a class="notiRly" onclick="open_reply({$vo.id})">回复</a><a class="notiRly" onclick="_report({$vo.user_id})">举报</a></p>
 												</if>
 											</div>
 											<p class="notiCon clearfix">{$vo.content}</p>
@@ -129,6 +129,26 @@
 
 	<!-- 弹层 -->
     <include file="./Public/common/openWindows.html" />
+
+     <div id="replyComment" class="xsRegLayer" style="display:none; top:300px; left:400px;z-index:9999">
+        <a class="closeBtn">
+            <span class="xsIcon icon_close"></span>
+        </a>
+        <p class="logoBox">
+            <span class="logoImg logoL"></span>
+        </p>
+        <p class="regWay">回复</p>
+        <div class="LayRegWrap">
+            <div class="LayRegBox" style="width: 350px;">
+            	<input type="hidden" id="comment_id_val" />
+                <p class="logInput logName">
+                    <textarea id="replyContent" class="xsArea fwA01"></textarea>
+                </p>            
+            </div>
+            <p class="LaylogBtn"><a class="logBtn" href="javascript:send_msg();" >回复</a>
+            </p>
+        </div>       
+    </div>
     <!-- 弹层） -->
 	<script type="text/javascript">
     (function($) {
@@ -196,10 +216,11 @@
     	});
     }
 
-    function _reply(comment_id){
-    	var post_id ='{$post.id}';
+    function open_reply(comment_id){
+    	$("#comment_id_val").val(comment_id);
+    	$(".mask").show();
+    	$("#replyComment").show();
     	
-    	alert(comment_id);
     }
     </script>
 
