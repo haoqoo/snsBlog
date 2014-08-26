@@ -2,6 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtmBox">
 <head>
 <include file="./Public/common/meta.html" />
+<style type="text/css">
+<!--
+*{margin:0;padding:0;}
+.box{margin-bottom:12px;overflow-x:hidden;overflow-y:hidden;padding:3px;background:#FFFFEE;border:solid 1px #999;}
+ -->
+</style>
 </head>
 
 <body>
@@ -88,6 +94,7 @@
 												<p class="notiR"> <a class="notiRly" onclick="open_reply({$vo.id})">回复</a><a class="notiRly" onclick="_report({$vo.user_id})">举报</a></p>
 												</if>
 											</div>
+                                            {:W('My/commentBuilder',array($vo['parent_id']))}
 											<p class="notiCon clearfix">{$vo.content}</p>
 										</div>
 
@@ -130,7 +137,7 @@
 	<!-- 弹层 -->
     <include file="./Public/common/openWindows.html" />
 
-     <div id="replyComment" class="xsRegLayer" style="display:none; top:300px; left:400px;z-index:9999">
+     <div id="replyComment" class="xsRegLayer" style="display:none; top:200px; left:400px;z-index:9999">
         <a class="closeBtn">
             <span class="xsIcon icon_close"></span>
         </a>
@@ -145,7 +152,7 @@
                     <textarea id="replyContent" class="xsArea fwA01"></textarea>
                 </p>            
             </div>
-            <p class="LaylogBtn"><a class="logBtn" href="javascript:send_msg();" >回复</a>
+            <p class="LaylogBtn"><a class="logBtn" href="javascript:reply_comment();" >回复</a>
             </p>
         </div>       
     </div>
@@ -221,6 +228,24 @@
     	$(".mask").show();
     	$("#replyComment").show();
     	
+    }
+
+    function reply_comment(){
+    	var comment_id = $("#comment_id_val").val();
+    	var post_id ='{$post.id}';
+    	var replyContent = $("#replyContent").val();
+    	$.post("__ROOT__/post/replyComment",{
+    		comment_id:comment_id,
+    		post_id:post_id,
+    		content:replyContent
+    	},function(data){
+    		alert("发表评论成功！");
+            $(".mask").hide();
+            $("#replyComment").hide();
+    		$("comment_id_val").val("");
+    		$("#replyContent").val("");            
+    		$(".vewComList").append(data);  
+    	},"html");
     }
     </script>
 

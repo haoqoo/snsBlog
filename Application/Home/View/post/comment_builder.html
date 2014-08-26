@@ -1,0 +1,7 @@
+<foreach name="reply_list" item="vo">
+<div class="box">
+<b>{:W('My/getUserVal',array($vo['user_id'],'aliasname'))}</b>的评论：{$vo.content}
+</foreach>
+<foreach name="reply_list" item="vo">
+</div>
+</foreach>

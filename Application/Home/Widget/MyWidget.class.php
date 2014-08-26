@@ -83,6 +83,19 @@
 			return $val;
 	 	}
 
+	 	//评论回复 盖楼
+	 	public function commentBuilder($parent_id=null)
+	 	{
+	 		$Comments = M('Comments');
+	 		if(!empty($parent_id)){
+	 			$comments = $Comments->where('id in ('.$parent_id.')')->select();
+	 			$results = array_reverse($comments);
+	 			$this->assign('reply_list',$results);
+	 			$this->display('Post:comment_builder');
+	 		}
+
+	 	}
+
 	 	//通过post_id获取img
 	 	public function getImgByPostId($post_id){
 	 		$PostImgs = M('PostImgs');

@@ -22,7 +22,7 @@ class OperationLogsLogic extends Model {
 		$logInfo['oper_action']=$oper_action;
 		$logInfo['oper_user_id']=$oper_user_id;
 		$logInfo['oper_notice_id']=$oper_notice_id;
-		$logInfo['oper_date']=date('Y-m-d H:i:s');//未读
+		$logInfo['oper_date']=date('Y-m-d H:i:s');
 		$logInfo['state']=1;//未读
 		return $logInfo;
 	}
