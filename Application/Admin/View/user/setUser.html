@@ -6,6 +6,7 @@
     <script type="text/javascript" src="__PUBLIC__/js/plugins/validator-0.7.3/jquery.validator.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/plugins/validator-0.7.3/local/zh_CN.js"></script>
 	<script type="text/javascript" src="__PUBLIC__/js/plugins/preview/uploadPreview.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/plugins/My97Date/WdatePicker.js"></script>
 
 <title></title>
 </head>
@@ -67,9 +68,10 @@
 							<dl class="clearfix userbirth">
 								<dt class="formName">生日</dt>
 								<dd class="formInput">
-									<input name="born_year" class="xsInput fw07" type="text" placeholder="年" value="{$user.born_year}" data-rule=" integer; range[1940~2100]">
-									<input name="born_month" class="xsInput fw07" type="text"  placeholder="月" value="{$user.born_month}" data-rule=" integer; range[1~12]">
-									<input name="born_day" class="xsInput fw07" type="text"  placeholder="日" value="{$user.born_day}" data-rule=" integer; range[1~31]">
+									<input id="Wdate" class="Wdate" type="text" onClick="WdatePicker()" readonly="readonly">
+									<input name="born_year" class="xsInput fw07" type="hidden" placeholder="年" value="{$user.born_year}">
+									<input name="born_month" class="xsInput fw07" type="hidden"  placeholder="月" value="{$user.born_month}" >
+									<input name="born_day" class="xsInput fw07" type="hidden"  placeholder="日" value="{$user.born_day}" >
 								</dd>
 								
 							</dl>
@@ -116,6 +118,9 @@
 </html>
 <script type="text/javascript">
 	$(function () {
+		if("{$user.born_year}".length > 0 && "{$user.born_month}".length > 0 && "{$user.born_day}".length > 0){
+			$("#Wdate").val("{$user.born_year}-"+"{$user.born_month}-"+"{$user.born_day}");
+		}		
 		$("input[name='sex']").bind({
 			click: function(){
 				$("#grade").val($(this).val());
@@ -125,6 +130,14 @@
     });
 
 	function saveUser(){
+		var d = $("#Wdate").val();
+		if(d.length > 0){
+			var arr = d.split("-");
+			$("input[name='born_year']").val(arr[0]);
+			$("input[name='born_month']").val(arr[1]);
+			$("input[name='born_day']").val(arr[2]);
+		}
+		
 		$("#form1").submit();	
 	}
 

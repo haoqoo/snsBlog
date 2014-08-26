@@ -1,5 +1,5 @@
 <form id="personal_form1" action="__ROOT__/admin/personal/addAttention.shtml" method="post">
-<input name="id" value="{$userId}">
+<input type="hidden" name="id" value="{$userId}">
 <div class="userMain clearfix">
 	<div class="userInfoBox clearfix">
 		<div class="userImgBox"><a class="userImg"><img src="__PUBLIC__/{:W('Home/My/getUserVal',array($userId,'header_img'))}" alt=""  onerror="javascript:this.src='__PUBLIC__/images/user_default.png';" ></a></div>
