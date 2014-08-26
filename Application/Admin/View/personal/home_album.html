@@ -40,7 +40,12 @@
 			<div class="fallMain">
                 <div class=" " id="wmain" style="position: relative;margin-top:10px;">
                     <ul class="fallList blogfall" id='tiles'>
-                        				
+                        <li>
+                            <a class="albumAddBox" href="__ROOT__/album/add?cate={$category_id}">
+                                <span class="albumAdd"></span>
+                                <p class="albumAddTxt">添加专辑</p>
+                            </a>
+                        </li> 				
                     </ul>
 
 
@@ -127,7 +132,7 @@
             }
         };
 
-
+        applyLayout();
         display();
         bindEvent();
 
