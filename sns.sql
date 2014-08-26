@@ -142,10 +142,10 @@ CREATE TABLE `wq_comments` (
   `post_id` bigint(20) DEFAULT NULL COMMENT '博客id',
   `create_date` datetime DEFAULT NULL COMMENT '评论时间',
   `state` int(11) DEFAULT NULL COMMENT '状态',
-  `parent_id` bigint(20) DEFAULT NULL COMMENT '被回复的评论id',
+  `parent_id` varchar(200) DEFAULT NULL COMMENT '被回复的评论id',
   PRIMARY KEY (`id`),
   KEY `post_id` (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='评论';
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='评论';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,7 +154,7 @@ CREATE TABLE `wq_comments` (
 
 LOCK TABLES `wq_comments` WRITE;
 /*!40000 ALTER TABLE `wq_comments` DISABLE KEYS */;
-INSERT INTO `wq_comments` VALUES (1,'评论test1',1,1,'2014-08-12 21:38:57',1,NULL),(2,'评论test2',2,1,'2014-08-13 09:21:42',1,NULL),(3,'1234567',2,1,'2014-08-18 13:45:47',1,NULL),(4,'评论test3',2,1,'2014-08-18 13:50:07',1,NULL),(5,'评论test4',2,1,'2014-08-18 13:50:33',1,NULL),(6,'评论test5',2,1,'2014-08-18 13:51:42',1,NULL),(7,'评论test6',2,1,'2014-08-18 13:52:28',1,NULL),(8,'评论测试7',2,1,'2014-08-18 13:55:35',1,NULL),(9,'评论测试8',2,1,'2014-08-18 13:57:29',1,NULL),(10,'评论测试9',2,1,'2014-08-18 13:59:00',1,NULL),(11,'评论test10',2,1,'2014-08-18 14:00:39',1,NULL),(12,'评论test11',2,1,'2014-08-18 14:02:22',1,NULL),(13,'评论test12\n',2,1,'2014-08-18 14:05:00',1,NULL),(14,'评论test13',2,1,'2014-08-18 14:14:43',1,NULL),(15,'测试评论1',2,2,'2014-08-18 14:24:23',1,NULL),(16,'测试评论，及他人回复时，写入日志。',2,2,'2014-08-18 15:01:52',1,NULL);
+INSERT INTO `wq_comments` VALUES (1,'评论test1',1,1,'2014-08-12 21:38:57',1,NULL),(2,'评论test2',2,1,'2014-08-13 09:21:42',1,NULL),(3,'1234567',2,1,'2014-08-18 13:45:47',1,NULL),(4,'评论test3',2,1,'2014-08-18 13:50:07',1,NULL),(5,'评论test4',2,1,'2014-08-18 13:50:33',1,NULL),(6,'评论test5',2,1,'2014-08-18 13:51:42',1,NULL),(7,'评论test6',2,1,'2014-08-18 13:52:28',1,NULL),(8,'评论测试7',2,1,'2014-08-18 13:55:35',1,NULL),(9,'评论测试8',2,1,'2014-08-18 13:57:29',1,NULL),(10,'评论测试9',2,1,'2014-08-18 13:59:00',1,NULL),(11,'评论test10',2,1,'2014-08-18 14:00:39',1,NULL),(12,'评论test11',2,1,'2014-08-18 14:02:22',1,NULL),(13,'评论test12\n',2,1,'2014-08-18 14:05:00',1,NULL),(14,'评论test13',2,1,'2014-08-18 14:14:43',1,NULL),(15,'测试评论1',2,2,'2014-08-18 14:24:23',1,NULL),(16,'测试评论，及他人回复时，写入日志。',2,2,'2014-08-18 15:01:52',1,NULL),(17,'1234',2,2,'2014-08-26 10:30:04',1,'15'),(18,'回复2',2,2,'2014-08-26 10:34:12',1,'15,17'),(19,'回复3',2,2,'2014-08-26 13:54:29',1,'15,17,18');
 /*!40000 ALTER TABLE `wq_comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -180,6 +180,32 @@ CREATE TABLE `wq_hot_keys` (
 LOCK TABLES `wq_hot_keys` WRITE;
 /*!40000 ALTER TABLE `wq_hot_keys` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wq_hot_keys` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `wq_last_visitor`
+--
+
+DROP TABLE IF EXISTS `wq_last_visitor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wq_last_visitor` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) DEFAULT NULL COMMENT '被访问者',
+  `visitor_id` bigint(20) DEFAULT NULL COMMENT '游客',
+  `visitor_time` datetime DEFAULT NULL COMMENT '访问时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wq_last_visitor`
+--
+
+LOCK TABLES `wq_last_visitor` WRITE;
+/*!40000 ALTER TABLE `wq_last_visitor` DISABLE KEYS */;
+INSERT INTO `wq_last_visitor` VALUES (1,1,4,'2014-08-26 14:51:10'),(2,2,4,'2014-08-26 14:52:36'),(3,5,4,'2014-08-26 15:03:27');
+/*!40000 ALTER TABLE `wq_last_visitor` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -229,7 +255,7 @@ CREATE TABLE `wq_operation_logs` (
   `state` int(2) DEFAULT NULL COMMENT '状态 1未读，2已读',
   `complete_date` datetime DEFAULT NULL COMMENT '已读时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='博文，用户关注，系统信息，用户私信 等操作日志信息';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='博文，用户关注，系统信息，用户私信 等操作日志信息';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -238,7 +264,7 @@ CREATE TABLE `wq_operation_logs` (
 
 LOCK TABLES `wq_operation_logs` WRITE;
 /*!40000 ALTER TABLE `wq_operation_logs` DISABLE KEYS */;
-INSERT INTO `wq_operation_logs` VALUES (2,'2','albums','关注','2014-08-14 14:49:28',1,2,1,NULL),(3,'16','comments','评论','2014-08-18 15:01:52',2,1,1,NULL),(6,'3','user_messages','私信','2014-08-18 15:39:42',6,6,1,NULL),(7,'4','user_messages','私信','2014-08-18 16:57:16',4,4,1,NULL),(8,'5','user_messages','私信','2014-08-18 16:57:32',4,4,1,NULL),(9,'6','user_messages','私信','2014-08-18 17:09:46',4,4,1,NULL),(12,'2','posts','赞','2014-08-22 09:01:51',1,1,1,NULL),(13,'2','posts','收藏','2014-08-22 09:01:54',1,1,1,NULL),(14,'1','posts','赞','2014-08-22 09:01:57',1,2,1,NULL);
+INSERT INTO `wq_operation_logs` VALUES (2,'2','albums','关注','2014-08-14 14:49:28',4,2,1,NULL),(3,'16','comments','评论','2014-08-18 15:01:52',2,1,1,NULL),(6,'3','user_messages','私信','2014-08-18 15:39:42',6,6,1,NULL),(7,'4','user_messages','私信','2014-08-18 16:57:16',4,4,1,NULL),(8,'5','user_messages','私信','2014-08-18 16:57:32',4,4,1,NULL),(9,'6','user_messages','私信','2014-08-18 17:09:46',4,4,1,NULL),(12,'2','posts','赞','2014-08-22 09:01:51',1,1,1,NULL),(13,'2','posts','收藏','2014-08-22 09:01:54',1,1,1,NULL),(14,'1','posts','赞','2014-08-22 09:01:57',1,2,1,NULL),(15,'1','posts','赞','2014-08-25 11:15:01',1,2,1,NULL),(16,'2','posts','赞','2014-08-25 11:19:33',2,1,1,NULL),(17,'4','posts','赞','2014-08-25 12:58:01',4,2,1,NULL),(18,'4','posts','收藏','2014-08-25 12:59:31',5,2,1,NULL);
 /*!40000 ALTER TABLE `wq_operation_logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -284,7 +310,7 @@ CREATE TABLE `wq_post_favorites` (
   `create_date` datetime DEFAULT NULL COMMENT '收藏时间',
   PRIMARY KEY (`id`),
   KEY `post_favorite_index` (`type`,`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='博客收藏（采集）和点赞';
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='博客收藏（采集）和点赞';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,7 +319,7 @@ CREATE TABLE `wq_post_favorites` (
 
 LOCK TABLES `wq_post_favorites` WRITE;
 /*!40000 ALTER TABLE `wq_post_favorites` DISABLE KEYS */;
-INSERT INTO `wq_post_favorites` VALUES (14,2,2,1,'2014-08-20 16:19:45'),(15,2,1,2,'2014-08-22 09:01:51'),(16,2,1,1,'2014-08-22 09:01:54'),(17,1,1,2,'2014-08-22 09:01:57'),(18,6,2,0,'2014-08-22 17:02:37');
+INSERT INTO `wq_post_favorites` VALUES (14,2,2,1,'2014-08-20 16:19:45'),(15,2,1,2,'2014-08-22 09:01:51'),(16,2,1,1,'2014-08-22 09:01:54'),(17,1,1,2,'2014-08-22 09:01:57'),(18,6,2,0,'2014-08-22 17:02:37'),(19,1,2,2,'2014-08-25 11:15:01'),(20,2,2,2,'2014-08-25 11:19:33'),(21,4,2,2,'2014-08-25 12:58:01'),(22,4,2,1,'2014-08-25 12:59:31');
 /*!40000 ALTER TABLE `wq_post_favorites` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -405,8 +431,35 @@ CREATE TABLE `wq_user_messages` (
 
 LOCK TABLES `wq_user_messages` WRITE;
 /*!40000 ALTER TABLE `wq_user_messages` DISABLE KEYS */;
-INSERT INTO `wq_user_messages` VALUES (3,6,6,'aaaa','2014-08-18 15:39:42',1),(4,4,4,'hi 1','2014-08-18 16:57:16',2),(5,4,4,'hi 2','2014-08-18 16:57:32',2),(6,4,4,'cc','2014-08-18 17:09:46',2);
+INSERT INTO `wq_user_messages` VALUES (3,6,6,'aaaa','2014-08-18 15:39:42',1),(4,1,4,'hi 1','2014-08-18 16:57:16',1),(5,2,4,'hi 2','2014-08-18 16:57:32',1),(6,5,4,'cc','2014-08-18 17:09:46',2);
 /*!40000 ALTER TABLE `wq_user_messages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `wq_user_report`
+--
+
+DROP TABLE IF EXISTS `wq_user_report`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wq_user_report` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) DEFAULT NULL COMMENT '被举报的用户id',
+  `report_id` bigint(20) DEFAULT NULL COMMENT '举报人id',
+  `report_num` int(11) DEFAULT NULL COMMENT '举报次数',
+  `create_date` datetime DEFAULT NULL COMMENT '举报时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='举报用户记录表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wq_user_report`
+--
+
+LOCK TABLES `wq_user_report` WRITE;
+/*!40000 ALTER TABLE `wq_user_report` DISABLE KEYS */;
+INSERT INTO `wq_user_report` VALUES (1,2,2,2,'2014-08-26 09:07:52');
+/*!40000 ALTER TABLE `wq_user_report` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -432,8 +485,8 @@ CREATE TABLE `wq_users` (
   `introduce` varchar(500) DEFAULT NULL,
   `create_date` datetime DEFAULT NULL COMMENT '创建日期',
   `update_date` datetime DEFAULT NULL COMMENT '修改日期',
-  `state` int(11) DEFAULT NULL COMMENT '状态(1未激活，2激活)',
-  `reg_type` int(11) DEFAULT NULL COMMENT '注册方式(1普通注册，2邮箱注册，3第三方账号)',
+  `state` int(2) DEFAULT NULL COMMENT '状态(1未激活，2激活)',
+  `reg_type` int(2) DEFAULT NULL COMMENT '注册方式(1普通注册，2邮箱注册，3第三方账号)',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COMMENT='用户表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -444,7 +497,7 @@ CREATE TABLE `wq_users` (
 
 LOCK TABLES `wq_users` WRITE;
 /*!40000 ALTER TABLE `wq_users` DISABLE KEYS */;
-INSERT INTO `wq_users` VALUES (1,'123','123456','测试别名啊',NULL,'123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL),(2,'jack','123456','昵称c测试12345','./Uploads/jack/53f310b3255f3.jpg','qweqwe@163.com','男','','','','','','',NULL,NULL,2,NULL),(4,'wanjunjun','123','abc123456','./Uploads/wanjunjun/53f40485a9d09.jpg','w@qq.com','','','','','it','abc','nb le',NULL,NULL,2,1),(5,'tp','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL),(6,'admin','123','','./Uploads/admin/53f1953eb118c.jpg',NULL,'','','','','','a','',NULL,NULL,2,NULL),(7,'thinkphp','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL),(8,'aa','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL),(16,'bbb','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,1),(19,'fasd','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-08-20 15:01:34',NULL,1,2),(25,'wanjunjun2','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-08-21 09:14:03',NULL,2,1),(41,'258259590@qq.com','123',NULL,NULL,'258259590@qq.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-08-21 10:21:24',NULL,1,2);
+INSERT INTO `wq_users` VALUES (1,'123','123456','测试别名啊',NULL,'123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL),(2,'jack','123456','昵称c测试12345','./Uploads/jack/53f310b3255f3.jpg','qweqwe@163.com','男','','','','','','',NULL,NULL,2,NULL),(4,'wanjunjun','123','abc123456','./Uploads/wanjunjun/53f40485a9d09.jpg','w@qq.com','','2014','08','04','it','abc','nb le',NULL,NULL,2,1),(5,'tp','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL),(6,'admin','123','','./Uploads/admin/53f1953eb118c.jpg',NULL,'','','','','','a','',NULL,NULL,2,NULL),(7,'thinkphp','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL),(8,'aa','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL),(16,'bbb','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,1),(19,'fasd','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-08-20 15:01:34',NULL,1,2),(25,'wanjunjun2','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-08-21 09:14:03',NULL,2,1),(41,'258259590@qq.com','123',NULL,NULL,'258259590@qq.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-08-21 10:21:24',NULL,1,2);
 /*!40000 ALTER TABLE `wq_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -460,9 +513,9 @@ CREATE TABLE `wq_users_fans` (
   `user_star` bigint(20) NOT NULL COMMENT '被关注用户id',
   `user_fan` bigint(20) NOT NULL COMMENT '关注别人的用户id',
   `create_date` datetime DEFAULT NULL COMMENT '关注时间',
-  `state` int(2) DEFAULT NULL COMMENT '状态',
+  `state` int(2) DEFAULT NULL COMMENT '状态(1未关注，2已关注)',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户关注';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户关注';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -471,6 +524,7 @@ CREATE TABLE `wq_users_fans` (
 
 LOCK TABLES `wq_users_fans` WRITE;
 /*!40000 ALTER TABLE `wq_users_fans` DISABLE KEYS */;
+INSERT INTO `wq_users_fans` VALUES (1,4,2,'2014-08-26 14:10:32',2),(2,4,5,'2014-08-26 14:10:30',2),(3,1,4,'2014-08-26 11:16:51',2);
 /*!40000 ALTER TABLE `wq_users_fans` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -521,4 +575,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-08-22 17:13:14
+-- Dump completed on 2014-08-26 15:12:36
