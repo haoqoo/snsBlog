@@ -180,22 +180,32 @@ class PersonalController extends Controller {
         $this->redirect('/admin/personal/view', array('id' => $id));
     }
 
-    public function getAttentionList($type=1){
+    public function getAttentionList($type=1, $userId=0){
+        $user = session('__user__');        
         $UsersFans = D('UsersFans', 'Logic');
 
-        $c = $UsersFans->getPageCount($type);
+        $uid = empty($userId)?$user['id']:$userId;
+        $c = $UsersFans->getPageCount($uid, $type);
         $this->assign("total", $c);
         $this->assign("type", $type);
+        $this->assign("attentionUser", $uid);
         $this->display('attentionList');
     }
 
-    public function getAttentionPage($page=1, $limit=10, $type=1){
+    public function getAttentionPage($page=1, $limit=10, $type=1, $userId=0){
+        $user = session('__user__');
         $UsersFans = D('UsersFans', 'Logic');
 
-        $list = $UsersFans->getPageList($page, $limit, $type);
-        $this->assign("list", $list);
+        $uid = empty($userId)?$user['id']:$userId;
+        $list = $UsersFans->getPageList($uid, $page, $limit, $type);
+        $this->assign("list", $list);      
         if($type == 1){
-            $this->display('pageAttentionFragment');
+            if(!empty($userId) && $userId != $user['id']){
+                $this->display('pageAttentionFragment0');
+            }else{
+                $this->display('pageAttentionFragment');
+            }
+            
         }else{
             $this->display('pageAttentionFragment2');
         }

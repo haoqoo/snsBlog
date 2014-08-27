@@ -169,6 +169,13 @@
 	    	$fans = $UsersFans->where($map)->count("user_fan");
 	    	$attentions = $UsersFans->where($map)->count("user_star");
 
+	    	//
+	    	$user = session('__user__');
+	    	$para['user_star'] = $userId;
+	    	$para['user_fan'] = $user['id'];
+	    	$exist = $UsersFans->where($para)->count();
+	    	$this->assign('exist',$exist);
+
 	    	//最近访客查询
 	    	$LastVisitor = M('LastVisitor');
 	    	$map2['user_id'] = $userId;

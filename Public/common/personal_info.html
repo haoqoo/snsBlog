@@ -5,19 +5,33 @@
 		<div class="userImgBox"><a class="userImg"><img src="__PUBLIC__/{:W('Home/My/getUserVal',array($userId,'header_img'))}" alt=""  onerror="javascript:this.src='__PUBLIC__/images/user_default.png';" ></a></div>
 		<div class="userDetaiBox">
 			<p class="userName"><a href="">{:W('Home/My/getUserVal',array($userId))}</a></p>
+			
+		<if condition="$userId neq $Think.session.__user__.id ">
 			<p class="deBox"><a class="sendMsg" href="javascript:open_msg('{$person.username}');"><span class="xsIcon icon_primsg"></span><span class="iconTxt">发私信</span></a></p>
-			<p class="deBox"><a class="addAtt" href="javascript:attention();"><span class="xsIcon icon_addatt"></span><span class="iconTxt">加关注</span></a></p>
+			<p class="deBox">
+				<if condition="$exist eq 0">
+					<a class="addAtt" href="javascript:attention();">
+						<span class="xsIcon icon_addatt"></span><span class="iconTxt">加关注</span>
+					</a>
+				<else/>
+					<a class="addAtt" href="#">
+						<span class="xsIcon icon_addatt"></span><span class="iconTxt">已关注</span>
+					</a>
+				</if>
+			</p>
+		</if>
+
 		</div>
 		<div class="userDataBox">
 			<!-- 数字超过10000，用数字+“万”字表示，保留一位小数 -->
 			<p class="userAttBox">
-				<a class="dataBox" href="#">
+				<a class="dataBox" href="__ROOT__/admin/personal/getAttentionList.shtml?userId={$userId}">
 					<span class="userNum">{$attentions}</span>
 					<span class="userTxt">关注</span>
 				</a>
 			</p>
 			<p class="userFansBox">
-				<a class="dataBox" href="#">
+				<a class="dataBox" href="__ROOT__/admin/personal/getAttentionList.shtml?type=2&userId={$userId}">
 					<span class="userNum">{$fans}</span>
 					<span class="userTxt">粉丝</span>
 				</a>

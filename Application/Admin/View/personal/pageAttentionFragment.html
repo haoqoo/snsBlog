@@ -4,7 +4,7 @@
 
 		<div class="notiDetail" style="position:relative;">
 			<span style="width:90%;display:inline-block">
-				<p class="notiUser"><a class="notiName" href="__ROOT__/admin/personal/view.shtml?id={$Think.session.__user__.id}">你</a><span class="notiDate">{$vo.create_date}</span></p>
+				<p class="notiUser"><a class="notiName" href="__ROOT__/admin/personal/view.shtml?id={$vo.user_fan}">{:W('Home/My/getUserVal',array($vo['user_fan']))}</a><span class="notiDate">{$vo.create_date}</span></p>
 				<p class="notiCon">关注了<a class="notiName" href="__ROOT__/admin/personal/view.shtml?id={$vo.user_star}">{:W('Home/My/getUserVal',array($vo['user_star']))}</a></p>
 			</span>
 			

@@ -25,34 +25,26 @@ class UsersFansLogic extends Model {
         }        		
 	}
 
-	public function getPageCount($type=1){
-    	$user = session('__user__');
-        if(!isset($user)){
-            return 0;
-        }
-
+	public function getPageCount($userId, $type=1){
+    	
        	$UsersFans = M('UsersFans');
         if($type==1){
-            $map['user_fan'] = $user['id'];    
+            $map['user_fan'] = $userId;    
         }else{
-            $map['user_star'] = $user['id'];    
+            $map['user_star'] = $userId;    
         }
     	$map['state'] = 2;
     	$c = $UsersFans->where($map)->count("id");
         return $c;         
     }
 
-    public function getPageList($page=0, $limit=10, $type=1){
-        $user = session('__user__');
-        if(!isset($user)){
-            return null;
-        }
-
+    public function getPageList($userId, $page=0, $limit=10, $type=1){
+       
         $UsersFans = M('UsersFans');
         if($type==1){
-            $map['user_fan'] = $user['id'];    
+            $map['user_fan'] = $userId;    
         }else{
-            $map['user_star'] = $user['id'];    
+            $map['user_star'] = $userId;    
         }
         $map['state'] = 2;
         $list = $UsersFans->where($map)->page($page, $limit)->select();
