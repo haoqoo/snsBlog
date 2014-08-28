@@ -22,15 +22,16 @@ class IndexController extends Controller {
     public function sendm() {  
     	header('Content-Type:text/html;charset=utf-8');
 		//echo "send mail";
-		//SendMail("258259590@qq.com","邮件标题1","邮件正文1:<a href=\"http://www.baidu.com\">active</a>");
+        //258259590@qq.com
+        SendMail("258259590@qq.com","邮件标题1",'<a href="http://www.baidu.com">baidu</a>');
         //sm(); 
-        echo "中文测试success ";
-        echo base64_encode("12.mailactive");
-        echo "<br>";
-        echo base64_decode("MzM0ZmI0MzY5YTUyZWRhYzVmM2IzZmZmZmM5Y2Y2MjA=");
-        echo "<br>";	
-        echo md5("12");
-        echo "<br>";	
-        echo base64_encode(md5("wanjunjun"));
+        // echo "中文测试success ";
+        // echo base64_encode("12.mailactive");
+        // echo "<br>";
+        // echo base64_decode("MzM0ZmI0MzY5YTUyZWRhYzVmM2IzZmZmZmM5Y2Y2MjA=");
+        // echo "<br>";	
+        // echo md5("12");
+        // echo "<br>";	
+        // echo base64_encode(md5("wanjunjun"));
     }
 }

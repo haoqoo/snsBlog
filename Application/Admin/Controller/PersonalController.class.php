@@ -185,6 +185,8 @@ class PersonalController extends Controller {
         $UsersFans = D('UsersFans', 'Logic');
 
         $uid = empty($userId)?$user['id']:$userId;
+        //用户只能看自己的关注信息
+        $uid = $user['id'];
         $c = $UsersFans->getPageCount($uid, $type);
         $this->assign("total", $c);
         $this->assign("type", $type);
@@ -197,6 +199,8 @@ class PersonalController extends Controller {
         $UsersFans = D('UsersFans', 'Logic');
 
         $uid = empty($userId)?$user['id']:$userId;
+        //用户只能看自己的关注信息
+        $uid = $user['id'];
         $list = $UsersFans->getPageList($uid, $page, $limit, $type);
         $this->assign("list", $list);      
         if($type == 1){

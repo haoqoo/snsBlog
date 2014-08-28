@@ -28,7 +28,7 @@
         <p class="LaylogBtn"><a class="logBtn" href="javascript:login();">登录</a>
         </p>
         <p class="LayOth clearfix"><a class="forgetPsw" href="javascript:openDialog('findPassword')">忘记密码></a>
-            <span class="noAcc">还没有账号？ <a class="cliReg" href="javascript:open_reg('inLogin');">点击注册></a>
+            <span class="noAcc">还没有账号？ <a class="cliReg" href="javascript:open_mail_reg();">点击注册></a>
             </span>
         </p>
     </div>
@@ -56,12 +56,12 @@
             <p class="logInput logName">
                 <input type="text" name="regname" placeholder="用户名" class="xsInput regInput1" data-rule="required;remote[__ROOT__/admin/user/regCheck.shtml]">
             </p>
-            <p class="logInput logVer">
+            <!-- <p class="logInput logVer">
                 <input type="text" name="code" placeholder="验证码" class="xsInput regInput2">
                 <img id="mcode" style="cursor:pointer;" src="__ROOT__/home/index/ver.shtml?" alt="" onclick="flash_img('mcode')"/>
                 <span class="verImg">
                 </span>
-            </p>
+            </p> -->
         </div>
         <p class="LaylogBtn"><a class="logBtn" href="javascript:reg();">注册</a>
         </p>
@@ -108,15 +108,21 @@
         <span class="logoImg logoL"></span>
     </p>
     <p class="regWay">邮箱注册</p>
-    <div class="LayRegWrap">
+    <div class="LayRegWrap" style="position:relative;">
         <div class="LayRegBox">
             <p class="logInput logName">
                 <input type="text" name="mailname" placeholder="邮箱名" class="xsInput regInput1" data-rule="required;email;remote[__ROOT__/admin/user/regMailCheck.shtml]">
             </p>
-            
+            <p class="logInput logVer">
+                <input type="text" name="code" placeholder="验证码" class="xsInput regInput2">
+                <img id="mcode" style="cursor:pointer;" src="__ROOT__/home/index/ver.shtml?" alt="" onclick="flash_img('mcode')"/>
+                <span class="verImg">
+                </span>
+            </p>
         </div>
         <p class="LaylogBtn"><a class="logBtn" href="javascript:mail_reg();">注册</a>
         </p>
+        <div id="err_msg" style="display:none;position:absolute;right:5px;bottom:5px;color:red;width:120px;">验证码错误</div>
     </div>
 </form>
 </div>
@@ -380,7 +386,8 @@ style="display:none; top:300px; left:400px;z-index:9999">
                 return;
             }
 			var mailname = $("input[name=mailname]").val();
-			$.post("__ROOT__/admin/active/mailReg",{'mailname':mailname},function(data){
+            var code = $("input[name=code]").val();
+			$.post("__ROOT__/admin/active/mailReg",{'mailname':mailname, 'code':code},function(data){
 				 //alert(data.success);
 				 if (data.success){
 				 	$(".mask").hide();	
@@ -397,6 +404,7 @@ style="display:none; top:300px; left:400px;z-index:9999">
 
 				 }else{
 				 	$("#err_msg").show();	
+                    flash_img('mcode');
 				 };//undo 
 
                  

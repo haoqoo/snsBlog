@@ -28,9 +28,15 @@ class ActiveController extends Controller {
 
     }
 
-    public function mailReg($mailname='') {        
+    public function mailReg($mailname='', $code='') {        
         
         $User = M("Users");
+        $verify = new \Think\Verify();
+        if(!$verify->check($code)){
+            $ajax['msg']  = "err_code";
+            $ajax['success'] = false;
+            return $this->ajaxReturn($ajax);   
+        }
 
         $map['username'] = $mailname;
         $u = $User->where($map)->find();
@@ -50,10 +56,13 @@ class ActiveController extends Controller {
         $key = base64_encode(base64_encode(md5("12"))."+".base64_encode($id.".mailactive"));
         $active_url = "http://localhost".__ROOT__."/admin/active/active?key=".$key;
 
-        SendMail($mailname, "sns系统注册激活", "请点击下面的链接".$active_url."。来认证您的邮箱。如果您的邮箱不支持链接点击，请将以上链接地址拷贝到你的浏览器地址栏中认证。");
+        $m = SendMail($mailname, "sns系统注册激活", "请点击下面的链接".$active_url."。来认证您的邮箱。如果您的邮箱不支持链接点击，请将以上链接地址拷贝到你的浏览器地址栏中认证。");
         
         $ajax['success'] = true;
-        $this->ajaxReturn($ajax);   
+
+        $this->assign('success', $ajax['success']);
+        $this->display('sendMail');
+        // $this->ajaxReturn($ajax);   
     }    
 
     public function active($key){

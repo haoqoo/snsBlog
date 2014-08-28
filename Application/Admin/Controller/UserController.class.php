@@ -64,7 +64,7 @@ class UserController extends Controller {
         $ajax['success'] = false;
         
         $map['username']=$username;
-        $verify = new \Think\Verify();
+        /*$verify = new \Think\Verify();
         if($verify->check($code)){
             $ajax['success'] = true; 
             $User = M("Users");
@@ -78,7 +78,7 @@ class UserController extends Controller {
         }else{
             $ajax['msg']  = "err_code";
             $ajax['success'] = false;
-        }
+        }*/
         $this->ajaxReturn($ajax);   
     }
 

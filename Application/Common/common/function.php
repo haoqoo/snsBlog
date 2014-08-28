@@ -9,17 +9,25 @@ function SendMail($address,$title,$message)
     vendor('PHPMailer.class#phpmailer');
 
     $mail=new PHPMailer();
+
+    $mail->SMTPDebug = 1;
+
     // 设置PHPMailer使用SMTP服务器发送Email
     $mail->IsSMTP();
 
     // 设置邮件的字符编码，若不指定，则为'UTF-8'
     $mail->CharSet='UTF-8';
 
+    $mail->SMTPSecure = 'ssl';
+
+    $mail->Port=C('MAIL_PORT');
+
     // 添加收件人地址，可以多次使用来添加多个收件人
     $mail->AddAddress($address);
 
     // 设置邮件正文
     $mail->Body=$message;
+    //$mail->MsgHTML($message);
 
     // 设置邮件头的From字段。
     $mail->From=C('MAIL_ADDRESS');
@@ -34,6 +42,7 @@ function SendMail($address,$title,$message)
 
     // 设置为“需要验证”
     $mail->SMTPAuth=true;
+    $mail->isHTML(true); 
 
     // 设置用户名和密码。
     $mail->Username=C('MAIL_LOGINNAME');
@@ -41,6 +50,14 @@ function SendMail($address,$title,$message)
 
     // 发送邮件。
     return($mail->Send());
+
+    // if(!$mail->Send()) {
+    //     // header("Content-Type:text/html;charset=utf-8");
+    //     echo "Mailer Error: " . $mail->ErrorInfo;
+    // } else {
+    //     // header("Content-Type:text/html;charset=utf-8");
+    //     echo "Message sent!恭喜，邮件发送成功！";
+    // }
 }
 
 ?>
